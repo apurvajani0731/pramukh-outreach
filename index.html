@@ -135,12 +135,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .fc{padding:7px 14px;border-radius:20px;border:2px solid var(--border);background:white;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:Inter,sans-serif;}
 .fc.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
 
-/* UPLOAD PAGE */
+/* UPLOAD */
 .stepbox{background:white;border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;border-top:3px solid var(--primary);}
 .stepnum{display:inline-block;background:linear-gradient(135deg,#C2410C,#EA580C);color:white;font-size:11px;font-weight:800;border-radius:20px;padding:3px 12px;margin-bottom:10px;}
 .steplabel{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--navy);}
-
-/* FILE PREVIEW BOX */
 .file-preview{display:none;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:2px solid #86EFAC;border-radius:14px;padding:16px;margin-top:12px;}
 .file-preview.show{display:block;}
 .fp-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
@@ -155,23 +153,63 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .btn-import{width:100%;padding:16px;border:none;border-radius:14px;cursor:pointer;background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-size:16px;font-weight:800;font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 20px rgba(22,163,74,0.35);}
 .btn-import:disabled{opacity:0.6;cursor:not-allowed;}
 .btn-reselect{width:100%;padding:11px;border:2px solid var(--border);border-radius:12px;cursor:pointer;background:white;color:var(--muted);font-size:13px;font-weight:600;font-family:Inter,sans-serif;margin-top:8px;}
-
 .upa{border:2px dashed var(--primary);border-radius:var(--radius);padding:28px;text-align:center;background:var(--pl);cursor:pointer;transition:all 0.2s;}
-.upa:hover{background:var(--pl2);border-color:var(--primary2);}
+.upa:hover{background:var(--pl2);}
 .upa i{font-size:38px;color:var(--primary);margin-bottom:10px;display:block;}
 .upa p{color:var(--primary);font-weight:700;font-size:14px;}
 .upa small{color:var(--muted);font-size:12px;display:block;margin-top:4px;}
-
 .evbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
 .evbtn{padding:14px 10px;border:2px solid var(--border);border-radius:14px;background:white;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:Inter,sans-serif;text-align:center;transition:all 0.2s;}
 .evbtn.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
 .evbtn i{display:block;font-size:20px;margin-bottom:6px;}
-
 .btn-s{width:100%;padding:14px;background:linear-gradient(135deg,#C2410C,#EA580C);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;margin-top:4px;box-shadow:0 4px 12px rgba(194,65,12,0.3);}
 .btn-g{background:linear-gradient(135deg,#16A34A,#15803D);box-shadow:0 4px 12px rgba(22,163,74,0.3);}
 .btn-r{background:linear-gradient(135deg,#DC2626,#B91C1C);box-shadow:0 4px 12px rgba(220,38,38,0.3);}
 .divider{height:1px;background:var(--border);margin:20px 0;}
 
+/* ===== REPORTS PAGE ===== */
+.rpt-banner{background:linear-gradient(135deg,#1E3A5F,#162D4A);border-radius:var(--radius);padding:18px;margin-bottom:16px;color:white;position:relative;overflow:hidden;}
+.rpt-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(234,88,12,0.2);}
+.rpt-banner h3{font-size:15px;font-weight:800;}
+.rpt-banner p{font-size:12px;opacity:0.75;margin-top:3px;}
+.rpt-ev-filter{display:flex;gap:8px;margin-bottom:16px;}
+.rpt-ef{flex:1;padding:10px;border:2px solid var(--border);border-radius:12px;background:white;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;text-align:center;font-family:Inter,sans-serif;}
+.rpt-ef.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
+.rpt-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.rpt-sc{background:white;border-radius:14px;padding:14px;box-shadow:var(--shadow);text-align:center;}
+.rpt-sn{font-size:22px;font-weight:800;color:var(--navy);}
+.rpt-sl{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:3px;}
+
+/* VOLUNTEER REPORT CARD */
+.vrc{background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;}
+.vrc-header{background:linear-gradient(135deg,#1E3A5F,#2D5A8E);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+.vrc-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#C2410C,#EA580C);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;font-weight:800;color:white;}
+.vrc-info{flex:1;}
+.vrc-name{font-size:15px;font-weight:800;color:white;}
+.vrc-sub{font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;}
+.vrc-pct{background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:800;color:white;}
+.vrc-arrow{color:rgba(255,255,255,0.7);font-size:14px;transition:transform 0.3s;}
+.vrc-arrow.open{transform:rotate(180deg);}
+.vrc-body{display:none;padding:16px;}
+.vrc-body.open{display:block;}
+.vrc-pbw{height:10px;background:#E7E5E4;border-radius:20px;overflow:hidden;margin-bottom:14px;}
+.vrc-pbf{height:100%;border-radius:20px;background:linear-gradient(90deg,#C2410C,#EA580C);}
+.vrc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.vrc-stat{text-align:center;padding:10px 6px;border-radius:12px;}
+.vrc-stat-n{font-size:20px;font-weight:800;}
+.vrc-stat-l{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.vrc-stat.st{background:#FFF7ED;}.vrc-stat.sc{background:#DBEAFE;}.vrc-stat.si{background:#DCFCE7;}.vrc-stat.sni{background:#FEE2E2;}.vrc-stat.sr{background:#FEF3C7;}.vrc-stat.scb{background:#FFEDD5;}.vrc-stat.snr{background:#F9FAFB;}
+.vrc-contacts-btn{width:100%;padding:10px;border:2px solid var(--primary);border-radius:10px;background:var(--pl);color:var(--primary);font-size:13px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;gap:6px;}
+.vrc-contacts{margin-top:12px;display:none;}
+.vrc-contacts.open{display:block;}
+.mini-card{background:#FAFAF9;border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.mini-card.sp{border-left-color:#D6D3D1;}.mini-card.sc{border-left-color:#2563EB;}.mini-card.si{border-left-color:#16A34A;}.mini-card.sni{border-left-color:#DC2626;}.mini-card.sr{border-left-color:#D97706;}.mini-card.scb{border-left-color:#EA580C;}.mini-card.snr{border-left-color:#9CA3AF;}
+.mini-name{font-size:13px;font-weight:700;color:var(--navy);}
+.mini-num{font-size:11px;color:var(--muted);}
+.mini-rmk{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px;}
+.mini-sb{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+
+/* PROFILE */
 .pcard{background:linear-gradient(135deg,#1E3A5F,#162D4A);border-radius:var(--radius);padding:28px;text-align:center;margin-bottom:16px;}
 .pav{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#C2410C,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 24px rgba(194,65,12,0.4);}
 .pav i{color:white;font-size:32px;}
@@ -185,6 +223,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .ev-name{font-size:14px;font-weight:700;color:var(--navy);}
 .ev-date{font-size:11px;color:var(--muted);margin-top:2px;}
 
+/* MODAL */
 .mo{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;display:none;align-items:flex-end;justify-content:center;}
 .mo.open{display:flex;}
 .ms{background:white;border-radius:24px 24px 0 0;padding:24px 20px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto;animation:sup 0.3s ease;}
@@ -202,7 +241,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .so.a-cb{border-color:#EA580C;background:#FFEDD5;color:#C2410C;}
 .so.a-nr{border-color:#9CA3AF;background:#F9FAFB;color:#374151;}
 .btn-c{width:100%;padding:12px;background:#F5F5F4;color:var(--muted);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;margin-top:8px;}
-
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--navy);color:white;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;border-left:4px solid var(--primary);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .empty{text-align:center;padding:48px 20px;}
@@ -294,12 +332,30 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="empty" id="leads-empty" style="display:none"><i class="fas fa-inbox"></i><h3>No contacts found</h3><p>Contacts assigned to you will appear here</p></div>
   </div>
 
+  <!-- REPORTS (ADMIN ONLY) -->
+  <div class="page" id="pg-reports">
+    <div class="rpt-banner">
+      <h3>📊 Volunteer Reports</h3>
+      <p>Tap any volunteer to see detailed progress & contacts</p>
+    </div>
+    <div class="rpt-ev-filter">
+      <button class="rpt-ef active" id="ref-all" onclick="setRptEv('all',this)">🌐 All Events</button>
+      <button class="rpt-ef" id="ref-lc" onclick="setRptEv('lc',this)">🎪 Leadership Carnival</button>
+      <button class="rpt-ef" id="ref-pvc" onclick="setRptEv('pvc',this)">⭐ PVC 4.0</button>
+    </div>
+    <div class="rpt-summary" id="rpt-summary">
+      <div class="rpt-sc"><div class="rpt-sn" id="rs-total">0</div><div class="rpt-sl">Total</div></div>
+      <div class="rpt-sc"><div class="rpt-sn" id="rs-int" style="color:#16A34A">0</div><div class="rpt-sl">Interested</div></div>
+      <div class="rpt-sc"><div class="rpt-sn" id="rs-reg" style="color:#D97706">0</div><div class="rpt-sl">Registered</div></div>
+    </div>
+    <div id="rpt-vol-list"></div>
+    <div class="empty" id="rpt-empty" style="display:none"><i class="fas fa-chart-bar"></i><h3>No data yet</h3><p>Upload contacts to see volunteer reports</p></div>
+  </div>
+
   <!-- UPLOAD (ADMIN) -->
   <div class="page" id="pg-upload">
     <div class="sh"><div class="st"><i class="fas fa-upload"></i> Upload Contacts</div></div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Follow 3 steps · Contacts auto-split equally among volunteers.</p>
-
-    <!-- STEP 1 -->
     <div class="stepbox">
       <span class="stepnum">STEP 1</span>
       <div class="steplabel">Enter Volunteer Emails</div>
@@ -308,8 +364,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
       </div>
       <small style="color:var(--muted);font-size:11px;">📌 One email per line · Must match exactly with Firebase Auth emails</small>
     </div>
-
-    <!-- STEP 2 -->
     <div class="stepbox">
       <span class="stepnum">STEP 2</span>
       <div class="steplabel">Select Event</div>
@@ -318,13 +372,9 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
         <button class="evbtn" id="ev-pvc" onclick="selectEv('pvc')"><i class="fas fa-star"></i>PVC 4.0<br/><small style="font-weight:400;font-size:11px;">31 May–3 Jun 2026</small></button>
       </div>
     </div>
-
-    <!-- STEP 3 -->
     <div class="stepbox">
       <span class="stepnum">STEP 3</span>
       <div class="steplabel">Choose CSV File</div>
-
-      <!-- File picker (shown when no file selected) -->
       <div id="file-picker-area">
         <label for="csvfile" class="upa">
           <i class="fas fa-file-csv"></i>
@@ -332,46 +382,31 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
           <small>Columns: Name, Contact · Row 1 = header</small>
         </label>
       </div>
-
       <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="previewCSV(event)"/>
-
-      <!-- File Preview (shown after file selected) -->
       <div class="file-preview" id="file-preview">
         <div class="fp-top">
           <div class="fp-icon"><i class="fas fa-file-csv"></i></div>
           <div>
             <div class="fp-name" id="fp-filename">file.csv</div>
-            <div class="fp-meta" id="fp-meta">0 contacts ready to import</div>
+            <div class="fp-meta" id="fp-meta">0 contacts ready</div>
           </div>
         </div>
         <div class="fp-stats">
-          <div class="fp-stat">
-            <div class="fp-stat-n" id="fp-count">0</div>
-            <div class="fp-stat-l">Total Contacts</div>
-          </div>
-          <div class="fp-stat">
-            <div class="fp-stat-n" id="fp-vcount">0</div>
-            <div class="fp-stat-l">Volunteers</div>
-          </div>
+          <div class="fp-stat"><div class="fp-stat-n" id="fp-count">0</div><div class="fp-stat-l">Total Contacts</div></div>
+          <div class="fp-stat"><div class="fp-stat-n" id="fp-vcount">0</div><div class="fp-stat-l">Volunteers</div></div>
         </div>
-        <button class="btn-import" id="import-btn" onclick="submitImport()">
-          <i class="fas fa-cloud-upload-alt"></i> Import to Dashboard
-        </button>
-        <button class="btn-reselect" onclick="resetFileSelect()">
-          <i class="fas fa-redo"></i> Choose Different File
-        </button>
+        <button class="btn-import" id="import-btn" onclick="submitImport()"><i class="fas fa-cloud-upload-alt"></i> Import to Dashboard</button>
+        <button class="btn-reselect" onclick="resetFileSelect()"><i class="fas fa-redo"></i> Choose Different File</button>
       </div>
-
       <div class="ilog" id="ilog"></div>
     </div>
-
     <div class="divider"></div>
     <div class="sh"><div class="st"><i class="fas fa-download"></i> Export Master File</div></div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Download all contacts + statuses + remarks as CSV.</p>
     <button class="btn-s btn-g" onclick="exportMaster()"><i class="fas fa-file-csv"></i> Export Master File (CSV)</button>
     <div class="divider"></div>
     <div class="sh"><div class="st"><i class="fas fa-trash-alt"></i> Danger Zone</div></div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">This will permanently delete all leads from Firestore.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Permanently deletes all leads from Firestore.</p>
     <button class="btn-s btn-r" onclick="clearAllLeads()"><i class="fas fa-trash"></i> Clear All Leads</button>
   </div>
 
@@ -403,6 +438,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
   <div class="tab-bar">
     <button class="ti active" id="tab-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
     <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-list-ul"></i><span>My Leads</span></button>
+    <button class="ti" id="tab-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
     <button class="ti" id="tab-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
     <button class="ti" id="tab-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
   </div>
@@ -447,21 +483,19 @@ const firebaseConfig={
   messagingSenderId:"172546492205",
   appId:"1:172546492205:web:ab60b62b6f96d71af1f5a4"
 };
-
 const ADMIN_EMAILS=["apurvjani2020@gmail.com"];
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 let ME=null,IS_ADMIN=false,VOL_NAME="";
 let ALL_LEADS=[],CUR_LEAD_ID=null,SEL_STATUS="";
-let F_STATUS="all",F_EVENT="all",SEL_EVENT="lc";
-let PENDING_CONTACTS=[]; // stores parsed CSV contacts before import
+let F_STATUS="all",F_EVENT="all",SEL_EVENT="lc",RPT_EV="all";
+let PENDING_CONTACTS=[];
 
 window.doLogin=async()=>{
   const email=document.getElementById("lemail").value.trim();
   const pwd=document.getElementById("lpass").value;
-  const btn=document.getElementById("lbtn");
-  const err=document.getElementById("lerr");
+  const btn=document.getElementById("lbtn"),err=document.getElementById("lerr");
   err.classList.remove("show");
   if(!email||!pwd){err.textContent="Please enter email and password.";err.classList.add("show");return;}
   btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Signing in...';
@@ -483,6 +517,7 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
     if(IS_ADMIN){
       document.getElementById("tab-upload").style.display="";
+      document.getElementById("tab-reports").style.display="";
       document.getElementById("vol-prog-hdr").style.display="flex";
       document.getElementById("admin-info").style.display="block";
     }
@@ -500,9 +535,10 @@ function listenLeads(){
   onSnapshot(collection(db,"outreach_leads"),snap=>{
     ALL_LEADS=snap.docs.map(d=>({id:d.id,...d.data()}));
     renderStats();renderLeads();renderCallbacks();
-    if(IS_ADMIN)renderVolProgress();
+    if(IS_ADMIN){renderVolProgress();renderReports();}
   });
 }
+
 function renderStats(){
   const list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
   document.getElementById("s-total").textContent=list.length;
@@ -510,6 +546,7 @@ function renderStats(){
   document.getElementById("s-int").textContent=list.filter(l=>l.status==="interested").length;
   document.getElementById("s-reg").textContent=list.filter(l=>l.status==="registered").length;
 }
+
 window.renderLeads=()=>{
   const srch=(document.getElementById("srch").value||"").toLowerCase();
   let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
@@ -521,9 +558,11 @@ window.renderLeads=()=>{
   if(!list.length){el.innerHTML="";em.style.display="block";return;}
   em.style.display="none";el.innerHTML=list.map(l=>buildCard(l)).join("");
 };
+
 function stC(s){return{pending:"sp",called:"sc",interested:"si","not-interested":"sni",registered:"sr",callback:"scb","not-reachable":"snr","wrong-number":"snr"}[s]||"sp";}
 function stL(s){return{pending:"Pending",called:"Called",interested:"Interested","not-interested":"Not Interested",registered:"Registered",callback:"Callback","not-reachable":"Not Reachable","wrong-number":"Wrong Number"}[s]||"Pending";}
 function evL(e){return e==="lc"?"Leadership Carnival":"PVC 4.0";}
+
 function buildCard(l){
   const st=l.status||"pending",sc=stC(st),sl=stL(st);
   const ini=(l.name||"?").split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
@@ -534,6 +573,7 @@ function buildCard(l){
   const sr=(l.remarks||"").replace(/'/g,"").replace(/"/g,"").replace(/\n/g," ");
   return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">📞 ${l.contact}</div>${volTag}<span class="cev">${evL(l.event)}</span></div><span class="sb ${sc}">${sl}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i> Call</button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-edit"></i> Update</button><button class="ab ab-wa" onclick="openWA('${l.contact}')"><i class="fab fa-whatsapp"></i> WA</button></div></div>`;
 }
+
 function renderCallbacks(){
   const today=new Date().toDateString();
   const list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
@@ -543,6 +583,7 @@ function renderCallbacks(){
   if(!cbs.length){el.innerHTML=`<div style="text-align:center;padding:20px;color:#A8A29E;font-size:13px;">No callbacks due today ✅</div>`;return;}
   el.innerHTML=cbs.map(l=>buildCard(l)).join("");
 }
+
 function renderVolProgress(){
   const vols=[...new Set(ALL_LEADS.map(l=>l.assignedTo).filter(Boolean))].sort();
   if(!vols.length){document.getElementById("vol-prog-list").innerHTML=`<div style="text-align:center;padding:20px;color:#A8A29E;font-size:13px;">Upload contacts to see volunteer progress</div>`;return;}
@@ -554,8 +595,86 @@ function renderVolProgress(){
     return `<div class="vc"><div class="vh"><div class="vav"><span>${ini}</span></div><div><div class="vname">${v}</div><div class="vsub">${done}/${tot} calls · ${pct}% done</div></div></div><div class="pbw"><div class="pbf" style="width:${pct}%"></div></div><div class="vstats"><div class="vs"><div class="vsn" style="color:#C2410C">${tot}</div><div class="vsl">Total</div></div><div class="vs"><div class="vsn" style="color:#16A34A">${inte}</div><div class="vsl">Interest</div></div><div class="vs"><div class="vsn" style="color:#D97706">${reg}</div><div class="vsl">Reg.</div></div><div class="vs"><div class="vsn" style="color:#DC2626">${ni}</div><div class="vsl">Not Int.</div></div></div></div>`;
   }).join("");
 }
+
+// ===== REPORTS PAGE =====
+window.setRptEv=(ev,el)=>{
+  RPT_EV=ev;
+  document.querySelectorAll(".rpt-ef").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  renderReports();
+};
+
+window.renderReports=()=>{
+  let list=RPT_EV==="all"?ALL_LEADS:ALL_LEADS.filter(l=>l.event===RPT_EV);
+  document.getElementById("rs-total").textContent=list.length;
+  document.getElementById("rs-int").textContent=list.filter(l=>l.status==="interested").length;
+  document.getElementById("rs-reg").textContent=list.filter(l=>l.status==="registered").length;
+  const vols=[...new Set(list.map(l=>l.assignedTo).filter(Boolean))].sort();
+  const el=document.getElementById("rpt-vol-list"),em=document.getElementById("rpt-empty");
+  if(!vols.length){el.innerHTML="";em.style.display="block";return;}
+  em.style.display="none";
+  el.innerHTML=vols.map(v=>{
+    const vl=list.filter(l=>l.assignedTo===v);
+    const tot=vl.length;
+    const pending=vl.filter(l=>(l.status||"pending")==="pending").length;
+    const called=vl.filter(l=>l.status==="called").length;
+    const inte=vl.filter(l=>l.status==="interested").length;
+    const ni=vl.filter(l=>l.status==="not-interested").length;
+    const reg=vl.filter(l=>l.status==="registered").length;
+    const cb=vl.filter(l=>l.status==="callback").length;
+    const nr=vl.filter(l=>l.status==="not-reachable"||l.status==="wrong-number").length;
+    const done=tot-pending;
+    const pct=tot?Math.round((done/tot)*100):0;
+    const ini=v.slice(0,2).toUpperCase();
+    const contactsHtml=vl.map(c=>{
+      const sc=stC(c.status||"pending"),sl=stL(c.status||"pending");
+      const ci=(c.name||"?").split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+      return `<div class="mini-card ${sc}"><div><div class="mini-name">${c.name}</div><div class="mini-num">📞 ${c.contact}</div>${c.remarks?`<div class="mini-rmk">💬 ${c.remarks}</div>`:""}</div><span class="mini-sb sb ${sc}">${sl}</span></div>`;
+    }).join("");
+    return `<div class="vrc">
+      <div class="vrc-header" onclick="toggleVrc('vrc-${v}','arrow-${v}')">
+        <div class="vrc-av">${ini}</div>
+        <div class="vrc-info">
+          <div class="vrc-name">${v}</div>
+          <div class="vrc-sub">${done}/${tot} calls done · ${inte} interested · ${reg} registered</div>
+        </div>
+        <span class="vrc-pct">${pct}%</span>
+        <i class="fas fa-chevron-down vrc-arrow" id="arrow-${v}"></i>
+      </div>
+      <div class="vrc-body" id="vrc-${v}">
+        <div class="vrc-pbw"><div class="vrc-pbf" style="width:${pct}%"></div></div>
+        <div class="vrc-grid">
+          <div class="vrc-stat st"><div class="vrc-stat-n" style="color:#C2410C">${tot}</div><div class="vrc-stat-l">Total</div></div>
+          <div class="vrc-stat sc"><div class="vrc-stat-n" style="color:#2563EB">${called}</div><div class="vrc-stat-l">Called</div></div>
+          <div class="vrc-stat si"><div class="vrc-stat-n" style="color:#16A34A">${inte}</div><div class="vrc-stat-l">Interested</div></div>
+          <div class="vrc-stat sr"><div class="vrc-stat-n" style="color:#D97706">${reg}</div><div class="vrc-stat-l">Registered</div></div>
+          <div class="vrc-stat sni"><div class="vrc-stat-n" style="color:#DC2626">${ni}</div><div class="vrc-stat-l">Not Int.</div></div>
+          <div class="vrc-stat scb"><div class="vrc-stat-n" style="color:#EA580C">${cb}</div><div class="vrc-stat-l">Callback</div></div>
+          <div class="vrc-stat snr"><div class="vrc-stat-n" style="color:#6B7280">${nr}</div><div class="vrc-stat-l">Not Reach.</div></div>
+          <div class="vrc-stat"><div class="vrc-stat-n" style="color:#78716C">${pending}</div><div class="vrc-stat-l">Pending</div></div>
+        </div>
+        <button class="vrc-contacts-btn" onclick="toggleContacts('vc-${v}',this)">
+          <i class="fas fa-list"></i> View All ${tot} Contacts
+        </button>
+        <div class="vrc-contacts" id="vc-${v}">${contactsHtml}</div>
+      </div>
+    </div>`;
+  }).join("");
+};
+
+window.toggleVrc=(id,arrowId)=>{
+  const el=document.getElementById(id),arrow=document.getElementById(arrowId);
+  el.classList.toggle("open");arrow.classList.toggle("open");
+};
+window.toggleContacts=(id,btn)=>{
+  const el=document.getElementById(id);
+  el.classList.toggle("open");
+  btn.innerHTML=el.classList.contains("open")?'<i class="fas fa-chevron-up"></i> Hide Contacts':'<i class="fas fa-list"></i> View All Contacts';
+};
+
 window.setF=(f,el,fbId)=>{F_STATUS=f;document.querySelectorAll(`#${fbId} .fc`).forEach(c=>c.classList.remove("active"));el.classList.add("active");renderLeads();};
 window.setEF=(f,el)=>{F_EVENT=f;document.querySelectorAll("#fb-event .fc").forEach(c=>c.classList.remove("active"));el.classList.add("active");renderLeads();};
+
 window.openUpd=(id,name,status,remarks,cbDate)=>{
   CUR_LEAD_ID=id;SEL_STATUS=status;
   document.getElementById("modal-name").textContent=name;
@@ -579,8 +698,7 @@ window.selStatus=(s,el)=>{
 window.saveUpdate=async()=>{
   if(!CUR_LEAD_ID||!SEL_STATUS){showToast("Please select a status");return;}
   await updateDoc(doc(db,"outreach_leads",CUR_LEAD_ID),{
-    status:SEL_STATUS,
-    remarks:document.getElementById("rmk-inp").value.trim(),
+    status:SEL_STATUS,remarks:document.getElementById("rmk-inp").value.trim(),
     callbackDate:document.getElementById("cb-dt").value||null,
     updatedAt:new Date().toISOString(),updatedBy:VOL_NAME
   });
@@ -591,8 +709,6 @@ window.selectEv=(ev)=>{
   document.getElementById("ev-lc").classList.toggle("active",ev==="lc");
   document.getElementById("ev-pvc").classList.toggle("active",ev==="pvc");
 };
-
-// ✅ NEW: Preview CSV before importing
 window.previewCSV=(e)=>{
   const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
@@ -603,10 +719,9 @@ window.previewCSV=(e)=>{
       const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));
       if(cols[0]&&cols[1])PENDING_CONTACTS.push({name:cols[0],contact:cols[1]});
     }
-    if(!PENDING_CONTACTS.length){showToast("⚠️ No valid contacts found in CSV!");return;}
+    if(!PENDING_CONTACTS.length){showToast("⚠️ No valid contacts found!");return;}
     const volRaw=document.getElementById("vol-emails").value.trim();
     const vols=volRaw?volRaw.split("\n").map(v=>v.trim()).filter(Boolean):[];
-    // Show preview
     document.getElementById("file-picker-area").style.display="none";
     document.getElementById("fp-filename").textContent=file.name;
     document.getElementById("fp-meta").textContent=`${PENDING_CONTACTS.length} contacts ready to import`;
@@ -617,17 +732,14 @@ window.previewCSV=(e)=>{
   };
   reader.readAsText(file);
 };
-
-// ✅ NEW: Submit/Import button
 window.submitImport=async()=>{
   if(!PENDING_CONTACTS.length){showToast("⚠️ No contacts to import!");return;}
   const volRaw=document.getElementById("vol-emails").value.trim();
-  if(!volRaw){showToast("⚠️ Please enter volunteer email(s) in Step 1!");return;}
+  if(!volRaw){showToast("⚠️ Enter volunteer emails in Step 1!");return;}
   const vols=volRaw.split("\n").map(v=>v.trim().split("@")[0]).filter(Boolean);
-  if(!vols.length){showToast("⚠️ Please enter at least one valid volunteer email!");return;}
+  if(!vols.length){showToast("⚠️ Enter at least one volunteer email!");return;}
   const btn=document.getElementById("import-btn");
-  btn.disabled=true;
-  btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Importing...';
+  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Importing...';
   try{
     const batch=writeBatch(db);
     PENDING_CONTACTS.forEach((c,i)=>{
@@ -636,28 +748,22 @@ window.submitImport=async()=>{
     });
     await batch.commit();
     const logEl=document.getElementById("ilog");
-    logEl.innerHTML=`🎉 <b>${PENDING_CONTACTS.length} contacts imported</b> successfully!<br>Event: <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b> · Split among <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(PENDING_CONTACTS.length/vols.length)} each`;
+    logEl.innerHTML=`🎉 <b>${PENDING_CONTACTS.length} contacts imported!</b><br>Event: <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b> · <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(PENDING_CONTACTS.length/vols.length)} each`;
     logEl.classList.add("show");
     showToast(`✅ ${PENDING_CONTACTS.length} contacts imported to dashboard!`);
-    PENDING_CONTACTS=[];
-    resetFileSelect();
+    PENDING_CONTACTS=[];resetFileSelect();
   }catch(err){
-    console.error(err);
-    showToast("❌ Import failed! Check console for error.");
-    btn.disabled=false;
-    btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import to Dashboard';
+    console.error(err);showToast("❌ Import failed! Check console.");
+    btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import to Dashboard';
   }
 };
-
 window.resetFileSelect=()=>{
   document.getElementById("csvfile").value="";
   document.getElementById("file-picker-area").style.display="block";
   document.getElementById("file-preview").classList.remove("show");
   const btn=document.getElementById("import-btn");
-  btn.disabled=false;
-  btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import to Dashboard';
+  btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import to Dashboard';
 };
-
 window.exportMaster=()=>{
   const hdrs="Name,Contact,Event,Assigned To,Status,Remarks,Callback Date,Updated By,Updated At,Imported At";
   const rows=ALL_LEADS.map(l=>[l.name,l.contact,l.event==="lc"?"Leadership Carnival":"PVC 4.0",l.assignedTo||"",l.status||"pending",`"${(l.remarks||"").replace(/"/g,'""')}"`,l.callbackDate||"",l.updatedBy||"",l.updatedAt||"",l.createdAt||""].join(","));
@@ -668,7 +774,7 @@ window.exportMaster=()=>{
   a.click();showToast("📥 Master file exported!");
 };
 window.clearAllLeads=async()=>{
-  if(!confirm("DELETE all leads permanently? This cannot be undone!"))return;
+  if(!confirm("DELETE all leads permanently? Cannot be undone!"))return;
   const snap=await getDocs(collection(db,"outreach_leads"));
   const batch=writeBatch(db);snap.docs.forEach(d=>batch.delete(d.ref));
   await batch.commit();showToast("🗑️ All leads cleared!");
