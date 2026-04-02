@@ -21,11 +21,11 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .lsub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px;}
 .fg{margin-bottom:16px;}
 .fg label{font-size:13px;font-weight:600;margin-bottom:7px;display:block;}
-.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:12px;font-size:14px;font-family:'Inter',sans-serif;outline:none;background:#FAFAFA;}
-.fg input:focus{border-color:var(--primary);background:white;}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:12px;font-size:14px;font-family:Inter,sans-serif;outline:none;background:#FAFAFA;}
+.fg input:focus,.fg textarea:focus{border-color:var(--primary);background:white;}
 .iw{position:relative;}.iw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);}
 .iw input{padding-left:42px;}
-.btn-p{width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:white;font-size:15px;font-weight:700;font-family:'Inter',sans-serif;margin-top:8px;}
+.btn-p{width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:white;font-size:15px;font-weight:700;font-family:Inter,sans-serif;margin-top:8px;}
 .btn-p:disabled{opacity:0.6;cursor:not-allowed;}
 .errmsg{background:#FEE2E2;color:#B91C1C;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:12px;display:none;}
 .errmsg.show{display:block;}
@@ -41,7 +41,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .udot{width:8px;height:8px;background:#10B981;border-radius:50%;}
 .ibtn{background:rgba(255,255,255,0.15);border:none;border-radius:8px;width:34px;height:34px;cursor:pointer;color:white;font-size:14px;display:flex;align-items:center;justify-content:center;}
 .tab-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:white;border-top:1px solid var(--border);display:flex;padding:6px 0;box-shadow:0 -4px 20px rgba(0,0,0,0.08);}
-.ti{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 4px;cursor:pointer;border:none;background:none;font-family:'Inter',sans-serif;position:relative;}
+.ti{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 4px;cursor:pointer;border:none;background:none;font-family:Inter,sans-serif;position:relative;}
 .ti i{font-size:20px;color:var(--muted);margin-bottom:3px;}.ti span{font-size:10px;font-weight:600;color:var(--muted);}
 .ti.active i,.ti.active span{color:var(--primary);}
 .ti.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:3px;background:var(--primary);border-radius:0 0 4px 4px;}
@@ -80,23 +80,23 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .sb{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
 .sb.sp{background:#F3F4F6;color:#6B7280;}.sb.sc{background:#DBEAFE;color:#1D4ED8;}.sb.si{background:#D1FAE5;color:#065F46;}.sb.sni{background:#FEE2E2;color:#991B1B;}.sb.sr{background:#FEF3C7;color:#92400E;}.sb.scb{background:#FEF9C3;color:#854D0E;}.sb.snr{background:#F3F4F6;color:#374151;}
 .cact{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
-.ab{flex:1;padding:9px 6px;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;font-family:'Inter',sans-serif;}
+.ab{flex:1;padding:9px 6px;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;font-family:Inter,sans-serif;}
 .ab-call{background:#DCFCE7;color:#16A34A;}.ab-upd{background:var(--pl);color:var(--primary);}.ab-wa{background:#DCFCE7;color:#15803D;}
 .rmk{font-size:12px;color:var(--muted);margin-top:8px;padding:8px 10px;background:#F9FAFB;border-radius:8px;border-left:3px solid var(--border);font-style:italic;}
 .cbtag{font-size:11px;color:var(--warning);font-weight:600;margin-top:5px;}
 .sw{position:relative;margin-bottom:14px;}.sw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);}
-.sw input{width:100%;padding:12px 14px 12px 42px;border:2px solid var(--border);border-radius:12px;font-size:14px;outline:none;background:white;font-family:'Inter',sans-serif;}
+.sw input{width:100%;padding:12px 14px 12px 42px;border:2px solid var(--border);border-radius:12px;font-size:14px;outline:none;background:white;font-family:Inter,sans-serif;}
 .fb{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .fb::-webkit-scrollbar{display:none;}
-.fc{padding:7px 14px;border-radius:20px;border:2px solid var(--border);background:white;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;}
+.fc{padding:7px 14px;border-radius:20px;border:2px solid var(--border);background:white;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;font-family:Inter,sans-serif;}
 .fc.active{border-color:var(--primary);background:var(--pl);color:var(--primary);}
 .upa{border:2px dashed var(--primary);border-radius:var(--radius);padding:28px;text-align:center;background:var(--pl);margin-bottom:16px;cursor:pointer;}
 .upa i{font-size:38px;color:var(--primary);margin-bottom:10px;display:block;}.upa p{color:var(--primary);font-weight:600;font-size:14px;}.upa small{color:var(--muted);font-size:12px;display:block;margin-top:4px;}
 .evbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.evbtn{padding:14px 10px;border:2px solid var(--border);border-radius:14px;background:white;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:'Inter',sans-serif;text-align:center;}
+.evbtn{padding:14px 10px;border:2px solid var(--border);border-radius:14px;background:white;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);font-family:Inter,sans-serif;text-align:center;}
 .evbtn.active{border-color:var(--primary);background:var(--pl);color:var(--primary);}
 .evbtn i{display:block;font-size:20px;margin-bottom:6px;}
-.btn-s{width:100%;padding:14px;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;margin-top:4px;}
+.btn-s{width:100%;padding:14px;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;margin-top:4px;}
 .btn-g{background:linear-gradient(135deg,#10B981,#059669);}.btn-r{background:linear-gradient(135deg,#EF4444,#DC2626);}
 .divider{height:1px;background:var(--border);margin:20px 0;}
 .pcard{background:white;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);text-align:center;margin-bottom:16px;}
@@ -114,15 +114,17 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
 .mh{width:40px;height:4px;background:var(--border);border-radius:20px;margin:0 auto 20px;}
 .mt{font-size:17px;font-weight:800;margin-bottom:5px;}.msub{font-size:13px;color:var(--muted);margin-bottom:16px;}
 .sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
-.so{padding:12px 8px;border:2px solid var(--border);border-radius:12px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);font-family:'Inter',sans-serif;background:white;}
+.so{padding:12px 8px;border:2px solid var(--border);border-radius:12px;text-align:center;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);font-family:Inter,sans-serif;background:white;}
 .so.a-p{border-color:#9CA3AF;background:#F3F4F6;color:#374151;}.so.a-c{border-color:var(--info);background:#DBEAFE;color:#1D4ED8;}.so.a-i{border-color:var(--success);background:#D1FAE5;color:#065F46;}.so.a-ni{border-color:var(--danger);background:#FEE2E2;color:#991B1B;}.so.a-r{border-color:var(--warning);background:#FEF3C7;color:#92400E;}.so.a-cb{border-color:#F59E0B;background:#FEF9C3;color:#854D0E;}.so.a-nr{border-color:#9CA3AF;background:#F9FAFB;color:#374151;}
-.btn-c{width:100%;padding:12px;background:#F3F4F6;color:var(--muted);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;margin-top:8px;}
+.btn-c{width:100%;padding:12px;background:#F3F4F6;color:var(--muted);border:none;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;margin-top:8px;}
 .toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);background:#1E1B4B;color:white;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .empty{text-align:center;padding:48px 20px;}.empty i{font-size:48px;color:#D1D5DB;margin-bottom:12px;display:block;}
 .empty h3{font-size:16px;font-weight:700;color:var(--muted);}.empty p{font-size:13px;color:#9CA3AF;margin-top:6px;}
 .ilog{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:14px;margin-bottom:14px;font-size:13px;color:#166534;display:none;}
 .ilog.show{display:block;}
+.stepbox{background:white;border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);margin-bottom:14px;}
+.stepnum{display:inline-block;background:var(--primary);color:white;font-size:11px;font-weight:800;border-radius:20px;padding:2px 10px;margin-bottom:8px;}
 </style>
 </head>
 <body>
@@ -159,7 +161,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
   </div>
 
-  <!-- HOME PAGE -->
+  <!-- HOME -->
   <div class="page active" id="pg-home">
     <div class="wb">
       <h3 id="wmsg">Welcome! 🙏</h3>
@@ -204,22 +206,39 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="empty" id="leads-empty" style="display:none"><i class="fas fa-inbox"></i><h3>No contacts found</h3><p>Contacts assigned to you will appear here</p></div>
   </div>
 
-  <!-- UPLOAD (ADMIN ONLY) -->
+  <!-- UPLOAD (ADMIN) -->
   <div class="page" id="pg-upload">
     <div class="sh"><div class="st"><i class="fas fa-upload"></i> Upload Contacts</div></div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Select event, then upload CSV. Contacts <b>auto-assigned equally</b> among volunteers.</p>
-    <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Step 1 — Select Event</div>
-    <div class="evbtns">
-      <button class="evbtn active" id="ev-lc" onclick="selectEv('lc')"><i class="fas fa-users"></i>Leadership Carnival<br/><small style="font-weight:400;font-size:11px;">10–13 May 2026</small></button>
-      <button class="evbtn" id="ev-pvc" onclick="selectEv('pvc')"><i class="fas fa-star"></i>PVC 4.0<br/><small style="font-weight:400;font-size:11px;">31 May–3 Jun 2026</small></button>
+
+    <div class="stepbox">
+      <span class="stepnum">STEP 1</span>
+      <div style="font-size:13px;font-weight:700;margin-bottom:8px;">Enter Volunteer Emails</div>
+      <div class="fg" style="margin-bottom:6px;">
+        <textarea id="vol-emails" rows="4" placeholder="volunteer1@gmail.com&#10;volunteer2@gmail.com&#10;volunteer3@gmail.com" style="font-size:13px;line-height:1.6;"></textarea>
+      </div>
+      <small style="color:var(--muted);font-size:11px;">One email per line · Must match exactly with Firebase Auth emails</small>
     </div>
-    <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Step 2 — Upload CSV</div>
-    <div class="upa" onclick="document.getElementById('csvfile').click()">
-      <i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p>
-      <small>Columns needed: Name, Contact &nbsp;|&nbsp; Row 1 = header</small>
+
+    <div class="stepbox">
+      <span class="stepnum">STEP 2</span>
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Select Event</div>
+      <div class="evbtns">
+        <button class="evbtn active" id="ev-lc" onclick="selectEv('lc')"><i class="fas fa-users"></i>Leadership Carnival<br/><small style="font-weight:400;font-size:11px;">10–13 May 2026</small></button>
+        <button class="evbtn" id="ev-pvc" onclick="selectEv('pvc')"><i class="fas fa-star"></i>PVC 4.0<br/><small style="font-weight:400;font-size:11px;">31 May–3 Jun 2026</small></button>
+      </div>
     </div>
-    <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="handleCSV(event)"/>
-    <div class="ilog" id="ilog"></div>
+
+    <div class="stepbox">
+      <span class="stepnum">STEP 3</span>
+      <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Upload CSV File</div>
+      <div class="upa" onclick="document.getElementById('csvfile').click()">
+        <i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p>
+        <small>Columns: Name, Contact · Row 1 = header</small>
+      </div>
+      <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="handleCSV(event)"/>
+      <div class="ilog" id="ilog"></div>
+    </div>
+
     <div class="divider"></div>
     <div class="sh"><div class="st"><i class="fas fa-download"></i> Export Master File</div></div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">All contacts + statuses + remarks + volunteer names in one CSV.</p>
@@ -244,7 +263,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     </div>
     <div class="infobox" id="admin-info" style="display:none">
       <div class="st" style="margin-bottom:10px"><i class="fas fa-info-circle"></i> How to Add Volunteers</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password. They can login immediately. Their email username will show as their display name.</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password. They can login immediately.</p>
     </div>
     <button class="btn-s btn-r" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
   </div>
@@ -275,7 +294,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
       <button class="so" onclick="selStatus('not-reachable',this)">📵 Not Reachable</button>
       <button class="so" onclick="selStatus('wrong-number',this)">❌ Wrong Number</button>
     </div>
-    <div class="fg" id="cb-dt-grp" style="display:none"><label>Callback Date & Time</label><input type="datetime-local" id="cb-dt"/></div>
+    <div class="fg" id="cb-dt-grp" style="display:none"><label>Callback Date and Time</label><input type="datetime-local" id="cb-dt"/></div>
     <div class="fg"><label>Remarks</label><textarea id="rmk-inp" rows="3" placeholder="What did the student/parent say?"></textarea></div>
     <button class="btn-s" onclick="saveUpdate()"><i class="fas fa-save"></i> Save Update</button>
     <button class="btn-c" onclick="closeModal()">Cancel</button>
@@ -332,7 +351,11 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("p-name").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("p-email").textContent=user.email;
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
-    if(IS_ADMIN){document.getElementById("tab-upload").style.display="";document.getElementById("vol-prog-hdr").style.display="flex";document.getElementById("admin-info").style.display="block";}
+    if(IS_ADMIN){
+      document.getElementById("tab-upload").style.display="";
+      document.getElementById("vol-prog-hdr").style.display="flex";
+      document.getElementById("admin-info").style.display="block";
+    }
     listenLeads();
   } else {
     ME=null;
@@ -377,9 +400,9 @@ function buildCard(l){
   const volTag=IS_ADMIN?`<div class="cvol"><i class="fas fa-user-tag" style="font-size:10px;margin-right:3px;"></i>${l.assignedTo||"?"}</div>`:"";
   const cbTag=l.callbackDate?`<div class="cbtag">⏰ ${new Date(l.callbackDate).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</div>`:"";
   const rmk=l.remarks?`<div class="rmk">💬 "${l.remarks}"</div>`:"";
-  const srmk=(l.remarks||"").replace(/'/g,"\\'").replace(/\n/g," ");
-  const sname=(l.name||"").replace(/'/g,"");
-  return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">📞 ${l.contact}</div>${volTag}<span class="cev">${evL(l.event)}</span></div><span class="sb ${sc}">${sl}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i> Call</button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sname}','${st}','${srmk}','${l.callbackDate||""}')"><i class="fas fa-edit"></i> Update</button><button class="ab ab-wa" onclick="openWA('${l.contact}')"><i class="fab fa-whatsapp"></i> WA</button></div></div>`;
+  const sn=(l.name||"").replace(/'/g,"").replace(/"/g,"");
+  const sr=(l.remarks||"").replace(/'/g,"").replace(/"/g,"").replace(/\n/g," ");
+  return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">📞 ${l.contact}</div>${volTag}<span class="cev">${evL(l.event)}</span></div><span class="sb ${sc}">${sl}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i> Call</button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-edit"></i> Update</button><button class="ab ab-wa" onclick="openWA('${l.contact}')"><i class="fab fa-whatsapp"></i> WA</button></div></div>`;
 }
 function renderCallbacks(){
   const today=new Date().toDateString();
@@ -425,26 +448,45 @@ window.selStatus=(s,el)=>{
 };
 window.saveUpdate=async()=>{
   if(!CUR_LEAD_ID||!SEL_STATUS){showToast("Please select a status");return;}
-  await updateDoc(doc(db,"outreach_leads",CUR_LEAD_ID),{status:SEL_STATUS,remarks:document.getElementById("rmk-inp").value.trim(),callbackDate:document.getElementById("cb-dt").value||null,updatedAt:new Date().toISOString(),updatedBy:VOL_NAME});
+  await updateDoc(doc(db,"outreach_leads",CUR_LEAD_ID),{
+    status:SEL_STATUS,
+    remarks:document.getElementById("rmk-inp").value.trim(),
+    callbackDate:document.getElementById("cb-dt").value||null,
+    updatedAt:new Date().toISOString(),updatedBy:VOL_NAME
+  });
   closeModal();showToast("✅ Updated successfully!");
 };
-window.selectEv=(ev)=>{SEL_EVENT=ev;document.getElementById("ev-lc").classList.toggle("active",ev==="lc");document.getElementById("ev-pvc").classList.toggle("active",ev==="pvc");};
+window.selectEv=(ev)=>{
+  SEL_EVENT=ev;
+  document.getElementById("ev-lc").classList.toggle("active",ev==="lc");
+  document.getElementById("ev-pvc").classList.toggle("active",ev==="pvc");
+};
 window.handleCSV=async(e)=>{
   const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=async ev=>{
     const lines=ev.target.result.split("\n").map(l=>l.trim()).filter(l=>l);
     const contacts=[];
-    for(let i=1;i<lines.length;i++){const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));if(cols[0]&&cols[1])contacts.push({name:cols[0],contact:cols[1]});}
+    for(let i=1;i<lines.length;i++){
+      const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));
+      if(cols[0]&&cols[1])contacts.push({name:cols[0],contact:cols[1]});
+    }
     if(!contacts.length){showToast("No valid contacts found in CSV");return;}
-    const vols=[...new Set(ALL_LEADS.map(l=>l.assignedTo).filter(Boolean))];
-    if(!vols.length){showToast("⚠️ Add volunteers in Firebase Auth first, then upload!");return;}
+    const volRaw=document.getElementById("vol-emails").value.trim();
+    if(!volRaw){showToast("⚠️ Please enter volunteer email(s) in Step 1 first!");return;}
+    const vols=volRaw.split("\n").map(v=>v.trim().split("@")[0]).filter(Boolean);
+    if(!vols.length){showToast("⚠️ Please enter at least one valid volunteer email!");return;}
     const batch=writeBatch(db);
-    contacts.forEach((c,i)=>{const ref=doc(collection(db,"outreach_leads"));batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});});
+    contacts.forEach((c,i)=>{
+      const ref=doc(collection(db,"outreach_leads"));
+      batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});
+    });
     await batch.commit();
     const logEl=document.getElementById("ilog");
-    logEl.innerHTML=`✅ <b>${contacts.length} contacts imported</b> for <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b> · Assigned equally among <b>${vols.length} volunteer(s)</b> (~${Math.ceil(contacts.length/vols.length)} each)`;
-    logEl.classList.add("show");showToast(`✅ ${contacts.length} contacts imported!`);e.target.value="";
+    logEl.innerHTML=`✅ <b>${contacts.length} contacts imported</b> for <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b> · Split equally among <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(contacts.length/vols.length)} each`;
+    logEl.classList.add("show");
+    showToast(`✅ ${contacts.length} contacts imported!`);
+    e.target.value="";
   };
   reader.readAsText(file);
 };
@@ -472,7 +514,11 @@ window.switchTab=(pgId,tabId)=>{
   document.getElementById(tabId).classList.add("active");
   window.scrollTo(0,0);
 };
-window.showToast=msg=>{const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);};
+window.showToast=msg=>{
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2800);
+};
 </script>
 </body>
 </html>
