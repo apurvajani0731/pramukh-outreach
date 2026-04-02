@@ -231,10 +231,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-h
     <div class="stepbox">
       <span class="stepnum">STEP 3</span>
       <div style="font-size:13px;font-weight:700;margin-bottom:10px;">Upload CSV File</div>
-      <label for="csvfile" class="upa">
+      <div class="upa" onclick="document.getElementById('csvfile').click()">
         <i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p>
         <small>Columns: Name, Contact · Row 1 = header</small>
-      </label>
+      </div>
       <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="handleCSV(event)"/>
       <div class="ilog" id="ilog"></div>
     </div>
