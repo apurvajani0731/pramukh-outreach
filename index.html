@@ -571,7 +571,7 @@ function buildCard(l){
   const rmk=l.remarks?`<div class="rmk">💬 "${l.remarks}"</div>`:"";
   const sn=(l.name||"").replace(/'/g,"").replace(/"/g,"");
   const sr=(l.remarks||"").replace(/'/g,"").replace(/"/g,"").replace(/\n/g," ");
-  return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">📞 ${l.contact}</div>${volTag}<span class="cev">${evL(l.event)}</span></div><span class="sb ${sc}">${sl}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i> Call</button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-edit"></i> Update</button><button class="ab ab-wa" onclick="openWA('${l.contact}')"><i class="fab fa-whatsapp"></i> WA</button></div></div>`;
+  return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">📞 ${l.contact}</div>${volTag}<span class="cev">${evL(l.event)}</span></div><span class="sb ${sc}">${sl}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i> Call</button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-edit"></i> Update</button><button class="ab ab-wa" oonclick="openWA('${l.contact}','${l.name}','${l.event}')"><i class="fab fa-whatsapp"></i> WA</button></div></div>`;
 }
 
 function renderCallbacks(){
@@ -780,7 +780,55 @@ window.clearAllLeads=async()=>{
   await batch.commit();showToast("🗑️ All leads cleared!");
 };
 window.callNum=num=>window.location.href="tel:"+num;
-window.openWA=num=>window.open("https://wa.me/91"+num,"_blank");
+window.openWA=num=>window.openWA=(num,name,event)=>{
+  const firstName=name.split(" ")[0];
+  const lcMsg=`Hello ${firstName} 👋,
+
+BAPS Pramukh Academy is introducing 🙏
+
+*The Leadership Carnival 2026* 🌟
+
+A 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.
+
+*What makes it different?*
+✅ Leadership through real situations, not just sessions
+🎯 Guided activities in a structured residential environment
+🧠 Exposure to how decisions are taken and responsibility is handled
+
+📍 Parul University, Vadodara
+📅 10–13 May 2026
+👦 Class 6–10
+💰 ₹500 (residential, meals & certificate included)
+
+⏳ Seats are limited due to residential format.
+
+👉 To proceed, you can directly apply here:
+🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
+
+  const pvcMsg=`Hello ${firstName} 👋,
+
+🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳
+
+Ready to step into the world of governance and leadership? This summer, unlock your potential and experience what it truly means to serve the nation! 💼✨
+
+🚀 *What's in store?*
+🎯 District Crisis Simulations
+🏛️ Youth Parliament Experience
+📚 UPSC Deep Dive Sessions
+🌱 Value-based Leadership Training
+
+Immerse yourself in a transformative 4-day residential journey guided by experts, where ideas turn into action and leaders are born. 💡🔥
+
+📅 Dates: Sunday, 31 May – Wednesday, 3 June 2026
+📍 Venue: Vadodara, Gujarat
+
+💥 Don't just dream it—live it!
+
+🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
+
+  const msg=event==="lc"?lcMsg:pvcMsg;
+  window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(msg),"_blank");
+};
 window.switchTab=(pgId,tabId)=>{
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));
