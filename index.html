@@ -966,3 +966,15 @@ window.switchTab=(pgId,tabId)=>{
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));
   document.getElementById(pgId).classList.add
+        ("active");
+        document.getElementById(tabId).classList.add("active");
+        window.scrollTo(0,0);
+      };
+      window.showToast=msg=>{
+        const t=document.getElementById("toast");
+        t.textContent=msg;t.classList.add("show");
+        setTimeout(()=>t.classList.remove("show"),2800);
+      };
+</script>
+</body>
+</html>
