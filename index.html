@@ -455,11 +455,13 @@ button{cursor:pointer;touch-action:manipulation;}
         <button class="btn-reselect" onclick="resetFileSelect()"><i class="fas fa-redo"></i> Choose Different File</button>
       </div>
       <div class="ilog" id="ilog"></div>
-    </div>
-    <div class="divider"></div>
-    <div class="sh"><div class="st"><i class="fas fa-download"></i> Export</div></div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">Download all contacts + statuses + remarks.</p>
-    <button class="btn-s btn-g" style="margin-bottom:8px;" onclick="exportMaster()"><i class="fas fa-file-csv"></i> Export All Campaigns (CSV)</button>
+    </div><div class="divider"></div>
+<div class="sh"><div class="st"><i class="fas fa-download"></i> Export Data</div></div>
+<div class="stepbox">
+  <div class="steplabel">📥 Download Master File</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Downloads all contacts from <b>all campaigns</b> with their status, remarks, volunteer name, callback date — everything in one CSV file.</p>
+  <button class="btn-s btn-g" onclick="exportMaster()"><i class="fas fa-file-csv"></i> Export All Campaigns (CSV)</button>
+</div>
     <div class="divider"></div>
     <div class="sh"><div class="st"><i class="fas fa-trash-alt"></i> Delete Campaign</div></div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Delete contacts of a specific campaign only. Other campaigns stay safe.</p>
