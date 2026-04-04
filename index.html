@@ -5,271 +5,503 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="theme-color" content="#1E3A5F"/>
-<title>Pramukh Outreach</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<title>Pramukh Outreach · BAPS Pramukh Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
-:root{
-  --primary:#C2410C;--primary2:#EA580C;--pl:#FFF7ED;--pl2:#FFEDD5;
-  --navy:#1E3A5F;--navy2:#162D4A;
-  --success:#16A34A;--danger:#DC2626;--warning:#D97706;--info:#2563EB;
-  --bg:#F8F4EF;--text:#1C1917;--muted:#78716C;--border:#E7E5E4;
-  --shadow:0 2px 16px rgba(194,65,12,0.08);--radius:14px;
-  --tab-h:62px;
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root {
+  --navy:      #1E3A5F;
+  --navy2:     #162D4A;
+  --navy3:     #0F1F33;
+  --gold:      #C9921A;
+  --gold2:     #B07D10;
+  --gold-light:#FEF3C7;
+  --gold-pale: #FFFBEB;
+  --orange:    #C2410C;
+  --orange2:   #EA580C;
+  --orange-light:#FFF7ED;
+  --success:   #16A34A;
+  --danger:    #DC2626;
+  --warning:   #D97706;
+  --info:      #2563EB;
+  --bg:        #F4F6F9;
+  --surface:   #FFFFFF;
+  --text:      #1A1A2E;
+  --muted:     #64748B;
+  --border:    #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04);
+  --shadow:    0 2px 8px rgba(0,0,0,0.06),0 4px 20px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.10),0 2px 8px rgba(0,0,0,0.05);
+  --radius:    12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --tab-h:     64px;
+  --sidebar-w: 248px;
+  --header-h:  60px;
+  --font-head: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 }
+
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-input,button,textarea,select{-webkit-appearance:none;appearance:none;font-family:'Inter',sans-serif;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+input,button,textarea,select{-webkit-appearance:none;appearance:none;font-family:var(--font-body);}
 button{cursor:pointer;touch-action:manipulation;}
+a{color:inherit;text-decoration:none;}
 
-#loginPage{display:flex;align-items:center;justify-content:center;min-height:100vh;min-height:100dvh;padding:20px;background:linear-gradient(135deg,#1E3A5F,#162D4A,#0F1F33);position:relative;overflow:hidden;}
-#loginPage::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:rgba(234,88,12,0.12);}
-#loginPage::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;border-radius:50%;background:rgba(234,88,12,0.08);}
-.lcard{background:white;border-radius:24px;padding:32px 24px;width:100%;max-width:400px;position:relative;z-index:1;box-shadow:0 20px 60px rgba(0,0,0,0.35);}
-.llogo{text-align:center;margin-bottom:24px;}
-.lcircle{width:80px;height:80px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 8px 24px rgba(194,65,12,0.25);border:3px solid var(--pl2);overflow:hidden;}
-.lcircle img{width:68px;height:68px;object-fit:contain;}
-.llogo h1{font-size:18px;font-weight:800;color:var(--navy);}
-.llogo h2{font-size:13px;font-weight:700;color:var(--primary);margin-top:2px;}
-.llogo p{font-size:11px;color:var(--muted);letter-spacing:0.5px;margin-top:3px;}
-.ltitle{font-size:17px;font-weight:700;text-align:center;margin-bottom:4px;color:var(--navy);}
-.lsub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:20px;}
+/* ─────────────────────────────────────────────
+   LOGIN PAGE
+───────────────────────────────────────────── */
+#loginPage {
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;min-height:100dvh;padding:20px;
+  background:var(--navy3);
+  position:relative;overflow:hidden;
+}
+#loginPage::before {
+  content:'';position:absolute;top:-120px;right:-80px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,146,26,0.12) 0%,transparent 70%);
+}
+#loginPage::after {
+  content:'';position:absolute;bottom:-100px;left:-80px;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,58,95,0.8) 0%,transparent 70%);
+}
+/* Subtle grid pattern */
+#loginPage .login-grid {
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.lcard {
+  background:var(--surface);border-radius:var(--radius-xl);
+  padding:36px 28px;width:100%;max-width:420px;
+  position:relative;z-index:1;
+  box-shadow:0 24px 64px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.2);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.llogo{text-align:center;margin-bottom:28px;}
+.lcircle {
+  width:82px;height:82px;border-radius:50%;background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+  box-shadow:0 0 0 3px rgba(201,146,26,0.2),0 8px 24px rgba(0,0,0,0.15);
+  border:2.5px solid var(--gold-light);overflow:hidden;
+}
+.lcircle img{width:70px;height:70px;object-fit:contain;}
+.llogo h1{font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--navy);}
+.llogo h2{font-size:13px;font-weight:600;color:var(--gold);margin-top:3px;letter-spacing:0.3px;}
+.llogo p{font-size:11px;color:var(--muted);letter-spacing:0.8px;text-transform:uppercase;margin-top:4px;}
+.ltitle{font-family:var(--font-head);font-size:18px;font-weight:700;text-align:center;margin-bottom:4px;color:var(--navy);}
+.lsub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:22px;}
 .fg{margin-bottom:14px;}
-.fg label{font-size:13px;font-weight:600;margin-bottom:6px;display:block;color:var(--navy);}
-.fg input,.fg textarea{width:100%;padding:14px 16px;border:2px solid var(--border);border-radius:12px;font-size:16px;outline:none;background:#FAFAF9;color:var(--text);}
-.fg input:focus,.fg textarea:focus{border-color:var(--primary);background:white;}
+.fg label{font-size:12px;font-weight:600;margin-bottom:7px;display:block;color:var(--navy);letter-spacing:0.3px;text-transform:uppercase;}
+.fg input,.fg textarea {
+  width:100%;padding:13px 16px;border:1.5px solid var(--border);
+  border-radius:var(--radius);font-size:15px;outline:none;
+  background:#FAFBFC;color:var(--text);transition:border-color 0.2s,box-shadow 0.2s;
+}
+.fg input:focus,.fg textarea:focus {
+  border-color:var(--navy);background:var(--surface);
+  box-shadow:0 0 0 3px rgba(30,58,95,0.08);
+}
 .iw{position:relative;}
-.iw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;}
+.iw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;}
 .iw input{padding-left:44px;}
-.btn-p{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,#C2410C,#EA580C);color:white;font-size:16px;font-weight:700;margin-top:6px;box-shadow:0 4px 16px rgba(194,65,12,0.35);min-height:52px;}
+.btn-p {
+  width:100%;padding:15px;border:none;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  color:white;font-family:var(--font-head);font-size:16px;font-weight:600;
+  margin-top:6px;
+  box-shadow:0 4px 16px rgba(30,58,95,0.35);
+  transition:transform 0.15s,box-shadow 0.15s;
+  min-height:52px;
+}
+.btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(30,58,95,0.4);}
 .btn-p:active{transform:scale(0.98);}
-.btn-p:disabled{opacity:0.6;}
-.errmsg{background:#FEE2E2;color:#991B1B;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:10px;display:none;}
+.btn-p:disabled{opacity:0.6;transform:none;}
+.errmsg{background:#FEE2E2;color:#991B1B;border-radius:var(--radius);padding:10px 14px;font-size:13px;margin-top:10px;display:none;border-left:3px solid #DC2626;}
 .errmsg.show{display:block;}
-.ldivider{text-align:center;font-size:11px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+.ldivider{text-align:center;font-size:11px;color:var(--muted);margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
 
-#app{display:none;flex-direction:column;min-height:100vh;min-height:100dvh;}
-.top-header{background:linear-gradient(135deg,#1E3A5F,#162D4A);padding:12px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.2);}
-.hi{display:flex;align-items:center;justify-content:space-between;max-width:600px;margin:0 auto;}
-.hl{display:flex;align-items:center;gap:10px;}
-.hlogo{width:38px;height:38px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
-.hlogo img{width:34px;height:34px;object-fit:contain;}
-.htitle h2{color:white;font-size:15px;font-weight:800;line-height:1.2;}
-.htitle p{color:rgba(255,255,255,0.65);font-size:10px;margin-top:1px;}
+/* ─────────────────────────────────────────────
+   APP LAYOUT
+───────────────────────────────────────────── */
+#app{display:none;min-height:100vh;min-height:100dvh;}
+.app-inner{display:flex;min-height:100vh;min-height:100dvh;}
+
+/* ─────────────────────────────────────────────
+   SIDEBAR (desktop)
+───────────────────────────────────────────── */
+.sidebar {
+  width:var(--sidebar-w);flex-shrink:0;
+  background:var(--navy3);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:50;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.sb-top {
+  padding:22px 18px 18px;border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;align-items:center;gap:12px;
+}
+.sb-logo-circle {
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;
+  border:1px solid rgba(255,255,255,0.12);
+}
+.sb-logo-circle img{width:36px;height:36px;object-fit:contain;}
+.sb-brand h2{font-family:var(--font-head);color:white;font-size:14px;font-weight:700;line-height:1.2;}
+.sb-brand p{color:rgba(255,255,255,0.45);font-size:10px;margin-top:2px;letter-spacing:0.4px;}
+.sb-nav{flex:1;padding:14px 10px;overflow-y:auto;}
+.sb-section-label {
+  font-size:10px;font-weight:600;color:rgba(255,255,255,0.3);
+  text-transform:uppercase;letter-spacing:0.8px;
+  padding:0 10px;margin:14px 0 6px;
+}
+.sb-item {
+  display:flex;align-items:center;gap:11px;
+  padding:11px 12px;border-radius:10px;
+  border:none;background:none;
+  color:rgba(255,255,255,0.55);
+  font-size:14px;font-weight:500;
+  width:100%;text-align:left;
+  transition:background 0.15s,color 0.15s;
+  margin-bottom:2px;cursor:pointer;
+  font-family:var(--font-body);
+}
+.sb-item i{font-size:16px;width:20px;text-align:center;flex-shrink:0;}
+.sb-item:hover{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);}
+.sb-item.active{background:rgba(201,146,26,0.18);color:var(--gold);border:1px solid rgba(201,146,26,0.2);}
+.sb-item.active i{color:var(--gold);}
+.sb-bottom {
+  padding:14px 10px;border-top:1px solid rgba(255,255,255,0.06);
+}
+.sb-user-card {
+  padding:12px;border-radius:10px;
+  background:rgba(255,255,255,0.06);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:8px;
+}
+.sb-user-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;}
+.sb-user-info .sb-uname{color:white;font-size:13px;font-weight:600;}
+.sb-user-info .sb-urole{color:rgba(255,255,255,0.4);font-size:11px;margin-top:1px;}
+.sb-logout {
+  display:flex;align-items:center;gap:8px;
+  padding:10px 12px;border-radius:10px;border:none;
+  background:rgba(220,38,38,0.12);color:rgba(255,100,100,0.85);
+  font-size:13px;font-weight:500;width:100%;cursor:pointer;
+  transition:background 0.15s;font-family:var(--font-body);
+}
+.sb-logout:hover{background:rgba(220,38,38,0.2);}
+.sb-logout i{font-size:14px;}
+
+/* ─────────────────────────────────────────────
+   MAIN CONTENT WRAP
+───────────────────────────────────────────── */
+.main-wrap{flex:1;display:flex;flex-direction:column;min-height:100vh;margin-left:var(--sidebar-w);}
+
+/* ─────────────────────────────────────────────
+   TOP HEADER
+───────────────────────────────────────────── */
+.top-header {
+  background:var(--surface);
+  padding:0 20px;
+  height:var(--header-h);
+  position:sticky;top:0;z-index:40;
+  box-shadow:0 1px 0 var(--border);
+  display:flex;align-items:center;
+}
+.hi{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;}
+.hl{display:flex;align-items:center;gap:12px;}
+.hlogo{width:36px;height:36px;background:var(--navy3);border-radius:9px;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+.hlogo img{width:32px;height:32px;object-fit:contain;}
+.htitle h2{font-family:var(--font-head);color:var(--navy);font-size:16px;font-weight:700;line-height:1.2;}
+.htitle p{color:var(--muted);font-size:11px;margin-top:1px;}
 .hright{display:flex;gap:8px;align-items:center;}
-.ubadge{background:rgba(255,255,255,0.15);border-radius:20px;padding:5px 10px;display:flex;align-items:center;gap:6px;}
-.ubadge span{color:white;font-size:12px;font-weight:600;}
-.udot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;}
-.ibtn{background:rgba(255,255,255,0.12);border:none;border-radius:8px;width:36px;height:36px;color:white;font-size:15px;display:flex;align-items:center;justify-content:center;}
-.ibtn:active{background:rgba(255,255,255,0.25);}
+.ubadge{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:6px 12px;display:flex;align-items:center;gap:7px;}
+.ubadge span{color:var(--navy);font-size:12px;font-weight:600;}
+.udot{width:7px;height:7px;background:#22C55E;border-radius:50%;flex-shrink:0;}
+.ibtn{background:var(--bg);border:1px solid var(--border);border-radius:8px;width:36px;height:36px;color:var(--muted);font-size:14px;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s;}
+.ibtn:hover{background:var(--border);color:var(--navy);}
 
-.tab-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;background:white;border-top:1.5px solid var(--border);display:flex;height:var(--tab-h);box-shadow:0 -2px 16px rgba(0,0,0,0.07);padding-bottom:env(safe-area-inset-bottom);}
-.ti{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;border:none;background:none;position:relative;min-height:44px;}
-.ti i{font-size:22px;color:var(--muted);margin-bottom:2px;}
-.ti span{font-size:10px;font-weight:600;color:var(--muted);}
-.ti.active i,.ti.active span{color:var(--primary);}
-.ti.active::before{content:'';position:absolute;top:0;left:15%;right:15%;height:3px;background:linear-gradient(90deg,#C2410C,#EA580C);border-radius:0 0 4px 4px;}
-.ti:active{background:rgba(194,65,12,0.05);}
-
-.page{display:none;padding:14px 14px calc(var(--tab-h) + 14px);max-width:600px;margin:0 auto;width:100%;}
+/* ─────────────────────────────────────────────
+   PAGE CONTAINER
+───────────────────────────────────────────── */
+.pages-container{flex:1;overflow-y:auto;}
+.page{display:none;padding:20px 20px calc(var(--tab-h)+20px);max-width:1100px;margin:0 auto;width:100%;}
 .page.active{display:block;}
 
-.wb{background:linear-gradient(135deg,#1E3A5F,#162D4A);border-radius:var(--radius);padding:18px;margin-bottom:16px;color:white;position:relative;overflow:hidden;}
-.wb::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(234,88,12,0.15);}
-.wb h3{font-size:16px;font-weight:800;}
-.wb p{font-size:12px;opacity:0.78;margin-top:4px;line-height:1.5;}
-.echips{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-.echip{background:rgba(234,88,12,0.25);border:1px solid rgba(234,88,12,0.4);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#FDBA74;}
+/* ─────────────────────────────────────────────
+   TAB BAR (mobile only)
+───────────────────────────────────────────── */
+.tab-bar {
+  position:fixed;bottom:0;left:0;right:0;z-index:40;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  display:flex;height:var(--tab-h);
+  box-shadow:0 -2px 16px rgba(0,0,0,0.06);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.ti{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;border:none;background:none;position:relative;min-height:44px;color:var(--muted);}
+.ti i{font-size:20px;margin-bottom:3px;transition:color 0.2s;}
+.ti span{font-size:10px;font-weight:600;transition:color 0.2s;}
+.ti.active i,.ti.active span{color:var(--navy);}
+.ti.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2.5px;background:var(--navy);border-radius:0 0 4px 4px;}
+.ti:active{background:rgba(30,58,95,0.04);}
 
-/* CAMPAIGN BANNER */
-.camp-banner{background:white;border-radius:var(--radius);padding:12px 14px;margin-bottom:14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;border-left:4px solid var(--primary);}
-.camp-icon{width:36px;height:36px;background:var(--pl2);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.camp-icon i{color:var(--primary);font-size:16px;}
-.camp-name{font-size:14px;font-weight:700;color:var(--navy);}
+/* ─────────────────────────────────────────────
+   WELCOME BANNER
+───────────────────────────────────────────── */
+.wb {
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:var(--radius-lg);padding:22px 22px 20px;
+  margin-bottom:18px;color:white;position:relative;overflow:hidden;
+}
+.wb::before{content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;background:rgba(201,146,26,0.12);}
+.wb::after{content:'';position:absolute;right:60px;bottom:-40px;width:90px;height:90px;border-radius:50%;background:rgba(255,255,255,0.04);}
+.wb h3{font-family:var(--font-head);font-size:18px;font-weight:700;position:relative;}
+.wb p{font-size:12px;opacity:0.7;margin-top:5px;line-height:1.6;position:relative;}
+.echips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;position:relative;}
+.echip{background:rgba(201,146,26,0.2);border:1px solid rgba(201,146,26,0.35);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:#FCD34D;}
+
+/* ─────────────────────────────────────────────
+   CAMPAIGN BANNER
+───────────────────────────────────────────── */
+.camp-banner{background:var(--surface);border-radius:var(--radius);padding:13px 16px;margin-bottom:16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px;border-left:3px solid var(--gold);}
+.camp-icon{width:36px;height:36px;background:var(--gold-light);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.camp-icon i{color:var(--gold);font-size:16px;}
+.camp-name{font-size:14px;font-weight:600;color:var(--navy);}
 .camp-sub{font-size:11px;color:var(--muted);margin-top:2px;}
 
-.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.scard{background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;border-bottom:3px solid transparent;}
-.scard:nth-child(1){border-bottom-color:#C2410C;}
-.scard:nth-child(2){border-bottom-color:#2563EB;}
-.scard:nth-child(3){border-bottom-color:#16A34A;}
-.scard:nth-child(4){border-bottom-color:#D97706;}
-.sicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.sicon i{font-size:19px;color:white;}
+/* ─────────────────────────────────────────────
+   STATS GRID
+───────────────────────────────────────────── */
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;}
+.scard{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:14px;border:1px solid var(--border);transition:box-shadow 0.2s;}
+.scard:hover{box-shadow:var(--shadow);}
+.sicon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sicon i{font-size:18px;color:white;}
 .si-p{background:linear-gradient(135deg,#C2410C,#EA580C);}
 .si-b{background:linear-gradient(135deg,#2563EB,#1D4ED8);}
 .si-g{background:linear-gradient(135deg,#16A34A,#15803D);}
 .si-a{background:linear-gradient(135deg,#D97706,#B45309);}
-.sinfo h3{font-size:22px;font-weight:800;line-height:1;color:var(--navy);}
-.sinfo p{font-size:11px;color:var(--muted);margin-top:2px;}
+.sinfo h3{font-family:var(--font-head);font-size:24px;font-weight:800;line-height:1;color:var(--navy);}
+.sinfo p{font-size:11px;color:var(--muted);margin-top:3px;font-weight:500;}
 
+/* ─────────────────────────────────────────────
+   SECTION HEADERS
+───────────────────────────────────────────── */
 .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;margin-top:6px;}
-.st{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;color:var(--navy);}
-.st i{color:var(--primary);}
-.bc{background:var(--pl2);color:var(--primary);font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.st{font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--navy);font-family:var(--font-head);}
+.st i{color:var(--orange);font-size:13px;}
+.bc{background:var(--navy);color:white;font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;}
 
-.vc{background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);margin-bottom:10px;border-left:4px solid var(--primary);}
-.vh{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.vav{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1E3A5F,#2D5A8E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.vav span{color:white;font-size:16px;font-weight:800;}
-.vname{font-size:14px;font-weight:700;color:var(--navy);}
-.vsub{font-size:11px;color:var(--muted);}
-.pbw{height:8px;background:#E7E5E4;border-radius:20px;overflow:hidden;margin-bottom:10px;}
-.pbf{height:100%;border-radius:20px;background:linear-gradient(90deg,#C2410C,#EA580C);}
+/* ─────────────────────────────────────────────
+   VOLUNTEER PROGRESS CARD
+───────────────────────────────────────────── */
+.vc{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid var(--border);}
+.vh{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.vav{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),#2D5A8E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vav span{color:white;font-size:15px;font-weight:700;}
+.vname{font-size:14px;font-weight:600;color:var(--navy);}
+.vsub{font-size:11px;color:var(--muted);margin-top:2px;}
+.pbw{height:7px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:12px;}
+.pbf{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--navy),#2D5A8E);transition:width 0.6s ease;}
 .vstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-.vs{text-align:center;padding:8px 4px;border-radius:10px;background:#F8F4EF;}
-.vsn{font-size:17px;font-weight:800;}
-.vsl{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:1px;}
+.vs{text-align:center;padding:8px 4px;border-radius:9px;background:var(--bg);}
+.vsn{font-size:17px;font-weight:700;font-family:var(--font-head);}
+.vsl{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:2px;letter-spacing:0.4px;}
 
-.cc{background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);margin-bottom:10px;border-left:4px solid transparent;}
-.cc.sp{border-left-color:#D6D3D1;}.cc.sc{border-left-color:#2563EB;}.cc.si{border-left-color:#16A34A;}
+/* ─────────────────────────────────────────────
+   LEAD CARDS
+───────────────────────────────────────────── */
+.cc{background:var(--surface);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid var(--border);border-left-width:3px;transition:box-shadow 0.2s;}
+.cc:hover{box-shadow:var(--shadow);}
+.cc.sp{border-left-color:#A8A29E;}.cc.sc{border-left-color:#2563EB;}.cc.si{border-left-color:#16A34A;}
 .cc.sni{border-left-color:#DC2626;}.cc.sr{border-left-color:#D97706;}.cc.scb{border-left-color:#EA580C;}.cc.snr{border-left-color:#9CA3AF;}
 .ctop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-.cav{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#FFF7ED,#FFEDD5);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:800;color:var(--primary);}
+.cav{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--gold-light),#FEF3C7);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:var(--gold2);border:1px solid rgba(201,146,26,0.2);}
 .ci{flex:1;min-width:0;}
-.cn{font-size:14px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cn{font-size:14px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .cnum{font-size:13px;color:var(--muted);margin-top:2px;}
 .cvol{font-size:11px;color:var(--muted);margin-top:2px;}
-.cev{font-size:11px;font-weight:600;color:var(--primary);background:var(--pl2);padding:2px 8px;border-radius:20px;display:inline-block;margin-top:4px;}
-.ccamp{font-size:10px;font-weight:600;color:#6B7280;background:#F3F4F6;padding:2px 7px;border-radius:20px;display:inline-block;margin-top:3px;margin-left:4px;}
-.sb{font-size:10px;font-weight:700;padding:4px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.cev{font-size:11px;font-weight:600;color:var(--orange);background:var(--orange-light);padding:2px 8px;border-radius:20px;display:inline-block;margin-top:4px;}
+.ccamp{font-size:10px;font-weight:600;color:#6B7280;background:#F1F5F9;padding:2px 7px;border-radius:20px;display:inline-block;margin-top:3px;margin-left:4px;}
+.sb{font-size:10px;font-weight:600;padding:4px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
 .sb.sp{background:#F5F5F4;color:#78716C;}.sb.sc{background:#DBEAFE;color:#1D4ED8;}.sb.si{background:#DCFCE7;color:#15803D;}
-.sb.sni{background:#FEE2E2;color:#991B1B;}.sb.sr{background:#FEF3C7;color:#92400E;}.sb.scb{background:#FFEDD5;color:#C2410C;}.sb.snr{background:#F3F4F6;color:#374151;}
+.sb.sni{background:#FEE2E2;color:#991B1B;}.sb.sr{background:#FEF3C7;color:#92400E;}.sb.scb{background:#FFEDD5;color:#C2410C;}.sb.snr{background:#F1F5F9;color:#374151;}
 .cact{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
-.ab{flex:1;padding:11px 6px;border:none;border-radius:10px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;}
+.ab{flex:1;padding:10px 6px;border:none;border-radius:9px;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:5px;min-height:42px;transition:transform 0.1s,filter 0.1s;}
 .ab:active{transform:scale(0.96);}
+.ab:hover{filter:brightness(0.95);}
 .ab-call{background:#DCFCE7;color:#16A34A;}
-.ab-upd{background:var(--pl2);color:var(--primary);}
-.ab-wa{background:#DCFCE7;color:#15803D;}
-.rmk{font-size:12px;color:var(--muted);margin-top:8px;padding:8px 10px;background:#FAFAF9;border-radius:8px;border-left:3px solid var(--primary);font-style:italic;line-height:1.5;}
-.cbtag{font-size:11px;color:var(--primary);font-weight:600;margin-top:4px;}
+.ab-upd{background:var(--orange-light);color:var(--orange);}
+.ab-wa{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
+.rmk{font-size:12px;color:var(--muted);margin-top:8px;padding:8px 10px;background:var(--bg);border-radius:8px;border-left:3px solid var(--border);font-style:italic;line-height:1.5;}
+.cbtag{font-size:11px;color:var(--orange);font-weight:600;margin-top:5px;display:flex;align-items:center;gap:4px;}
 
-.sw{position:relative;margin-bottom:12px;}
-.sw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);}
-.sw input{width:100%;padding:13px 14px 13px 42px;border:2px solid var(--border);border-radius:12px;font-size:16px;outline:none;background:white;color:var(--text);}
-.sw input:focus{border-color:var(--primary);}
+/* ─────────────────────────────────────────────
+   SEARCH & FILTER
+───────────────────────────────────────────── */
+.sw{position:relative;margin-bottom:14px;}
+.sw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;}
+.sw input{width:100%;padding:13px 14px 13px 44px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:15px;outline:none;background:var(--surface);color:var(--text);transition:border-color 0.2s;}
+.sw input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,58,95,0.06);}
 .fb{display:flex;gap:8px;margin-bottom:10px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .fb::-webkit-scrollbar{display:none;}
-.fc{padding:9px 16px;border-radius:20px;border:2px solid var(--border);background:white;font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:38px;}
-.fc:active{background:var(--pl2);}
-.fc.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
-.filter-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;margin-top:4px;}
+.fc{padding:8px 16px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:36px;transition:all 0.15s;}
+.fc:hover{border-color:#94A3B8;color:var(--navy);}
+.fc.active{border-color:var(--navy);background:var(--navy);color:white;}
+.filter-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:7px;margin-top:6px;}
 
-/* UPLOAD */
-.stepbox{background:white;border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:12px;border-top:3px solid var(--primary);}
-.stepnum{display:inline-block;background:linear-gradient(135deg,#C2410C,#EA580C);color:white;font-size:11px;font-weight:800;border-radius:20px;padding:3px 12px;margin-bottom:10px;}
-.steplabel{font-size:14px;font-weight:700;margin-bottom:10px;color:var(--navy);}
-.fg textarea{width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:12px;font-size:15px;outline:none;background:#FAFAF9;line-height:1.7;resize:none;}
-.fg textarea:focus{border-color:var(--primary);background:white;}
-.file-preview{display:none;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:2px solid #86EFAC;border-radius:14px;padding:16px;margin-top:12px;}
+/* ─────────────────────────────────────────────
+   UPLOAD PAGE
+───────────────────────────────────────────── */
+.stepbox{background:var(--surface);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-sm);margin-bottom:14px;border:1px solid var(--border);border-top:3px solid var(--navy);}
+.stepnum{display:inline-block;background:var(--navy);color:white;font-size:11px;font-weight:700;border-radius:20px;padding:3px 12px;margin-bottom:10px;letter-spacing:0.5px;}
+.steplabel{font-family:var(--font-head);font-size:15px;font-weight:600;margin-bottom:12px;color:var(--navy);}
+.fg textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:none;transition:border-color 0.2s;}
+.fg textarea:focus{border-color:var(--navy);background:var(--surface);box-shadow:0 0 0 3px rgba(30,58,95,0.06);}
+.file-preview{display:none;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1.5px solid #86EFAC;border-radius:var(--radius-lg);padding:18px;margin-top:12px;}
 .file-preview.show{display:block;}
-.fp-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
-.fp-icon{width:46px;height:46px;background:linear-gradient(135deg,#16A34A,#15803D);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.fp-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.fp-icon{width:48px;height:48px;background:linear-gradient(135deg,#16A34A,#15803D);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .fp-icon i{color:white;font-size:20px;}
 .fp-name{font-size:14px;font-weight:700;color:#15803D;}
 .fp-meta{font-size:12px;color:#16A34A;margin-top:2px;}
 .fp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
-.fp-stat{background:white;border-radius:10px;padding:10px;text-align:center;border:1px solid #BBF7D0;}
-.fp-stat-n{font-size:18px;font-weight:800;color:var(--navy);}
+.fp-stat{background:var(--surface);border-radius:10px;padding:10px;text-align:center;border:1px solid #BBF7D0;}
+.fp-stat-n{font-size:20px;font-weight:800;color:var(--navy);font-family:var(--font-head);}
 .fp-stat-l{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:2px;}
-.btn-import{width:100%;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-size:16px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 20px rgba(22,163,74,0.35);min-height:54px;}
+.btn-import{width:100%;padding:16px;border:none;border-radius:var(--radius-lg);background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(22,163,74,0.3);min-height:54px;font-family:var(--font-head);transition:transform 0.15s,box-shadow 0.15s;}
+.btn-import:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(22,163,74,0.35);}
 .btn-import:active{transform:scale(0.98);}
-.btn-import:disabled{opacity:0.6;}
-.btn-reselect{width:100%;padding:13px;border:2px solid var(--border);border-radius:12px;background:white;color:var(--muted);font-size:13px;font-weight:600;margin-top:8px;min-height:48px;}
-.upa{border:2px dashed var(--primary);border-radius:var(--radius);padding:30px 20px;text-align:center;background:var(--pl);}
-.upa:active{background:var(--pl2);}
-.upa i{font-size:40px;color:var(--primary);margin-bottom:10px;display:block;}
-.upa p{color:var(--primary);font-weight:700;font-size:15px;}
+.btn-import:disabled{opacity:0.6;transform:none;}
+.btn-reselect{width:100%;padding:13px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:13px;font-weight:600;margin-top:8px;min-height:46px;transition:background 0.15s;}
+.btn-reselect:hover{background:var(--bg);}
+.upa{border:2px dashed rgba(30,58,95,0.25);border-radius:var(--radius-lg);padding:32px 20px;text-align:center;background:var(--bg);transition:background 0.15s,border-color 0.15s;cursor:pointer;}
+.upa:hover{background:rgba(30,58,95,0.04);border-color:var(--navy);}
+.upa i{font-size:40px;color:var(--navy);margin-bottom:12px;display:block;opacity:0.6;}
+.upa p{color:var(--navy);font-weight:700;font-size:15px;}
 .upa small{color:var(--muted);font-size:12px;display:block;margin-top:4px;}
 .evbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
-.evbtn{padding:16px 10px;border:2px solid var(--border);border-radius:14px;background:white;font-size:13px;font-weight:600;color:var(--muted);text-align:center;min-height:80px;}
-.evbtn:active{background:var(--pl);}
-.evbtn.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
+.evbtn{padding:16px 10px;border:1.5px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);font-size:13px;font-weight:600;color:var(--muted);text-align:center;min-height:80px;transition:all 0.15s;}
+.evbtn:hover{border-color:#94A3B8;color:var(--navy);}
+.evbtn.active{border-color:var(--navy);background:rgba(30,58,95,0.05);color:var(--navy);}
 .evbtn i{display:block;font-size:22px;margin-bottom:6px;}
-.btn-s{width:100%;padding:15px;background:linear-gradient(135deg,#C2410C,#EA580C);color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;margin-top:4px;box-shadow:0 4px 12px rgba(194,65,12,0.3);min-height:52px;}
+.btn-s{width:100%;padding:15px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:white;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;margin-top:4px;box-shadow:0 4px 12px rgba(194,65,12,0.25);min-height:52px;font-family:var(--font-head);transition:transform 0.15s,box-shadow 0.15s;}
+.btn-s:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(194,65,12,0.3);}
 .btn-s:active{transform:scale(0.98);}
-.btn-g{background:linear-gradient(135deg,#16A34A,#15803D);box-shadow:0 4px 12px rgba(22,163,74,0.3);}
-.btn-r{background:linear-gradient(135deg,#DC2626,#B91C1C);box-shadow:0 4px 12px rgba(220,38,38,0.3);}
-.divider{height:1px;background:var(--border);margin:18px 0;}
+.btn-g{background:linear-gradient(135deg,#16A34A,#15803D);box-shadow:0 4px 12px rgba(22,163,74,0.25);}
+.btn-g:hover{box-shadow:0 6px 16px rgba(22,163,74,0.3);}
+.btn-r{background:linear-gradient(135deg,#DC2626,#B91C1C);box-shadow:0 4px 12px rgba(220,38,38,0.25);}
+.btn-r:hover{box-shadow:0 6px 16px rgba(220,38,38,0.3);}
+.divider{height:1px;background:var(--border);margin:22px 0;}
 
-/* CAMPAIGN LIST IN DANGER ZONE */
+/* Danger zone */
+.danger-zone-header{
+  display:flex;align-items:center;gap:10px;
+  background:#FFF5F5;border:1px solid #FECACA;
+  border-radius:var(--radius);padding:12px 14px;margin-bottom:12px;
+}
+.danger-zone-header i{color:#DC2626;font-size:16px;}
+.danger-zone-header .dz-title{font-size:14px;font-weight:600;color:#991B1B;}
+.danger-zone-header .dz-sub{font-size:11px;color:#B91C1C;margin-top:2px;}
+
 .camp-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
-.camp-item{background:white;border-radius:12px;padding:14px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.camp-item{background:var(--surface);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--border);}
 .camp-item-info{flex:1;min-width:0;}
-.camp-item-name{font-size:14px;font-weight:700;color:var(--navy);}
+.camp-item-name{font-size:14px;font-weight:600;color:var(--navy);}
 .camp-item-meta{font-size:11px;color:var(--muted);margin-top:3px;}
-.btn-del-camp{padding:9px 14px;background:#FEE2E2;color:#DC2626;border:2px solid #FECACA;border-radius:10px;font-size:12px;font-weight:700;min-height:40px;white-space:nowrap;}
-.btn-del-camp:active{background:#FCA5A5;}
+.btn-del-camp{padding:9px 14px;background:#FEE2E2;color:#DC2626;border:1px solid #FECACA;border-radius:9px;font-size:12px;font-weight:600;min-height:38px;white-space:nowrap;transition:background 0.15s;}
+.btn-del-camp:hover{background:#FCA5A5;}
 
-/* REPORTS */
-.rpt-banner{background:linear-gradient(135deg,#1E3A5F,#162D4A);border-radius:var(--radius);padding:16px;margin-bottom:14px;color:white;position:relative;overflow:hidden;}
-.rpt-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:90px;height:90px;border-radius:50%;background:rgba(234,88,12,0.2);}
-.rpt-banner h3{font-size:15px;font-weight:800;}
-.rpt-banner p{font-size:12px;opacity:0.75;margin-top:3px;}
+/* ─────────────────────────────────────────────
+   REPORTS PAGE
+───────────────────────────────────────────── */
+.rpt-banner{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--radius-lg);padding:18px;margin-bottom:16px;color:white;position:relative;overflow:hidden;}
+.rpt-banner::after{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(201,146,26,0.15);}
+.rpt-banner h3{font-family:var(--font-head);font-size:16px;font-weight:700;}
+.rpt-banner p{font-size:12px;opacity:0.7;margin-top:3px;}
 .rpt-ev-filter{display:flex;gap:8px;margin-bottom:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;}
 .rpt-ev-filter::-webkit-scrollbar{display:none;}
-.rpt-ef{padding:9px 14px;border:2px solid var(--border);border-radius:20px;background:white;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;min-height:40px;}
-.rpt-ef:active{background:var(--pl);}
-.rpt-ef.active{border-color:var(--primary);background:var(--pl2);color:var(--primary);}
-.rpt-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
-.rpt-sc{background:white;border-radius:14px;padding:12px;box-shadow:var(--shadow);text-align:center;}
-.rpt-sn{font-size:22px;font-weight:800;color:var(--navy);}
-.rpt-sl{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:2px;}
-.vrc{background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;}
-.vrc-header{background:linear-gradient(135deg,#1E3A5F,#2D5A8E);padding:14px;display:flex;align-items:center;gap:10px;min-height:68px;}
-.vrc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#C2410C,#EA580C);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:800;color:white;}
+.rpt-ef{padding:8px 14px;border:1.5px solid var(--border);border-radius:20px;background:var(--surface);font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:38px;transition:all 0.15s;}
+.rpt-ef:hover{border-color:#94A3B8;color:var(--navy);}
+.rpt-ef.active{border-color:var(--navy);background:var(--navy);color:white;}
+.rpt-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.rpt-sc{background:var(--surface);border-radius:var(--radius-lg);padding:14px;box-shadow:var(--shadow-sm);text-align:center;border:1px solid var(--border);}
+.rpt-sn{font-family:var(--font-head);font-size:26px;font-weight:800;color:var(--navy);}
+.rpt-sl{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:3px;letter-spacing:0.4px;}
+.vrc{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);margin-bottom:12px;overflow:hidden;border:1px solid var(--border);}
+.vrc-header{background:linear-gradient(135deg,var(--navy),#2D5A8E);padding:16px;display:flex;align-items:center;gap:12px;min-height:68px;cursor:pointer;}
+.vrc-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;font-weight:700;color:white;}
 .vrc-info{flex:1;min-width:0;}
-.vrc-name{font-size:14px;font-weight:800;color:white;}
-.vrc-sub{font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.vrc-pct{background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:800;color:white;flex-shrink:0;}
-.vrc-arrow{color:rgba(255,255,255,0.7);font-size:13px;transition:transform 0.3s;flex-shrink:0;}
+.vrc-name{font-family:var(--font-head);font-size:14px;font-weight:700;color:white;}
+.vrc-sub{font-size:11px;color:rgba(255,255,255,0.65);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.vrc-pct{background:rgba(255,255,255,0.15);border-radius:20px;padding:4px 10px;font-size:12px;font-weight:700;color:white;flex-shrink:0;}
+.vrc-arrow{color:rgba(255,255,255,0.6);font-size:13px;transition:transform 0.3s;flex-shrink:0;}
 .vrc-arrow.open{transform:rotate(180deg);}
-.vrc-body{display:none;padding:14px;}
+.vrc-body{display:none;padding:16px;}
 .vrc-body.open{display:block;}
-.vrc-pbw{height:10px;background:#E7E5E4;border-radius:20px;overflow:hidden;margin-bottom:12px;}
-.vrc-pbf{height:100%;border-radius:20px;background:linear-gradient(90deg,#C2410C,#EA580C);}
-.vrc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px;}
+.vrc-pbw{height:8px;background:var(--border);border-radius:20px;overflow:hidden;margin-bottom:14px;}
+.vrc-pbf{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--navy),#2D5A8E);}
+.vrc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .vrc-stat{text-align:center;padding:10px 4px;border-radius:10px;}
-.vrc-stat-n{font-size:19px;font-weight:800;}
-.vrc-stat-l{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.vrc-stat-n{font-family:var(--font-head);font-size:20px;font-weight:800;}
+.vrc-stat-l{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--muted);margin-top:2px;letter-spacing:0.3px;}
 .vrc-stat.st{background:#FFF7ED;}.vrc-stat.sc{background:#DBEAFE;}.vrc-stat.si{background:#DCFCE7;}
 .vrc-stat.sni{background:#FEE2E2;}.vrc-stat.sr{background:#FEF3C7;}.vrc-stat.scb{background:#FFEDD5;}.vrc-stat.snr{background:#F9FAFB;}
-.vrc-contacts-btn{width:100%;padding:12px;border:2px solid var(--primary);border-radius:10px;background:var(--pl);color:var(--primary);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;}
-.vrc-contacts-btn:active{background:var(--pl2);}
+.vrc-contacts-btn{width:100%;padding:12px;border:1.5px solid var(--navy);border-radius:10px;background:rgba(30,58,95,0.04);color:var(--navy);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;transition:background 0.15s;}
+.vrc-contacts-btn:hover{background:rgba(30,58,95,0.08);}
 .vrc-contacts{margin-top:10px;display:none;}
 .vrc-contacts.open{display:block;}
-.mini-card{background:#FAFAF9;border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.mini-card{background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .mini-card.sp{border-left-color:#D6D3D1;}.mini-card.sc{border-left-color:#2563EB;}.mini-card.si{border-left-color:#16A34A;}
 .mini-card.sni{border-left-color:#DC2626;}.mini-card.sr{border-left-color:#D97706;}.mini-card.scb{border-left-color:#EA580C;}.mini-card.snr{border-left-color:#9CA3AF;}
-.mini-name{font-size:13px;font-weight:700;color:var(--navy);}
+.mini-name{font-size:13px;font-weight:600;color:var(--navy);}
 .mini-num{font-size:11px;color:var(--muted);}
 .mini-rmk{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px;}
 .mini-sb{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
 
-.pcard{background:linear-gradient(135deg,#1E3A5F,#162D4A);border-radius:var(--radius);padding:24px;text-align:center;margin-bottom:14px;}
-.pav{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#C2410C,#EA580C);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:0 8px 24px rgba(194,65,12,0.4);}
+/* ─────────────────────────────────────────────
+   PROFILE PAGE
+───────────────────────────────────────────── */
+.pcard{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--radius-lg);padding:28px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
+.pcard::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(201,146,26,0.1);}
+.pav{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 24px rgba(201,146,26,0.35);}
 .pav i{color:white;font-size:30px;}
-.pname{font-size:19px;font-weight:800;color:white;}
-.pemail{color:rgba(255,255,255,0.7);font-size:12px;margin-top:4px;}
-.prole{background:rgba(234,88,12,0.3);color:#FDBA74;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;display:inline-block;margin-top:10px;border:1px solid rgba(234,88,12,0.4);}
-.infobox{background:white;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);margin-bottom:12px;}
-.ev-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);}
+.pname{font-family:var(--font-head);font-size:20px;font-weight:700;color:white;}
+.pemail{color:rgba(255,255,255,0.6);font-size:12px;margin-top:4px;}
+.prole{background:rgba(201,146,26,0.25);color:#FCD34D;font-size:11px;font-weight:600;padding:4px 16px;border-radius:20px;display:inline-block;margin-top:12px;border:1px solid rgba(201,146,26,0.3);}
+.infobox{background:var(--surface);border-radius:var(--radius-lg);padding:16px;box-shadow:var(--shadow-sm);margin-bottom:12px;border:1px solid var(--border);}
+.ev-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
 .ev-row:last-child{border-bottom:none;padding-bottom:0;}
-.ev-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
-.ev-name{font-size:14px;font-weight:700;color:var(--navy);}
+.ev-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.ev-name{font-size:14px;font-weight:600;color:var(--navy);}
 .ev-date{font-size:11px;color:var(--muted);margin-top:2px;}
 
-.mo{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+/* ─────────────────────────────────────────────
+   MODALS (bottom sheet)
+───────────────────────────────────────────── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px);}
 .mo.open{display:flex;}
-.ms{background:white;border-radius:24px 24px 0 0;padding:20px 16px;width:100%;max-width:600px;max-height:92vh;max-height:92dvh;overflow-y:auto;animation:sup 0.25s ease;padding-bottom:calc(20px + env(safe-area-inset-bottom));}
+.ms{background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:20px 18px;width:100%;max-width:600px;max-height:92vh;max-height:92dvh;overflow-y:auto;animation:sup 0.25s cubic-bezier(0.34,1.56,0.64,1);padding-bottom:calc(20px + env(safe-area-inset-bottom));}
 @keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.mh{width:40px;height:4px;background:var(--border);border-radius:20px;margin:0 auto 18px;}
-.mt{font-size:16px;font-weight:800;margin-bottom:4px;color:var(--navy);}
-.msub{font-size:13px;color:var(--muted);margin-bottom:14px;}
-.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.so{padding:13px 8px;border:2px solid var(--border);border-radius:12px;text-align:center;font-size:13px;font-weight:600;color:var(--muted);background:white;min-height:48px;}
-.so:active{background:var(--bg);}
+.mh{width:36px;height:4px;background:var(--border);border-radius:20px;margin:0 auto 20px;}
+.mt{font-family:var(--font-head);font-size:17px;font-weight:700;margin-bottom:4px;color:var(--navy);}
+.msub{font-size:13px;color:var(--muted);margin-bottom:16px;}
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.so{padding:13px 8px;border:1.5px solid var(--border);border-radius:var(--radius);text-align:center;font-size:13px;font-weight:600;color:var(--muted);background:var(--surface);min-height:48px;transition:all 0.15s;}
+.so:hover{border-color:#94A3B8;color:var(--navy);}
 .so.a-p{border-color:#A8A29E;background:#F5F5F4;color:#44403C;}
 .so.a-c{border-color:#2563EB;background:#DBEAFE;color:#1D4ED8;}
 .so.a-i{border-color:#16A34A;background:#DCFCE7;color:#15803D;}
@@ -277,232 +509,372 @@ button{cursor:pointer;touch-action:manipulation;}
 .so.a-r{border-color:#D97706;background:#FEF3C7;color:#92400E;}
 .so.a-cb{border-color:#EA580C;background:#FFEDD5;color:#C2410C;}
 .so.a-nr{border-color:#9CA3AF;background:#F9FAFB;color:#374151;}
-.btn-c{width:100%;padding:14px;background:#F5F5F4;color:var(--muted);border:none;border-radius:12px;font-size:14px;font-weight:600;margin-top:8px;min-height:50px;}
-.btn-c:active{background:#E7E5E4;}
+.btn-c{width:100%;padding:14px;background:var(--bg);color:var(--muted);border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;font-weight:600;margin-top:8px;min-height:50px;transition:background 0.15s;}
+.btn-c:hover{background:var(--border);}
 
-.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--navy);color:white;padding:12px 20px;border-radius:12px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;border-left:4px solid var(--primary);max-width:90vw;text-align:center;}
+/* Confirm Modal */
+.confirm-icon{font-size:40px;text-align:center;margin-bottom:12px;}
+.confirm-camp-name{font-size:14px;font-weight:700;color:var(--navy);text-align:center;background:var(--bg);border-radius:8px;padding:8px 14px;margin-bottom:6px;}
+
+/* ─────────────────────────────────────────────
+   TOAST
+───────────────────────────────────────────── */
+.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-16px);background:var(--navy2);color:white;padding:12px 20px;border-radius:var(--radius);font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;white-space:nowrap;border-left:3px solid var(--gold);max-width:90vw;text-align:center;box-shadow:var(--shadow-lg);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.empty{text-align:center;padding:48px 16px;}
-.empty i{font-size:48px;color:#D6D3D1;margin-bottom:12px;display:block;}
-.empty h3{font-size:16px;font-weight:700;color:var(--muted);}
-.empty p{font-size:13px;color:#A8A29E;margin-top:6px;}
-.ilog{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:14px;margin-top:12px;font-size:13px;color:#166534;line-height:1.6;display:none;}
+
+/* ─────────────────────────────────────────────
+   EMPTY STATE
+───────────────────────────────────────────── */
+.empty{text-align:center;padding:52px 20px;}
+.empty i{font-size:48px;color:#CBD5E1;margin-bottom:14px;display:block;}
+.empty h3{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--muted);}
+.empty p{font-size:13px;color:#94A3B8;margin-top:6px;line-height:1.5;}
+.ilog{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:var(--radius);padding:14px;margin-top:12px;font-size:13px;color:#166534;line-height:1.7;display:none;border-left:3px solid #16A34A;}
 .ilog.show{display:block;}
+
+/* ─────────────────────────────────────────────
+   DESKTOP OVERRIDES (≥ 900px)
+───────────────────────────────────────────── */
+@media (min-width:900px) {
+  .top-header .hlogo,.top-header .htitle{display:none;}
+  .tab-bar{display:none;}
+  .page{padding:28px 32px 40px;}
+  .sgrid{grid-template-columns:repeat(4,1fr);}
+  .vstats{grid-template-columns:repeat(4,1fr);}
+  .vrc-grid{grid-template-columns:repeat(8,1fr);}
+  .rpt-summary{grid-template-columns:repeat(3,1fr);}
+  .mo .ms{border-radius:var(--radius-xl);max-height:80vh;margin:auto;}
+  .mo{align-items:center;}
+  .ms{max-width:480px;}
+  /* Full width pages on desktop, no bottom padding for tab bar */
+  .page{padding-bottom:40px;}
+  /* Desktop grid for leads */
+  #leads-list .cc:hover{transform:translateY(-1px);}
+}
+
+/* Mobile adjustments */
+@media (max-width:899px) {
+  .sidebar{display:none;}
+  .main-wrap{margin-left:0;}
+  .top-header .hlogo,.top-header .htitle{display:flex;}
+  .top-header .hright .ubadge{display:none;}
+  .top-header{background:var(--navy3);}
+  .top-header .htitle h2{color:white;}
+  .top-header .htitle p{color:rgba(255,255,255,0.5);}
+  .top-header .hright .ibtn{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);color:white;}
+  .top-header .hright .ibtn:hover{background:rgba(255,255,255,0.2);}
+  .top-header .hi{gap:0;}
+}
+
+/* Medium desktop - 2 col leads */
+@media (min-width:1200px) {
+  #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  #leads-list .cc{margin-bottom:0;}
+}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ═══════════════════════════════════════
+     LOGIN PAGE
+═══════════════════════════════════════ -->
 <div id="loginPage">
+  <div class="login-grid"></div>
   <div class="lcard">
     <div class="llogo">
       <div class="lcircle"><img src="logo.png" alt="Pramukh Academy"/></div>
       <h1>BAPS Pramukh Academy</h1>
       <h2>Outreach Tracker</h2>
-      <p>EVENT REGISTRATION MANAGEMENT</p>
+      <p>Event Registration Management</p>
     </div>
     <p class="ltitle">Welcome Back 🙏</p>
     <p class="lsub">Sign in to continue your seva</p>
-    <div class="fg"><label>Email Address</label><div class="iw"><i class="fas fa-envelope"></i><input type="email" id="lemail" placeholder="your@email.com" autocomplete="email"/></div></div>
-    <div class="fg"><label>Password</label><div class="iw"><i class="fas fa-lock"></i><input type="password" id="lpass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div></div>
+    <div class="fg">
+      <label>Email Address</label>
+      <div class="iw"><i class="fas fa-envelope"></i><input type="email" id="lemail" placeholder="your@email.com" autocomplete="email"/></div>
+    </div>
+    <div class="fg">
+      <label>Password</label>
+      <div class="iw"><i class="fas fa-lock"></i><input type="password" id="lpass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    </div>
     <button class="btn-p" id="lbtn" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
     <div class="errmsg" id="lerr"></div>
     <div class="ldivider">BAPS Pramukh Academy · Atladara, Vadodara</div>
   </div>
 </div>
 
-<!-- APP -->
+<!-- ═══════════════════════════════════════
+     APP SHELL
+═══════════════════════════════════════ -->
 <div id="app">
-  <div class="top-header">
-    <div class="hi">
-      <div class="hl">
-        <div class="hlogo"><img src="logo.png" alt="PA"/></div>
-        <div class="htitle"><h2>Pramukh Outreach</h2><p id="hcamp-sub">BAPS Pramukh Academy · Vadodara</p></div>
-      </div>
-      <div class="hright">
-        <div class="ubadge"><div class="udot"></div><span id="huser">User</span></div>
-        <button class="ibtn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
-      </div>
-    </div>
-  </div>
+<div class="app-inner">
 
-  <!-- HOME -->
-  <div class="page active" id="pg-home">
-    <div class="wb">
-      <h3 id="wmsg">Welcome! 🙏</h3>
-      <p>Track outreach calls · Help students grow with Pramukh Academy</p>
-      <div class="echips">
-        <span class="echip">📅 Leadership Carnival · 10–13 May</span>
-        <span class="echip">⭐ PVC 4.0 · 31 May–3 Jun</span>
+  <!-- SIDEBAR (desktop) -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="sb-logo-circle"><img src="logo.png" alt="PA"/></div>
+      <div class="sb-brand">
+        <h2>Pramukh Outreach</h2>
+        <p>BAPS Pramukh Academy</p>
       </div>
     </div>
-    <!-- Campaign selector for home stats -->
-    <div id="home-camp-filter-wrap" style="margin-bottom:14px;display:none;">
-      <div class="filter-label">📁 Campaign</div>
-      <div class="fb" id="home-camp-filter"></div>
-    </div>
-    <div class="sgrid">
-      <div class="scard"><div class="sicon si-p"><i class="fas fa-users"></i></div><div class="sinfo"><h3 id="s-total">0</h3><p>Total Leads</p></div></div>
-      <div class="scard"><div class="sicon si-b"><i class="fas fa-phone-alt"></i></div><div class="sinfo"><h3 id="s-called">0</h3><p>Called</p></div></div>
-      <div class="scard"><div class="sicon si-g"><i class="fas fa-thumbs-up"></i></div><div class="sinfo"><h3 id="s-int">0</h3><p>Interested</p></div></div>
-      <div class="scard"><div class="sicon si-a"><i class="fas fa-check-circle"></i></div><div class="sinfo"><h3 id="s-reg">0</h3><p>Registered</p></div></div>
-    </div>
-    <div class="sh"><div class="st"><i class="fas fa-clock"></i> Today's Callbacks</div><span class="bc" id="cb-badge">0</span></div>
-    <div id="cb-list"></div>
-    <div class="sh" id="vol-prog-hdr" style="display:none"><div class="st"><i class="fas fa-chart-bar"></i> Volunteer Progress</div></div>
-    <div id="vol-prog-list"></div>
-  </div>
-
-  <!-- MY LEADS -->
-  <div class="page" id="pg-leads">
-    <div class="sw"><i class="fas fa-search"></i><input type="text" id="srch" placeholder="Search name or number..." oninput="renderLeads()"/></div>
-    <div class="filter-label">📁 Campaign</div>
-    <div class="fb" id="fb-campaign">
-      <button class="fc active" onclick="setFC('all',this)">All Campaigns</button>
-    </div>
-    <div class="filter-label">📌 Status</div>
-    <div class="fb" id="fb-status">
-      <button class="fc active" onclick="setF('all',this,'fb-status')">All</button>
-      <button class="fc" onclick="setF('pending',this,'fb-status')">Pending</button>
-      <button class="fc" onclick="setF('called',this,'fb-status')">Called</button>
-      <button class="fc" onclick="setF('interested',this,'fb-status')">Interested</button>
-      <button class="fc" onclick="setF('not-interested',this,'fb-status')">Not Interested</button>
-      <button class="fc" onclick="setF('not-reachable',this,'fb-status')">Not Reachable</button>
-      <button class="fc" onclick="setF('callback',this,'fb-status')">Callback</button>
-      <button class="fc" onclick="setF('registered',this,'fb-status')">Registered</button>
-    </div>
-    <div class="filter-label">🎪 Event</div>
-    <div class="fb" id="fb-event">
-      <button class="fc active" onclick="setEF('all',this)">All Events</button>
-      <button class="fc" onclick="setEF('lc',this)">Leadership Carnival</button>
-      <button class="fc" onclick="setEF('pvc',this)">PVC 4.0</button>
-    </div>
-    <div class="sh"><div class="st"><i class="fas fa-list"></i> Contacts</div><span class="bc" id="lead-count">0</span></div>
-    <div id="leads-list"></div>
-    <div class="empty" id="leads-empty" style="display:none"><i class="fas fa-inbox"></i><h3>No contacts found</h3><p>Contacts assigned to you will appear here</p></div>
-  </div>
-
-  <!-- REPORTS -->
-  <div class="page" id="pg-reports">
-    <div class="rpt-banner"><h3>📊 Volunteer Reports</h3><p>Filter by campaign · Tap volunteer to expand</p></div>
-    <div class="filter-label">📁 Campaign</div>
-    <div class="rpt-ev-filter" id="rpt-camp-filter">
-      <button class="rpt-ef active" onclick="setRptCamp('all',this)">🌐 All</button>
-    </div>
-    <div class="filter-label">🎪 Event</div>
-    <div class="rpt-ev-filter" id="rpt-ev-filter">
-      <button class="rpt-ef active" onclick="setRptEv('all',this)">🌐 All Events</button>
-      <button class="rpt-ef" onclick="setRptEv('lc',this)">🎪 Carnival</button>
-      <button class="rpt-ef" onclick="setRptEv('pvc',this)">⭐ PVC 4.0</button>
-    </div>
-    <div class="rpt-summary">
-      <div class="rpt-sc"><div class="rpt-sn" id="rs-total">0</div><div class="rpt-sl">Total</div></div>
-      <div class="rpt-sc"><div class="rpt-sn" id="rs-int" style="color:#16A34A">0</div><div class="rpt-sl">Interested</div></div>
-      <div class="rpt-sc"><div class="rpt-sn" id="rs-reg" style="color:#D97706">0</div><div class="rpt-sl">Registered</div></div>
-    </div>
-    <div id="rpt-vol-list"></div>
-    <div class="empty" id="rpt-empty" style="display:none"><i class="fas fa-chart-bar"></i><h3>No data yet</h3><p>Upload contacts to see reports</p></div>
-  </div>
-
-  <!-- UPLOAD -->
-  <div class="page" id="pg-upload">
-    <div class="sh"><div class="st"><i class="fas fa-upload"></i> Upload Contacts</div></div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Each upload = one campaign · Old data is preserved ✅</p>
-    <div class="stepbox">
-      <span class="stepnum">STEP 1</span>
-      <div class="steplabel">Campaign Name</div>
-      <div class="fg" style="margin-bottom:6px;">
-        <div class="iw"><i class="fas fa-tag"></i><input type="text" id="camp-name" placeholder="e.g. LC Wave 1, PVC Batch 2, School May" style="padding-left:44px;"/></div>
-      </div>
-      <small style="color:var(--muted);font-size:11px;">📌 Give a unique name · This helps separate campaigns later</small>
-    </div>
-    <div class="stepbox">
-      <span class="stepnum">STEP 2</span>
-      <div class="steplabel">Enter Volunteer Emails</div>
-      <div class="fg" style="margin-bottom:6px;"><textarea id="vol-emails" rows="4" placeholder="volunteer1@gmail.com&#10;volunteer2@gmail.com&#10;volunteer3@gmail.com"></textarea></div>
-      <small style="color:var(--muted);font-size:11px;">📌 One email per line · Must match Firebase Auth emails exactly</small>
-    </div>
-    <div class="stepbox">
-      <span class="stepnum">STEP 3</span>
-      <div class="steplabel">Select Event</div>
-      <div class="evbtns">
-        <button class="evbtn active" id="ev-lc" onclick="selectEv('lc')"><i class="fas fa-users"></i>Leadership Carnival<br/><small style="font-weight:400;font-size:11px;">10–13 May 2026</small></button>
-        <button class="evbtn" id="ev-pvc" onclick="selectEv('pvc')"><i class="fas fa-star"></i>PVC 4.0<br/><small style="font-weight:400;font-size:11px;">31 May–3 Jun 2026</small></button>
-      </div>
-    </div>
-    <div class="stepbox">
-      <span class="stepnum">STEP 4</span>
-      <div class="steplabel">Choose CSV File</div>
-      <div id="file-picker-area">
-        <label for="csvfile" class="upa">
-          <i class="fas fa-file-csv"></i>
-          <p>Tap to choose CSV file</p>
-          <small>Columns: Name, Contact · Row 1 = header</small>
-        </label>
-      </div>
-      <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="previewCSV(event)"/>
-      <div class="file-preview" id="file-preview">
-        <div class="fp-top">
-          <div class="fp-icon"><i class="fas fa-file-csv"></i></div>
-          <div><div class="fp-name" id="fp-filename">file.csv</div><div class="fp-meta" id="fp-meta">0 contacts ready</div></div>
+    <nav class="sb-nav">
+      <div class="sb-section-label">Navigation</div>
+      <button class="sb-item active" id="sbt-home" onclick="switchTab('pg-home','tab-home')">
+        <i class="fas fa-home"></i><span>Home</span>
+      </button>
+      <button class="sb-item" id="sbt-leads" onclick="switchTab('pg-leads','tab-leads')">
+        <i class="fas fa-list-ul"></i><span>My Leads</span>
+      </button>
+      <div class="sb-section-label" id="sb-admin-label" style="display:none">Admin</div>
+      <button class="sb-item" id="sbt-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none">
+        <i class="fas fa-chart-pie"></i><span>Reports</span>
+      </button>
+      <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none">
+        <i class="fas fa-upload"></i><span>Upload</span>
+      </button>
+      <div class="sb-section-label">Account</div>
+      <button class="sb-item" id="sbt-profile" onclick="switchTab('pg-profile','tab-profile')">
+        <i class="fas fa-user-circle"></i><span>Profile</span>
+      </button>
+    </nav>
+    <div class="sb-bottom">
+      <div class="sb-user-card">
+        <div class="sb-user-dot"></div>
+        <div class="sb-user-info">
+          <div class="sb-uname" id="sb-uname">User</div>
+          <div class="sb-urole" id="sb-urole">Volunteer</div>
         </div>
-        <div class="fp-stats">
-          <div class="fp-stat"><div class="fp-stat-n" id="fp-count">0</div><div class="fp-stat-l">Contacts</div></div>
-          <div class="fp-stat"><div class="fp-stat-n" id="fp-vcount">0</div><div class="fp-stat-l">Volunteers</div></div>
-          <div class="fp-stat"><div class="fp-stat-n" id="fp-each">0</div><div class="fp-stat-l">Each</div></div>
-        </div>
-        <button class="btn-import" id="import-btn" onclick="submitImport()"><i class="fas fa-cloud-upload-alt"></i> Import Campaign</button>
-        <button class="btn-reselect" onclick="resetFileSelect()"><i class="fas fa-redo"></i> Choose Different File</button>
       </div>
-      <div class="ilog" id="ilog"></div>
-    </div><div class="divider"></div>
-<div class="sh"><div class="st"><i class="fas fa-download"></i> Export Data</div></div>
-<div class="stepbox">
-  <div class="steplabel">📥 Download Master File</div>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Downloads all contacts from <b>all campaigns</b> with their status, remarks, volunteer name, callback date — everything in one CSV file.</p>
-  <button class="btn-s btn-g" onclick="exportMaster()"><i class="fas fa-file-csv"></i> Export All Campaigns (CSV)</button>
-</div>
-    <div class="divider"></div>
-    <div class="sh"><div class="st"><i class="fas fa-trash-alt"></i> Delete Campaign</div></div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Delete contacts of a specific campaign only. Other campaigns stay safe.</p>
-    <div class="camp-list" id="danger-camp-list">
-      <div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div>
+      <button class="sb-logout" onclick="doLogout()">
+        <i class="fas fa-sign-out-alt"></i> Sign Out
+      </button>
     </div>
-  </div>
+  </aside>
 
-  <!-- PROFILE -->
-  <div class="page" id="pg-profile">
-    <div class="pcard">
-      <div class="pav"><i class="fas fa-user"></i></div>
-      <div class="pname" id="p-name">User</div>
-      <div class="pemail" id="p-email"></div>
-      <span class="prole" id="p-role">Role</span>
-    </div>
-    <div class="infobox">
-      <div class="st" style="margin-bottom:10px"><i class="fas fa-calendar-alt"></i> Active Events</div>
-      <div class="ev-row"><div class="ev-dot" style="background:#C2410C"></div><div><div class="ev-name">Leadership Carnival</div><div class="ev-date">10–13 May 2026 · Parul University, Vadodara</div></div></div>
-      <div class="ev-row"><div class="ev-dot" style="background:#1E3A5F"></div><div><div class="ev-name">Pramukh Vision Conference 4.0</div><div class="ev-date">31 May–3 June 2026 · Vadodara</div></div></div>
-    </div>
-    <div class="infobox" id="admin-info" style="display:none">
-      <div class="st" style="margin-bottom:8px"><i class="fas fa-info-circle"></i> How to Add Volunteers</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password. They can login immediately.</p>
-    </div>
-    <div class="infobox">
-      <div class="st" style="margin-bottom:8px"><i class="fas fa-map-marker-alt"></i> Academy Address</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.7;">BAPS Pramukh Academy, Atladara, Vadodara, Gujarat 390012</p>
-    </div>
-    <button class="btn-s btn-r" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-  </div>
+  <!-- MAIN WRAP -->
+  <div class="main-wrap">
 
-  <!-- TAB BAR -->
-  <div class="tab-bar">
-    <button class="ti active" id="tab-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
-    <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-list-ul"></i><span>Leads</span></button>
-    <button class="ti" id="tab-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
-    <button class="ti" id="tab-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
-    <button class="ti" id="tab-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
-  </div>
-</div>
+    <!-- TOP HEADER -->
+    <div class="top-header">
+      <div class="hi">
+        <div class="hl">
+          <div class="hlogo"><img src="logo.png" alt="PA"/></div>
+          <div class="htitle"><h2>Pramukh Outreach</h2><p id="hcamp-sub">BAPS Pramukh Academy</p></div>
+        </div>
+        <div class="hright">
+          <div class="ubadge"><div class="udot"></div><span id="huser">User</span></div>
+          <button class="ibtn" onclick="doLogout()" title="Sign out"><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGES -->
+    <div class="pages-container">
+
+      <!-- HOME -->
+      <div class="page active" id="pg-home">
+        <div class="wb">
+          <h3 id="wmsg">Welcome! 🙏</h3>
+          <p>Track outreach calls · Help students grow with Pramukh Academy</p>
+          <div class="echips">
+            <span class="echip">📅 Leadership Carnival · 10–13 May</span>
+            <span class="echip">⭐ PVC 4.0 · 31 May–3 Jun</span>
+          </div>
+        </div>
+        <div id="home-camp-filter-wrap" style="margin-bottom:16px;display:none;">
+          <div class="filter-label">📁 Campaign</div>
+          <div class="fb" id="home-camp-filter"></div>
+        </div>
+        <div class="sgrid">
+          <div class="scard"><div class="sicon si-p"><i class="fas fa-users"></i></div><div class="sinfo"><h3 id="s-total">0</h3><p>Total Leads</p></div></div>
+          <div class="scard"><div class="sicon si-b"><i class="fas fa-phone-alt"></i></div><div class="sinfo"><h3 id="s-called">0</h3><p>Called</p></div></div>
+          <div class="scard"><div class="sicon si-g"><i class="fas fa-thumbs-up"></i></div><div class="sinfo"><h3 id="s-int">0</h3><p>Interested</p></div></div>
+          <div class="scard"><div class="sicon si-a"><i class="fas fa-check-circle"></i></div><div class="sinfo"><h3 id="s-reg">0</h3><p>Registered</p></div></div>
+        </div>
+        <div class="sh"><div class="st"><i class="fas fa-clock"></i> Today's Callbacks</div><span class="bc" id="cb-badge">0</span></div>
+        <div id="cb-list"></div>
+        <div class="sh" id="vol-prog-hdr" style="display:none"><div class="st"><i class="fas fa-chart-bar"></i> Volunteer Progress</div></div>
+        <div id="vol-prog-list"></div>
+      </div>
+
+      <!-- MY LEADS -->
+      <div class="page" id="pg-leads">
+        <div class="sw"><i class="fas fa-search"></i><input type="text" id="srch" placeholder="Search name or number..." oninput="renderLeads()"/></div>
+        <div class="filter-label">📁 Campaign</div>
+        <div class="fb" id="fb-campaign">
+          <button class="fc active" onclick="setFC('all',this)">All Campaigns</button>
+        </div>
+        <div class="filter-label">📌 Status</div>
+        <div class="fb" id="fb-status">
+          <button class="fc active" onclick="setF('all',this,'fb-status')">All</button>
+          <button class="fc" onclick="setF('pending',this,'fb-status')">Pending</button>
+          <button class="fc" onclick="setF('called',this,'fb-status')">Called</button>
+          <button class="fc" onclick="setF('interested',this,'fb-status')">Interested</button>
+          <button class="fc" onclick="setF('not-interested',this,'fb-status')">Not Interested</button>
+          <button class="fc" onclick="setF('not-reachable',this,'fb-status')">Not Reachable</button>
+          <button class="fc" onclick="setF('callback',this,'fb-status')">Callback</button>
+          <button class="fc" onclick="setF('registered',this,'fb-status')">Registered</button>
+        </div>
+        <div class="filter-label">🎪 Event</div>
+        <div class="fb" id="fb-event">
+          <button class="fc active" onclick="setEF('all',this)">All Events</button>
+          <button class="fc" onclick="setEF('lc',this)">Leadership Carnival</button>
+          <button class="fc" onclick="setEF('pvc',this)">PVC 4.0</button>
+        </div>
+        <div class="sh"><div class="st"><i class="fas fa-list"></i> Contacts</div><span class="bc" id="lead-count">0</span></div>
+        <div id="leads-list"></div>
+        <div class="empty" id="leads-empty" style="display:none">
+          <i class="fas fa-inbox"></i>
+          <h3>No contacts found</h3>
+          <p>Contacts assigned to you will appear here.<br/>Try adjusting your filters above.</p>
+        </div>
+      </div>
+
+      <!-- REPORTS (admin) -->
+      <div class="page" id="pg-reports">
+        <div class="rpt-banner"><h3>📊 Volunteer Reports</h3><p>Filter by campaign · Tap volunteer to expand their stats</p></div>
+        <div class="filter-label">📁 Campaign</div>
+        <div class="rpt-ev-filter" id="rpt-camp-filter">
+          <button class="rpt-ef active" onclick="setRptCamp('all',this)">🌐 All</button>
+        </div>
+        <div class="filter-label">🎪 Event</div>
+        <div class="rpt-ev-filter" id="rpt-ev-filter">
+          <button class="rpt-ef active" onclick="setRptEv('all',this)">🌐 All Events</button>
+          <button class="rpt-ef" onclick="setRptEv('lc',this)">🎪 Carnival</button>
+          <button class="rpt-ef" onclick="setRptEv('pvc',this)">⭐ PVC 4.0</button>
+        </div>
+        <div class="rpt-summary">
+          <div class="rpt-sc"><div class="rpt-sn" id="rs-total">0</div><div class="rpt-sl">Total</div></div>
+          <div class="rpt-sc"><div class="rpt-sn" id="rs-int" style="color:#16A34A">0</div><div class="rpt-sl">Interested</div></div>
+          <div class="rpt-sc"><div class="rpt-sn" id="rs-reg" style="color:#D97706">0</div><div class="rpt-sl">Registered</div></div>
+        </div>
+        <div id="rpt-vol-list"></div>
+        <div class="empty" id="rpt-empty" style="display:none">
+          <i class="fas fa-chart-bar"></i>
+          <h3>No data yet</h3>
+          <p>Upload contacts to see volunteer reports here</p>
+        </div>
+      </div>
+
+      <!-- UPLOAD (admin) -->
+      <div class="page" id="pg-upload">
+        <div class="sh"><div class="st"><i class="fas fa-upload"></i> Upload Contacts</div></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Each upload = one campaign · Old data is preserved ✅</p>
+
+        <div class="stepbox">
+          <span class="stepnum">STEP 1</span>
+          <div class="steplabel">Campaign Name</div>
+          <div class="fg" style="margin-bottom:6px;">
+            <div class="iw"><i class="fas fa-tag"></i><input type="text" id="camp-name" placeholder="e.g. LC Wave 1, PVC Batch 2, School May" style="padding-left:44px;"/></div>
+          </div>
+          <small style="color:var(--muted);font-size:11px;">📌 Give a unique name · This helps separate campaigns later</small>
+        </div>
+
+        <div class="stepbox">
+          <span class="stepnum">STEP 2</span>
+          <div class="steplabel">Enter Volunteer Emails</div>
+          <div class="fg" style="margin-bottom:6px;"><textarea id="vol-emails" rows="4" placeholder="volunteer1@gmail.com&#10;volunteer2@gmail.com&#10;volunteer3@gmail.com"></textarea></div>
+          <small style="color:var(--muted);font-size:11px;">📌 One email per line · Must match Firebase Auth emails exactly</small>
+        </div>
+
+        <div class="stepbox">
+          <span class="stepnum">STEP 3</span>
+          <div class="steplabel">Select Event</div>
+          <div class="evbtns">
+            <button class="evbtn active" id="ev-lc" onclick="selectEv('lc')"><i class="fas fa-users"></i>Leadership Carnival<br/><small style="font-weight:400;font-size:11px;">10–13 May 2026</small></button>
+            <button class="evbtn" id="ev-pvc" onclick="selectEv('pvc')"><i class="fas fa-star"></i>PVC 4.0<br/><small style="font-weight:400;font-size:11px;">31 May–3 Jun 2026</small></button>
+          </div>
+        </div>
+
+        <div class="stepbox">
+          <span class="stepnum">STEP 4</span>
+          <div class="steplabel">Choose CSV File</div>
+          <div id="file-picker-area">
+            <label for="csvfile" class="upa">
+              <i class="fas fa-file-csv"></i>
+              <p>Tap to choose CSV file</p>
+              <small>Columns: Name, Contact · Row 1 = header</small>
+            </label>
+          </div>
+          <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="previewCSV(event)"/>
+          <div class="file-preview" id="file-preview">
+            <div class="fp-top">
+              <div class="fp-icon"><i class="fas fa-file-csv"></i></div>
+              <div><div class="fp-name" id="fp-filename">file.csv</div><div class="fp-meta" id="fp-meta">0 contacts ready</div></div>
+            </div>
+            <div class="fp-stats">
+              <div class="fp-stat"><div class="fp-stat-n" id="fp-count">0</div><div class="fp-stat-l">Contacts</div></div>
+              <div class="fp-stat"><div class="fp-stat-n" id="fp-vcount">0</div><div class="fp-stat-l">Volunteers</div></div>
+              <div class="fp-stat"><div class="fp-stat-n" id="fp-each">0</div><div class="fp-stat-l">Each</div></div>
+            </div>
+            <button class="btn-import" id="import-btn" onclick="submitImport()"><i class="fas fa-cloud-upload-alt"></i> Import Campaign</button>
+            <button class="btn-reselect" onclick="resetFileSelect()"><i class="fas fa-redo"></i> Choose Different File</button>
+          </div>
+          <div class="ilog" id="ilog"></div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="sh"><div class="st"><i class="fas fa-download"></i> Export Data</div></div>
+        <div class="stepbox">
+          <div class="steplabel">📥 Download Master File</div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Downloads all contacts from <b>all campaigns</b> with their status, remarks, volunteer name, callback date — everything in one CSV file.</p>
+          <button class="btn-s btn-g" onclick="exportMaster()"><i class="fas fa-file-csv"></i> Export All Campaigns (CSV)</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- DANGER ZONE -->
+        <div class="danger-zone-header">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <div class="dz-title">Danger Zone — Campaign Deletion</div>
+            <div class="dz-sub">Deleted contacts cannot be recovered. Other campaigns stay safe.</div>
+          </div>
+        </div>
+        <div class="camp-list" id="danger-camp-list">
+          <div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="page" id="pg-profile">
+        <div class="pcard">
+          <div class="pav"><i class="fas fa-user"></i></div>
+          <div class="pname" id="p-name">User</div>
+          <div class="pemail" id="p-email"></div>
+          <span class="prole" id="p-role">Role</span>
+        </div>
+        <div class="infobox">
+          <div class="st" style="margin-bottom:12px"><i class="fas fa-calendar-alt"></i> Active Events</div>
+          <div class="ev-row"><div class="ev-dot" style="background:#C2410C"></div><div><div class="ev-name">Leadership Carnival '26</div><div class="ev-date">10–13 May 2026 · Parul University, Vadodara</div></div></div>
+          <div class="ev-row"><div class="ev-dot" style="background:#1E3A5F"></div><div><div class="ev-name">Pramukh Vision Conference 4.0</div><div class="ev-date">31 May–3 June 2026 · Vadodara</div></div></div>
+        </div>
+        <div class="infobox" id="admin-info" style="display:none">
+          <div class="st" style="margin-bottom:10px"><i class="fas fa-info-circle"></i> How to Add Volunteers</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password. They can login immediately.</p>
+        </div>
+        <div class="infobox">
+          <div class="st" style="margin-bottom:10px"><i class="fas fa-map-marker-alt"></i> Academy Address</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;">BAPS Pramukh Academy, Atladara, Vadodara, Gujarat 390012</p>
+        </div>
+        <button class="btn-s btn-r" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+      </div>
+
+    </div><!-- end pages-container -->
+
+    <!-- TAB BAR (mobile only) -->
+    <div class="tab-bar">
+      <button class="ti active" id="tab-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
+      <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-list-ul"></i><span>Leads</span></button>
+      <button class="ti" id="tab-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
+      <button class="ti" id="tab-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
+      <button class="ti" id="tab-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
+    </div>
+
+  </div><!-- end main-wrap -->
+</div><!-- end app-inner -->
+</div><!-- end app -->
 
 <!-- UPDATE MODAL -->
 <div class="mo" id="upd-modal">
@@ -510,7 +882,7 @@ button{cursor:pointer;touch-action:manipulation;}
     <div class="mh"></div>
     <div class="mt" id="modal-name">Update Contact</div>
     <div class="msub">Select status and add remarks</div>
-    <div class="fg"><label style="color:var(--navy);font-weight:700;font-size:13px;">Call Status</label></div>
+    <div class="fg"><label style="color:var(--navy);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.3px;">Call Status</label></div>
     <div class="sgrid2">
       <button class="so" onclick="selStatus('pending',this)">⬜ Pending</button>
       <button class="so" onclick="selStatus('called',this)">📞 Called</button>
@@ -521,20 +893,47 @@ button{cursor:pointer;touch-action:manipulation;}
       <button class="so" onclick="selStatus('not-reachable',this)">📵 Not Reachable</button>
       <button class="so" onclick="selStatus('wrong-number',this)">❌ Wrong Number</button>
     </div>
-    <div class="fg" id="cb-dt-grp" style="display:none"><label>Callback Date & Time</label><input type="datetime-local" id="cb-dt" style="padding:13px 16px;border:2px solid var(--border);border-radius:12px;font-size:15px;width:100%;outline:none;background:#FAFAF9;"/></div>
-    <div class="fg"><label>Remarks</label><textarea id="rmk-inp" rows="3" placeholder="What did the student/parent say?"></textarea></div>
+    <div class="fg" id="cb-dt-grp" style="display:none">
+      <label style="font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.3px;">Callback Date & Time</label>
+      <input type="datetime-local" id="cb-dt" style="padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:15px;width:100%;outline:none;background:#FAFBFC;"/>
+    </div>
+    <div class="fg">
+      <label style="font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.3px;">Remarks</label>
+      <textarea id="rmk-inp" rows="3" placeholder="What did the student or parent say?"></textarea>
+    </div>
     <button class="btn-s" onclick="saveUpdate()"><i class="fas fa-save"></i> Save Update</button>
     <button class="btn-c" onclick="closeModal()">Cancel</button>
   </div>
 </div>
 
+<!-- CONFIRM DELETE MODAL -->
+<div class="mo" id="confirm-modal">
+  <div class="ms" style="max-height:auto;">
+    <div class="mh"></div>
+    <div class="confirm-icon">🗑️</div>
+    <div class="mt" style="text-align:center" id="confirm-title">Delete Campaign?</div>
+    <div class="msub" style="text-align:center" id="confirm-msg">This will permanently remove all contacts.</div>
+    <div class="confirm-camp-name" id="confirm-camp-name"></div>
+    <p style="font-size:12px;color:#991B1B;text-align:center;margin-bottom:14px;font-weight:500;">⚠️ This action cannot be undone</p>
+    <button class="btn-s btn-r" id="confirm-ok-btn"><i class="fas fa-trash"></i> Yes, Delete Permanently</button>
+    <button class="btn-c" onclick="closeConfirm()">Cancel — Keep Data Safe</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<!-- ═══════════════════════════════════════
+     FIREBASE + APP LOGIC
+     (Logic preserved exactly, UI helpers added)
+═══════════════════════════════════════ -->
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import{getFirestore,collection,doc,updateDoc,getDocs,onSnapshot,writeBatch,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+// ⚠️ SECURITY TIP: Restrict this API key to your domain only.
+// Go to: console.cloud.google.com → APIs & Services → Credentials
+// Edit your Browser key → Add "https://apurvajani0731.github.io" to allowed referrers
 const firebaseConfig={
   apiKey:"AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8",
   authDomain:"pramukh-outreach.firebaseapp.com",
@@ -555,7 +954,25 @@ let SEL_EVENT="lc",RPT_EV="all",RPT_CAMP="all";
 let HOME_CAMP="all";
 let PENDING_CONTACTS=[];
 
-// ===== AUTH =====
+// ───── CONFIRM MODAL ─────
+let confirmCallback=null;
+window.showConfirm=(title,campName,msg,cb)=>{
+  document.getElementById("confirm-title").textContent=title;
+  document.getElementById("confirm-camp-name").textContent="📁 "+campName;
+  document.getElementById("confirm-msg").textContent=msg;
+  confirmCallback=cb;
+  document.getElementById("confirm-modal").classList.add("open");
+};
+window.closeConfirm=()=>{
+  document.getElementById("confirm-modal").classList.remove("open");
+  confirmCallback=null;
+};
+document.getElementById("confirm-ok-btn").onclick=()=>{
+  closeConfirm();
+  if(confirmCallback)confirmCallback();
+};
+
+// ───── AUTH ─────
 window.doLogin=async()=>{
   const email=document.getElementById("lemail").value.trim();
   const pwd=document.getElementById("lpass").value;
@@ -573,15 +990,21 @@ onAuthStateChanged(auth,user=>{
     ME=user;IS_ADMIN=ADMIN_EMAILS.includes(user.email);
     VOL_NAME=user.email.split("@")[0];
     document.getElementById("loginPage").style.display="none";
-    document.getElementById("app").style.cssText="display:flex;flex-direction:column;min-height:100vh;";
+    document.getElementById("app").style.display="block";
     document.getElementById("huser").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("wmsg").textContent=IS_ADMIN?"Welcome, Admin 🙏":`Jai Swaminarayan, ${VOL_NAME} 🙏`;
     document.getElementById("p-name").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("p-email").textContent=user.email;
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
+    // Update sidebar user info
+    document.getElementById("sb-uname").textContent=IS_ADMIN?"Admin":VOL_NAME;
+    document.getElementById("sb-urole").textContent=IS_ADMIN?"Administrator":"Volunteer";
     if(IS_ADMIN){
       document.getElementById("tab-upload").style.display="";
       document.getElementById("tab-reports").style.display="";
+      document.getElementById("sbt-upload").style.display="";
+      document.getElementById("sbt-reports").style.display="";
+      document.getElementById("sb-admin-label").style.display="";
       document.getElementById("vol-prog-hdr").style.display="flex";
       document.getElementById("admin-info").style.display="block";
     }
@@ -595,7 +1018,7 @@ onAuthStateChanged(auth,user=>{
   }
 });
 
-// ===== FIRESTORE =====
+// ───── FIRESTORE ─────
 function listenLeads(){
   onSnapshot(collection(db,"outreach_leads"),snap=>{
     ALL_LEADS=snap.docs.map(d=>({id:d.id,...d.data()}));
@@ -607,7 +1030,7 @@ function listenLeads(){
   });
 }
 
-// ===== CAMPAIGN HELPERS =====
+// ───── CAMPAIGN HELPERS ─────
 function getMyCampaigns(){
   const myLeads=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
   return [...new Set(myLeads.map(l=>l.campaign||"General").filter(Boolean))].sort();
@@ -618,7 +1041,6 @@ function getAllCampaigns(){
 
 function buildCampaignFilters(){
   const myCamps=getMyCampaigns();
-
   // My Leads campaign filter
   const fb=document.getElementById("fb-campaign");
   const curFC=F_CAMP;
@@ -630,7 +1052,6 @@ function buildCampaignFilters(){
     btn.onclick=()=>setFC(c,btn);
     fb.appendChild(btn);
   });
-
   // Home campaign filter
   const hf=document.getElementById("home-camp-filter");
   const curHC=HOME_CAMP;
@@ -644,13 +1065,11 @@ function buildCampaignFilters(){
   });
   if(myCamps.length>0){
     document.getElementById("home-camp-filter-wrap").style.display="block";
-    // Auto-select latest campaign if "all" and only one exists
     if(myCamps.length===1&&HOME_CAMP==="all"){
       HOME_CAMP=myCamps[0];
       hf.querySelectorAll(".fc").forEach((b,i)=>{b.classList.toggle("active",i===1);});
     }
   }
-
   // Reports campaign filter
   const rf=document.getElementById("rpt-camp-filter");
   const curRC=RPT_CAMP;
@@ -676,7 +1095,7 @@ window.setHomeCamp=(c,el)=>{
   renderStats();renderCallbacks();if(IS_ADMIN)renderVolProgress();
 };
 
-// ===== STATS =====
+// ───── STATS ─────
 function renderStats(){
   let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
   if(HOME_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===HOME_CAMP);
@@ -685,10 +1104,10 @@ function renderStats(){
   document.getElementById("s-int").textContent=list.filter(l=>l.status==="interested").length;
   document.getElementById("s-reg").textContent=list.filter(l=>l.status==="registered").length;
   if(HOME_CAMP!=="all")document.getElementById("hcamp-sub").textContent="📁 "+HOME_CAMP;
-  else document.getElementById("hcamp-sub").textContent="BAPS Pramukh Academy · Vadodara";
+  else document.getElementById("hcamp-sub").textContent="BAPS Pramukh Academy";
 }
 
-// ===== LEADS =====
+// ───── LEADS ─────
 window.renderLeads=()=>{
   const srch=(document.getElementById("srch").value||"").toLowerCase();
   let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
@@ -710,7 +1129,7 @@ function buildCard(l){
   const st=l.status||"pending",sc=stC(st),sl=stL(st);
   const ini=(l.name||"?").split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
   const volTag=IS_ADMIN?`<div class="cvol"><i class="fas fa-user-tag" style="font-size:10px;margin-right:3px;"></i>${l.assignedTo||"?"}</div>`:"";
-  const cbTag=l.callbackDate?`<div class="cbtag">⏰ ${new Date(l.callbackDate).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</div>`:"";
+  const cbTag=l.callbackDate?`<div class="cbtag"><i class="fas fa-clock"></i>${new Date(l.callbackDate).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})}</div>`:"";
   const rmk=l.remarks?`<div class="rmk">💬 "${l.remarks}"</div>`:"";
   const campTag=`<span class="ccamp">📁 ${l.campaign||"General"}</span>`;
   const sn=(l.name||"").replace(/'/g,"").replace(/"/g,"");
@@ -725,7 +1144,7 @@ function renderCallbacks(){
   const cbs=list.filter(l=>l.status==="callback"&&l.callbackDate&&new Date(l.callbackDate).toDateString()===today);
   document.getElementById("cb-badge").textContent=cbs.length;
   const el=document.getElementById("cb-list");
-  if(!cbs.length){el.innerHTML=`<div style="text-align:center;padding:20px;color:#A8A29E;font-size:13px;">No callbacks due today ✅</div>`;return;}
+  if(!cbs.length){el.innerHTML=`<div class="empty" style="padding:28px 16px"><i class="fas fa-check-circle" style="font-size:32px;color:#16A34A"></i><h3 style="font-size:14px">No callbacks due today</h3><p>You're all caught up ✅</p></div>`;return;}
   el.innerHTML=cbs.map(l=>buildCard(l)).join("");
 }
 
@@ -743,7 +1162,7 @@ function renderVolProgress(){
   }).join("");
 }
 
-// ===== REPORTS =====
+// ───── REPORTS ─────
 window.setRptCamp=(c,el)=>{
   RPT_CAMP=c;
   document.querySelectorAll("#rpt-camp-filter .rpt-ef").forEach(b=>b.classList.remove("active"));
@@ -788,7 +1207,7 @@ window.toggleContacts=(id,btn)=>{
   btn.innerHTML=el.classList.contains("open")?'<i class="fas fa-chevron-up"></i> Hide Contacts':`<i class="fas fa-list"></i> View All Contacts`;
 };
 
-// ===== DANGER ZONE - CAMPAIGNS =====
+// ───── DANGER ZONE ─────
 function renderDangerCamps(){
   const camps=getAllCampaigns();
   const el=document.getElementById("danger-camp-list");
@@ -798,17 +1217,24 @@ function renderDangerCamps(){
     return `<div class="camp-item"><div class="camp-item-info"><div class="camp-item-name">📁 ${c}</div><div class="camp-item-meta">${count} contacts · Tap delete to remove permanently</div></div><button class="btn-del-camp" onclick="deleteCampaign('${c.replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i> Delete</button></div>`;
   }).join("");
 }
-window.deleteCampaign=async(campName)=>{
-  if(!confirm(`Delete all contacts in "${campName}"? This cannot be undone!`))return;
-  const toDelete=ALL_LEADS.filter(l=>(l.campaign||"General")===campName);
-  if(!toDelete.length){showToast("No contacts found!");return;}
-  const batch=writeBatch(db);
-  toDelete.forEach(l=>batch.delete(doc(db,"outreach_leads",l.id)));
-  await batch.commit();
-  showToast(`🗑️ "${campName}" deleted! (${toDelete.length} contacts)`);
+window.deleteCampaign=(campName)=>{
+  const count=ALL_LEADS.filter(l=>(l.campaign||"General")===campName).length;
+  showConfirm(
+    "Delete Campaign?",
+    campName,
+    `This will permanently remove ${count} contact${count!==1?"s":""} from this campaign.`,
+    async()=>{
+      const toDelete=ALL_LEADS.filter(l=>(l.campaign||"General")===campName);
+      if(!toDelete.length){showToast("No contacts found!");return;}
+      const batch=writeBatch(db);
+      toDelete.forEach(l=>batch.delete(doc(db,"outreach_leads",l.id)));
+      await batch.commit();
+      showToast(`🗑️ "${campName}" deleted! (${toDelete.length} contacts)`);
+    }
+  );
 };
 
-// ===== UPLOAD =====
+// ───── UPLOAD ─────
 window.setF=(f,el,fbId)=>{F_STATUS=f;document.querySelectorAll(`#${fbId} .fc`).forEach(c=>c.classList.remove("active"));el.classList.add("active");renderLeads();};
 window.setEF=(f,el)=>{F_EVENT=f;document.querySelectorAll("#fb-event .fc").forEach(c=>c.classList.remove("active"));el.classList.add("active");renderLeads();};
 window.openUpd=(id,name,status,remarks,cbDate)=>{
@@ -853,7 +1279,10 @@ window.previewCSV=(e)=>{
     PENDING_CONTACTS=[];
     for(let i=1;i<lines.length;i++){
       const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));
-      if(cols[0]&&cols[1])PENDING_CONTACTS.push({name:cols[0],contact:cols[1]});
+      // Validate: name must exist, contact must be 10 digits
+      const name=(cols[0]||"").trim();
+      const contact=(cols[1]||"").replace(/\D/g,"").slice(-10);
+      if(name&&contact.length===10)PENDING_CONTACTS.push({name,contact});
     }
     if(!PENDING_CONTACTS.length){showToast("⚠️ No valid contacts found!");return;}
     const volRaw=document.getElementById("vol-emails").value.trim();
@@ -914,69 +1343,35 @@ window.exportMaster=()=>{
   a.download="pramukh_all_campaigns_"+new Date().toLocaleDateString("en-IN").replace(/\//g,"-")+".csv";
   a.click();showToast("📥 All campaigns exported!");
 };
+
+// ───── ACTIONS ─────
 window.callNum=num=>window.location.href="tel:"+num;
 window.openWA=(num,name,event)=>{
   const firstName=name.split(" ")[0];
-  const lcMsg=`Hello ${firstName} 👋,
-
-BAPS Pramukh Academy is introducing 🙏
-
-*The Leadership Carnival 2026* 🌟
-
-A 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.
-
-*What makes it different?*
-✅ Leadership through real situations, not just sessions
-🎯 Guided activities in a structured residential environment
-🧠 Exposure to how decisions are taken and responsibility is handled
-
-📍 Parul University, Vadodara
-📅 10–13 May 2026
-👦 Class 6–10
-💰 ₹500 (residential, meals & certificate included)
-
-⏳ Seats are limited due to residential format.
-
-👉 To proceed, you can directly apply here:
-🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
-
-  const pvcMsg=`Hello ${firstName} 👋,
-
-🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳
-
-Ready to step into the world of governance and leadership? This summer, unlock your potential and experience what it truly means to serve the nation! 💼✨
-
-🚀 *What's in store?*
-🎯 District Crisis Simulations
-🏛️ Youth Parliament Experience
-📚 UPSC Deep Dive Sessions
-🌱 Value-based Leadership Training
-
-Immerse yourself in a transformative 4-day residential journey guided by experts, where ideas turn into action and leaders are born. 💡🔥
-
-📅 Dates: Sunday, 31 May – Wednesday, 3 June 2026
-📍 Venue: Vadodara, Gujarat
-
-💥 Don't just dream it—live it!
-
-🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
-
+  const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n*What makes it different?*\n✅ Leadership through real situations, not just sessions\n🎯 Guided activities in a structured residential environment\n🧠 Exposure to how decisions are taken and responsibility is handled\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 To proceed, you can directly apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
+  const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\nReady to step into the world of governance and leadership? This summer, unlock your potential and experience what it truly means to serve the nation! 💼✨\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n🌱 Value-based Leadership Training\n\nImmerse yourself in a transformative 4-day residential journey guided by experts, where ideas turn into action and leaders are born. 💡🔥\n\n📅 Dates: Sunday, 31 May – Wednesday, 3 June 2026\n📍 Venue: Vadodara, Gujarat\n\n💥 Don't just dream it—live it!\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
   const msg=event==="lc"?lcMsg:pvcMsg;
   window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(msg),"_blank");
 };
+
+// ───── TAB SWITCHING (updates both sidebar and tab bar) ─────
 window.switchTab=(pgId,tabId)=>{
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));
-  document.getElementById(pgId).classList.add
-        ("active");
-        document.getElementById(tabId).classList.add("active");
-        window.scrollTo(0,0);
-      };
-      window.showToast=msg=>{
-        const t=document.getElementById("toast");
-        t.textContent=msg;t.classList.add("show");
-        setTimeout(()=>t.classList.remove("show"),2800);
-      };
+  document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
+  document.getElementById(pgId).classList.add("active");
+  document.getElementById(tabId).classList.add("active");
+  // Sync sidebar
+  const sbtId="sbt-"+tabId.replace("tab-","");
+  const sbt=document.getElementById(sbtId);
+  if(sbt)sbt.classList.add("active");
+  window.scrollTo(0,0);
+};
+window.showToast=msg=>{
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2800);
+};
 </script>
 </body>
 </html>
