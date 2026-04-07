@@ -1083,7 +1083,30 @@ a{color:inherit;text-decoration:none;}
     <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
   </div>
 </div>
-
+<!-- WA CAMPAIGN CHOOSER -->
+<div class="wa-chooser-overlay" id="wa-chooser-modal">
+  <div class="wa-chooser-sheet">
+    <div class="wa-chooser-handle"></div>
+    <div class="wa-chooser-title">📲 Send WhatsApp Message</div>
+    <div class="wa-chooser-sub">Which event is this student interested in?</div>
+    <div class="wa-chooser-grid">
+      <button class="wa-choice-btn lc-choice" id="wa-choice-lc" onclick="waSelectCampaign('lc')">
+        <i class="fas fa-users"></i>
+        <div class="wc-name">Leadership Carnival</div>
+        <div class="wc-date">10–13 May 2026</div>
+      </button>
+      <button class="wa-choice-btn pvc-choice" id="wa-choice-pvc" onclick="waSelectCampaign('pvc')">
+        <i class="fas fa-star"></i>
+        <div class="wc-name">PVC 4.0</div>
+        <div class="wc-date">31 May–3 Jun 2026</div>
+      </button>
+    </div>
+    <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled>
+      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
+    </button>
+    <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
+  </div>
+</div>
 <div id="calling-overlay">
 
   <!-- Header with progress -->
@@ -1136,11 +1159,14 @@ a{color:inherit;text-decoration:none;}
       <div class="cm-actions">
         <button class="cm-btn-skip" onclick="cmSkip()"><i class="fas fa-forward"></i> Skip</button>
         <button class="cm-btn-save" id="cm-save-btn" onclick="cmSaveAndNext()"><i class="fas fa-check"></i> Save &amp; Next</button>
-      </div>
     </div>
+    <button class="cm-wa-btn" onclick="cmOpenWA()">
+      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
+    </button>
   </div>
+</div>
 
-  <!-- Done screen -->
+<!-- Done screen -->
   <div id="cm-done-view" class="cm-done" style="display:none">
     <i class="fas fa-trophy"></i>
     <h2>Session Complete!</h2>
@@ -1225,6 +1251,7 @@ let ME=null,IS_ADMIN=false,VOL_NAME="";
 let ALL_LEADS=[],CUR_LEAD_ID=null,SEL_STATUS="";
 let F_STATUS="all",F_EVENT="all",F_CAMP="all";
 let SEL_EVENT="lc",RPT_EV="all",RPT_CAMP="all";
+let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="";
 let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="";
 
 window.waSelectCampaign=(camp)=>{
@@ -1624,10 +1651,35 @@ window.openWA=(num,name,event)=>{
     document.getElementById("wa-chooser-modal").classList.add("open");
     return;
   }
+    if(event==="unknown"){
+    WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
+    document.getElementById("wa-choice-lc").classList.remove("selected");
+    document.getElementById("wa-choice-pvc").classList.remove("selected");
+    document.getElementById("wa-send-confirm").disabled=true;
+    document.getElementById("wa-chooser-modal").classList.add("open");
+    return;
+  }
   const msg=event==="lc"?lcMsg:pvcMsg;
   window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(msg),"_blank");
 };
-
+window.cmOpenWA=()=>{
+  const l=CM_QUEUE[CM_IDX]; if(!l)return;
+  openWA(l.contact,l.name,l.event);
+};
+window.waSelectCampaign=(camp)=>{
+  WA_CHOSEN_CAMP=camp;
+  document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
+  document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
+  document.getElementById("wa-send-confirm").disabled=false;
+};
+window.waConfirmSend=()=>{
+  if(!WA_CHOSEN_CAMP)return;
+  document.getElementById("wa-chooser-modal").classList.remove("open");
+  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
+};
+window.closeWAChooser=()=>{
+  document.getElementById("wa-chooser-modal").classList.remove("open");
+};
 // ── TAB SWITCHING ──
 window.switchTab=(pgId,tabId)=>{
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
