@@ -750,76 +750,6 @@ a{color:inherit;text-decoration:none;}
   #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   #leads-list .cc{margin-bottom:0;}
 }
-
-/* ── MISSED CALL BADGE ── */
-.missed-call-tag{
-  font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;
-  background:#FFF1F2;color:#BE123C;border:1px solid #FECDD3;
-  display:inline-flex;align-items:center;gap:4px;
-}
-/* ── UPLOAD TYPE SELECTOR ── */
-.upload-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
-.upload-type-btn{
-  padding:14px 10px;border:2px solid var(--border);border-radius:var(--radius-lg);
-  background:var(--surface);font-size:13px;font-weight:600;color:var(--muted);
-  text-align:center;min-height:80px;transition:all 0.15s;cursor:pointer;
-}
-.upload-type-btn:hover{border-color:#94A3B8;color:var(--navy);}
-.upload-type-btn.active{border-color:var(--navy);background:rgba(30,58,95,0.05);color:var(--navy);}
-.upload-type-btn i{display:block;font-size:22px;margin-bottom:6px;}
-.missed-call-note{
-  background:#FFF1F2;border:1px solid #FECDD3;border-radius:var(--radius);
-  padding:10px 14px;font-size:12px;color:#BE123C;line-height:1.6;
-  display:none;margin-top:8px;
-}
-.missed-call-note.show{display:block;}
-/* ── WA CHOOSER BOTTOM SHEET ── */
-.wa-chooser-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:300;
-  display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);
-}
-.wa-chooser-overlay.open{display:flex;}
-.wa-chooser-sheet{
-  background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-  padding:20px 18px calc(20px + env(safe-area-inset-bottom));
-  width:100%;max-width:600px;
-  animation:sup 0.25s cubic-bezier(0.34,1.56,0.64,1);
-}
-.wa-chooser-handle{width:36px;height:4px;background:var(--border);border-radius:20px;margin:0 auto 16px;}
-.wa-chooser-title{font-family:var(--font-head);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.wa-chooser-sub{font-size:13px;color:var(--muted);margin-bottom:18px;}
-.wa-chooser-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-.wa-choice-btn{
-  padding:18px 12px;border:2px solid var(--border);border-radius:var(--radius-lg);
-  background:var(--surface);text-align:center;cursor:pointer;
-  transition:all 0.15s;min-height:90px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
-}
-.wa-choice-btn i{font-size:22px;}
-.wa-choice-btn .wc-name{font-size:13px;font-weight:700;}
-.wa-choice-btn .wc-date{font-size:10px;color:var(--muted);font-weight:500;}
-.wa-choice-btn.lc-choice.selected{border-color:var(--orange);background:var(--orange-light);color:var(--orange);}
-.wa-choice-btn.pvc-choice.selected{border-color:var(--navy);background:rgba(30,58,95,0.06);color:var(--navy);}
-.wa-send-btn{
-  width:100%;padding:14px;border:none;border-radius:var(--radius);
-  background:linear-gradient(135deg,#25D366,#1DB954);color:white;
-  font-family:var(--font-head);font-size:15px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  box-shadow:0 4px 14px rgba(37,211,102,0.35);min-height:52px;
-  transition:transform 0.15s,box-shadow 0.15s;cursor:pointer;
-}
-.wa-send-btn:disabled{opacity:0.5;cursor:not-allowed;}
-.wa-cancel-btn{
-  width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius);
-  background:var(--surface);color:var(--muted);font-size:14px;font-weight:600;
-  margin-top:8px;min-height:44px;transition:background 0.15s;cursor:pointer;
-}
-.wa-cancel-btn:hover{background:var(--bg);}
-@media(min-width:900px){
-  .wa-chooser-sheet{border-radius:var(--radius-xl);max-width:480px;}
-  .wa-chooser-overlay{align-items:center;}
-}
-
 </style>
 </head>
 <body>
@@ -1026,25 +956,6 @@ a{color:inherit;text-decoration:none;}
           <small style="color:var(--muted);font-size:11px;">📌 One email per line · Must match Firebase Auth emails exactly</small>
         </div>
         <div class="stepbox">
-          <span class="stepnum">STEP 2.5</span>
-          <div class="steplabel">Upload Type</div>
-          <div class="upload-type-grid">
-            <button class="upload-type-btn active" id="utype-normal" onclick="selectUploadType('normal')">
-              <i class="fas fa-address-book"></i>
-              Normal Leads
-              <br/><small style="font-weight:400;font-size:11px;color:var(--muted);">Standard outreach list</small>
-            </button>
-            <button class="upload-type-btn" id="utype-missed" onclick="selectUploadType('missed_call')">
-              <i class="fas fa-phone-slash"></i>
-              Missed Calls
-              <br/><small style="font-weight:400;font-size:11px;color:var(--muted);">Previously unreached</small>
-            </button>
-          </div>
-          <div class="missed-call-note" id="missed-call-note">
-            📌 <b>Missed Calls mode:</b> Volunteers will call these students. After the call, they will choose which WhatsApp message to send — Leadership Carnival or PVC 4.0.
-          </div>
-        </div>
-        <div class="stepbox">
           <span class="stepnum">STEP 3</span>
           <div class="steplabel">Select Event</div>
           <div class="evbtns">
@@ -1125,31 +1036,6 @@ a{color:inherit;text-decoration:none;}
 <!-- ═══════════════════════════════════
      CALLING MODE OVERLAY
 ═══════════════════════════════════ -->
-<!-- WA CAMPAIGN CHOOSER MODAL -->
-<div class="wa-chooser-overlay" id="wa-chooser-modal">
-  <div class="wa-chooser-sheet">
-    <div class="wa-chooser-handle"></div>
-    <div class="wa-chooser-title">📲 Send WhatsApp Message</div>
-    <div class="wa-chooser-sub">Which event is this student interested in?</div>
-    <div class="wa-chooser-grid">
-      <button class="wa-choice-btn lc-choice" id="wa-choice-lc" onclick="waSelectCampaign('lc')">
-        <i class="fas fa-users"></i>
-        <div class="wc-name">Leadership Carnival</div>
-        <div class="wc-date">10–13 May 2026</div>
-      </button>
-      <button class="wa-choice-btn pvc-choice" id="wa-choice-pvc" onclick="waSelectCampaign('pvc')">
-        <i class="fas fa-star"></i>
-        <div class="wc-name">PVC 4.0</div>
-        <div class="wc-date">31 May–3 Jun 2026</div>
-      </button>
-    </div>
-    <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled>
-      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
-    </button>
-    <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
-  </div>
-</div>
-
 <div id="calling-overlay">
 
   <!-- Header with progress -->
@@ -1203,7 +1089,6 @@ a{color:inherit;text-decoration:none;}
         <button class="cm-btn-skip" onclick="cmSkip()"><i class="fas fa-forward"></i> Skip</button>
         <button class="cm-btn-save" id="cm-save-btn" onclick="cmSaveAndNext()"><i class="fas fa-check"></i> Save &amp; Next</button>
       </div>
-      <button id="cm-wa-btn" onclick="cmOpenWA()" style="display:none;width:100%;margin-top:8px;padding:13px;border:none;border-radius:12px;background:#25D366;color:white;font-size:13px;font-weight:700;font-family:var(--font-head);min-height:48px;cursor:pointer;"><i class="fab fa-whatsapp"></i> Send WhatsApp Message</button>
     </div>
   </div>
 
@@ -1292,8 +1177,6 @@ let ME=null,IS_ADMIN=false,VOL_NAME="";
 let ALL_LEADS=[],CUR_LEAD_ID=null,SEL_STATUS="";
 let F_STATUS="all",F_EVENT="all",F_CAMP="all";
 let SEL_EVENT="lc",RPT_EV="all",RPT_CAMP="all";
-let UPLOAD_TYPE="normal";
-let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="";
 let HOME_CAMP="all";
 let PENDING_CONTACTS=[];
 
@@ -1496,13 +1379,12 @@ function buildCard(l){
     <div class="c-tags">
       <span class="cev">${evL(l.event)}</span>
       <span class="ccamp">📁 ${l.campaign||"General"}</span>
-      ${l.leadType==="missed_call"?'<span class="missed-call-tag"><i class="fas fa-phone-slash" style="font-size:9px"></i> Missed Call</span>':""}
     </div>
     ${cbTag}${rmk}
     <div class="cact">
       <button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i><span>Call</span></button>
       <button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-pencil-alt"></i><span>Update</span></button>
-      <button class="ab ab-wa" onclick="openWA('${l.contact}','${sn}','${l.event}','${l.leadType||&quot;normal&quot;}')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
+      <button class="ab ab-wa" onclick="openWA('${l.contact}','${sn}','${l.event}')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
     </div>
   </div>`;
 }
@@ -1631,7 +1513,7 @@ window.submitImport=async()=>{
     const batch=writeBatch(db);
     PENDING_CONTACTS.forEach((c,i)=>{
       const ref=doc(collection(db,"outreach_leads"));
-      batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,campaign:campName,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME,leadType:UPLOAD_TYPE});
+      batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,campaign:campName,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});
     });
     await batch.commit();
     const logEl=document.getElementById("ilog");
@@ -1665,53 +1547,12 @@ window.exportMaster=()=>{
 
 // ── ACTIONS ──
 window.callNum=num=>window.location.href="tel:"+num;
-function sendWAMessage(num,name,event){
+window.openWA=(num,name,event)=>{
   const firstName=name.split(" ")[0];
   const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 Apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
   const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n\n📅 31 May – 3 June 2026\n📍 Vadodara, Gujarat\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
   const msg=event==="lc"?lcMsg:pvcMsg;
   window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(msg),"_blank");
-}
-
-window.openWA=(num,name,event,leadType)=>{
-  if(leadType==="missed_call"){
-    WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
-    document.getElementById("wa-choice-lc").classList.remove("selected");
-    document.getElementById("wa-choice-pvc").classList.remove("selected");
-    document.getElementById("wa-send-confirm").disabled=true;
-    document.getElementById("wa-chooser-modal").classList.add("open");
-    return;
-  }
-  sendWAMessage(num,name,event);
-};
-
-window.waSelectCampaign=(camp)=>{
-  WA_CHOSEN_CAMP=camp;
-  document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
-  document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
-  document.getElementById("wa-send-confirm").disabled=false;
-};
-
-window.waConfirmSend=()=>{
-  if(!WA_CHOSEN_CAMP)return;
-  closeWAChooser();
-  sendWAMessage(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
-};
-
-window.closeWAChooser=()=>{
-  document.getElementById("wa-chooser-modal").classList.remove("open");
-};
-
-window.cmOpenWA=()=>{
-  const l=CM_QUEUE[CM_IDX]; if(!l)return;
-  openWA(l.contact,l.name,l.event,l.leadType||"normal");
-};
-
-window.selectUploadType=(type)=>{
-  UPLOAD_TYPE=type;
-  document.getElementById("utype-normal").classList.toggle("active",type==="normal");
-  document.getElementById("utype-missed").classList.toggle("active",type==="missed_call");
-  document.getElementById("missed-call-note").classList.toggle("show",type==="missed_call");
 };
 
 // ── TAB SWITCHING ──
@@ -1808,8 +1649,6 @@ function cmShowContact(){
   document.getElementById("cm-cb-dt").value="";
   document.getElementById("cm-cb-grp").style.display="none";
   document.querySelectorAll(".cm-so").forEach(b=>b.className="cm-so");
-  const waBtn=document.getElementById("cm-wa-btn");
-  if(waBtn) waBtn.style.display=(l&&l.leadType==="missed_call")?"block":"none";
   // Progress
   const pct=Math.round((CM_IDX/CM_QUEUE.length)*100);
   document.getElementById("cm-progress").style.width=pct+"%";
