@@ -11,10 +11,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
    <style>
-
-    * {
-        max-width: 100%;
-      }
 /* ─────────────────────────────────────────────
    DESIGN TOKENS
 ───────────────────────────────────────────── */
@@ -221,7 +217,7 @@ a{color:inherit;text-decoration:none;}
    PAGE CONTAINER
 ───────────────────────────────────────────── */
 .pages-container{flex:1;overflow-y:auto;overflow-x:hidden;}
-.page{display:none;padding:0px 14px calc(var(--tab-h)+18px);max-width:1100px;margin:0 auto;width:100%;overflow-x:hidden;}
+.page{display:none;padding:14px 14px calc(var(--tab-h)+18px);max-width:1100px;margin:0 auto;width:100%;overflow-x:hidden;}
 .page.active{display:block;}
 
 /* ─────────────────────────────────────────────
@@ -296,13 +292,9 @@ a{color:inherit;text-decoration:none;}
    SEARCH & FILTER (mobile-optimised)
 ───────────────────────────────────────────── */
 .leads-sticky-top{
-  position:sticky;
-  top:var(--header-h);
-  z-index:30;
+  position:sticky;top:var(--header-h);z-index:30;
   background:var(--bg);
-  padding:0;
-  width: 100%;
-  max-width: 100%;
+  padding:10px 0 4px;
   /* NO negative margins — they caused horizontal overflow */
 }
 .sw{position:relative;margin-bottom:8px;}
@@ -311,7 +303,7 @@ a{color:inherit;text-decoration:none;}
 .sw input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,58,95,0.07);}
 
 /* Condensed filter row */
-.filter-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:center;flex-wrap:nowrap;white-space:nowrap;}
+.filter-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:center;flex-wrap:nowrap;}
 .filter-row::-webkit-scrollbar{display:none;}
 .filter-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 3px;}
 .fc{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap;min-height:34px;transition:all 0.15s;flex-shrink:0;}
@@ -319,29 +311,6 @@ a{color:inherit;text-decoration:none;}
 .fc.active{border-color:var(--navy);background:var(--navy);color:white;}
 .filter-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;white-space:nowrap;flex-shrink:0;}
 
-
-
-/* FIX TOP SPACE */
-.page{
-  padding:0 14px calc(var(--tab-h)+18px);
-}
-
-.leads-sticky-top{
-  padding:0;
-}
-
-/* FIX FILTER BREAK */
-.filter-row{
-  overflow-x:auto;
-  flex-wrap:nowrap;
-  white-space:nowrap;
-}
-
-.filter-label{
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-}
 /* ─────────────────────────────────────────────
    CALLING SESSION BANNER
 ───────────────────────────────────────────── */
@@ -376,17 +345,11 @@ a{color:inherit;text-decoration:none;}
    LEAD CARDS — MOBILE FIRST
 ───────────────────────────────────────────── */
 .cc{
-  background:var(--surface);
-  border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-sm);
-  margin-bottom:10px;
-  border:1px solid var(--border);
-  border-left-width:4px;
-  transition:box-shadow 0.2s,
-  transform 0.15s;
-  overflow:visible;
-  width: 100%;
-  max-width: 100%;
+  background:var(--surface);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);margin-bottom:10px;
+  border:1px solid var(--border);border-left-width:4px;
+  transition:box-shadow 0.2s,transform 0.15s;
+  overflow:hidden;
 }
 .cc:active{transform:scale(0.995);}
 .cc.sp{border-left-color:#9CA3AF;}
@@ -765,7 +728,7 @@ a{color:inherit;text-decoration:none;}
 @media(min-width:900px){
   .top-header .hlogo,.top-header .htitle{display:none;}
   .tab-bar{display:none;}
-  .page{padding:36px 32px 40px;}
+  .page{padding:26px 32px 40px;}
   .sgrid{grid-template-columns:repeat(4,1fr);}
   .vstats{grid-template-columns:repeat(4,1fr);}
   .vrc-grid{grid-template-columns:repeat(8,1fr);}
@@ -773,8 +736,6 @@ a{color:inherit;text-decoration:none;}
   .mo .ms{border-radius:var(--radius-xl);max-height:80vh;margin:auto;}
   .mo{align-items:center;}
   .ms{max-width:480px;}
-  .wb { margin-top:10px; }
-  .call-session-banner { margin-top:10px; }
   .page{padding-bottom:40px;}
   .leads-sticky-top{position:static;margin:0;padding:0;}
   #calling-overlay .cm-status-grid{grid-template-columns:repeat(4,1fr);}
@@ -789,12 +750,6 @@ a{color:inherit;text-decoration:none;}
 @media(min-width:1200px){
   #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   #leads-list .cc{margin-bottom:0;}
-}
-
-@media(max-width:899px){
-  #leads-list{
-    display:block;
-  }
 }
 
 /* ── WA CHOOSER ── */
@@ -827,29 +782,6 @@ a{color:inherit;text-decoration:none;}
 .exc-meta{font-size:11px;color:var(--muted);margin-top:2px;}
 .exc-check{color:var(--navy);font-size:18px;display:none;}
 .export-choice-card.selected .exc-check{display:block;}
-
-/* ── MOBILE: force 3-button row to always show ── */
-@media(max-width:599px){
-  .cact{
-    display:grid !important;
-    grid-template-columns:1fr 1fr 1fr !important;
-    overflow:visible;
-  }
-  .ab{
-    padding:11px 2px;
-    min-height:46px;
-    font-size:11px;
-  }
-  .ab i{
-    font-size:14px;
-  }
-
-  .ab span 
-  {
-    white-space: normal;
-    text-align: center;
-  }
-}
 </style>
 </head>
 <body>
