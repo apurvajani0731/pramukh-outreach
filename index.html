@@ -9,17 +9,7 @@
 <title>Pramukh Outreach · BAPS Pramukh Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-/* ── EXPORT CHOOSER ── */
-.export-choice-card{display:flex;align-items:center;gap:12px;padding:13px 14px;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:all 0.15s;background:var(--surface);}
-.export-choice-card:hover{border-color:#94A3B8;}
-.export-choice-card.selected{border-color:var(--navy);background:rgba(30,58,95,0.05);}
-.exc-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--navy),#2D5A8E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.exc-icon i{color:white;font-size:16px;}
-.exc-info{flex:1;min-width:0;}
-.exc-name{font-size:14px;font-weight:700;color:var(--navy);}
-.exc-meta{font-size:11px;color:var(--muted);margin-top:2px;}
-.exc-check{color:var(--navy);font-size:18px;display:none;}
-.export-choice-card.selected .exc-check{display:block;}
+
    <style>
 /* ─────────────────────────────────────────────
    DESIGN TOKENS
@@ -781,6 +771,17 @@ a{color:inherit;text-decoration:none;}
 .wa-cancel-btn{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:14px;font-weight:600;margin-top:8px;min-height:44px;cursor:pointer;}
 @media(min-width:900px){.wa-chooser-sheet{border-radius:var(--radius-xl);max-width:480px;}.wa-chooser-overlay{align-items:center;}}
 
+/* ── EXPORT CHOOSER ── */
+.export-choice-card{display:flex;align-items:center;gap:12px;padding:13px 14px;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:all 0.15s;background:var(--surface);}
+.export-choice-card:hover{border-color:#94A3B8;}
+.export-choice-card.selected{border-color:var(--navy);background:rgba(30,58,95,0.05);}
+.exc-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--navy),#2D5A8E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.exc-icon i{color:white;font-size:16px;}
+.exc-info{flex:1;min-width:0;}
+.exc-name{font-size:14px;font-weight:700;color:var(--navy);}
+.exc-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.exc-check{color:var(--navy);font-size:18px;display:none;}
+.export-choice-card.selected .exc-check{display:block;}
 </style>
 </head>
 <body>
@@ -938,7 +939,6 @@ a{color:inherit;text-decoration:none;}
             <button class="fc" id="fev-unknown" onclick="setEF('unknown',this)">❓ Unknown</button>
           </div>
         </div>
-
 
         <div class="sh"><div class="st"><i class="fas fa-list"></i> Contacts</div><span class="bc" id="lead-count">0</span></div>
         <div id="leads-list"></div>
@@ -1115,30 +1115,7 @@ a{color:inherit;text-decoration:none;}
     <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
   </div>
 </div>
-<!-- WA CAMPAIGN CHOOSER -->
-<div class="wa-chooser-overlay" id="wa-chooser-modal">
-  <div class="wa-chooser-sheet">
-    <div class="wa-chooser-handle"></div>
-    <div class="wa-chooser-title">📲 Send WhatsApp Message</div>
-    <div class="wa-chooser-sub">Which event is this student interested in?</div>
-    <div class="wa-chooser-grid">
-      <button class="wa-choice-btn lc-choice" id="wa-choice-lc" onclick="waSelectCampaign('lc')">
-        <i class="fas fa-users"></i>
-        <div class="wc-name">Leadership Carnival</div>
-        <div class="wc-date">10–13 May 2026</div>
-      </button>
-      <button class="wa-choice-btn pvc-choice" id="wa-choice-pvc" onclick="waSelectCampaign('pvc')">
-        <i class="fas fa-star"></i>
-        <div class="wc-name">PVC 4.0</div>
-        <div class="wc-date">31 May–3 Jun 2026</div>
-      </button>
-    </div>
-    <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled>
-      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
-    </button>
-    <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
-  </div>
-</div>
+
 <div id="calling-overlay">
 
   <!-- Header with progress -->
