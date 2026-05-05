@@ -842,6 +842,7 @@ a{color:inherit;text-decoration:none;}
       <div class="sb-section-label" id="sb-admin-label" style="display:none">Admin</div>
       <button class="sb-item" id="sbt-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
       <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
+      <button class="sb-item" id="sbt-paylinks" onclick="switchTab('pg-paylinks','tab-paylinks')" style="display:none"><i class="fas fa-link"></i><span>Payment Links</span></button>
       <div class="sb-section-label">Account</div>
       <button class="sb-item" id="sbt-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
     </nav>
@@ -1049,6 +1050,43 @@ a{color:inherit;text-decoration:none;}
         <div class="camp-list" id="danger-camp-list"><div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div></div>
       </div>
 
+      <!-- PAYMENT LINKS (Admin Only) -->
+      <div class="page" id="pg-paylinks">
+        <div class="sh"><div class="st"><i class="fas fa-link"></i> Payment Links</div></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Upload a CSV with student Name, Contact &amp; unique Payment Link. Volunteers will automatically get the correct payment message on WhatsApp.</p>
+
+        <!-- Upload CSV Step -->
+        <div class="stepbox">
+          <div class="stepnum">STEP 1</div>
+          <div class="steplabel">Upload Payment Links CSV</div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">CSV format: <code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:11px;">Name, Contact, PaymentLink</code> — one row per student</p>
+          <label class="upa" style="display:block;cursor:pointer;" onclick="document.getElementById('pay-file-input').click()">
+            <i class="fas fa-file-csv"></i>
+            <p>Tap to choose CSV file</p>
+            <small>First row = header row (will be skipped)</small>
+          </label>
+          <input type="file" id="pay-file-input" accept=".csv" style="display:none" onchange="handlePaymentCSV(event)">
+          <p id="pay-csv-count" style="font-size:12px;color:var(--success);font-weight:600;margin-top:8px;"></p>
+        </div>
+
+        <!-- Preview Table -->
+        <div class="stepbox" id="pay-preview-box" style="display:none;">
+          <div class="stepnum">STEP 2</div>
+          <div class="steplabel">Preview & Confirm</div>
+          <div id="pay-preview" style="overflow-x:auto;border-radius:10px;border:1px solid var(--border);margin-bottom:12px;"></div>
+          <button id="pay-upload-btn" onclick="uploadPaymentLinks()" style="display:none;width:100%;padding:14px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-family:var(--font-head);font-size:15px;font-weight:700;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(22,163,74,0.3);min-height:52px;cursor:pointer;">
+            <i class="fas fa-cloud-upload-alt"></i> Save to Firebase
+          </button>
+        </div>
+
+        <!-- Saved Links Table -->
+        <div class="stepbox">
+          <div class="stepnum">SAVED</div>
+          <div class="steplabel">Currently Saved Payment Links</div>
+          <div id="pay-saved-list"><p style="font-size:13px;color:var(--muted);text-align:center;padding:16px;">Loading…</p></div>
+        </div>
+      </div>
+
       <!-- PROFILE -->
       <div class="page" id="pg-profile">
         <div class="pcard">
@@ -1081,6 +1119,7 @@ a{color:inherit;text-decoration:none;}
       <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-phone-alt"></i><span>Leads</span></button>
       <button class="ti" id="tab-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
       <button class="ti" id="tab-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
+      <button class="ti" id="tab-paylinks" onclick="switchTab('pg-paylinks','tab-paylinks')" style="display:none"><i class="fas fa-link"></i><span>Pay Links</span></button>
       <button class="ti" id="tab-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
     </div>
 
@@ -1241,7 +1280,7 @@ a{color:inherit;text-decoration:none;}
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import{getFirestore,collection,doc,updateDoc,onSnapshot,writeBatch,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,doc,updateDoc,setDoc,getDocs,deleteDoc,onSnapshot,writeBatch,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig={
   apiKey:"AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8",
@@ -1278,6 +1317,7 @@ window.closeWAChooser=()=>{
 };
 let HOME_CAMP="all";
 let PENDING_CONTACTS=[];
+let PAYMENT_LINKS_MAP={};
 
 // ── CALLING SESSION STATE ──
 let CM_QUEUE=[],CM_IDX=0,CM_STATUS="",CM_SESSION_STATS={called:0,interested:0,registered:0};
@@ -1321,9 +1361,10 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("sb-uname").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("sb-urole").textContent=IS_ADMIN?"Administrator":"Volunteer";
     if(IS_ADMIN){
-      ["tab-upload","tab-reports","sbt-upload","sbt-reports","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});
+      ["tab-upload","tab-reports","tab-paylinks","sbt-upload","sbt-reports","sbt-paylinks","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});
     }
     listenLeads();
+    loadPaymentLinks();
   }else{
     ME=null;
     document.getElementById("loginPage").style.display="flex";
@@ -1344,6 +1385,113 @@ function listenLeads(){
     if(IS_ADMIN){renderVolProgress();renderReports();renderDangerCamps();}
   });
 }
+
+// ── PAYMENT LINKS ──
+async function loadPaymentLinks(){
+  try{
+    const snap=await getDocs(collection(db,"paymentLinks"));
+    PAYMENT_LINKS_MAP={};
+    snap.forEach(d=>{PAYMENT_LINKS_MAP[d.id]=d.data().link;});
+    if(IS_ADMIN)renderPaymentLinksTable();
+  }catch(e){console.warn("paymentLinks load error",e);}
+}
+
+window.handlePaymentCSV=(e)=>{
+  const file=e.target.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=(ev)=>{
+    const lines=ev.target.result.split("\n").filter(l=>l.trim());
+    const rows=[];
+    lines.forEach((line,i)=>{
+      if(i===0)return;// skip header
+      const parts=line.split(",");
+      const name=(parts[0]||"").trim();
+      const contact=(parts[1]||"").trim().replace(/\D/g,"");
+      const link=(parts.slice(2).join(",")).trim().replace(/^"|"$/g,"");
+      if(contact&&link)rows.push({name,contact,link});
+    });
+    window._PAY_ROWS=rows;
+    renderPaymentPreview(rows);
+  };
+  reader.readAsText(file);
+};
+
+function renderPaymentPreview(rows){
+  const el=document.getElementById("pay-preview");
+  const countEl=document.getElementById("pay-csv-count");
+  if(!rows||rows.length===0){el.style.display="none";return;}
+  countEl.textContent=rows.length+" contacts loaded";
+  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <thead><tr style="background:var(--navy);color:white;">
+      <th style="padding:8px 10px;text-align:left;">Name</th>
+      <th style="padding:8px 10px;text-align:left;">Contact</th>
+      <th style="padding:8px 10px;text-align:left;">Payment Link</th>
+    </tr></thead><tbody>`;
+  rows.forEach(r=>{
+    html+=`<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 10px;">${r.name}</td>
+      <td style="padding:8px 10px;font-family:var(--font-mono);">${r.contact}</td>
+      <td style="padding:8px 10px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${r.link}" target="_blank" style="color:var(--navy);font-size:11px;">${r.link}</a></td>
+    </tr>`;
+  });
+  html+=`</tbody></table>`;
+  el.innerHTML=html;
+  el.style.display="block";
+  document.getElementById("pay-upload-btn").style.display="flex";
+  document.getElementById("pay-preview-box").style.display="block";
+}
+
+function renderPaymentLinksTable(){
+  const keys=Object.keys(PAYMENT_LINKS_MAP);
+  const el=document.getElementById("pay-saved-list");
+  if(!el)return;
+  if(keys.length===0){el.innerHTML='<p style="font-size:13px;color:var(--muted);text-align:center;padding:16px;">No payment links saved yet.</p>';return;}
+  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <thead><tr style="background:var(--navy);color:white;">
+      <th style="padding:8px 10px;text-align:left;">Contact</th>
+      <th style="padding:8px 10px;text-align:left;">Payment Link</th>
+      <th style="padding:8px 10px;text-align:center;">Remove</th>
+    </tr></thead><tbody>`;
+  keys.forEach(contact=>{
+    const link=PAYMENT_LINKS_MAP[contact];
+    html+=`<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:8px 10px;font-family:var(--font-mono);">${contact}</td>
+      <td style="padding:8px 10px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${link}" target="_blank" style="color:var(--navy);font-size:11px;">${link}</a></td>
+      <td style="padding:8px 10px;text-align:center;"><button onclick="removePayLink('${contact}')" style="background:#FEE2E2;color:#DC2626;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">✕</button></td>
+    </tr>`;
+  });
+  html+=`</tbody></table>`;
+  el.innerHTML=html;
+}
+
+window.removePayLink=async(contact)=>{
+  if(!confirm("Remove payment link for "+contact+"?"))return;
+  await deleteDoc(doc(db,"paymentLinks",contact));
+  delete PAYMENT_LINKS_MAP[contact];
+  renderPaymentLinksTable();
+  showToast("Payment link removed");
+};
+
+window.uploadPaymentLinks=async()=>{
+  const rows=window._PAY_ROWS||[];
+  if(!rows.length){showToast("No data to upload");return;}
+  const btn=document.getElementById("pay-upload-btn");
+  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Saving…';
+  try{
+    for(const r of rows){
+      await setDoc(doc(db,"paymentLinks",r.contact),{link:r.link,name:r.name,updatedAt:new Date().toISOString()});
+      PAYMENT_LINKS_MAP[r.contact]=r.link;
+    }
+    showToast("✅ "+rows.length+" payment links saved!");
+    renderPaymentLinksTable();
+    document.getElementById("pay-preview").style.display="none";
+    document.getElementById("pay-upload-btn").style.display="none";
+    document.getElementById("pay-csv-count").textContent="";
+    document.getElementById("pay-file-input").value="";
+    window._PAY_ROWS=[];
+  }catch(e){showToast("Error: "+e.message);}
+  btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Save to Firebase';
+};
 
 // ── CAMPAIGN HELPERS ──
 function getMyCampaigns(){
@@ -1693,18 +1841,27 @@ window.exportMaster=()=>{
 // ── ACTIONS ──
 window.callNum=num=>window.location.href="tel:"+num;
 window.openWA=(num,name,event)=>{
+  // ── Check if payment link exists for this contact ──
+  const payLink=PAYMENT_LINKS_MAP[num]||PAYMENT_LINKS_MAP[num.replace(/\D/g,"")];
+  if(payLink){
+    const payMsg=`નમસ્તે,\nતમને જણાવતા આનંદ થાય છે કે Pramukh Vision Conference ના વેઇટિંગ લિસ્ટમાંથી હવે તમારું સિલેક્શન થઈ ગયું છે અને તમે આ કોન્ફરન્સ માટે એલિજિબલ છો.\nતમારું ફોર્મ સબમિટ થઈ ગયું છે, હવે તમારી સીટ કન્ફર્મ કરવા માટે નીચે આપેલી લિંક પર ક્લિક કરીને પેમેન્ટ પૂર્ણ કરવા વિનંતી છે:\n\n🔗 પેમેન્ટ લિંક: ${payLink}\n\nખાસ નોંધ: અમારી પાસે રજીસ્ટ્રેશન ખૂબ વધારે હોવાથી, જે વહેલા પેમેન્ટ પૂર્ણ કરશે તેમની જ સીટ કન્ફર્મ ગણવામાં આવશે. સીટ્સ મર્યાદિત હોવાથી આજે જ પ્રક્રિયા પૂરી કરી લેવા વિનંતી.\nઆભાર, પ્રમુખ એકેડમી`;
+    window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(payMsg),"_blank");
+    // Mark as payment sent
+    const cardEl=document.querySelector(`.cc[data-contact="${num}"]`);
+    if(cardEl&&!cardEl.querySelector(".pay-sent-tag")){
+      const tag=document.createElement("span");
+      tag.className="pay-sent-tag";
+      tag.style.cssText="font-size:10px;font-weight:700;color:#15803D;background:#DCFCE7;padding:3px 9px;border-radius:20px;display:inline-block;margin-left:6px;";
+      tag.textContent="💬 Sent";
+      const tagsDiv=cardEl.querySelector(".c-tags");
+      if(tagsDiv)tagsDiv.appendChild(tag);
+    }
+    return;
+  }
   const firstName=name.split(" ")[0];
   const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 Apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
   const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n\n📅 31 May – 3 June 2026\n📍 Vadodara, Gujarat\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
   if(event==="unknown"){
-    WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
-    document.getElementById("wa-choice-lc").classList.remove("selected");
-    document.getElementById("wa-choice-pvc").classList.remove("selected");
-    document.getElementById("wa-send-confirm").disabled=true;
-    document.getElementById("wa-chooser-modal").classList.add("open");
-    return;
-  }
-    if(event==="unknown"){
     WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
     document.getElementById("wa-choice-lc").classList.remove("selected");
     document.getElementById("wa-choice-pvc").classList.remove("selected");
