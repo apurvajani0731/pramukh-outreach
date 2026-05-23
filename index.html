@@ -1926,16 +1926,32 @@ https://t.me/pramukhvisionconference04
 *धन्यवाद,*
 *एडमिशन डिपार्टमेंट,*
 *प्रमुख अकैडमी*`;
-  // Always show chooser so volunteer can pick Zoom Meeting or default message
-  WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
-  document.getElementById("wa-choice-lc").classList.remove("selected");
-  document.getElementById("wa-choice-pvc").classList.remove("selected");
-  document.getElementById("wa-choice-zoom").classList.remove("selected");
-  // Pre-select based on event
-  if(event==="lc") { document.getElementById("wa-choice-lc").classList.add("selected"); WA_CHOSEN_CAMP="lc"; }
-  else if(event==="pvc") { document.getElementById("wa-choice-pvc").classList.add("selected"); WA_CHOSEN_CAMP="pvc"; }
-  document.getElementById("wa-send-confirm").disabled = (WA_CHOSEN_CAMP==="");
-  document.getElementById("wa-chooser-modal").classList.add("open");
+  // Universal Zoom Meeting Reminder — sent to everyone directly
+  const zoomReminderMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
+
+🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
+
+📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
+
+🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
+
+✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
+
+📅 *23/05/2026 (शनिवार)*
+🕗 *रात 8:30 बजे*
+
+🔗 *Zoom Link:*
+https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
+
+👉 *Please Join Telegram Group for Updates:*
+https://t.me/pramukhvisionconference04
+
+📞 संपर्क: *9328141289* , *9998992876*
+
+*धन्यवाद,*
+*एडमिशन डिपार्टमेंट,*
+*प्रमुख अकैडमी*`;
+  window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(zoomReminderMsg),"_blank");
 };
 window.cmOpenWA=()=>{
   const l=CM_QUEUE[CM_IDX]; if(!l)return;
