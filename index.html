@@ -766,6 +766,8 @@ a{color:inherit;text-decoration:none;}
 .wa-choice-btn .wc-date{font-size:10px;color:var(--muted);}
 .wa-choice-btn.lc-choice.selected{border-color:var(--orange);background:var(--orange-light);color:var(--orange);}
 .wa-choice-btn.pvc-choice.selected{border-color:var(--navy);background:rgba(30,58,95,0.06);color:var(--navy);}
+.wa-choice-btn.zoom-choice.selected{border-color:#7C3AED;background:rgba(124,58,237,0.08);color:#7C3AED;}
+.wa-zoom-row{margin-bottom:14px;}
 .wa-send-btn{width:100%;padding:14px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#25D366,#1DB954);color:white;font-family:var(--font-head);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(37,211,102,0.35);min-height:52px;cursor:pointer;}
 .wa-send-btn:disabled{opacity:0.5;cursor:not-allowed;}
 .wa-cancel-btn{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:14px;font-weight:600;margin-top:8px;min-height:44px;cursor:pointer;}
@@ -1148,6 +1150,16 @@ a{color:inherit;text-decoration:none;}
         <div class="wc-date">31 May–3 Jun 2026</div>
       </button>
     </div>
+    <!-- Special Campaign: Zoom Meeting Reminder -->
+    <div class="wa-zoom-row">
+      <button class="wa-choice-btn zoom-choice" id="wa-choice-zoom" onclick="waSelectCampaign('zoom')" style="width:100%;flex-direction:row;gap:12px;justify-content:flex-start;padding:14px 16px;min-height:60px">
+        <i class="fas fa-video" style="font-size:20px;flex-shrink:0"></i>
+        <div style="text-align:left">
+          <div class="wc-name">🔔 Zoom Meeting Reminder</div>
+          <div class="wc-date">PVC 4.0 &nbsp;·&nbsp; आज रात 8:30 बजे</div>
+        </div>
+      </button>
+    </div>
     <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled>
       <i class="fab fa-whatsapp"></i> Send WhatsApp Message
     </button>
@@ -1305,12 +1317,41 @@ window.waSelectCampaign=(camp)=>{
   WA_CHOSEN_CAMP=camp;
   document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
   document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
+  document.getElementById("wa-choice-zoom").classList.toggle("selected",camp==="zoom");
   document.getElementById("wa-send-confirm").disabled=false;
 };
 window.waConfirmSend=()=>{
   if(!WA_CHOSEN_CAMP)return;
   document.getElementById("wa-chooser-modal").classList.remove("open");
-  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
+  if(WA_CHOSEN_CAMP==="zoom"){
+    const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
+
+🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
+
+📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
+
+🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
+
+✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
+
+📅 *23/05/2026 (शनिवार)*
+🕗 *रात 8:30 बजे*
+
+🔗 *Zoom Link:*
+https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
+
+👉 *Please Join Telegram Group for Updates:*
+https://t.me/pramukhvisionconference04
+
+📞 संपर्क: *9328141289* , *9998992876*
+
+*धन्यवाद,*
+*एडमिशन डिपार्टमेंट,*
+*प्रमुख अकैडमी*`;
+    window.open("https://wa.me/91"+WA_PENDING_NUM+"?text="+encodeURIComponent(zoomMsg),"_blank");
+  } else {
+    openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
+  }
 };
 window.closeWAChooser=()=>{
   document.getElementById("wa-chooser-modal").classList.remove("open");
@@ -1861,10 +1902,35 @@ window.openWA=(num,name,event)=>{
   const firstName=name.split(" ")[0];
   const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 Apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
   const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n\n📅 31 May – 3 June 2026\n📍 Vadodara, Gujarat\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
-  if(event==="unknown"){
+  const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
+
+🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
+
+📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
+
+🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
+
+✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
+
+📅 *23/05/2026 (शनिवार)*
+🕗 *रात 8:30 बजे*
+
+🔗 *Zoom Link:*
+https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
+
+👉 *Please Join Telegram Group for Updates:*
+https://t.me/pramukhvisionconference04
+
+📞 संपर्क: *9328141289* , *9998992876*
+
+*धन्यवाद,*
+*एडमिशन डिपार्टमेंट,*
+*प्रमुख अकैडमी*`;
+  if(event==="unknown"||event==="zoom"){
     WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
     document.getElementById("wa-choice-lc").classList.remove("selected");
     document.getElementById("wa-choice-pvc").classList.remove("selected");
+    document.getElementById("wa-choice-zoom").classList.remove("selected");
     document.getElementById("wa-send-confirm").disabled=true;
     document.getElementById("wa-chooser-modal").classList.add("open");
     return;
@@ -1880,12 +1946,41 @@ window.waSelectCampaign=(camp)=>{
   WA_CHOSEN_CAMP=camp;
   document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
   document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
+  document.getElementById("wa-choice-zoom").classList.toggle("selected",camp==="zoom");
   document.getElementById("wa-send-confirm").disabled=false;
 };
 window.waConfirmSend=()=>{
   if(!WA_CHOSEN_CAMP)return;
   document.getElementById("wa-chooser-modal").classList.remove("open");
-  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
+  if(WA_CHOSEN_CAMP==="zoom"){
+    const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
+
+🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
+
+📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
+
+🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
+
+✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
+
+📅 *23/05/2026 (शनिवार)*
+🕗 *रात 8:30 बजे*
+
+🔗 *Zoom Link:*
+https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
+
+👉 *Please Join Telegram Group for Updates:*
+https://t.me/pramukhvisionconference04
+
+📞 संपर्क: *9328141289* , *9998992876*
+
+*धन्यवाद,*
+*एडमिशन डिपार्टमेंट,*
+*प्रमुख अकैडमी*`;
+    window.open("https://wa.me/91"+WA_PENDING_NUM+"?text="+encodeURIComponent(zoomMsg),"_blank");
+  } else {
+    openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
+  }
 };
 window.closeWAChooser=()=>{
   document.getElementById("wa-chooser-modal").classList.remove("open");
