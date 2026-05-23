@@ -1926,17 +1926,16 @@ https://t.me/pramukhvisionconference04
 *धन्यवाद,*
 *एडमिशन डिपार्टमेंट,*
 *प्रमुख अकैडमी*`;
-  if(event==="unknown"||event==="zoom"){
-    WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
-    document.getElementById("wa-choice-lc").classList.remove("selected");
-    document.getElementById("wa-choice-pvc").classList.remove("selected");
-    document.getElementById("wa-choice-zoom").classList.remove("selected");
-    document.getElementById("wa-send-confirm").disabled=true;
-    document.getElementById("wa-chooser-modal").classList.add("open");
-    return;
-  }
-  const msg=event==="lc"?lcMsg:pvcMsg;
-  window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(msg),"_blank");
+  // Always show chooser so volunteer can pick Zoom Meeting or default message
+  WA_PENDING_NUM=num; WA_PENDING_NAME=name; WA_CHOSEN_CAMP="";
+  document.getElementById("wa-choice-lc").classList.remove("selected");
+  document.getElementById("wa-choice-pvc").classList.remove("selected");
+  document.getElementById("wa-choice-zoom").classList.remove("selected");
+  // Pre-select based on event
+  if(event==="lc") { document.getElementById("wa-choice-lc").classList.add("selected"); WA_CHOSEN_CAMP="lc"; }
+  else if(event==="pvc") { document.getElementById("wa-choice-pvc").classList.add("selected"); WA_CHOSEN_CAMP="pvc"; }
+  document.getElementById("wa-send-confirm").disabled = (WA_CHOSEN_CAMP==="");
+  document.getElementById("wa-chooser-modal").classList.add("open");
 };
 window.cmOpenWA=()=>{
   const l=CM_QUEUE[CM_IDX]; if(!l)return;
