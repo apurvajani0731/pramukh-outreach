@@ -1048,6 +1048,13 @@ a{color:inherit;text-decoration:none;}
   </div>
 </div>
         <div class="divider"></div>
+
+        <!-- EDIT WA MESSAGE SECTION -->
+        <div class="sh"><div class="st"><i class="fas fa-comment-dots"></i> Campaign WhatsApp Messages</div></div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Edit the WhatsApp message for any existing campaign anytime.</p>
+        <div id="edit-msg-list"><div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px">Loading campaigns...</div></div>
+
+        <div class="divider"></div>
         <div class="danger-zone-header"><i class="fas fa-exclamation-triangle"></i><div><div class="dz-title">Danger Zone — Campaign Deletion</div><div class="dz-sub">Deleted contacts cannot be recovered.</div></div></div>
         <div class="camp-list" id="danger-camp-list"><div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div></div>
       </div>
@@ -1311,7 +1318,23 @@ let ME=null,IS_ADMIN=false,VOL_NAME="";
 let ALL_LEADS=[],CUR_LEAD_ID=null,SEL_STATUS="";
 let F_STATUS="all",F_EVENT="all",F_CAMP="all";
 let SEL_EVENT="lc",RPT_EV="all",RPT_CAMP="all";
-let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="";
+let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="",WA_PENDING_CAMP="";
+
+// ── LOAD CAMPAIGN WA MESSAGES ──
+async function loadCampaignMessages(){
+  try{
+    const snap=await getDocs(collection(db,"campaigns_meta"));
+    snap.forEach(d=>{
+      const data=d.data();
+      if(data.waMessage) WA_MESSAGES[d.id]=data.waMessage;
+    });
+    console.log("✅ Campaign WA messages loaded:",Object.keys(WA_MESSAGES).length);
+    renderEditMsgList();
+  }catch(e){
+    console.warn("Could not load campaign messages:",e);
+    renderEditMsgList();
+  }
+}
 
 window.waSelectCampaign=(camp)=>{
   WA_CHOSEN_CAMP=camp;
@@ -1323,39 +1346,12 @@ window.waSelectCampaign=(camp)=>{
 window.waConfirmSend=()=>{
   if(!WA_CHOSEN_CAMP)return;
   document.getElementById("wa-chooser-modal").classList.remove("open");
-  if(WA_CHOSEN_CAMP==="zoom"){
-    const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
-
-🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
-
-📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
-
-🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
-
-✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
-
-📅 *23/05/2026 (शनिवार)*
-🕗 *रात 8:30 बजे*
-
-🔗 *Zoom Link:*
-https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
-
-👉 *Please Join Telegram Group for Updates:*
-https://t.me/pramukhvisionconference04
-
-📞 संपर्क: *9328141289* , *9998992876*
-
-*धन्यवाद,*
-*एडमिशन डिपार्टमेंट,*
-*प्रमुख अकैडमी*`;
-    window.open("https://wa.me/91"+WA_PENDING_NUM+"?text="+encodeURIComponent(zoomMsg),"_blank");
-  } else {
-    openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
-  }
-};
+  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP,WA_PENDING_CAMP||"");
+}
 window.closeWAChooser=()=>{
   document.getElementById("wa-chooser-modal").classList.remove("open");
 };
+let WA_MESSAGES={};  // campaign name → whatsapp message
 let HOME_CAMP="all";
 let PENDING_CONTACTS=[];
 let PAYMENT_LINKS_MAP={};
@@ -1805,12 +1801,23 @@ window.submitImport=async()=>{
       batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,campaign:campName,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});
     });
     await batch.commit();
+    // Save campaign meta (waMessage) to Firestore
+    const waMsg=document.getElementById("camp-wa-msg").value.trim();
+    await setDoc(doc(db,"campaigns_meta",campName),{
+      campName,event:SEL_EVENT,
+      waMessage:waMsg||"",
+      createdAt:new Date().toISOString(),
+      uploadedBy:VOL_NAME
+    });
+    // Update local WA_MESSAGES map
+    WA_MESSAGES[campName]=waMsg||"";
     const logEl=document.getElementById("ilog");
-    logEl.innerHTML=`🎉 <b>${PENDING_CONTACTS.length} contacts imported!</b><br>📁 Campaign: <b>${campName}</b><br>🎪 Event: <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b><br>👥 <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(PENDING_CONTACTS.length/vols.length)} each`;
+    logEl.innerHTML=`🎉 <b>${PENDING_CONTACTS.length} contacts imported!</b><br>📁 Campaign: <b>${campName}</b><br>🎪 Event: <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b><br>👥 <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(PENDING_CONTACTS.length/vols.length)} each${waMsg?'<br>💬 <b>WhatsApp message saved!</b>':""}`;
     logEl.classList.add("show");
     showToast(`✅ "${campName}" imported!`);
     PENDING_CONTACTS=[];
     document.getElementById("camp-name").value="";
+    document.getElementById("camp-wa-msg").value="";
     resetFileSelect();
   }catch(err){
     console.error(err);showToast("❌ Import failed! Check Firestore rules.");
@@ -1881,7 +1888,7 @@ window.exportMaster=()=>{
 
 // ── ACTIONS ──
 window.callNum=num=>window.location.href="tel:"+num;
-window.openWA=(num,name,event)=>{
+window.openWA=(num,name,event,campaign="")=>{
   // ── Check if payment link exists for this contact ──
   const payLink=PAYMENT_LINKS_MAP[num]||PAYMENT_LINKS_MAP[num.replace(/\D/g,"")];
   if(payLink){
@@ -1926,37 +1933,33 @@ https://t.me/pramukhvisionconference04
 *धन्यवाद,*
 *एडमिशन डिपार्टमेंट,*
 *प्रमुख अकैडमी*`;
-  // Universal Zoom Meeting Reminder — sent to everyone directly
-  const zoomReminderMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
-
-🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
-
-📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
-
-🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
-
-✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
-
-📅 *23/05/2026 (शनिवार)*
-🕗 *रात 8:30 बजे*
-
-🔗 *Zoom Link:*
-https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
-
-👉 *Please Join Telegram Group for Updates:*
-https://t.me/pramukhvisionconference04
-
-📞 संपर्क: *9328141289* , *9998992876*
-
-*धन्यवाद,*
-*एडमिशन डिपार्टमेंट,*
-*प्रमुख अकैडमी*`;
-  window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(zoomReminderMsg),"_blank");
+  // Use campaign-specific WhatsApp message dynamically
+  const campMsg = WA_MESSAGES[campaign] || "";
+  const firstName = name.split(" ")[0];
+  const fallbackMsg = `Hello ${firstName} 👋,\n\nYou are registered for an upcoming event by BAPS Pramukh Academy.\n\nFor details, please contact:\n📞 9328141289 / 9998992876\n\n*धन्यवाद,*\n*एडमिशन डिपार्टमेंट,*\n*प्रमुख अकैडमी*`;
+  const finalMsg = campMsg || fallbackMsg;
+  window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(finalMsg),"_blank");
 };
 window.cmOpenWA=()=>{
   const l=CM_QUEUE[CM_IDX]; if(!l)return;
-  openWA(l.contact,l.name,l.event);
+  openWA(l.contact,l.name,l.event,l.campaign||"");
 };
+// ── LOAD CAMPAIGN WA MESSAGES ──
+async function loadCampaignMessages(){
+  try{
+    const snap=await getDocs(collection(db,"campaigns_meta"));
+    snap.forEach(d=>{
+      const data=d.data();
+      if(data.waMessage) WA_MESSAGES[d.id]=data.waMessage;
+    });
+    console.log("✅ Campaign WA messages loaded:",Object.keys(WA_MESSAGES).length);
+    renderEditMsgList();
+  }catch(e){
+    console.warn("Could not load campaign messages:",e);
+    renderEditMsgList();
+  }
+}
+
 window.waSelectCampaign=(camp)=>{
   WA_CHOSEN_CAMP=camp;
   document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
@@ -1967,36 +1970,8 @@ window.waSelectCampaign=(camp)=>{
 window.waConfirmSend=()=>{
   if(!WA_CHOSEN_CAMP)return;
   document.getElementById("wa-chooser-modal").classList.remove("open");
-  if(WA_CHOSEN_CAMP==="zoom"){
-    const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
-
-🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
-
-📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
-
-🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
-
-✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
-
-📅 *23/05/2026 (शनिवार)*
-🕗 *रात 8:30 बजे*
-
-🔗 *Zoom Link:*
-https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
-
-👉 *Please Join Telegram Group for Updates:*
-https://t.me/pramukhvisionconference04
-
-📞 संपर्क: *9328141289* , *9998992876*
-
-*धन्यवाद,*
-*एडमिशन डिपार्टमेंट,*
-*प्रमुख अकैडमी*`;
-    window.open("https://wa.me/91"+WA_PENDING_NUM+"?text="+encodeURIComponent(zoomMsg),"_blank");
-  } else {
-    openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP);
-  }
-};
+  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP,WA_PENDING_CAMP||"");
+}
 window.closeWAChooser=()=>{
   document.getElementById("wa-chooser-modal").classList.remove("open");
 };
@@ -2155,7 +2130,84 @@ function cmShowDone(){
   document.getElementById("cd-interested").textContent=CM_SESSION_STATS.interested;
   document.getElementById("cd-registered").textContent=CM_SESSION_STATS.registered;
 }
+
+// ── STEP 5: EDIT CAMPAIGN WA MESSAGE ──
+let EDIT_MSG_CAMP = "";
+
+async function getAllCampaignKeys(){
+  try{
+    const snap = await getDocs(collection(db,"campaigns_meta"));
+    return snap.docs.map(d => d.id);
+  }catch(e){ return []; }
+}
+
+async function renderEditMsgList(){
+  const list = document.getElementById("edit-msg-list");
+  if(!list) return;
+  const allKeys = await getAllCampaignKeys();
+  if(!allKeys.length){
+    list.innerHTML = '<div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px">No campaigns uploaded yet</div>';
+    return;
+  }
+  list.innerHTML = allKeys.map(c => {
+    const hasMsg = WA_MESSAGES[c] && WA_MESSAGES[c].trim().length > 0;
+    const preview = hasMsg ? WA_MESSAGES[c].substring(0,60).replace(/\n/g,' ')+'…' : '⚠️ No message set yet';
+    const safeName = c.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div style="background:var(--surface);border-radius:var(--radius);padding:14px;margin-bottom:10px;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-size:14px;font-weight:600;color:var(--navy)">${c}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${preview}</div>
+        </div>
+        <button onclick="openEditMsgModal('${safeName}')" style="padding:8px 14px;border:1.5px solid var(--navy);border-radius:9px;background:rgba(30,58,95,0.05);color:var(--navy);font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;flex-shrink:0">
+          <i class="fas fa-edit"></i> ${hasMsg?'Edit':'Add'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.openEditMsgModal = (campName) => {
+  EDIT_MSG_CAMP = campName;
+  document.getElementById("edit-msg-camp-label").textContent = "Campaign: " + campName;
+  document.getElementById("edit-msg-input").value = WA_MESSAGES[campName] || "";
+  document.getElementById("edit-msg-modal").classList.add("open");
+};
+
+window.saveEditedMsg = async () => {
+  const newMsg = document.getElementById("edit-msg-input").value.trim();
+  if(!EDIT_MSG_CAMP){ showToast("⚠️ No campaign selected!"); return; }
+  if(!newMsg){ showToast("⚠️ Please type a message before saving!"); return; }
+  try{
+    await setDoc(doc(db,"campaigns_meta",EDIT_MSG_CAMP),{ waMessage: newMsg },{ merge: true });
+    WA_MESSAGES[EDIT_MSG_CAMP] = newMsg;
+    showToast("✅ Message saved for: " + EDIT_MSG_CAMP);
+    closeEditMsgModal();
+    renderEditMsgList();
+  }catch(e){
+    console.error(e);
+    showToast("❌ Failed to save. Check Firestore rules.");
+  }
+};
+
+window.closeEditMsgModal = () => {
+  document.getElementById("edit-msg-modal").classList.remove("open");
+  EDIT_MSG_CAMP = "";
+};
 // ═══════════════════════════════════════
 </script>
+
+<!-- EDIT WA MESSAGE MODAL -->
+<div class="mo" id="edit-msg-modal">
+  <div class="ms">
+    <div class="mh"></div>
+    <div class="mt">✏️ Edit WhatsApp Message</div>
+    <div class="msub" id="edit-msg-camp-label">Campaign: —</div>
+    <textarea id="edit-msg-input" rows="8" placeholder="Type your WhatsApp message here..." style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:vertical;font-family:var(--font-body);min-height:150px;transition:border-color 0.2s;margin-bottom:8px"></textarea>
+    <small style="color:var(--muted);font-size:11px;display:block;margin-bottom:14px">⚡ Supports emojis, *bold*, and links. Exactly as typed.</small>
+    <button class="btn-s btn-g" onclick="saveEditedMsg()"><i class="fas fa-save"></i> Save Message</button>
+    <button class="btn-c" onclick="closeEditMsgModal()" style="margin-top:8px">Cancel</button>
+  </div>
+</div>
 </body>
 </html>
