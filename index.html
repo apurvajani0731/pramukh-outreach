@@ -9,91 +9,21 @@
 <title>Pramukh Outreach · BAPS Pramukh Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
-   <style>
-/* ─────────────────────────────────────────────
-   DESIGN TOKENS
-───────────────────────────────────────────── */
-:root {
-  --navy:      #1E3A5F;
-  --navy2:     #162D4A;
-  --navy3:     #0F1F33;
-  --gold:      #C9921A;
-  --gold2:     #B07D10;
-  --gold-light:#FEF3C7;
-  --gold-pale: #FFFBEB;
-  --orange:    #C2410C;
-  --orange2:   #EA580C;
-  --orange-light:#FFF7ED;
-  --success:   #16A34A;
-  --danger:    #DC2626;
-  --warning:   #D97706;
-  --info:      #2563EB;
-  --bg:        #F2F4F7;
-  --surface:   #FFFFFF;
-  --text:      #111827;
-  --muted:     #6B7280;
-  --border:    #E5E7EB;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.07),0 1px 6px rgba(0,0,0,0.04);
-  --shadow:    0 2px 10px rgba(0,0,0,0.08),0 4px 24px rgba(0,0,0,0.05);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);
-  --radius:    12px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
-  --tab-h:     66px;
-  --sidebar-w: 252px;
-  --header-h:  58px;
-  --font-head: 'Outfit', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-}
-
-/* ─────────────────────────────────────────────
-   RESET & BASE
-───────────────────────────────────────────── */
+<style>
+:root{--navy:#1E3A5F;--navy2:#162D4A;--navy3:#0F1F33;--gold:#C9921A;--gold2:#B07D10;--gold-light:#FEF3C7;--gold-pale:#FFFBEB;--orange:#C2410C;--orange2:#EA580C;--orange-light:#FFF7ED;--success:#16A34A;--danger:#DC2626;--warning:#D97706;--info:#2563EB;--bg:#F2F4F7;--surface:#FFFFFF;--text:#111827;--muted:#6B7280;--border:#E5E7EB;--shadow-sm:0 1px 3px rgba(0,0,0,0.07),0 1px 6px rgba(0,0,0,0.04);--shadow:0 2px 10px rgba(0,0,0,0.08),0 4px 24px rgba(0,0,0,0.05);--shadow-lg:0 8px 40px rgba(0,0,0,0.12),0 2px 8px rgba(0,0,0,0.06);--radius:12px;--radius-lg:16px;--radius-xl:22px;--tab-h:66px;--sidebar-w:252px;--header-h:58px;--font-head:'Outfit',sans-serif;--font-body:'DM Sans',sans-serif;--font-mono:'DM Mono',monospace;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;}
 input,button,textarea,select{-webkit-appearance:none;appearance:none;font-family:var(--font-body);}
 button{cursor:pointer;touch-action:manipulation;}
 a{color:inherit;text-decoration:none;}
-
-/* ─────────────────────────────────────────────
-   LOGIN PAGE  — split screen
-───────────────────────────────────────────── */
-#loginPage {
-  display:flex;min-height:100vh;min-height:100dvh;
-  background:var(--navy3);position:relative;overflow:hidden;
-}
-#loginPage::before{
-  content:'';position:absolute;top:-140px;right:-100px;
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,146,26,0.1) 0%,transparent 65%);
-  pointer-events:none;
-}
-#loginPage::after{
-  content:'';position:absolute;bottom:-100px;left:-80px;
-  width:380px;height:380px;border-radius:50%;
-  background:radial-gradient(circle,rgba(30,58,95,0.6) 0%,transparent 70%);
-  pointer-events:none;
-}
-.login-grid{
-  position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
-  background-size:48px 48px;pointer-events:none;
-}
-/* Left brand panel */
-.login-left{
-  flex:1;display:flex;flex-direction:column;justify-content:center;
-  padding:60px 56px;position:relative;z-index:1;
-}
+#loginPage{display:flex;min-height:100vh;min-height:100dvh;background:var(--navy3);position:relative;overflow:hidden;}
+#loginPage::before{content:'';position:absolute;top:-140px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,26,0.1) 0%,transparent 65%);pointer-events:none;}
+#loginPage::after{content:'';position:absolute;bottom:-100px;left:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(30,58,95,0.6) 0%,transparent 70%);pointer-events:none;}
+.login-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.login-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 56px;position:relative;z-index:1;}
 .login-brand-logo{display:flex;align-items:center;gap:14px;margin-bottom:40px;}
-.login-brand-circle{
-  width:52px;height:52px;border-radius:14px;
-  background:rgba(201,146,26,0.15);border:1px solid rgba(201,146,26,0.3);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
+.login-brand-circle{width:52px;height:52px;border-radius:14px;background:rgba(201,146,26,0.15);border:1px solid rgba(201,146,26,0.3);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .login-brand-circle img{width:44px;height:44px;object-fit:contain;}
 .login-brand-text h1{font-family:var(--font-head);font-size:16px;font-weight:700;color:rgba(255,255,255,0.9);}
 .login-brand-text p{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;letter-spacing:0.3px;}
@@ -103,15 +33,7 @@ a{color:inherit;text-decoration:none;}
 .lm{display:flex;flex-direction:column;gap:3px;}
 .lm-n{font-family:var(--font-head);font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.04em;}
 .lm-l{font-size:10px;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
-
-/* Right form panel */
-.login-right{
-  width:460px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  padding:44px;position:relative;z-index:1;
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(20px);
-  border-left:1px solid rgba(255,255,255,0.07);
-}
+.login-right{width:460px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:44px;position:relative;z-index:1;background:rgba(255,255,255,0.04);backdrop-filter:blur(20px);border-left:1px solid rgba(255,255,255,0.07);}
 .lcard{width:100%;max-width:360px;}
 .login-h{font-family:var(--font-head);font-size:24px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.03em;}
 .login-sub{font-size:13px;color:rgba(255,255,255,0.42);margin-bottom:28px;}
@@ -120,56 +42,20 @@ a{color:inherit;text-decoration:none;}
 .iw{position:relative;}
 .iw i{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.28);font-size:15px;}
 .iw input{padding-left:44px;}
-.fg input{
-  width:100%;padding:13px 16px;
-  border:1.5px solid rgba(255,255,255,0.1);
-  border-radius:var(--radius);font-size:15px;outline:none;
-  background:rgba(255,255,255,0.06);color:#fff;
-  transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;
-}
+.fg input{width:100%;padding:13px 16px;border:1.5px solid rgba(255,255,255,0.1);border-radius:var(--radius);font-size:15px;outline:none;background:rgba(255,255,255,0.06);color:#fff;transition:border-color 0.2s,box-shadow 0.2s,background 0.2s;}
 .fg input::placeholder{color:rgba(255,255,255,0.22);}
-.fg input:focus{
-  border-color:rgba(201,146,26,0.5);background:rgba(255,255,255,0.09);
-  box-shadow:0 0 0 3px rgba(201,146,26,0.12);
-}
-.btn-p {
-  width:100%;padding:15px;border:none;border-radius:var(--radius);
-  background:linear-gradient(135deg,#2D5A8E,var(--navy2));
-  color:white;font-family:var(--font-head);font-size:15px;font-weight:700;
-  margin-top:6px;letter-spacing:-0.01em;
-  box-shadow:0 4px 20px rgba(30,58,95,0.5);
-  transition:transform 0.15s,box-shadow 0.15s;min-height:52px;
-}
+.fg input:focus{border-color:rgba(201,146,26,0.5);background:rgba(255,255,255,0.09);box-shadow:0 0 0 3px rgba(201,146,26,0.12);}
+.btn-p{width:100%;padding:15px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#2D5A8E,var(--navy2));color:white;font-family:var(--font-head);font-size:15px;font-weight:700;margin-top:6px;letter-spacing:-0.01em;box-shadow:0 4px 20px rgba(30,58,95,0.5);transition:transform 0.15s,box-shadow 0.15s;min-height:52px;}
 .btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(30,58,95,0.6);}
 .btn-p:active{transform:scale(0.98);}
 .btn-p:disabled{opacity:0.6;transform:none;}
 .errmsg{background:rgba(220,38,38,0.15);color:#FCA5A5;border-radius:10px;padding:10px 14px;font-size:13px;margin-top:10px;display:none;border:1px solid rgba(220,38,38,0.25);}
 .errmsg.show{display:block;}
 .ldivider{text-align:center;font-size:10px;color:rgba(255,255,255,0.22);margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);letter-spacing:0.3px;}
-
-@media(max-width:767px){
-  #loginPage{flex-direction:column;}
-  .login-left{display:none;}
-  .login-right{width:100%;border-left:none;background:transparent;backdrop-filter:none;padding:40px 24px 52px;}
-  .lcard{max-width:100%;}
-}
-
-/* ─────────────────────────────────────────────
-   APP LAYOUT
-───────────────────────────────────────────── */
+@media(max-width:767px){#loginPage{flex-direction:column;}.login-left{display:none;}.login-right{width:100%;border-left:none;background:transparent;backdrop-filter:none;padding:40px 24px 52px;}.lcard{max-width:100%;}}
 #app{display:none;min-height:100vh;min-height:100dvh;}
 .app-inner{display:flex;min-height:100vh;min-height:100dvh;}
-
-/* ─────────────────────────────────────────────
-   SIDEBAR (desktop)
-───────────────────────────────────────────── */
-.sidebar{
-  width:var(--sidebar-w);flex-shrink:0;
-  background:var(--navy3);
-  display:flex;flex-direction:column;
-  position:fixed;top:0;left:0;bottom:0;z-index:50;
-  border-right:1px solid rgba(255,255,255,0.05);
-}
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--navy3);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:50;border-right:1px solid rgba(255,255,255,0.05);}
 .sb-top{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:11px;}
 .sb-logo-circle{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border:1px solid rgba(255,255,255,0.1);}
 .sb-logo-circle img{width:36px;height:36px;object-fit:contain;}
@@ -189,16 +75,7 @@ a{color:inherit;text-decoration:none;}
 .sb-user-info .sb-urole{color:rgba(255,255,255,0.38);font-size:10.5px;margin-top:1px;}
 .sb-logout{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;border:none;background:rgba(220,38,38,0.1);color:rgba(255,120,120,0.85);font-size:13px;font-weight:500;width:100%;cursor:pointer;transition:background 0.15s;font-family:var(--font-body);}
 .sb-logout:hover{background:rgba(220,38,38,0.2);}
-.sb-logout i{font-size:13px;}
-
-/* ─────────────────────────────────────────────
-   MAIN CONTENT
-───────────────────────────────────────────── */
 .main-wrap{flex:1;display:flex;flex-direction:column;min-height:100vh;margin-left:var(--sidebar-w);}
-
-/* ─────────────────────────────────────────────
-   TOP HEADER
-───────────────────────────────────────────── */
 .top-header{background:var(--navy3);padding:0 20px;height:var(--header-h);position:sticky;top:0;z-index:40;box-shadow:0 1px 0 rgba(255,255,255,0.06);display:flex;align-items:center;}
 .hi{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto;}
 .hl{display:flex;align-items:center;gap:11px;}
@@ -212,25 +89,10 @@ a{color:inherit;text-decoration:none;}
 .udot{width:6px;height:6px;background:#22C55E;border-radius:50%;flex-shrink:0;}
 .ibtn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:8px;width:36px;height:36px;color:rgba(255,255,255,0.6);font-size:14px;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s;}
 .ibtn:hover{background:rgba(255,255,255,0.14);color:white;}
-
-/* ─────────────────────────────────────────────
-   PAGE CONTAINER
-───────────────────────────────────────────── */
 .pages-container{flex:1;overflow-y:auto;overflow-x:hidden;}
 .page{display:none;padding:14px 14px calc(var(--tab-h)+18px);max-width:1100px;margin:0 auto;width:100%;overflow-x:hidden;}
 .page.active{display:block;}
-
-/* ─────────────────────────────────────────────
-   TAB BAR (mobile only)
-───────────────────────────────────────────── */
-.tab-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:40;
-  background:var(--navy3);
-  display:flex;height:var(--tab-h);
-  box-shadow:0 -2px 24px rgba(0,0,0,0.3);
-  padding-bottom:env(safe-area-inset-bottom);
-  border-top:1px solid rgba(255,255,255,0.07);
-}
+.tab-bar{position:fixed;bottom:0;left:0;right:0;z-index:40;background:var(--navy3);display:flex;height:var(--tab-h);box-shadow:0 -2px 24px rgba(0,0,0,0.3);padding-bottom:env(safe-area-inset-bottom);border-top:1px solid rgba(255,255,255,0.07);}
 .ti{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 2px;border:none;background:none;position:relative;min-height:44px;color:rgba(255,255,255,0.4);}
 .ti i{font-size:20px;margin-bottom:3px;transition:color 0.18s,transform 0.18s;}
 .ti span{font-size:9.5px;font-weight:700;transition:color 0.18s;letter-spacing:0.02em;}
@@ -238,10 +100,6 @@ a{color:inherit;text-decoration:none;}
 .ti.active i{transform:scale(1.1);}
 .ti.active::before{content:'';position:absolute;top:0;left:18%;right:18%;height:2px;background:#FCD34D;border-radius:0 0 4px 4px;}
 .ti:active{background:rgba(255,255,255,0.05);}
-
-/* ─────────────────────────────────────────────
-   WELCOME BANNER
-───────────────────────────────────────────── */
 .wb{background:linear-gradient(135deg,var(--navy),#2D5A8E);border-radius:var(--radius-lg);padding:20px 22px;margin-bottom:16px;color:white;position:relative;overflow:hidden;}
 .wb::before{content:'';position:absolute;right:-20px;top:-20px;width:120px;height:120px;border-radius:50%;background:rgba(201,146,26,0.12);}
 .wb::after{content:'';position:absolute;right:60px;bottom:-30px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.04);}
@@ -249,10 +107,6 @@ a{color:inherit;text-decoration:none;}
 .wb p{font-size:12px;opacity:0.65;margin-top:4px;line-height:1.6;position:relative;}
 .echips{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap;position:relative;}
 .echip{background:rgba(201,146,26,0.18);border:1px solid rgba(201,146,26,0.3);border-radius:20px;padding:4px 11px;font-size:11px;font-weight:600;color:#FCD34D;}
-
-/* ─────────────────────────────────────────────
-   STATS GRID
-───────────────────────────────────────────── */
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:18px;}
 .scard{background:var(--surface);border-radius:var(--radius);padding:15px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:13px;border:1px solid var(--border);}
 .sicon{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -263,18 +117,10 @@ a{color:inherit;text-decoration:none;}
 .si-a{background:linear-gradient(135deg,#D97706,#B45309);}
 .sinfo h3{font-family:var(--font-head);font-size:22px;font-weight:800;line-height:1;color:var(--navy);}
 .sinfo p{font-size:11px;color:var(--muted);margin-top:3px;font-weight:500;}
-
-/* ─────────────────────────────────────────────
-   SECTION HEADERS
-───────────────────────────────────────────── */
 .sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;margin-top:4px;}
 .st{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:7px;color:var(--navy);font-family:var(--font-head);}
 .st i{color:var(--orange);font-size:13px;}
 .bc{background:var(--navy);color:white;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;font-family:var(--font-mono);}
-
-/* ─────────────────────────────────────────────
-   VOLUNTEER PROGRESS CARD
-───────────────────────────────────────────── */
 .vc{background:var(--surface);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid var(--border);}
 .vh{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
 .vav{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),#2D5A8E);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -287,22 +133,11 @@ a{color:inherit;text-decoration:none;}
 .vs{text-align:center;padding:8px 4px;border-radius:9px;background:var(--bg);}
 .vsn{font-size:16px;font-weight:800;font-family:var(--font-head);}
 .vsl{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:2px;letter-spacing:0.4px;}
-
-/* ─────────────────────────────────────────────
-   SEARCH & FILTER (mobile-optimised)
-───────────────────────────────────────────── */
-.leads-sticky-top{
-  position:sticky;top:var(--header-h);z-index:30;
-  background:var(--bg);
-  padding:10px 0 4px;
-  /* NO negative margins — they caused horizontal overflow */
-}
+.leads-sticky-top{position:sticky;top:var(--header-h);z-index:30;background:var(--bg);padding:10px 0 4px;}
 .sw{position:relative;margin-bottom:8px;}
 .sw i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;}
 .sw input{width:100%;padding:12px 14px 12px 42px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:15px;outline:none;background:var(--surface);color:var(--text);transition:border-color 0.2s,box-shadow 0.2s;}
 .sw input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,58,95,0.07);}
-
-/* Condensed filter row */
 .filter-row{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none;align-items:center;flex-wrap:nowrap;}
 .filter-row::-webkit-scrollbar{display:none;}
 .filter-divider{width:1px;height:20px;background:var(--border);flex-shrink:0;margin:0 3px;}
@@ -310,65 +145,19 @@ a{color:inherit;text-decoration:none;}
 .fc:hover{border-color:#94A3B8;color:var(--navy);}
 .fc.active{border-color:var(--navy);background:var(--navy);color:white;}
 .filter-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;white-space:nowrap;flex-shrink:0;}
-
-/* ─────────────────────────────────────────────
-   CALLING SESSION BANNER
-───────────────────────────────────────────── */
-.call-session-banner{
-  background:linear-gradient(135deg,#15803D,#166534);
-  border-radius:var(--radius);padding:12px 14px;
-  margin-bottom:10px;color:white;
-  display:flex;align-items:center;gap:11px;
-  box-shadow:0 4px 16px rgba(21,128,61,0.35);
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,0.12);
-  min-height:60px;
-  transition:filter 0.15s;
-}
+.call-session-banner{background:linear-gradient(135deg,#15803D,#166534);border-radius:var(--radius);padding:12px 14px;margin-bottom:10px;color:white;display:flex;align-items:center;gap:11px;box-shadow:0 4px 16px rgba(21,128,61,0.35);cursor:pointer;border:1px solid rgba(255,255,255,0.12);min-height:60px;transition:filter 0.15s;}
 .call-session-banner:active{filter:brightness(0.92);}
-.csb-icon{
-  width:40px;height:40px;border-radius:10px;
-  background:rgba(255,255,255,0.18);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+.csb-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .csb-icon i{font-size:18px;color:white;}
 .csb-info{flex:1;min-width:0;}
 .csb-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:white;white-space:nowrap;}
 .csb-sub{font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px;}
-.csb-count{
-  font-family:var(--font-head);font-size:22px;font-weight:800;color:white;
-  background:rgba(255,255,255,0.18);border-radius:9px;
-  padding:4px 12px;flex-shrink:0;min-width:44px;text-align:center;
-}
-
-/* ─────────────────────────────────────────────
-   LEAD CARDS — MOBILE FIRST
-───────────────────────────────────────────── */
-.cc{
-  background:var(--surface);border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-sm);margin-bottom:10px;
-  border:1px solid var(--border);border-left-width:4px;
-  transition:box-shadow 0.2s,transform 0.15s;
-  overflow:hidden;
-}
+.csb-count{font-family:var(--font-head);font-size:22px;font-weight:800;color:white;background:rgba(255,255,255,0.18);border-radius:9px;padding:4px 12px;flex-shrink:0;min-width:44px;text-align:center;}
+.cc{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);margin-bottom:10px;border:1px solid var(--border);border-left-width:4px;transition:box-shadow 0.2s,transform 0.15s;overflow:hidden;}
 .cc:active{transform:scale(0.995);}
-.cc.sp{border-left-color:#9CA3AF;}
-.cc.sc{border-left-color:#2563EB;}
-.cc.si{border-left-color:#16A34A;}
-.cc.sni{border-left-color:#DC2626;}
-.cc.sr{border-left-color:#D97706;}
-.cc.scb{border-left-color:#EA580C;}
-.cc.snr{border-left-color:#9CA3AF;}
-
-/* Card header row */
+.cc.sp{border-left-color:#9CA3AF;}.cc.sc{border-left-color:#2563EB;}.cc.si{border-left-color:#16A34A;}.cc.sni{border-left-color:#DC2626;}.cc.sr{border-left-color:#D97706;}.cc.scb{border-left-color:#EA580C;}.cc.snr{border-left-color:#9CA3AF;}
 .ctop{display:flex;align-items:center;gap:11px;padding:14px 14px 10px;}
-.cav{
-  width:44px;height:44px;border-radius:12px;
-  background:linear-gradient(135deg,var(--gold-light),#FDE68A);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-size:15px;font-weight:800;color:var(--gold2);
-  border:1px solid rgba(201,146,26,0.2);
-}
+.cav{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--gold-light),#FDE68A);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;font-weight:800;color:var(--gold2);border:1px solid rgba(201,146,26,0.2);}
 .ci{flex:1;min-width:0;}
 .cn{font-size:15px;font-weight:700;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-0.01em;}
 .cnum{font-size:13px;color:var(--muted);margin-top:2px;font-family:var(--font-mono);font-weight:400;}
@@ -377,138 +166,44 @@ a{color:inherit;text-decoration:none;}
 .cev{font-size:10.5px;font-weight:700;color:var(--orange);background:var(--orange-light);padding:3px 9px;border-radius:20px;display:inline-block;}
 .ccamp{font-size:10px;font-weight:600;color:#5B6F8A;background:#EEF2F8;padding:3px 8px;border-radius:20px;display:inline-block;}
 .sb{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-.sb.sp{background:#F4F4F5;color:#6B7280;}
-.sb.sc{background:#DBEAFE;color:#1D4ED8;}
-.sb.si{background:#DCFCE7;color:#15803D;}
-.sb.sni{background:#FEE2E2;color:#991B1B;}
-.sb.sr{background:#FEF3C7;color:#92400E;}
-.sb.scb{background:#FFEDD5;color:#C2410C;}
-.sb.snr{background:#F1F5F9;color:#374151;}
-
-/* Remarks / callback tags */
+.sb.sp{background:#F4F4F5;color:#6B7280;}.sb.sc{background:#DBEAFE;color:#1D4ED8;}.sb.si{background:#DCFCE7;color:#15803D;}.sb.sni{background:#FEE2E2;color:#991B1B;}.sb.sr{background:#FEF3C7;color:#92400E;}.sb.scb{background:#FFEDD5;color:#C2410C;}.sb.snr{background:#F1F5F9;color:#374151;}
 .rmk{font-size:12px;color:var(--muted);margin:0 14px 10px;padding:9px 11px;background:#F8F9FB;border-radius:9px;border-left:3px solid var(--border);font-style:italic;line-height:1.5;}
 .cbtag{font-size:11px;color:var(--orange);font-weight:600;margin:0 14px 8px;display:flex;align-items:center;gap:5px;}
 .cbtag i{font-size:10px;}
-
-/* Action buttons — 3 equal columns, ALWAYS visible */
-.cact{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  border-top:1px solid var(--border);
-  width:100%;
-}
-.ab{
-  padding:12px 4px;border:none;
-  border-right:1px solid var(--border);
-  font-size:12px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  min-height:48px;
-  transition:background 0.12s,filter 0.1s;
-  min-width:0;overflow:hidden;
-  font-family:var(--font-body);
-}
-.ab:last-child{border-right:none;}
-.ab:active{filter:brightness(0.9);}
-.ab i{font-size:15px;flex-shrink:0;}
-.ab span{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-
-/* Call — green */
-.ab-call{color:#16A34A;background:#F0FDF4;}
-.ab-call:active{background:#DCFCE7;}
-
-/* Update — orange */
-.ab-upd{color:#C2410C;background:#FFF7ED;}
-.ab-upd:active{background:#FFEDD5;}
-
-/* WhatsApp — distinctly WhatsApp brand green */
-.ab-wa{color:#FFFFFF;background:#25D366;}
-.ab-wa:active{background:#1EBE5D;}
-.ab-wa i{color:#FFFFFF;}
-
-/* ─────────────────────────────────────────────
-   CALLING MODE — FULL SCREEN OVERLAY
-───────────────────────────────────────────── */
-#calling-overlay{
-  position:fixed;inset:0;z-index:500;
-  background:var(--navy3);
-  display:none;flex-direction:column;
-  overflow:hidden;
-}
+.cact{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--border);width:100%;}
+.ab{padding:12px 4px;border:none;border-right:1px solid var(--border);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;min-height:48px;transition:background 0.12s,filter 0.1s;min-width:0;overflow:hidden;font-family:var(--font-body);}
+.ab:last-child{border-right:none;}.ab:active{filter:brightness(0.9);}
+.ab i{font-size:15px;flex-shrink:0;}.ab span{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ab-call{color:#16A34A;background:#F0FDF4;}.ab-call:active{background:#DCFCE7;}
+.ab-upd{color:#C2410C;background:#FFF7ED;}.ab-upd:active{background:#FFEDD5;}
+.ab-wa{color:#FFFFFF;background:#25D366;}.ab-wa:active{background:#1EBE5D;}.ab-wa i{color:#FFFFFF;}
+#calling-overlay{position:fixed;inset:0;z-index:500;background:var(--navy3);display:none;flex-direction:column;overflow:hidden;}
 #calling-overlay.open{display:flex;}
-
-.cm-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.07);
-  flex-shrink:0;
-}
+.cm-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
 .cm-title{font-family:var(--font-head);font-size:14px;font-weight:700;color:rgba(255,255,255,0.6);}
 .cm-progress-wrap{flex:1;margin:0 16px;height:4px;background:rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;}
 .cm-progress{height:100%;background:linear-gradient(90deg,var(--gold),#FBBF24);border-radius:20px;transition:width 0.4s ease;}
 .cm-count{font-family:var(--font-mono);font-size:12px;font-weight:500;color:rgba(255,255,255,0.45);white-space:nowrap;}
 .cm-close{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;border:none;font-size:14px;flex-shrink:0;transition:background 0.15s;}
 .cm-close:hover{background:rgba(255,255,255,0.14);color:white;}
-
-/* Contact display card */
-.cm-contact{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:24px 28px;text-align:center;position:relative;
-  overflow:hidden;
-}
-.cm-contact::before{
-  content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;
-  border-radius:50%;background:radial-gradient(circle,rgba(201,146,26,0.08) 0%,transparent 70%);
-  pointer-events:none;
-}
-.cm-av{
-  width:90px;height:90px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(201,146,26,0.25),rgba(201,146,26,0.1));
-  border:2px solid rgba(201,146,26,0.35);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;flex-shrink:0;
-}
+.cm-contact{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 28px;text-align:center;position:relative;overflow:hidden;}
+.cm-contact::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,26,0.08) 0%,transparent 70%);pointer-events:none;}
+.cm-av{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(201,146,26,0.25),rgba(201,146,26,0.1));border:2px solid rgba(201,146,26,0.35);display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;}
 .cm-av span{font-family:var(--font-head);font-size:30px;font-weight:800;color:var(--gold);}
 .cm-name{font-family:var(--font-head);font-size:26px;font-weight:800;color:white;margin-bottom:8px;letter-spacing:-0.02em;}
 .cm-phone{font-family:var(--font-mono);font-size:20px;color:rgba(255,255,255,0.5);margin-bottom:14px;letter-spacing:0.04em;}
 .cm-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
 .cm-tag{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);}
 .cm-tag.event{background:rgba(194,65,12,0.2);border-color:rgba(194,65,12,0.3);color:#FCA280;}
-.cm-past-rmk{
-  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
-  border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.45);
-  font-style:italic;line-height:1.6;max-width:320px;text-align:left;
-}
+.cm-past-rmk{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.45);font-style:italic;line-height:1.6;max-width:320px;text-align:left;}
 .cm-past-rmk span{color:rgba(255,255,255,0.25);font-size:10px;font-style:normal;display:block;margin-bottom:3px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
-
-/* Dial button */
-.cm-dial{
-  width:80px;height:80px;border-radius:50%;
-  background:linear-gradient(135deg,#16A34A,#15803D);
-  display:flex;align-items:center;justify-content:center;
-  border:none;color:white;font-size:28px;
-  box-shadow:0 6px 28px rgba(21,128,61,0.5);
-  margin:0 auto 8px;
-  transition:transform 0.15s,box-shadow 0.15s;
-  flex-shrink:0;
-}
-.cm-dial:active{transform:scale(0.93);box-shadow:0 4px 16px rgba(21,128,61,0.4);}
-.cm-dial-label{font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:0.03em;text-align:center;margin-bottom:24px;}
-
-/* Status + save section */
-.cm-update{
-  background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.07);
-  padding:16px 18px;flex-shrink:0;
-}
+.cm-dial{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#16A34A,#15803D);display:flex;align-items:center;justify-content:center;border:none;color:white;font-size:28px;box-shadow:0 6px 28px rgba(21,128,61,0.5);margin:0 auto 8px;transition:transform 0.15s,box-shadow 0.15s;flex-shrink:0;}
+.cm-dial:active{transform:scale(0.93);}
+.cm-dial-label{font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;text-align:center;margin-bottom:24px;}
+.cm-update{background:rgba(255,255,255,0.03);border-top:1px solid rgba(255,255,255,0.07);padding:16px 18px;flex-shrink:0;}
 .cm-update-lbl{font-size:10px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
 .cm-status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:12px;}
-.cm-so{
-  padding:10px 4px;border:1.5px solid rgba(255,255,255,0.1);
-  border-radius:10px;background:rgba(255,255,255,0.04);
-  text-align:center;font-size:11px;font-weight:700;
-  color:rgba(255,255,255,0.45);
-  transition:all 0.15s;min-height:52px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-}
+.cm-so{padding:10px 4px;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.04);text-align:center;font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);transition:all 0.15s;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
 .cm-so i{font-size:16px;}
 .cm-so:hover{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);}
 .cm-so.active-called{border-color:#3B82F6;background:rgba(59,130,246,0.15);color:#93C5FD;}
@@ -516,40 +211,22 @@ a{color:inherit;text-decoration:none;}
 .cm-so.active-not-interested{border-color:#EF4444;background:rgba(239,68,68,0.15);color:#FCA5A5;}
 .cm-so.active-registered{border-color:#F59E0B;background:rgba(245,158,11,0.15);color:#FDE68A;}
 .cm-so.active-callback{border-color:#F97316;background:rgba(249,115,22,0.15);color:#FDBA74;}
-.cm-so.active-not-reachable{border-color:#6B7280;background:rgba(107,114,128,0.15);color:#D1D5DB;}
-.cm-so.active-wrong-number{border-color:#6B7280;background:rgba(107,114,128,0.15);color:#D1D5DB;}
-
+.cm-so.active-not-reachable,.cm-so.active-wrong-number{border-color:#6B7280;background:rgba(107,114,128,0.15);color:#D1D5DB;}
 .cm-rmk{width:100%;padding:10px 12px;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.05);color:white;font-size:13px;outline:none;resize:none;line-height:1.5;margin-bottom:10px;font-family:var(--font-body);transition:border-color 0.2s;}
 .cm-rmk::placeholder{color:rgba(255,255,255,0.22);}
 .cm-rmk:focus{border-color:rgba(201,146,26,0.4);background:rgba(255,255,255,0.07);}
 #cm-cb-grp{display:none;margin-bottom:10px;}
 .cm-cb-inp{width:100%;padding:10px 12px;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;background:rgba(255,255,255,0.05);color:white;font-size:13px;outline:none;transition:border-color 0.2s;}
 .cm-cb-inp:focus{border-color:rgba(201,146,26,0.4);}
-
-.cm-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
-.cm-btn-skip{
-  padding:14px;border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;
-  background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.55);
-  font-size:14px;font-weight:700;min-height:52px;
-  transition:background 0.15s;font-family:var(--font-head);
-}
+.cm-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px;}
+.cm-btn-skip{padding:14px;border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.55);font-size:14px;font-weight:700;min-height:52px;transition:background 0.15s;font-family:var(--font-head);}
 .cm-btn-skip:hover{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.8);}
-.cm-btn-save{
-  padding:14px;border:none;border-radius:12px;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  color:white;font-size:14px;font-weight:700;min-height:52px;
-  box-shadow:0 4px 16px rgba(201,146,26,0.4);
-  transition:transform 0.15s,box-shadow 0.15s;font-family:var(--font-head);
-}
-.cm-btn-save:hover{transform:translateY(-1px);box-shadow:0 6px 22px rgba(201,146,26,0.48);}
+.cm-btn-save{padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:14px;font-weight:700;min-height:52px;box-shadow:0 4px 16px rgba(201,146,26,0.4);transition:transform 0.15s,box-shadow 0.15s;font-family:var(--font-head);}
+.cm-btn-save:hover{transform:translateY(-1px);}
 .cm-btn-save:active{transform:scale(0.98);}
 .cm-btn-save:disabled{opacity:0.5;transform:none;}
-
-/* Done screen */
-.cm-done{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:32px;
-}
+.cm-wa-btn{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,#25D366,#1DB954);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-head);cursor:pointer;}
+.cm-done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px;}
 .cm-done i{font-size:64px;color:var(--gold);margin-bottom:20px;display:block;}
 .cm-done h2{font-family:var(--font-head);font-size:26px;font-weight:800;color:white;margin-bottom:10px;}
 .cm-done p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:280px;}
@@ -558,10 +235,6 @@ a{color:inherit;text-decoration:none;}
 .cd-stat-n{font-family:var(--font-head);font-size:28px;font-weight:800;color:white;}
 .cd-stat-l{font-size:10px;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;}
 .cm-btn-done{padding:14px 32px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:white;font-size:15px;font-weight:700;font-family:var(--font-head);box-shadow:0 4px 16px rgba(201,146,26,0.4);}
-
-/* ─────────────────────────────────────────────
-   PROFILE PAGE
-───────────────────────────────────────────── */
 .pcard{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--radius-lg);padding:28px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
 .pcard::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:rgba(201,146,26,0.1);}
 .pav{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 8px 24px rgba(201,146,26,0.35);}
@@ -575,16 +248,11 @@ a{color:inherit;text-decoration:none;}
 .ev-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 .ev-name{font-size:14px;font-weight:600;color:var(--navy);}
 .ev-date{font-size:11px;color:var(--muted);margin-top:2px;}
-
-/* ─────────────────────────────────────────────
-   UPLOAD & REPORTS (preserved styling)
-───────────────────────────────────────────── */
 .stepbox{background:var(--surface);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-sm);margin-bottom:14px;border:1px solid var(--border);border-top:3px solid var(--navy);}
 .stepnum{display:inline-block;background:var(--navy);color:white;font-size:11px;font-weight:700;border-radius:20px;padding:3px 12px;margin-bottom:10px;letter-spacing:0.5px;}
 .steplabel{font-family:var(--font-head);font-size:15px;font-weight:600;margin-bottom:12px;color:var(--navy);}
 .fg textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:none;transition:border-color 0.2s;}
 .fg textarea:focus{border-color:var(--navy);background:var(--surface);box-shadow:0 0 0 3px rgba(30,58,95,0.06);}
-.fg-upload{margin-bottom:14px;}
 .file-preview{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:var(--radius);padding:16px;margin-top:10px;display:none;}
 .file-preview.show{display:block;}
 .fp-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
@@ -597,7 +265,7 @@ a{color:inherit;text-decoration:none;}
 .fp-stat-n{font-size:20px;font-weight:800;color:var(--navy);font-family:var(--font-head);}
 .fp-stat-l{font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:2px;}
 .btn-import{width:100%;padding:15px;border:none;border-radius:var(--radius-lg);background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(22,163,74,0.3);min-height:52px;font-family:var(--font-head);transition:transform 0.15s,box-shadow 0.15s;}
-.btn-import:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(22,163,74,0.35);}
+.btn-import:hover{transform:translateY(-1px);}
 .btn-import:active{transform:scale(0.98);}
 .btn-import:disabled{opacity:0.6;transform:none;}
 .btn-reselect{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:13px;font-weight:600;margin-top:8px;min-height:44px;transition:background 0.15s;}
@@ -613,10 +281,9 @@ a{color:inherit;text-decoration:none;}
 .evbtn.active{border-color:var(--navy);background:rgba(30,58,95,0.05);color:var(--navy);}
 .evbtn i{display:block;font-size:22px;margin-bottom:6px;}
 .btn-s{width:100%;padding:14px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:white;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;margin-top:4px;box-shadow:0 4px 12px rgba(194,65,12,0.25);min-height:50px;font-family:var(--font-head);transition:transform 0.15s,box-shadow 0.15s;}
-.btn-s:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(194,65,12,0.3);}
+.btn-s:hover{transform:translateY(-1px);}
 .btn-s:active{transform:scale(0.98);}
 .btn-g{background:linear-gradient(135deg,#16A34A,#15803D);box-shadow:0 4px 12px rgba(22,163,74,0.25);}
-.btn-g:hover{box-shadow:0 6px 16px rgba(22,163,74,0.3);}
 .btn-r{background:linear-gradient(135deg,#DC2626,#B91C1C);box-shadow:0 4px 12px rgba(220,38,38,0.25);}
 .divider{height:1px;background:var(--border);margin:22px 0;}
 .danger-zone-header{display:flex;align-items:center;gap:10px;background:#FFF5F5;border:1px solid #FECACA;border-radius:var(--radius);padding:12px 14px;margin-bottom:12px;}
@@ -660,23 +327,17 @@ a{color:inherit;text-decoration:none;}
 .vrc-stat{text-align:center;padding:10px 4px;border-radius:10px;}
 .vrc-stat-n{font-family:var(--font-head);font-size:18px;font-weight:800;}
 .vrc-stat-l{font-size:9px;font-weight:600;text-transform:uppercase;color:var(--muted);margin-top:2px;letter-spacing:0.3px;}
-.vrc-stat.st{background:#FFF7ED;}.vrc-stat.sc{background:#DBEAFE;}.vrc-stat.si{background:#DCFCE7;}
-.vrc-stat.sni{background:#FEE2E2;}.vrc-stat.sr{background:#FEF3C7;}.vrc-stat.scb{background:#FFEDD5;}.vrc-stat.snr{background:#F9FAFB;}
+.vrc-stat.st{background:#FFF7ED;}.vrc-stat.sc{background:#DBEAFE;}.vrc-stat.si{background:#DCFCE7;}.vrc-stat.sni{background:#FEE2E2;}.vrc-stat.sr{background:#FEF3C7;}.vrc-stat.scb{background:#FFEDD5;}.vrc-stat.snr{background:#F9FAFB;}
 .vrc-contacts-btn{width:100%;padding:12px;border:1.5px solid var(--navy);border-radius:10px;background:rgba(30,58,95,0.04);color:var(--navy);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;transition:background 0.15s;}
 .vrc-contacts-btn:hover{background:rgba(30,58,95,0.08);}
 .vrc-contacts{margin-top:10px;display:none;}
 .vrc-contacts.open{display:block;}
 .mini-card{background:var(--bg);border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;}
-.mini-card.sp{border-left-color:#D6D3D1;}.mini-card.sc{border-left-color:#2563EB;}.mini-card.si{border-left-color:#16A34A;}
-.mini-card.sni{border-left-color:#DC2626;}.mini-card.sr{border-left-color:#D97706;}.mini-card.scb{border-left-color:#EA580C;}.mini-card.snr{border-left-color:#9CA3AF;}
+.mini-card.sp{border-left-color:#D6D3D1;}.mini-card.sc{border-left-color:#2563EB;}.mini-card.si{border-left-color:#16A34A;}.mini-card.sni{border-left-color:#DC2626;}.mini-card.sr{border-left-color:#D97706;}.mini-card.scb{border-left-color:#EA580C;}.mini-card.snr{border-left-color:#9CA3AF;}
 .mini-name{font-size:13px;font-weight:600;color:var(--navy);}
 .mini-num{font-size:11px;color:var(--muted);font-family:var(--font-mono);}
 .mini-rmk{font-size:11px;color:var(--muted);font-style:italic;margin-top:2px;}
 .mini-sb{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
-
-/* ─────────────────────────────────────────────
-   MODALS
-───────────────────────────────────────────── */
 .mo{position:fixed;inset:0;background:rgba(0,0,0,0.52);z-index:200;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);}
 .mo.open{display:flex;}
 .ms{background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:20px 18px;width:100%;max-width:600px;max-height:92vh;max-height:92dvh;overflow-y:auto;animation:sup 0.25s cubic-bezier(0.34,1.56,0.64,1);padding-bottom:calc(20px + env(safe-area-inset-bottom));}
@@ -687,72 +348,19 @@ a{color:inherit;text-decoration:none;}
 .sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
 .so{padding:13px 8px;border:1.5px solid var(--border);border-radius:var(--radius);text-align:center;font-size:13px;font-weight:600;color:var(--muted);background:var(--surface);min-height:48px;transition:all 0.15s;}
 .so:hover{border-color:#94A3B8;color:var(--navy);}
-.so.a-p{border-color:#A8A29E;background:#F5F5F4;color:#44403C;}
-.so.a-c{border-color:#2563EB;background:#DBEAFE;color:#1D4ED8;}
-.so.a-i{border-color:#16A34A;background:#DCFCE7;color:#15803D;}
-.so.a-ni{border-color:#DC2626;background:#FEE2E2;color:#991B1B;}
-.so.a-r{border-color:#D97706;background:#FEF3C7;color:#92400E;}
-.so.a-cb{border-color:#EA580C;background:#FFEDD5;color:#C2410C;}
-.so.a-nr{border-color:#9CA3AF;background:#F9FAFB;color:#374151;}
+.so.a-p{border-color:#A8A29E;background:#F5F5F4;color:#44403C;}.so.a-c{border-color:#2563EB;background:#DBEAFE;color:#1D4ED8;}.so.a-i{border-color:#16A34A;background:#DCFCE7;color:#15803D;}.so.a-ni{border-color:#DC2626;background:#FEE2E2;color:#991B1B;}.so.a-r{border-color:#D97706;background:#FEF3C7;color:#92400E;}.so.a-cb{border-color:#EA580C;background:#FFEDD5;color:#C2410C;}.so.a-nr{border-color:#9CA3AF;background:#F9FAFB;color:#374151;}
 .btn-c{width:100%;padding:13px;background:var(--bg);color:var(--muted);border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;font-weight:600;margin-top:8px;min-height:48px;transition:background 0.15s;}
 .btn-c:hover{background:var(--border);}
 .confirm-icon{font-size:40px;text-align:center;margin-bottom:12px;}
 .confirm-camp-name{font-size:14px;font-weight:700;color:var(--navy);text-align:center;background:var(--bg);border-radius:8px;padding:8px 14px;margin-bottom:6px;}
-
-/* ─────────────────────────────────────────────
-   TOAST
-───────────────────────────────────────────── */
-.toast{
-  position:fixed;top:74px;left:50%;transform:translateX(-50%) translateY(-16px);
-  background:var(--navy2);color:white;padding:11px 20px;border-radius:var(--radius);
-  font-size:13px;font-weight:600;z-index:999;opacity:0;
-  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  pointer-events:none;white-space:nowrap;border-left:3px solid var(--gold);
-  max-width:90vw;text-align:center;box-shadow:var(--shadow-lg);
-}
+.toast{position:fixed;top:74px;left:50%;transform:translateX(-50%) translateY(-16px);background:var(--navy2);color:white;padding:11px 20px;border-radius:var(--radius);font-size:13px;font-weight:600;z-index:999;opacity:0;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;white-space:nowrap;border-left:3px solid var(--gold);max-width:90vw;text-align:center;box-shadow:var(--shadow-lg);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* ─────────────────────────────────────────────
-   EMPTY STATE
-───────────────────────────────────────────── */
 .empty{text-align:center;padding:52px 20px;}
 .empty i{font-size:44px;color:#CBD5E1;margin-bottom:14px;display:block;}
 .empty h3{font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--muted);}
 .empty p{font-size:13px;color:#94A3B8;margin-top:6px;line-height:1.5;}
 .ilog{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:var(--radius);padding:14px;margin-top:12px;font-size:13px;color:#166534;line-height:1.7;display:none;border-left:3px solid #16A34A;}
 .ilog.show{display:block;}
-
-/* ─────────────────────────────────────────────
-   DESKTOP OVERRIDES (≥ 900px)
-───────────────────────────────────────────── */
-@media(min-width:900px){
-  .top-header .hlogo,.top-header .htitle{display:none;}
-  .tab-bar{display:none;}
-  .page{padding:26px 32px 40px;}
-  .sgrid{grid-template-columns:repeat(4,1fr);}
-  .vstats{grid-template-columns:repeat(4,1fr);}
-  .vrc-grid{grid-template-columns:repeat(8,1fr);}
-  .rpt-summary{grid-template-columns:repeat(3,1fr);}
-  .mo .ms{border-radius:var(--radius-xl);max-height:80vh;margin:auto;}
-  .mo{align-items:center;}
-  .ms{max-width:480px;}
-  .page{padding-bottom:40px;}
-  .leads-sticky-top{position:static;margin:0;padding:0;}
-  #calling-overlay .cm-status-grid{grid-template-columns:repeat(4,1fr);}
-  #calling-overlay .cm-update{max-width:520px;margin:0 auto;width:100%;}
-}
-@media(max-width:899px){
-  .sidebar{display:none;}
-  .main-wrap{margin-left:0;}
-  .top-header .hlogo,.top-header .htitle{display:flex;}
-  .top-header .hright .ubadge{display:none;}
-}
-@media(min-width:1200px){
-  #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  #leads-list .cc{margin-bottom:0;}
-}
-
-/* ── WA CHOOSER ── */
 .wa-chooser-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:300;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px);}
 .wa-chooser-overlay.open{display:flex;}
 .wa-chooser-sheet{background:var(--surface);border-radius:var(--radius-xl) var(--radius-xl) 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));width:100%;max-width:600px;animation:sup 0.25s cubic-bezier(0.34,1.56,0.64,1);}
@@ -771,9 +379,6 @@ a{color:inherit;text-decoration:none;}
 .wa-send-btn{width:100%;padding:14px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#25D366,#1DB954);color:white;font-family:var(--font-head);font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(37,211,102,0.35);min-height:52px;cursor:pointer;}
 .wa-send-btn:disabled{opacity:0.5;cursor:not-allowed;}
 .wa-cancel-btn{width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted);font-size:14px;font-weight:600;margin-top:8px;min-height:44px;cursor:pointer;}
-@media(min-width:900px){.wa-chooser-sheet{border-radius:var(--radius-xl);max-width:480px;}.wa-chooser-overlay{align-items:center;}}
-
-/* ── EXPORT CHOOSER ── */
 .export-choice-card{display:flex;align-items:center;gap:12px;padding:13px 14px;border:2px solid var(--border);border-radius:var(--radius);margin-bottom:8px;cursor:pointer;transition:all 0.15s;background:var(--surface);}
 .export-choice-card:hover{border-color:#94A3B8;}
 .export-choice-card.selected{border-color:var(--navy);background:rgba(30,58,95,0.05);}
@@ -784,13 +389,37 @@ a{color:inherit;text-decoration:none;}
 .exc-meta{font-size:11px;color:var(--muted);margin-top:2px;}
 .exc-check{color:var(--navy);font-size:18px;display:none;}
 .export-choice-card.selected .exc-check{display:block;}
+@media(min-width:900px){
+  .top-header .hlogo,.top-header .htitle{display:none;}
+  .tab-bar{display:none;}
+  .page{padding:26px 32px 40px;}
+  .sgrid{grid-template-columns:repeat(4,1fr);}
+  .vstats{grid-template-columns:repeat(4,1fr);}
+  .vrc-grid{grid-template-columns:repeat(8,1fr);}
+  .mo .ms{border-radius:var(--radius-xl);max-height:80vh;margin:auto;}
+  .mo{align-items:center;}
+  .ms{max-width:480px;}
+  .leads-sticky-top{position:static;margin:0;padding:0;}
+  #calling-overlay .cm-status-grid{grid-template-columns:repeat(4,1fr);}
+  #calling-overlay .cm-update{max-width:520px;margin:0 auto;width:100%;}
+  .wa-chooser-sheet{border-radius:var(--radius-xl);max-width:480px;}
+  .wa-chooser-overlay{align-items:center;}
+}
+@media(max-width:899px){
+  .sidebar{display:none;}
+  .main-wrap{margin-left:0;}
+  .top-header .hlogo,.top-header .htitle{display:flex;}
+  .top-header .hright .ubadge{display:none;}
+}
+@media(min-width:1200px){
+  #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  #leads-list .cc{margin-bottom:0;}
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════
-     LOGIN
-═══════════════════════════════════ -->
+<!-- LOGIN -->
 <div id="loginPage">
   <div class="login-grid"></div>
   <div class="login-left">
@@ -810,14 +439,8 @@ a{color:inherit;text-decoration:none;}
     <div class="lcard">
       <div class="login-h">Staff Sign In</div>
       <p class="login-sub">Enter your Pramukh Academy credentials.</p>
-      <div class="fg">
-        <label>Email Address</label>
-        <div class="iw"><i class="fas fa-envelope"></i><input type="email" id="lemail" placeholder="your@email.com" autocomplete="email"/></div>
-      </div>
-      <div class="fg">
-        <label>Password</label>
-        <div class="iw"><i class="fas fa-lock"></i><input type="password" id="lpass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-      </div>
+      <div class="fg"><label>Email Address</label><div class="iw"><i class="fas fa-envelope"></i><input type="email" id="lemail" placeholder="your@email.com" autocomplete="email"/></div></div>
+      <div class="fg"><label>Password</label><div class="iw"><i class="fas fa-lock"></i><input type="password" id="lpass" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/></div></div>
       <button class="btn-p" id="lbtn" onclick="doLogin()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
       <div class="errmsg" id="lerr"></div>
       <div class="ldivider">BAPS Pramukh Academy · Atladara, Vadodara</div>
@@ -825,13 +448,9 @@ a{color:inherit;text-decoration:none;}
   </div>
 </div>
 
-<!-- ═══════════════════════════════════
-     APP SHELL
-═══════════════════════════════════ -->
+<!-- APP SHELL -->
 <div id="app">
 <div class="app-inner">
-
-  <!-- SIDEBAR (desktop) -->
   <aside class="sidebar">
     <div class="sb-top">
       <div class="sb-logo-circle"><img src="logo.png" alt="PA"/></div>
@@ -849,32 +468,25 @@ a{color:inherit;text-decoration:none;}
       <button class="sb-item" id="sbt-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
     </nav>
     <div class="sb-bottom">
-      <div class="sb-user-card">
-        <div class="sb-user-dot"></div>
-        <div class="sb-user-info"><div class="sb-uname" id="sb-uname">User</div><div class="sb-urole" id="sb-urole">Volunteer</div></div>
-      </div>
+      <div class="sb-user-card"><div class="sb-user-dot"></div><div class="sb-user-info"><div class="sb-uname" id="sb-uname">User</div><div class="sb-urole" id="sb-urole">Volunteer</div></div></div>
       <button class="sb-logout" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
     </div>
   </aside>
 
-  <!-- MAIN WRAP -->
   <div class="main-wrap">
-
-    <!-- TOP HEADER -->
     <div class="top-header">
       <div class="hi">
         <div class="hl">
-          <div class="hlogo"><img src="logo.png" alt="PA" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'color:white;font-family:var(--font-head);font-size:13px;font-weight:800;\'>PA</span>'"/></div>
+          <div class="hlogo"><img src="logo.png" alt="PA" onerror="this.style.display='none'"/></div>
           <div class="htitle"><h2>Pramukh Outreach</h2><p id="hcamp-sub">BAPS Pramukh Academy</p></div>
         </div>
         <div class="hright">
           <div class="ubadge"><div class="udot"></div><span id="huser">User</span></div>
-          <button class="ibtn" onclick="doLogout()" title="Sign out"><i class="fas fa-sign-out-alt"></i></button>
+          <button class="ibtn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
         </div>
       </div>
     </div>
 
-    <!-- PAGES -->
     <div class="pages-container">
 
       <!-- HOME -->
@@ -882,10 +494,7 @@ a{color:inherit;text-decoration:none;}
         <div class="wb">
           <h3 id="wmsg">Welcome! 🙏</h3>
           <p>Track outreach calls · Help students grow with Pramukh Academy</p>
-          <div class="echips">
-            <span class="echip">📅 Leadership Carnival · 10–13 May</span>
-            <span class="echip">⭐ PVC 4.0 · 31 May–3 Jun</span>
-          </div>
+          <div class="echips"><span class="echip">📅 Leadership Carnival · 10–13 May</span><span class="echip">⭐ PVC 4.0 · 31 May–3 Jun</span></div>
         </div>
         <div id="home-camp-filter-wrap" style="margin-bottom:14px;display:none;">
           <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:7px;">📁 Campaign</div>
@@ -903,37 +512,26 @@ a{color:inherit;text-decoration:none;}
         <div id="vol-prog-list"></div>
       </div>
 
-      <!-- MY LEADS — mobile-first redesign -->
+      <!-- MY LEADS -->
       <div class="page" id="pg-leads">
-
-        <!-- Sticky search + filter bar -->
         <div class="leads-sticky-top">
-          <!-- Calling session banner — inside sticky so always visible -->
           <div class="call-session-banner" id="callSessionBanner" onclick="startCallingSession()" style="display:none">
             <div class="csb-icon"><i class="fas fa-phone-volume"></i></div>
-            <div class="csb-info">
-              <div class="csb-title">Start Calling Session</div>
-              <div class="csb-sub">Work through pending contacts one by one</div>
-            </div>
+            <div class="csb-info"><div class="csb-title">Start Calling Session</div><div class="csb-sub">Work through pending contacts one by one</div></div>
             <div class="csb-count" id="callSessionCount">0</div>
           </div>
           <div class="sw"><i class="fas fa-search"></i><input type="text" id="srch" placeholder="Search name or number…" oninput="renderLeads()"/></div>
-          <!-- All filters in one scrollable row -->
-          <div class="filter-row" id="fb-campaign">
-            <span class="filter-label">Camp</span>
-            <button class="fc active" onclick="setFC('all',this)">All</button>
-          </div>
+          <div class="filter-row" id="fb-campaign"><span class="filter-label">Camp</span><button class="fc active" onclick="setFC('all',this)">All</button></div>
           <div class="filter-row" style="margin-top:6px;padding-bottom:8px;">
-            <span class="filter-label">Status</span>
-            <div class="filter-divider"></div>
-            <button class="fc active" id="fst-all" onclick="setF('all',this,'fb-status-hidden')">All</button>
-            <button class="fc" id="fst-pending" onclick="setF('pending',this,'fb-status-hidden')">⬜ Pending</button>
-            <button class="fc" id="fst-called" onclick="setF('called',this,'fb-status-hidden')">📞 Called</button>
-            <button class="fc" id="fst-interested" onclick="setF('interested',this,'fb-status-hidden')">👍 Interested</button>
-            <button class="fc" id="fst-ni" onclick="setF('not-interested',this,'fb-status-hidden')">👎 Not Int.</button>
-            <button class="fc" id="fst-nr" onclick="setF('not-reachable',this,'fb-status-hidden')">📵 Unreachable</button>
-            <button class="fc" id="fst-cb" onclick="setF('callback',this,'fb-status-hidden')">🔄 Callback</button>
-            <button class="fc" id="fst-reg" onclick="setF('registered',this,'fb-status-hidden')">✅ Registered</button>
+            <span class="filter-label">Status</span><div class="filter-divider"></div>
+            <button class="fc active" id="fst-all" onclick="setF('all',this)">All</button>
+            <button class="fc" id="fst-pending" onclick="setF('pending',this)">⬜ Pending</button>
+            <button class="fc" id="fst-called" onclick="setF('called',this)">📞 Called</button>
+            <button class="fc" id="fst-interested" onclick="setF('interested',this)">👍 Interested</button>
+            <button class="fc" id="fst-ni" onclick="setF('not-interested',this)">👎 Not Int.</button>
+            <button class="fc" id="fst-nr" onclick="setF('not-reachable',this)">📵 Unreachable</button>
+            <button class="fc" id="fst-cb" onclick="setF('callback',this)">🔄 Callback</button>
+            <button class="fc" id="fst-reg" onclick="setF('registered',this)">✅ Registered</button>
             <div class="filter-divider"></div>
             <span class="filter-label">Event</span>
             <button class="fc active" id="fev-all" onclick="setEF('all',this)">All</button>
@@ -942,23 +540,16 @@ a{color:inherit;text-decoration:none;}
             <button class="fc" id="fev-unknown" onclick="setEF('unknown',this)">❓ Unknown</button>
           </div>
         </div>
-
         <div class="sh"><div class="st"><i class="fas fa-list"></i> Contacts</div><span class="bc" id="lead-count">0</span></div>
         <div id="leads-list"></div>
-        <div class="empty" id="leads-empty" style="display:none">
-          <i class="fas fa-inbox"></i>
-          <h3>No contacts found</h3>
-          <p>Contacts assigned to you appear here.<br/>Try adjusting your filters above.</p>
-        </div>
+        <div class="empty" id="leads-empty" style="display:none"><i class="fas fa-inbox"></i><h3>No contacts found</h3><p>Contacts assigned to you appear here.<br/>Try adjusting your filters above.</p></div>
       </div>
 
-      <!-- REPORTS (admin) -->
+      <!-- REPORTS -->
       <div class="page" id="pg-reports">
         <div class="rpt-banner"><h3>📊 Volunteer Reports</h3><p>Filter by campaign · Tap volunteer to expand their stats</p></div>
         <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:7px;">📁 Campaign</div>
-        <div class="rpt-ev-filter" id="rpt-camp-filter">
-          <button class="rpt-ef active" onclick="setRptCamp('all',this)">🌐 All</button>
-        </div>
+        <div class="rpt-ev-filter" id="rpt-camp-filter"><button class="rpt-ef active" onclick="setRptCamp('all',this)">🌐 All</button></div>
         <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:7px;margin-top:6px;">🎪 Event</div>
         <div class="rpt-ev-filter" id="rpt-ev-filter">
           <button class="rpt-ef active" onclick="setRptEv('all',this)">🌐 All Events</button>
@@ -975,22 +566,25 @@ a{color:inherit;text-decoration:none;}
         <div class="empty" id="rpt-empty" style="display:none"><i class="fas fa-chart-bar"></i><h3>No data yet</h3><p>Upload contacts to see volunteer reports here</p></div>
       </div>
 
-      <!-- UPLOAD (admin) -->
+      <!-- UPLOAD -->
       <div class="page" id="pg-upload">
         <div class="sh"><div class="st"><i class="fas fa-upload"></i> Upload Contacts</div></div>
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">Each upload = one campaign · Old data is preserved ✅</p>
+
         <div class="stepbox">
           <span class="stepnum">STEP 1</span>
           <div class="steplabel">Campaign Name</div>
           <div class="fg" style="margin-bottom:6px;"><div class="iw" style="position:relative;"><i class="fas fa-tag" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;"></i><input type="text" id="camp-name" placeholder="e.g. LC Wave 1, PVC Batch 2" style="width:100%;padding:13px 16px 13px 44px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:15px;outline:none;background:#FAFBFC;color:var(--text);transition:border-color 0.2s;"/></div></div>
           <small style="color:var(--muted);font-size:11px;">📌 Give a unique name · This helps separate campaigns later</small>
         </div>
+
         <div class="stepbox">
           <span class="stepnum">STEP 2</span>
           <div class="steplabel">Enter Volunteer Emails</div>
           <div class="fg" style="margin-bottom:6px;"><textarea id="vol-emails" rows="4" placeholder="volunteer1@gmail.com&#10;volunteer2@gmail.com&#10;volunteer3@gmail.com"></textarea></div>
           <small style="color:var(--muted);font-size:11px;">📌 One email per line · Must match Firebase Auth emails exactly</small>
         </div>
+
         <div class="stepbox">
           <span class="stepnum">STEP 3</span>
           <div class="steplabel">Select Event</div>
@@ -1000,12 +594,19 @@ a{color:inherit;text-decoration:none;}
             <button class="evbtn" id="ev-unknown" onclick="selectEv('unknown')"><i class="fas fa-question-circle"></i>Unknown<br/><small style="font-weight:400;font-size:11px;">Volunteer will decide</small></button>
           </div>
         </div>
+
+        <!-- FIX: Added missing camp-wa-msg textarea (was causing silent JS error) -->
         <div class="stepbox">
           <span class="stepnum">STEP 4</span>
+          <div class="steplabel">WhatsApp Message for this Campaign</div>
+          <div class="fg" style="margin-bottom:6px;"><textarea id="camp-wa-msg" rows="6" placeholder="Type the WhatsApp message volunteers will send for this campaign...&#10;&#10;Supports emojis, links, formatting exactly as typed." style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:vertical;transition:border-color 0.2s;min-height:130px;"></textarea></div>
+          <small style="color:var(--muted);font-size:11px;">📌 Optional · Can be added or edited later from Campaign Messages section below</small>
+        </div>
+
+        <div class="stepbox">
+          <span class="stepnum">STEP 5</span>
           <div class="steplabel">Choose CSV File</div>
-          <div id="file-picker-area">
-            <label for="csvfile" class="upa"><i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p><small>Columns: Name, Contact · Row 1 = header</small></label>
-          </div>
+          <div id="file-picker-area"><label for="csvfile" class="upa"><i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p><small>Columns: Name, Contact · Row 1 = header</small></label></div>
           <input type="file" id="csvfile" accept=".csv" style="display:none" onchange="previewCSV(event)"/>
           <div class="file-preview" id="file-preview">
             <div class="fp-top"><div class="fp-icon"><i class="fas fa-file-csv"></i></div><div><div class="fp-name" id="fp-filename">file.csv</div><div class="fp-meta" id="fp-meta">0 contacts ready</div></div></div>
@@ -1019,37 +620,32 @@ a{color:inherit;text-decoration:none;}
           </div>
           <div class="ilog" id="ilog"></div>
         </div>
+
         <div class="divider"></div>
         <div class="sh"><div class="st"><i class="fas fa-download"></i> Export Data</div></div>
         <div class="stepbox">
           <div class="steplabel">📥 Download Master File</div>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Downloads all contacts from <b>all campaigns</b> with status, remarks, volunteer name, and callback date.</p>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Downloads all contacts with status, remarks, volunteer name, and callback date.</p>
           <button class="btn-s btn-g" onclick="openExportChooser()"><i class="fas fa-file-csv"></i> Export All Campaigns (CSV)</button>
         </div>
-         <!-- EXPORT CHOOSER MODAL -->
-<div class="mo" id="export-chooser-modal">
-  <div class="ms">
-    <div class="mh"></div>
-    <div class="mt">📥 Export Campaign Data</div>
-    <div class="msub">Select which campaign master file to download</div>
-    <div class="export-choice-card" id="exc-all" onclick="selectExportCamp('all',this)">
-      <div class="exc-icon"><i class="fas fa-layer-group"></i></div>
-      <div class="exc-info">
-        <div class="exc-name">All Campaigns</div>
-        <div class="exc-meta">Download complete master data</div>
-      </div>
-      <div class="exc-check"><i class="fas fa-check-circle"></i></div>
-    </div>
-    <div id="exc-camp-list"></div>
-    <button class="btn-s btn-g" id="exc-download-btn" onclick="confirmExport()" style="margin-top:16px;" disabled>
-      <i class="fas fa-download"></i> Download CSV
-    </button>
-    <button class="btn-c" onclick="closeExportChooser()">Cancel</button>
-  </div>
-</div>
-        <div class="divider"></div>
 
-        <!-- EDIT WA MESSAGE SECTION -->
+        <div class="mo" id="export-chooser-modal">
+          <div class="ms">
+            <div class="mh"></div>
+            <div class="mt">📥 Export Campaign Data</div>
+            <div class="msub">Select which campaign master file to download</div>
+            <div class="export-choice-card" id="exc-all" onclick="selectExportCamp('all',this)">
+              <div class="exc-icon"><i class="fas fa-layer-group"></i></div>
+              <div class="exc-info"><div class="exc-name">All Campaigns</div><div class="exc-meta">Download complete master data</div></div>
+              <div class="exc-check"><i class="fas fa-check-circle"></i></div>
+            </div>
+            <div id="exc-camp-list"></div>
+            <button class="btn-s btn-g" id="exc-download-btn" onclick="confirmExport()" style="margin-top:16px;" disabled><i class="fas fa-download"></i> Download CSV</button>
+            <button class="btn-c" onclick="closeExportChooser()">Cancel</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
         <div class="sh"><div class="st"><i class="fas fa-comment-dots"></i> Campaign WhatsApp Messages</div></div>
         <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Edit the WhatsApp message for any existing campaign anytime.</p>
         <div id="edit-msg-list"><div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px">Loading campaigns...</div></div>
@@ -1059,36 +655,24 @@ a{color:inherit;text-decoration:none;}
         <div class="camp-list" id="danger-camp-list"><div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div></div>
       </div>
 
-      <!-- PAYMENT LINKS (Admin Only) -->
+      <!-- PAYMENT LINKS -->
       <div class="page" id="pg-paylinks">
         <div class="sh"><div class="st"><i class="fas fa-link"></i> Payment Links</div></div>
-        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Upload a CSV with student Name, Contact &amp; unique Payment Link. Volunteers will automatically get the correct payment message on WhatsApp.</p>
-
-        <!-- Upload CSV Step -->
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Upload a CSV with student Name, Contact &amp; unique Payment Link.</p>
         <div class="stepbox">
           <div class="stepnum">STEP 1</div>
           <div class="steplabel">Upload Payment Links CSV</div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">CSV format: <code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:11px;">Name, Contact, PaymentLink</code> — one row per student</p>
-          <label class="upa" style="display:block;cursor:pointer;" onclick="document.getElementById('pay-file-input').click()">
-            <i class="fas fa-file-csv"></i>
-            <p>Tap to choose CSV file</p>
-            <small>First row = header row (will be skipped)</small>
-          </label>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">CSV format: <code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-size:11px;">Name, Contact, PaymentLink</code></p>
+          <label class="upa" style="display:block;cursor:pointer;" onclick="document.getElementById('pay-file-input').click()"><i class="fas fa-file-csv"></i><p>Tap to choose CSV file</p><small>First row = header row (will be skipped)</small></label>
           <input type="file" id="pay-file-input" accept=".csv" style="display:none" onchange="handlePaymentCSV(event)">
           <p id="pay-csv-count" style="font-size:12px;color:var(--success);font-weight:600;margin-top:8px;"></p>
         </div>
-
-        <!-- Preview Table -->
         <div class="stepbox" id="pay-preview-box" style="display:none;">
           <div class="stepnum">STEP 2</div>
-          <div class="steplabel">Preview & Confirm</div>
+          <div class="steplabel">Preview &amp; Confirm</div>
           <div id="pay-preview" style="overflow-x:auto;border-radius:10px;border:1px solid var(--border);margin-bottom:12px;"></div>
-          <button id="pay-upload-btn" onclick="uploadPaymentLinks()" style="display:none;width:100%;padding:14px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-family:var(--font-head);font-size:15px;font-weight:700;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 16px rgba(22,163,74,0.3);min-height:52px;cursor:pointer;">
-            <i class="fas fa-cloud-upload-alt"></i> Save to Firebase
-          </button>
+          <button id="pay-upload-btn" onclick="uploadPaymentLinks()" style="display:none;width:100%;padding:14px;border:none;border-radius:var(--radius);background:linear-gradient(135deg,#16A34A,#15803D);color:white;font-family:var(--font-head);font-size:15px;font-weight:700;align-items:center;justify-content:center;gap:10px;min-height:52px;cursor:pointer;"><i class="fas fa-cloud-upload-alt"></i> Save to Firebase</button>
         </div>
-
-        <!-- Saved Links Table -->
         <div class="stepbox">
           <div class="stepnum">SAVED</div>
           <div class="steplabel">Currently Saved Payment Links</div>
@@ -1111,7 +695,7 @@ a{color:inherit;text-decoration:none;}
         </div>
         <div class="infobox" id="admin-info" style="display:none">
           <div class="st" style="margin-bottom:10px"><i class="fas fa-info-circle"></i> How to Add Volunteers</div>
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password. They can login immediately.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;">Go to <b>Firebase Console → Authentication → Users → Add User</b>. Enter volunteer email + password.</p>
         </div>
         <div class="infobox">
           <div class="st" style="margin-bottom:10px"><i class="fas fa-map-marker-alt"></i> Academy Address</div>
@@ -1122,7 +706,6 @@ a{color:inherit;text-decoration:none;}
 
     </div><!-- end pages-container -->
 
-    <!-- TAB BAR (mobile) -->
     <div class="tab-bar">
       <button class="ti active" id="tab-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
       <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-phone-alt"></i><span>Leads</span></button>
@@ -1131,82 +714,30 @@ a{color:inherit;text-decoration:none;}
       <button class="ti" id="tab-paylinks" onclick="switchTab('pg-paylinks','tab-paylinks')" style="display:none"><i class="fas fa-link"></i><span>Pay Links</span></button>
       <button class="ti" id="tab-profile" onclick="switchTab('pg-profile','tab-profile')"><i class="fas fa-user-circle"></i><span>Profile</span></button>
     </div>
-
-  </div><!-- end main-wrap -->
-</div><!-- end app-inner -->
-</div><!-- end app -->
-
-<!-- ═══════════════════════════════════
-     CALLING MODE OVERLAY
-═══════════════════════════════════ -->
-<!-- WA CAMPAIGN CHOOSER -->
-<div class="wa-chooser-overlay" id="wa-chooser-modal">
-  <div class="wa-chooser-sheet">
-    <div class="wa-chooser-handle"></div>
-    <div class="wa-chooser-title">📲 Send WhatsApp Message</div>
-    <div class="wa-chooser-sub">Which event is this student interested in?</div>
-    <div class="wa-chooser-grid">
-      <button class="wa-choice-btn lc-choice" id="wa-choice-lc" onclick="waSelectCampaign('lc')">
-        <i class="fas fa-users"></i>
-        <div class="wc-name">Leadership Carnival</div>
-        <div class="wc-date">10–13 May 2026</div>
-      </button>
-      <button class="wa-choice-btn pvc-choice" id="wa-choice-pvc" onclick="waSelectCampaign('pvc')">
-        <i class="fas fa-star"></i>
-        <div class="wc-name">PVC 4.0</div>
-        <div class="wc-date">31 May–3 Jun 2026</div>
-      </button>
-    </div>
-    <!-- Special Campaign: Zoom Meeting Reminder -->
-    <div class="wa-zoom-row">
-      <button class="wa-choice-btn zoom-choice" id="wa-choice-zoom" onclick="waSelectCampaign('zoom')" style="width:100%;flex-direction:row;gap:12px;justify-content:flex-start;padding:14px 16px;min-height:60px">
-        <i class="fas fa-video" style="font-size:20px;flex-shrink:0"></i>
-        <div style="text-align:left">
-          <div class="wc-name">🔔 Zoom Meeting Reminder</div>
-          <div class="wc-date">PVC 4.0 &nbsp;·&nbsp; आज रात 8:30 बजे</div>
-        </div>
-      </button>
-    </div>
-    <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled>
-      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
-    </button>
-    <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
   </div>
 </div>
+</div>
 
+<!-- CALLING OVERLAY -->
 <div id="calling-overlay">
-
-  <!-- Header with progress -->
   <div class="cm-header">
     <div class="cm-title">Calling Session</div>
     <div class="cm-progress-wrap"><div class="cm-progress" id="cm-progress" style="width:0%"></div></div>
     <div class="cm-count" id="cm-count">0 / 0</div>
     <button class="cm-close" onclick="closeCallingSession()"><i class="fas fa-times"></i></button>
   </div>
-
-  <!-- Contact area (visible during call) -->
   <div id="cm-contact-view" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
     <div class="cm-contact">
       <div class="cm-av"><span id="cm-av-ini">??</span></div>
       <div class="cm-name" id="cm-name">—</div>
       <div class="cm-phone" id="cm-phone">—</div>
-      <div class="cm-tags">
-        <span class="cm-tag event" id="cm-event-tag">—</span>
-        <span class="cm-tag" id="cm-camp-tag">—</span>
-      </div>
-      <div class="cm-past-rmk" id="cm-past-rmk" style="display:none">
-        <span>Previous note</span>
-        <span id="cm-past-rmk-text"></span>
-      </div>
+      <div class="cm-tags"><span class="cm-tag event" id="cm-event-tag">—</span><span class="cm-tag" id="cm-camp-tag">—</span></div>
+      <div class="cm-past-rmk" id="cm-past-rmk" style="display:none"><span>Previous note</span><span id="cm-past-rmk-text"></span></div>
     </div>
-
-    <!-- Dial button -->
     <div style="text-align:center;padding-bottom:8px;">
       <button class="cm-dial" id="cm-dial-btn" onclick="cmDial()"><i class="fas fa-phone"></i></button>
       <div class="cm-dial-label">Tap to call</div>
     </div>
-
-    <!-- Update section -->
     <div class="cm-update">
       <div class="cm-update-lbl">Call outcome</div>
       <div class="cm-status-grid">
@@ -1219,21 +750,15 @@ a{color:inherit;text-decoration:none;}
         <button class="cm-so" onclick="cmSelStatus('wrong-number',this)"><i class="fas fa-times-circle"></i>Wrong No.</button>
         <button class="cm-so" onclick="cmSelStatus('pending',this)"><i class="fas fa-clock"></i>Skip</button>
       </div>
-      <div id="cm-cb-grp">
-        <input type="datetime-local" id="cm-cb-dt" class="cm-cb-inp" placeholder="Callback date & time"/>
-      </div>
+      <div id="cm-cb-grp"><input type="datetime-local" id="cm-cb-dt" class="cm-cb-inp"/></div>
       <textarea class="cm-rmk" id="cm-rmk" rows="2" placeholder="Quick note (optional)…"></textarea>
       <div class="cm-actions">
         <button class="cm-btn-skip" onclick="cmSkip()"><i class="fas fa-forward"></i> Skip</button>
         <button class="cm-btn-save" id="cm-save-btn" onclick="cmSaveAndNext()"><i class="fas fa-check"></i> Save &amp; Next</button>
+      </div>
+      <button class="cm-wa-btn" onclick="cmOpenWA()"><i class="fab fa-whatsapp"></i> Send WhatsApp Message</button>
     </div>
-    <button class="cm-wa-btn" onclick="cmOpenWA()">
-      <i class="fab fa-whatsapp"></i> Send WhatsApp Message
-    </button>
   </div>
-</div>
-
-<!-- Done screen -->
   <div id="cm-done-view" class="cm-done" style="display:none">
     <i class="fas fa-trophy"></i>
     <h2>Session Complete!</h2>
@@ -1247,7 +772,25 @@ a{color:inherit;text-decoration:none;}
   </div>
 </div>
 
-<!-- UPDATE MODAL (regular flow, outside calling session) -->
+<!-- WA CHOOSER -->
+<div class="wa-chooser-overlay" id="wa-chooser-modal">
+  <div class="wa-chooser-sheet">
+    <div class="wa-chooser-handle"></div>
+    <div class="wa-chooser-title">📲 Send WhatsApp Message</div>
+    <div class="wa-chooser-sub">Which event is this student interested in?</div>
+    <div class="wa-chooser-grid">
+      <button class="wa-choice-btn lc-choice" id="wa-choice-lc" onclick="waSelectCampaign('lc')"><i class="fas fa-users"></i><div class="wc-name">Leadership Carnival</div><div class="wc-date">10–13 May 2026</div></button>
+      <button class="wa-choice-btn pvc-choice" id="wa-choice-pvc" onclick="waSelectCampaign('pvc')"><i class="fas fa-star"></i><div class="wc-name">PVC 4.0</div><div class="wc-date">31 May–3 Jun 2026</div></button>
+    </div>
+    <div class="wa-zoom-row">
+      <button class="wa-choice-btn zoom-choice" id="wa-choice-zoom" onclick="waSelectCampaign('zoom')" style="width:100%;flex-direction:row;gap:12px;justify-content:flex-start;padding:14px 16px;min-height:60px"><i class="fas fa-video" style="font-size:20px;flex-shrink:0"></i><div style="text-align:left"><div class="wc-name">🔔 Zoom Meeting Reminder</div><div class="wc-date">PVC 4.0 · आज रात 8:30 बजे</div></div></button>
+    </div>
+    <button class="wa-send-btn" id="wa-send-confirm" onclick="waConfirmSend()" disabled><i class="fab fa-whatsapp"></i> Send WhatsApp Message</button>
+    <button class="wa-cancel-btn" onclick="closeWAChooser()">Cancel</button>
+  </div>
+</div>
+
+<!-- UPDATE MODAL -->
 <div class="mo" id="upd-modal">
   <div class="ms">
     <div class="mh"></div>
@@ -1291,24 +834,27 @@ a{color:inherit;text-decoration:none;}
   </div>
 </div>
 
+<!-- EDIT WA MESSAGE MODAL -->
+<div class="mo" id="edit-msg-modal">
+  <div class="ms">
+    <div class="mh"></div>
+    <div class="mt">✏️ Edit WhatsApp Message</div>
+    <div class="msub" id="edit-msg-camp-label">Campaign: —</div>
+    <textarea id="edit-msg-input" rows="8" placeholder="Type your WhatsApp message here..." style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:vertical;font-family:var(--font-body);min-height:150px;transition:border-color 0.2s;margin-bottom:8px"></textarea>
+    <small style="color:var(--muted);font-size:11px;display:block;margin-bottom:14px">⚡ Supports emojis, *bold*, and links. Exactly as typed.</small>
+    <button class="btn-s btn-g" onclick="saveEditedMsg()"><i class="fas fa-save"></i> Save Message</button>
+    <button class="btn-c" onclick="closeEditMsgModal()" style="margin-top:8px">Cancel</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
-<!-- ═══════════════════════════════════
-     FIREBASE + APP LOGIC
-═══════════════════════════════════ -->
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import{getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import{getFirestore,collection,doc,updateDoc,setDoc,getDocs,deleteDoc,onSnapshot,writeBatch,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,doc,updateDoc,setDoc,getDocs,deleteDoc,onSnapshot,writeBatch}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const firebaseConfig={
-  apiKey:"AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8",
-  authDomain:"pramukh-outreach.firebaseapp.com",
-  projectId:"pramukh-outreach",
-  storageBucket:"pramukh-outreach.firebasestorage.app",
-messagingSenderId:"172546492205",
-appId:"1:172546492205:web:ab60b62b6f96d71af1f5a4"
-}; 
+const firebaseConfig={apiKey:"AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8",authDomain:"pramukh-outreach.firebaseapp.com",projectId:"pramukh-outreach",storageBucket:"pramukh-outreach.firebasestorage.app",messagingSenderId:"172546492205",appId:"1:172546492205:web:ab60b62b6f96d71af1f5a4"};
 const ADMIN_EMAILS=["apurvjani2020@gmail.com"];
 const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
@@ -1318,56 +864,16 @@ let ME=null,IS_ADMIN=false,VOL_NAME="";
 let ALL_LEADS=[],CUR_LEAD_ID=null,SEL_STATUS="";
 let F_STATUS="all",F_EVENT="all",F_CAMP="all";
 let SEL_EVENT="lc",RPT_EV="all",RPT_CAMP="all";
+let HOME_CAMP="all",PENDING_CONTACTS=[],PAYMENT_LINKS_MAP={};
+// FIX: Single declaration of WA_MESSAGES — was scattered and duplicated
+let WA_MESSAGES={};
 let WA_PENDING_NUM="",WA_PENDING_NAME="",WA_CHOSEN_CAMP="",WA_PENDING_CAMP="";
-
-// ── LOAD CAMPAIGN WA MESSAGES ──
-async function loadCampaignMessages(){
-  try{
-    const snap=await getDocs(collection(db,"campaigns_meta"));
-    snap.forEach(d=>{
-      const data=d.data();
-      if(data.waMessage) WA_MESSAGES[d.id]=data.waMessage;
-    });
-    console.log("✅ Campaign WA messages loaded:",Object.keys(WA_MESSAGES).length);
-    renderEditMsgList();
-  }catch(e){
-    console.warn("Could not load campaign messages:",e);
-    renderEditMsgList();
-  }
-}
-
-window.waSelectCampaign=(camp)=>{
-  WA_CHOSEN_CAMP=camp;
-  document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
-  document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
-  document.getElementById("wa-choice-zoom").classList.toggle("selected",camp==="zoom");
-  document.getElementById("wa-send-confirm").disabled=false;
-};
-window.waConfirmSend=()=>{
-  if(!WA_CHOSEN_CAMP)return;
-  document.getElementById("wa-chooser-modal").classList.remove("open");
-  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP,WA_PENDING_CAMP||"");
-}
-window.closeWAChooser=()=>{
-  document.getElementById("wa-chooser-modal").classList.remove("open");
-};
-let WA_MESSAGES={};  // campaign name → whatsapp message
-let HOME_CAMP="all";
-let PENDING_CONTACTS=[];
-let PAYMENT_LINKS_MAP={};
-
-// ── CALLING SESSION STATE ──
 let CM_QUEUE=[],CM_IDX=0,CM_STATUS="",CM_SESSION_STATS={called:0,interested:0,registered:0};
+let EDIT_MSG_CAMP="";
+let confirmCallback=null;
 
 // ── CONFIRM MODAL ──
-let confirmCallback=null;
-window.showConfirm=(title,campName,msg,cb)=>{
-  document.getElementById("confirm-title").textContent=title;
-  document.getElementById("confirm-camp-name").textContent="📁 "+campName;
-  document.getElementById("confirm-msg").textContent=msg;
-  confirmCallback=cb;
-  document.getElementById("confirm-modal").classList.add("open");
-};
+window.showConfirm=(title,campName,msg,cb)=>{document.getElementById("confirm-title").textContent=title;document.getElementById("confirm-camp-name").textContent="📁 "+campName;document.getElementById("confirm-msg").textContent=msg;confirmCallback=cb;document.getElementById("confirm-modal").classList.add("open");};
 window.closeConfirm=()=>{document.getElementById("confirm-modal").classList.remove("open");confirmCallback=null;};
 document.getElementById("confirm-ok-btn").onclick=()=>{closeConfirm();if(confirmCallback)confirmCallback();};
 
@@ -1397,10 +903,10 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
     document.getElementById("sb-uname").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("sb-urole").textContent=IS_ADMIN?"Administrator":"Volunteer";
-    if(IS_ADMIN){
-      ["tab-upload","tab-reports","tab-paylinks","sbt-upload","sbt-reports","sbt-paylinks","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});
-    }
+    if(IS_ADMIN){["tab-upload","tab-reports","tab-paylinks","sbt-upload","sbt-reports","sbt-paylinks","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});}
+    // FIX: All three init calls now present after login
     listenLeads();
+    loadCampaignMessages();
     loadPaymentLinks();
   }else{
     ME=null;
@@ -1411,19 +917,23 @@ onAuthStateChanged(auth,user=>{
   }
 });
 
-// ── FIRESTORE ──
 function listenLeads(){
   onSnapshot(collection(db,"outreach_leads"),snap=>{
     ALL_LEADS=snap.docs.map(d=>({id:d.id,...d.data()}));
-    buildCampaignFilters();
-    renderStats();
-    renderLeads();
-    renderCallbacks();
+    buildCampaignFilters();renderStats();renderLeads();renderCallbacks();
     if(IS_ADMIN){renderVolProgress();renderReports();renderDangerCamps();}
   });
 }
 
-// ── PAYMENT LINKS ──
+// FIX: Single clean loadCampaignMessages — was defined twice
+async function loadCampaignMessages(){
+  try{
+    const snap=await getDocs(collection(db,"campaigns_meta"));
+    snap.forEach(d=>{const data=d.data();if(data.waMessage)WA_MESSAGES[d.id]=data.waMessage;});
+    renderEditMsgList();
+  }catch(e){console.warn("Could not load campaign messages:",e);renderEditMsgList();}
+}
+
 async function loadPaymentLinks(){
   try{
     const snap=await getDocs(collection(db,"paymentLinks"));
@@ -1434,171 +944,62 @@ async function loadPaymentLinks(){
 }
 
 window.handlePaymentCSV=(e)=>{
-  const file=e.target.files[0]; if(!file)return;
+  const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=(ev)=>{
     const lines=ev.target.result.split("\n").filter(l=>l.trim());
     const rows=[];
-    lines.forEach((line,i)=>{
-      if(i===0)return;// skip header
-      const parts=line.split(",");
-      const name=(parts[0]||"").trim();
-      const contact=(parts[1]||"").trim().replace(/\D/g,"");
-      const link=(parts.slice(2).join(",")).trim().replace(/^"|"$/g,"");
-      if(contact&&link)rows.push({name,contact,link});
-    });
-    window._PAY_ROWS=rows;
-    renderPaymentPreview(rows);
+    lines.forEach((line,i)=>{if(i===0)return;const parts=line.split(",");const name=(parts[0]||"").trim();const contact=(parts[1]||"").trim().replace(/\D/g,"");const link=(parts.slice(2).join(",")).trim().replace(/^"|"$/g,"");if(contact&&link)rows.push({name,contact,link});});
+    window._PAY_ROWS=rows;renderPaymentPreview(rows);
   };
   reader.readAsText(file);
 };
-
 function renderPaymentPreview(rows){
-  const el=document.getElementById("pay-preview");
-  const countEl=document.getElementById("pay-csv-count");
+  const el=document.getElementById("pay-preview");const countEl=document.getElementById("pay-csv-count");
   if(!rows||rows.length===0){el.style.display="none";return;}
   countEl.textContent=rows.length+" contacts loaded";
-  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;">
-    <thead><tr style="background:var(--navy);color:white;">
-      <th style="padding:8px 10px;text-align:left;">Name</th>
-      <th style="padding:8px 10px;text-align:left;">Contact</th>
-      <th style="padding:8px 10px;text-align:left;">Payment Link</th>
-    </tr></thead><tbody>`;
-  rows.forEach(r=>{
-    html+=`<tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:8px 10px;">${r.name}</td>
-      <td style="padding:8px 10px;font-family:var(--font-mono);">${r.contact}</td>
-      <td style="padding:8px 10px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${r.link}" target="_blank" style="color:var(--navy);font-size:11px;">${r.link}</a></td>
-    </tr>`;
-  });
-  html+=`</tbody></table>`;
-  el.innerHTML=html;
-  el.style.display="block";
-  document.getElementById("pay-upload-btn").style.display="flex";
-  document.getElementById("pay-preview-box").style.display="block";
+  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="background:var(--navy);color:white;"><th style="padding:8px 10px;text-align:left;">Name</th><th style="padding:8px 10px;text-align:left;">Contact</th><th style="padding:8px 10px;text-align:left;">Link</th></tr></thead><tbody>`;
+  rows.forEach(r=>{html+=`<tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 10px;">${r.name}</td><td style="padding:8px 10px;font-family:var(--font-mono);">${r.contact}</td><td style="padding:8px 10px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${r.link}" target="_blank" style="color:var(--navy);font-size:11px;">${r.link}</a></td></tr>`;});
+  html+=`</tbody></table>`;el.innerHTML=html;el.style.display="block";
+  document.getElementById("pay-upload-btn").style.display="flex";document.getElementById("pay-preview-box").style.display="block";
 }
-
 function renderPaymentLinksTable(){
-  const keys=Object.keys(PAYMENT_LINKS_MAP);
-  const el=document.getElementById("pay-saved-list");
-  if(!el)return;
+  const keys=Object.keys(PAYMENT_LINKS_MAP);const el=document.getElementById("pay-saved-list");if(!el)return;
   if(keys.length===0){el.innerHTML='<p style="font-size:13px;color:var(--muted);text-align:center;padding:16px;">No payment links saved yet.</p>';return;}
-  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;">
-    <thead><tr style="background:var(--navy);color:white;">
-      <th style="padding:8px 10px;text-align:left;">Contact</th>
-      <th style="padding:8px 10px;text-align:left;">Payment Link</th>
-      <th style="padding:8px 10px;text-align:center;">Remove</th>
-    </tr></thead><tbody>`;
-  keys.forEach(contact=>{
-    const link=PAYMENT_LINKS_MAP[contact];
-    html+=`<tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:8px 10px;font-family:var(--font-mono);">${contact}</td>
-      <td style="padding:8px 10px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${link}" target="_blank" style="color:var(--navy);font-size:11px;">${link}</a></td>
-      <td style="padding:8px 10px;text-align:center;"><button onclick="removePayLink('${contact}')" style="background:#FEE2E2;color:#DC2626;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">✕</button></td>
-    </tr>`;
-  });
-  html+=`</tbody></table>`;
-  el.innerHTML=html;
+  let html=`<table style="width:100%;border-collapse:collapse;font-size:13px;"><thead><tr style="background:var(--navy);color:white;"><th style="padding:8px 10px;text-align:left;">Contact</th><th style="padding:8px 10px;text-align:left;">Link</th><th style="padding:8px 10px;text-align:center;">Remove</th></tr></thead><tbody>`;
+  keys.forEach(contact=>{const link=PAYMENT_LINKS_MAP[contact];html+=`<tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 10px;font-family:var(--font-mono);">${contact}</td><td style="padding:8px 10px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"><a href="${link}" target="_blank" style="color:var(--navy);font-size:11px;">${link}</a></td><td style="padding:8px 10px;text-align:center;"><button onclick="removePayLink('${contact}')" style="background:#FEE2E2;color:#DC2626;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer;">✕</button></td></tr>`;});
+  html+=`</tbody></table>`;el.innerHTML=html;
 }
-
-window.removePayLink=async(contact)=>{
-  if(!confirm("Remove payment link for "+contact+"?"))return;
-  await deleteDoc(doc(db,"paymentLinks",contact));
-  delete PAYMENT_LINKS_MAP[contact];
-  renderPaymentLinksTable();
-  showToast("Payment link removed");
-};
-
+window.removePayLink=async(contact)=>{if(!confirm("Remove payment link for "+contact+"?"))return;await deleteDoc(doc(db,"paymentLinks",contact));delete PAYMENT_LINKS_MAP[contact];renderPaymentLinksTable();showToast("Payment link removed");};
 window.uploadPaymentLinks=async()=>{
-  const rows=window._PAY_ROWS||[];
-  if(!rows.length){showToast("No data to upload");return;}
-  const btn=document.getElementById("pay-upload-btn");
-  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Saving…';
-  try{
-    for(const r of rows){
-      await setDoc(doc(db,"paymentLinks",r.contact),{link:r.link,name:r.name,updatedAt:new Date().toISOString()});
-      PAYMENT_LINKS_MAP[r.contact]=r.link;
-    }
-    showToast("✅ "+rows.length+" payment links saved!");
-    renderPaymentLinksTable();
-    document.getElementById("pay-preview").style.display="none";
-    document.getElementById("pay-upload-btn").style.display="none";
-    document.getElementById("pay-csv-count").textContent="";
-    document.getElementById("pay-file-input").value="";
-    window._PAY_ROWS=[];
-  }catch(e){showToast("Error: "+e.message);}
+  const rows=window._PAY_ROWS||[];if(!rows.length){showToast("No data to upload");return;}
+  const btn=document.getElementById("pay-upload-btn");btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Saving…';
+  try{for(const r of rows){await setDoc(doc(db,"paymentLinks",r.contact),{link:r.link,name:r.name,updatedAt:new Date().toISOString()});PAYMENT_LINKS_MAP[r.contact]=r.link;}
+  showToast("✅ "+rows.length+" payment links saved!");renderPaymentLinksTable();document.getElementById("pay-preview").style.display="none";document.getElementById("pay-upload-btn").style.display="none";document.getElementById("pay-csv-count").textContent="";document.getElementById("pay-file-input").value="";window._PAY_ROWS=[];}
+  catch(e){showToast("Error: "+e.message);}
   btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Save to Firebase';
 };
 
-// ── CAMPAIGN HELPERS ──
-function getMyCampaigns(){
-  const myLeads=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
-  return[...new Set(myLeads.map(l=>l.campaign||"General").filter(Boolean))].sort();
-}
-function getAllCampaigns(){
-  return[...new Set(ALL_LEADS.map(l=>l.campaign||"General").filter(Boolean))].sort();
-}
+function getMyCampaigns(){const myLeads=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);return[...new Set(myLeads.map(l=>l.campaign||"General").filter(Boolean))].sort();}
+function getAllCampaigns(){return[...new Set(ALL_LEADS.map(l=>l.campaign||"General").filter(Boolean))].sort();}
 function buildCampaignFilters(){
   const myCamps=getMyCampaigns();
-  // Leads campaign filter
-  const fb=document.getElementById("fb-campaign");
-  const curFC=F_CAMP;
+  const fb=document.getElementById("fb-campaign");const curFC=F_CAMP;
   fb.innerHTML=`<span class="filter-label">Camp</span><button class="fc ${curFC==="all"?"active":""}" onclick="setFC('all',this)">All</button>`;
-  myCamps.forEach(c=>{
-    const btn=document.createElement("button");
-    btn.className=`fc ${curFC===c?"active":""}`;
-    btn.textContent=c;
-    btn.onclick=()=>setFC(c,btn);
-    fb.appendChild(btn);
-  });
-  // Home campaign filter
-  const hf=document.getElementById("home-camp-filter");
-  const curHC=HOME_CAMP;
+  myCamps.forEach(c=>{const btn=document.createElement("button");btn.className=`fc ${curFC===c?"active":""}`;btn.textContent=c;btn.onclick=()=>setFC(c,btn);fb.appendChild(btn);});
+  const hf=document.getElementById("home-camp-filter");const curHC=HOME_CAMP;
   hf.innerHTML=`<button class="fc ${curHC==="all"?"active":""}" onclick="setHomeCamp('all',this)">All</button>`;
-  myCamps.forEach(c=>{
-    const btn=document.createElement("button");
-    btn.className=`fc ${curHC===c?"active":""}`;
-    btn.textContent=c;
-    btn.onclick=()=>setHomeCamp(c,btn);
-    hf.appendChild(btn);
-  });
-  if(myCamps.length>0){
-    document.getElementById("home-camp-filter-wrap").style.display="block";
-    if(myCamps.length===1&&HOME_CAMP==="all"){
-      HOME_CAMP=myCamps[0];
-      hf.querySelectorAll(".fc").forEach((b,i)=>{b.classList.toggle("active",i===1);});
-    }
-  }
-  // Reports campaign filter
-  const rf=document.getElementById("rpt-camp-filter");
-  const curRC=RPT_CAMP;
+  myCamps.forEach(c=>{const btn=document.createElement("button");btn.className=`fc ${curHC===c?"active":""}`;btn.textContent=c;btn.onclick=()=>setHomeCamp(c,btn);hf.appendChild(btn);});
+  if(myCamps.length>0){document.getElementById("home-camp-filter-wrap").style.display="block";if(myCamps.length===1&&HOME_CAMP==="all"){HOME_CAMP=myCamps[0];hf.querySelectorAll(".fc").forEach((b,i)=>{b.classList.toggle("active",i===1);});}}
+  const rf=document.getElementById("rpt-camp-filter");const curRC=RPT_CAMP;
   rf.innerHTML=`<button class="rpt-ef ${curRC==="all"?"active":""}" onclick="setRptCamp('all',this)">🌐 All</button>`;
-  getAllCampaigns().forEach(c=>{
-    const btn=document.createElement("button");
-    btn.className=`rpt-ef ${curRC===c?"active":""}`;
-    btn.textContent="📁 "+c;
-    btn.onclick=()=>setRptCamp(c,btn);
-    rf.appendChild(btn);
-  });
+  getAllCampaigns().forEach(c=>{const btn=document.createElement("button");btn.className=`rpt-ef ${curRC===c?"active":""}`;btn.textContent="📁 "+c;btn.onclick=()=>setRptCamp(c,btn);rf.appendChild(btn);});
 }
-
 window.setFC=(f,el)=>{F_CAMP=f;document.querySelectorAll("#fb-campaign .fc").forEach(c=>c.classList.remove("active"));el.classList.add("active");renderLeads();};
 window.setHomeCamp=(c,el)=>{HOME_CAMP=c;document.querySelectorAll("#home-camp-filter .fc").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderStats();renderCallbacks();if(IS_ADMIN)renderVolProgress();};
+window.setF=(f,el)=>{F_STATUS=f;["fst-all","fst-pending","fst-called","fst-interested","fst-ni","fst-nr","fst-cb","fst-reg"].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove("active");});el.classList.add("active");renderLeads();};
+window.setEF=(f,el)=>{F_EVENT=f;["fev-all","fev-lc","fev-pvc","fev-unknown"].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove("active");});el.classList.add("active");renderLeads();};
 
-// Status filter — works on the inline buttons
-window.setF=(f,el,_)=>{
-  F_STATUS=f;
-  // deactivate all status filters
-  ["fst-all","fst-pending","fst-called","fst-interested","fst-ni","fst-nr","fst-cb","fst-reg"].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove("active");});
-  el.classList.add("active");renderLeads();
-};
-window.setEF=(f,el)=>{
-  F_EVENT=f;
-  ["fev-all","fev-lc","fev-pvc","fev-unknown"].forEach(id=>{const b=document.getElementById(id);if(b)b.classList.remove("active");});
-  el.classList.add("active");renderLeads();
-};
-
-// ── STATS ──
 function renderStats(){
   let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
   if(HOME_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===HOME_CAMP);
@@ -1606,11 +1007,9 @@ function renderStats(){
   document.getElementById("s-called").textContent=list.filter(l=>l.status&&l.status!=="pending").length;
   document.getElementById("s-int").textContent=list.filter(l=>l.status==="interested").length;
   document.getElementById("s-reg").textContent=list.filter(l=>l.status==="registered").length;
-  if(HOME_CAMP!=="all")document.getElementById("hcamp-sub").textContent="📁 "+HOME_CAMP;
-  else document.getElementById("hcamp-sub").textContent="BAPS Pramukh Academy";
+  document.getElementById("hcamp-sub").textContent=HOME_CAMP!=="all"?"📁 "+HOME_CAMP:"BAPS Pramukh Academy";
 }
 
-// ── LEADS ──
 window.renderLeads=()=>{
   const srch=(document.getElementById("srch").value||"").toLowerCase();
   let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
@@ -1619,19 +1018,12 @@ window.renderLeads=()=>{
   else if(F_STATUS!=="all")list=list.filter(l=>(l.status||"pending")===F_STATUS);
   if(F_EVENT!=="all")list=list.filter(l=>l.event===F_EVENT);
   if(srch)list=list.filter(l=>l.name.toLowerCase().includes(srch)||(l.contact||"").includes(srch));
-
-  // Sort: pending first, then callback, then others
   const order={pending:0,callback:1,called:2,interested:3,registered:4,"not-interested":5,"not-reachable":6,"wrong-number":7};
   list.sort((a,b)=>(order[a.status||"pending"]||0)-(order[b.status||"pending"]||0));
-
   document.getElementById("lead-count").textContent=list.length;
-
-  // Update calling session banner
   const pendingCount=list.filter(l=>(l.status||"pending")==="pending").length;
-  const banner=document.getElementById("callSessionBanner");
   document.getElementById("callSessionCount").textContent=pendingCount;
-  banner.style.display=pendingCount>0?"flex":"none";
-
+  document.getElementById("callSessionBanner").style.display=pendingCount>0?"flex":"none";
   const el=document.getElementById("leads-list"),em=document.getElementById("leads-empty");
   if(!list.length){el.innerHTML="";em.style.display="block";return;}
   em.style.display="none";
@@ -1650,27 +1042,7 @@ function buildCard(l){
   const rmk=l.remarks?`<div class="rmk">💬 "${l.remarks}"</div>`:"";
   const sn=(l.name||"").replace(/'/g,"").replace(/"/g,"");
   const sr=(l.remarks||"").replace(/'/g,"").replace(/"/g,"").replace(/\n/g," ");
-  return `<div class="cc ${sc}">
-    <div class="ctop">
-      <div class="cav">${ini}</div>
-      <div class="ci">
-        <div class="cn">${l.name}</div>
-        <div class="cnum">${l.contact}</div>
-        ${volTag}
-      </div>
-      <span class="sb ${sc}">${sl}</span>
-    </div>
-    <div class="c-tags">
-      <span class="cev">${evL(l.event)}</span>
-      <span class="ccamp">📁 ${l.campaign||"General"}</span>
-    </div>
-    ${cbTag}${rmk}
-    <div class="cact">
-      <button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i><span>Call</span></button>
-      <button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-pencil-alt"></i><span>Update</span></button>
-      <button class="ab ab-wa" onclick="openWA('${l.contact}','${sn}','${l.event}')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
-    </div>
-  </div>`;
+  return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${ini}</div><div class="ci"><div class="cn">${l.name}</div><div class="cnum">${l.contact}</div>${volTag}</div><span class="sb ${sc}">${sl}</span></div><div class="c-tags"><span class="cev">${evL(l.event)}</span><span class="ccamp">📁 ${l.campaign||"General"}</span></div>${cbTag}${rmk}<div class="cact"><button class="ab ab-call" onclick="callNum('${l.contact}')"><i class="fas fa-phone"></i><span>Call</span></button><button class="ab ab-upd" onclick="openUpd('${l.id}','${sn}','${st}','${sr}','${l.callbackDate||""}')"><i class="fas fa-pencil-alt"></i><span>Update</span></button><button class="ab ab-wa" onclick="openWA('${l.contact}','${sn}','${l.event}','${l.campaign||""}')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button></div></div>`;
 }
 
 function renderCallbacks(){
@@ -1685,529 +1057,223 @@ function renderCallbacks(){
 }
 
 function renderVolProgress(){
-  let list=ALL_LEADS;
-  if(HOME_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===HOME_CAMP);
+  let list=ALL_LEADS;if(HOME_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===HOME_CAMP);
   const vols=[...new Set(list.map(l=>l.assignedTo).filter(Boolean))].sort();
   if(!vols.length){document.getElementById("vol-prog-list").innerHTML=`<div style="text-align:center;padding:20px;color:#A8A29E;font-size:13px;">Upload contacts to see volunteer progress</div>`;return;}
   document.getElementById("vol-prog-list").innerHTML=vols.map(v=>{
-    const vl=list.filter(l=>l.assignedTo===v);
-    const tot=vl.length,done=vl.filter(l=>l.status&&l.status!=="pending").length;
+    const vl=list.filter(l=>l.assignedTo===v);const tot=vl.length,done=vl.filter(l=>l.status&&l.status!=="pending").length;
     const inte=vl.filter(l=>l.status==="interested").length,reg=vl.filter(l=>l.status==="registered").length,ni=vl.filter(l=>l.status==="not-interested").length;
     const pct=tot?Math.round((done/tot)*100):0,ini=v.slice(0,2).toUpperCase();
     return `<div class="vc"><div class="vh"><div class="vav"><span>${ini}</span></div><div><div class="vname">${v}</div><div class="vsub">${done}/${tot} calls · ${pct}% done</div></div></div><div class="pbw"><div class="pbf" style="width:${pct}%"></div></div><div class="vstats"><div class="vs"><div class="vsn" style="color:#C2410C">${tot}</div><div class="vsl">Total</div></div><div class="vs"><div class="vsn" style="color:#16A34A">${inte}</div><div class="vsl">Interest</div></div><div class="vs"><div class="vsn" style="color:#D97706">${reg}</div><div class="vsl">Reg.</div></div><div class="vs"><div class="vsn" style="color:#DC2626">${ni}</div><div class="vsl">Not Int.</div></div></div></div>`;
   }).join("");
 }
 
-// ── REPORTS ──
 window.setRptCamp=(c,el)=>{RPT_CAMP=c;document.querySelectorAll("#rpt-camp-filter .rpt-ef").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderReports();};
 window.setRptEv=(ev,el)=>{RPT_EV=ev;document.querySelectorAll("#rpt-ev-filter .rpt-ef").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderReports();};
 window.renderReports=()=>{
-  let list=ALL_LEADS;
-  if(RPT_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===RPT_CAMP);
-  if(RPT_EV!=="all")list=list.filter(l=>l.event===RPT_EV);
-  document.getElementById("rs-total").textContent=list.length;
-  document.getElementById("rs-int").textContent=list.filter(l=>l.status==="interested").length;
-  document.getElementById("rs-reg").textContent=list.filter(l=>l.status==="registered").length;
+  let list=ALL_LEADS;if(RPT_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===RPT_CAMP);if(RPT_EV!=="all")list=list.filter(l=>l.event===RPT_EV);
+  document.getElementById("rs-total").textContent=list.length;document.getElementById("rs-int").textContent=list.filter(l=>l.status==="interested").length;document.getElementById("rs-reg").textContent=list.filter(l=>l.status==="registered").length;
   const vols=[...new Set(list.map(l=>l.assignedTo).filter(Boolean))].sort();
   const el=document.getElementById("rpt-vol-list"),em=document.getElementById("rpt-empty");
   if(!vols.length){el.innerHTML="";em.style.display="block";return;}
   em.style.display="none";
   el.innerHTML=vols.map(v=>{
-    const vl=list.filter(l=>l.assignedTo===v);
-    const tot=vl.length,pending=vl.filter(l=>(l.status||"pending")==="pending").length;
-    const called=vl.filter(l=>l.status==="called").length,inte=vl.filter(l=>l.status==="interested").length;
-    const ni=vl.filter(l=>l.status==="not-interested").length,reg=vl.filter(l=>l.status==="registered").length;
+    const vl=list.filter(l=>l.assignedTo===v);const tot=vl.length,pending=vl.filter(l=>(l.status||"pending")==="pending").length;
+    const called=vl.filter(l=>l.status==="called").length,inte=vl.filter(l=>l.status==="interested").length,ni=vl.filter(l=>l.status==="not-interested").length,reg=vl.filter(l=>l.status==="registered").length;
     const cb=vl.filter(l=>l.status==="callback").length,nr=vl.filter(l=>l.status==="not-reachable"||l.status==="wrong-number").length;
     const done=tot-pending,pct=tot?Math.round((done/tot)*100):0,ini=v.slice(0,2).toUpperCase();
-    const contactsHtml=vl.map(c=>{
-      const sc=stC(c.status||"pending"),sl=stL(c.status||"pending");
-      return `<div class="mini-card ${sc}"><div style="min-width:0;flex:1"><div class="mini-name">${c.name}</div><div class="mini-num">${c.contact} · 📁 ${c.campaign||"General"}</div>${c.remarks?`<div class="mini-rmk">💬 ${c.remarks}</div>`:""}</div><span class="mini-sb sb ${sc}">${sl}</span></div>`;
-    }).join("");
+    const contactsHtml=vl.map(c=>{const sc=stC(c.status||"pending"),sl=stL(c.status||"pending");return `<div class="mini-card ${sc}"><div style="min-width:0;flex:1"><div class="mini-name">${c.name}</div><div class="mini-num">${c.contact} · 📁 ${c.campaign||"General"}</div>${c.remarks?`<div class="mini-rmk">💬 ${c.remarks}</div>`:""}</div><span class="mini-sb sb ${sc}">${sl}</span></div>`;}).join("");
     return `<div class="vrc"><div class="vrc-header" onclick="toggleVrc('vrc-${v}','arrow-${v}')"><div class="vrc-av">${ini}</div><div class="vrc-info"><div class="vrc-name">${v}</div><div class="vrc-sub">${done}/${tot} done · ${inte} interested · ${reg} reg.</div></div><span class="vrc-pct">${pct}%</span><i class="fas fa-chevron-down vrc-arrow" id="arrow-${v}"></i></div><div class="vrc-body" id="vrc-${v}"><div class="vrc-pbw"><div class="vrc-pbf" style="width:${pct}%"></div></div><div class="vrc-grid"><div class="vrc-stat st"><div class="vrc-stat-n" style="color:#C2410C">${tot}</div><div class="vrc-stat-l">Total</div></div><div class="vrc-stat sc"><div class="vrc-stat-n" style="color:#2563EB">${called}</div><div class="vrc-stat-l">Called</div></div><div class="vrc-stat si"><div class="vrc-stat-n" style="color:#16A34A">${inte}</div><div class="vrc-stat-l">Interested</div></div><div class="vrc-stat sr"><div class="vrc-stat-n" style="color:#D97706">${reg}</div><div class="vrc-stat-l">Registered</div></div><div class="vrc-stat sni"><div class="vrc-stat-n" style="color:#DC2626">${ni}</div><div class="vrc-stat-l">Not Int.</div></div><div class="vrc-stat scb"><div class="vrc-stat-n" style="color:#EA580C">${cb}</div><div class="vrc-stat-l">Callback</div></div><div class="vrc-stat snr"><div class="vrc-stat-n" style="color:#6B7280">${nr}</div><div class="vrc-stat-l">No Reach</div></div><div class="vrc-stat"><div class="vrc-stat-n" style="color:#78716C">${pending}</div><div class="vrc-stat-l">Pending</div></div></div><button class="vrc-contacts-btn" onclick="toggleContacts('vc-${v}',this)"><i class="fas fa-list"></i> View All ${tot} Contacts</button><div class="vrc-contacts" id="vc-${v}">${contactsHtml}</div></div></div>`;
   }).join("");
 };
 window.toggleVrc=(id,arrowId)=>{document.getElementById(id).classList.toggle("open");document.getElementById(arrowId).classList.toggle("open");};
 window.toggleContacts=(id,btn)=>{const el=document.getElementById(id);el.classList.toggle("open");btn.innerHTML=el.classList.contains("open")?'<i class="fas fa-chevron-up"></i> Hide Contacts':`<i class="fas fa-list"></i> View All Contacts`;};
 
-// ── DANGER ZONE ──
 function renderDangerCamps(){
-  const camps=getAllCampaigns();
-  const el=document.getElementById("danger-camp-list");
+  const camps=getAllCampaigns();const el=document.getElementById("danger-camp-list");
   if(!camps.length){el.innerHTML=`<div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px;">No campaigns uploaded yet</div>`;return;}
-  el.innerHTML=camps.map(c=>{
-    const count=ALL_LEADS.filter(l=>(l.campaign||"General")===c).length;
-    return `<div class="camp-item"><div class="camp-item-info"><div class="camp-item-name">📁 ${c}</div><div class="camp-item-meta">${count} contacts</div></div><button class="btn-del-camp" onclick="deleteCampaign('${c.replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i> Delete</button></div>`;
-  }).join("");
+  el.innerHTML=camps.map(c=>{const count=ALL_LEADS.filter(l=>(l.campaign||"General")===c).length;return `<div class="camp-item"><div class="camp-item-info"><div class="camp-item-name">📁 ${c}</div><div class="camp-item-meta">${count} contacts</div></div><button class="btn-del-camp" onclick="deleteCampaign('${c.replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i> Delete</button></div>`;}).join("");
 }
 window.deleteCampaign=(campName)=>{
   const count=ALL_LEADS.filter(l=>(l.campaign||"General")===campName).length;
   showConfirm("Delete Campaign?",campName,`This will permanently remove ${count} contact${count!==1?"s":""}.`,async()=>{
     const toDelete=ALL_LEADS.filter(l=>(l.campaign||"General")===campName);
     if(!toDelete.length){showToast("No contacts found!");return;}
-    const batch=writeBatch(db);
-    toDelete.forEach(l=>batch.delete(doc(db,"outreach_leads",l.id)));
-    await batch.commit();
-    showToast(`🗑️ "${campName}" deleted! (${toDelete.length} contacts)`);
+    const batch=writeBatch(db);toDelete.forEach(l=>batch.delete(doc(db,"outreach_leads",l.id)));
+    await batch.commit();showToast(`🗑️ "${campName}" deleted! (${toDelete.length} contacts)`);
   });
 };
 
-// ── UPLOAD ──
-window.selectEv=(ev)=>{
-  SEL_EVENT=ev;
-  document.getElementById("ev-lc").classList.toggle("active",ev==="lc");
-  document.getElementById("ev-pvc").classList.toggle("active",ev==="pvc");
-  document.getElementById("ev-unknown").classList.toggle("active",ev==="unknown");
-};
+window.selectEv=(ev)=>{SEL_EVENT=ev;document.getElementById("ev-lc").classList.toggle("active",ev==="lc");document.getElementById("ev-pvc").classList.toggle("active",ev==="pvc");document.getElementById("ev-unknown").classList.toggle("active",ev==="unknown");};
 window.previewCSV=(e)=>{
   const file=e.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=ev=>{
-    const lines=ev.target.result.split("\n").map(l=>l.trim()).filter(l=>l);
-    PENDING_CONTACTS=[];
-    for(let i=1;i<lines.length;i++){
-      const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));
-      const name=(cols[0]||"").trim();
-      const contact=(cols[1]||"").replace(/\D/g,"").slice(-10);
-      if(name&&contact.length===10)PENDING_CONTACTS.push({name,contact});
-    }
+    const lines=ev.target.result.split("\n").map(l=>l.trim()).filter(l=>l);PENDING_CONTACTS=[];
+    for(let i=1;i<lines.length;i++){const cols=lines[i].split(",").map(c=>c.trim().replace(/^"|"$/g,""));const name=(cols[0]||"").trim();const contact=(cols[1]||"").replace(/\D/g,"").slice(-10);if(name&&contact.length===10)PENDING_CONTACTS.push({name,contact});}
     if(!PENDING_CONTACTS.length){showToast("⚠️ No valid contacts found!");return;}
-    const volRaw=document.getElementById("vol-emails").value.trim();
-    const vols=volRaw?volRaw.split("\n").map(v=>v.trim()).filter(Boolean):[];
-    document.getElementById("file-picker-area").style.display="none";
-    document.getElementById("fp-filename").textContent=file.name;
-    document.getElementById("fp-meta").textContent=`${PENDING_CONTACTS.length} contacts ready`;
-    document.getElementById("fp-count").textContent=PENDING_CONTACTS.length;
-    document.getElementById("fp-vcount").textContent=vols.length||"?";
-    document.getElementById("fp-each").textContent=vols.length?Math.ceil(PENDING_CONTACTS.length/vols.length):"?";
-    document.getElementById("file-preview").classList.add("show");
-    document.getElementById("ilog").classList.remove("show");
+    const volRaw=document.getElementById("vol-emails").value.trim();const vols=volRaw?volRaw.split("\n").map(v=>v.trim()).filter(Boolean):[];
+    document.getElementById("file-picker-area").style.display="none";document.getElementById("fp-filename").textContent=file.name;document.getElementById("fp-meta").textContent=`${PENDING_CONTACTS.length} contacts ready`;
+    document.getElementById("fp-count").textContent=PENDING_CONTACTS.length;document.getElementById("fp-vcount").textContent=vols.length||"?";document.getElementById("fp-each").textContent=vols.length?Math.ceil(PENDING_CONTACTS.length/vols.length):"?";
+    document.getElementById("file-preview").classList.add("show");document.getElementById("ilog").classList.remove("show");
   };
   reader.readAsText(file);
 };
 window.submitImport=async()=>{
-  const campName=document.getElementById("camp-name").value.trim();
-  if(!campName){showToast("⚠️ Enter Campaign Name in Step 1!");return;}
+  const campName=document.getElementById("camp-name").value.trim();if(!campName){showToast("⚠️ Enter Campaign Name in Step 1!");return;}
   if(!PENDING_CONTACTS.length){showToast("⚠️ No contacts to import!");return;}
-  const volRaw=document.getElementById("vol-emails").value.trim();
-  if(!volRaw){showToast("⚠️ Enter volunteer emails in Step 2!");return;}
-  const vols=volRaw.split("\n").map(v=>v.trim().split("@")[0]).filter(Boolean);
-  if(!vols.length){showToast("⚠️ Enter at least one volunteer email!");return;}
-  const btn=document.getElementById("import-btn");
-  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Importing…';
+  const volRaw=document.getElementById("vol-emails").value.trim();if(!volRaw){showToast("⚠️ Enter volunteer emails in Step 2!");return;}
+  const vols=volRaw.split("\n").map(v=>v.trim().split("@")[0]).filter(Boolean);if(!vols.length){showToast("⚠️ Enter at least one volunteer email!");return;}
+  const btn=document.getElementById("import-btn");btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Importing…';
   try{
     const batch=writeBatch(db);
-    PENDING_CONTACTS.forEach((c,i)=>{
-      const ref=doc(collection(db,"outreach_leads"));
-      batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,campaign:campName,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});
-    });
+    PENDING_CONTACTS.forEach((c,i)=>{const ref=doc(collection(db,"outreach_leads"));batch.set(ref,{name:c.name,contact:c.contact,event:SEL_EVENT,campaign:campName,assignedTo:vols[i%vols.length],status:"pending",remarks:"",callbackDate:null,createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});});
     await batch.commit();
-    // Save campaign meta (waMessage) to Firestore
     const waMsg=document.getElementById("camp-wa-msg").value.trim();
-    await setDoc(doc(db,"campaigns_meta",campName),{
-      campName,event:SEL_EVENT,
-      waMessage:waMsg||"",
-      createdAt:new Date().toISOString(),
-      uploadedBy:VOL_NAME
-    });
-    // Update local WA_MESSAGES map
+    await setDoc(doc(db,"campaigns_meta",campName),{campName,event:SEL_EVENT,waMessage:waMsg||"",createdAt:new Date().toISOString(),uploadedBy:VOL_NAME});
     WA_MESSAGES[campName]=waMsg||"";
     const logEl=document.getElementById("ilog");
     logEl.innerHTML=`🎉 <b>${PENDING_CONTACTS.length} contacts imported!</b><br>📁 Campaign: <b>${campName}</b><br>🎪 Event: <b>${SEL_EVENT==="lc"?"Leadership Carnival":"PVC 4.0"}</b><br>👥 <b>${vols.length} volunteer(s)</b> · ~${Math.ceil(PENDING_CONTACTS.length/vols.length)} each${waMsg?'<br>💬 <b>WhatsApp message saved!</b>':""}`;
-    logEl.classList.add("show");
-    showToast(`✅ "${campName}" imported!`);
-    PENDING_CONTACTS=[];
-    document.getElementById("camp-name").value="";
-    document.getElementById("camp-wa-msg").value="";
-    resetFileSelect();
-  }catch(err){
-    console.error(err);showToast("❌ Import failed! Check Firestore rules.");
-    btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import Campaign';
-  }
+    logEl.classList.add("show");showToast(`✅ "${campName}" imported!`);
+    PENDING_CONTACTS=[];document.getElementById("camp-name").value="";document.getElementById("camp-wa-msg").value="";
+    resetFileSelect();renderEditMsgList();
+  }catch(err){console.error(err);showToast("❌ Import failed! Check Firestore rules.");btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import Campaign';}
 };
-window.resetFileSelect=()=>{
-  document.getElementById("csvfile").value="";
-  document.getElementById("file-picker-area").style.display="block";
-  document.getElementById("file-preview").classList.remove("show");
-  const btn=document.getElementById("import-btn");
-  btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import Campaign';
-};
+window.resetFileSelect=()=>{document.getElementById("csvfile").value="";document.getElementById("file-picker-area").style.display="block";document.getElementById("file-preview").classList.remove("show");const btn=document.getElementById("import-btn");btn.disabled=false;btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Import Campaign';};
+
 window.openExportChooser=()=>{
-  const camps=getAllCampaigns();
-  const list=document.getElementById('exc-camp-list');
-  list.innerHTML=camps.map(c=>`
-    <div class="export-choice-card" onclick="selectExportCamp('${c.replace(/'/g,"\\'")}',this)">
-      <div class="exc-icon" style="background:linear-gradient(135deg,#C2410C,#EA580C)"><i class="fas fa-folder-open"></i></div>
-      <div class="exc-info">
-        <div class="exc-name">${c}</div>
-        <div class="exc-meta">${ALL_LEADS.filter(l=>(l.campaign||'General')===c).length} contacts</div>
-      </div>
-      <div class="exc-check"><i class="fas fa-check-circle"></i></div>
-    </div>
-  `).join('');
-  document.querySelectorAll('.export-choice-card').forEach(el=>el.classList.remove('selected'));
-  document.getElementById('exc-download-btn').disabled=true;
-  window._EXPORT_CAMP=null;
-  document.getElementById('export-chooser-modal').classList.add('open');
+  const camps=getAllCampaigns();const list=document.getElementById('exc-camp-list');
+  list.innerHTML=camps.map(c=>`<div class="export-choice-card" onclick="selectExportCamp('${c.replace(/'/g,"\\'")}',this)"><div class="exc-icon" style="background:linear-gradient(135deg,#C2410C,#EA580C)"><i class="fas fa-folder-open"></i></div><div class="exc-info"><div class="exc-name">${c}</div><div class="exc-meta">${ALL_LEADS.filter(l=>(l.campaign||'General')===c).length} contacts</div></div><div class="exc-check"><i class="fas fa-check-circle"></i></div></div>`).join('');
+  document.querySelectorAll('.export-choice-card').forEach(el=>el.classList.remove('selected'));document.getElementById('exc-download-btn').disabled=true;window._EXPORT_CAMP=null;document.getElementById('export-chooser-modal').classList.add('open');
 };
-window.selectExportCamp=(camp,el)=>{
-  document.querySelectorAll('.export-choice-card').forEach(e=>e.classList.remove('selected'));
-  el.classList.add('selected');
-  window._EXPORT_CAMP=camp;
-  document.getElementById('exc-download-btn').disabled=false;
-};
-window.closeExportChooser=()=>{
-  document.getElementById('export-chooser-modal').classList.remove('open');
-};
-window.confirmExport=()=>{
-  const camp=window._EXPORT_CAMP;
-  if(camp===null)return;
-  if(camp==='all'){exportMaster();}else{exportCampaign(camp);}
-  closeExportChooser();
-};
+window.selectExportCamp=(camp,el)=>{document.querySelectorAll('.export-choice-card').forEach(e=>e.classList.remove('selected'));el.classList.add('selected');window._EXPORT_CAMP=camp;document.getElementById('exc-download-btn').disabled=false;};
+window.closeExportChooser=()=>{document.getElementById('export-chooser-modal').classList.remove('open');};
+window.confirmExport=()=>{const camp=window._EXPORT_CAMP;if(camp===null)return;if(camp==='all'){exportMaster();}else{exportCampaign(camp);}closeExportChooser();};
 window.exportCampaign=(campName)=>{
-  const list=ALL_LEADS.filter(l=>(l.campaign||'General')===campName);
-  if(!list.length){showToast('No contacts found for '+campName);return;}
+  const list=ALL_LEADS.filter(l=>(l.campaign||'General')===campName);if(!list.length){showToast('No contacts found for '+campName);return;}
   const hdrs="Name,Contact,Event,Campaign,Assigned To,Status,Remarks,Callback Date,Updated By,Updated At,Imported At";
   const rows=list.map(l=>[l.name,l.contact,l.event==="lc"?"Leadership Carnival":"PVC 4.0",l.campaign||"General",l.assignedTo||"",l.status||"pending",`"${(l.remarks||"").replace(/"/g,'""')}"`,l.callbackDate||"",l.updatedBy||"",l.updatedAt||"",l.createdAt||""].join(","));
-  const csv=[hdrs,...rows].join("\n");
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));
-  a.download=`pramukh_${campName.replace(/[^a-z0-9]/gi,'_')}_${new Date().toLocaleDateString('en-IN').replace(/\//g,'-')}.csv`;
-  a.click();
-  showToast(campName+' exported!');
+  const csv=[hdrs,...rows].join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download=`pramukh_${campName.replace(/[^a-z0-9]/gi,'_')}_${new Date().toLocaleDateString('en-IN').replace(/\//g,'-')}.csv`;a.click();showToast(campName+' exported!');
 };
 window.exportMaster=()=>{
   const hdrs="Name,Contact,Event,Campaign,Assigned To,Status,Remarks,Callback Date,Updated By,Updated At,Imported At";
   const rows=ALL_LEADS.map(l=>[l.name,l.contact,l.event==="lc"?"Leadership Carnival":"PVC 4.0",l.campaign||"General",l.assignedTo||"",l.status||"pending",`"${(l.remarks||"").replace(/"/g,'""')}"`,l.callbackDate||"",l.updatedBy||"",l.updatedAt||"",l.createdAt||""].join(","));
-  const csv=[hdrs,...rows].join("\n");
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));
-  a.download="pramukh_all_campaigns_"+new Date().toLocaleDateString("en-IN").replace(/\//g,"-")+".csv";
-  a.click();showToast("📥 All campaigns exported!");
+  const csv=[hdrs,...rows].join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="pramukh_all_campaigns_"+new Date().toLocaleDateString("en-IN").replace(/\//g,"-")+".csv";a.click();showToast("📥 All campaigns exported!");
 };
 
-// ── ACTIONS ──
-window.callNum=num=>window.location.href="tel:"+num;
+// FIX: Single clean openWA — duplicate const firstName removed, no duplicate WA_MESSAGES logic
 window.openWA=(num,name,event,campaign="")=>{
-  // ── Check if payment link exists for this contact ──
   const payLink=PAYMENT_LINKS_MAP[num]||PAYMENT_LINKS_MAP[num.replace(/\D/g,"")];
   if(payLink){
     const payMsg=`નમસ્તે,\nતમને જણાવતા આનંદ થાય છે કે Pramukh Vision Conference ના વેઇટિંગ લિસ્ટમાંથી હવે તમારું સિલેક્શન થઈ ગયું છે અને તમે આ કોન્ફરન્સ માટે એલિજિબલ છો.\nતમારું ફોર્મ સબમિટ થઈ ગયું છે, હવે તમારી સીટ કન્ફર્મ કરવા માટે નીચે આપેલી લિંક પર ક્લિક કરીને પેમેન્ટ પૂર્ણ કરવા વિનંતી છે:\n\n🔗 પેમેન્ટ લિંક: ${payLink}\n\nખાસ નોંધ: અમારી પાસે રજીસ્ટ્રેશન ખૂબ વધારે હોવાથી, જે વહેલા પેમેન્ટ પૂર્ણ કરશે તેમની જ સીટ કન્ફર્મ ગણવામાં આવશે. સીટ્સ મર્યાદિત હોવાથી આજે જ પ્રક્રિયા પૂરી કરી લેવા વિનંતી.\nઆભાર, પ્રમુખ એકેડમી`;
-    window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(payMsg),"_blank");
-    // Mark as payment sent
-    const cardEl=document.querySelector(`.cc[data-contact="${num}"]`);
-    if(cardEl&&!cardEl.querySelector(".pay-sent-tag")){
-      const tag=document.createElement("span");
-      tag.className="pay-sent-tag";
-      tag.style.cssText="font-size:10px;font-weight:700;color:#15803D;background:#DCFCE7;padding:3px 9px;border-radius:20px;display:inline-block;margin-left:6px;";
-      tag.textContent="💬 Sent";
-      const tagsDiv=cardEl.querySelector(".c-tags");
-      if(tagsDiv)tagsDiv.appendChild(tag);
-    }
-    return;
+    window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(payMsg),"_blank");return;
   }
+  // FIX: Single firstName declaration (duplicate was causing SyntaxError that killed entire module)
   const firstName=name.split(" ")[0];
   const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 Apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
   const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n\n📅 31 May – 3 June 2026\n📍 Vadodara, Gujarat\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
-  const zoomMsg=`🔔 *Reminder : Important Meeting  Today for Pramukh Vision Conference 4.0*🔔
-
-🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,
-
-📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!
-
-🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।
-
-✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।
-
-📅 *23/05/2026 (शनिवार)*
-🕗 *रात 8:30 बजे*
-
-🔗 *Zoom Link:*
-https://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1
-
-👉 *Please Join Telegram Group for Updates:*
-https://t.me/pramukhvisionconference04
-
-📞 संपर्क: *9328141289* , *9998992876*
-
-*धन्यवाद,*
-*एडमिशन डिपार्टमेंट,*
-*प्रमुख अकैडमी*`;
-  // Use campaign-specific WhatsApp message dynamically
-  const campMsg = WA_MESSAGES[campaign] || "";
-  const firstName = name.split(" ")[0];
-  const fallbackMsg = `Hello ${firstName} 👋,\n\nYou are registered for an upcoming event by BAPS Pramukh Academy.\n\nFor details, please contact:\n📞 9328141289 / 9998992876\n\n*धन्यवाद,*\n*एडमिशन डिपार्टमेंट,*\n*प्रमुख अकैडमी*`;
-  const finalMsg = campMsg || fallbackMsg;
+  const zoomMsg=`🔔 *Reminder : Important Meeting Today for Pramukh Vision Conference 4.0*🔔\n\n🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,\n\n📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!\n\n🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।\n\n✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।\n\n📅 *23/05/2026 (शनिवार)*\n🕗 *रात 8:30 बजे*\n\n🔗 *Zoom Link:*\nhttps://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1\n\n👉 *Please Join Telegram Group for Updates:*\nhttps://t.me/pramukhvisionconference04\n\n📞 संपर्क: *9328141289* , *9998992876*\n\n*धन्यवाद,*\n*एडमिशन डिपार्टमेंट,*\n*प्रमुख अकैडमी*`;
+  const campMsg=WA_MESSAGES[campaign]||"";
+  let finalMsg;
+  if(campMsg){finalMsg=campMsg;}
+  else if(event==="zoom"){finalMsg=zoomMsg;}
+  else if(event==="lc"){finalMsg=lcMsg;}
+  else{finalMsg=pvcMsg;}
   window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(finalMsg),"_blank");
 };
-window.cmOpenWA=()=>{
-  const l=CM_QUEUE[CM_IDX]; if(!l)return;
-  openWA(l.contact,l.name,l.event,l.campaign||"");
+
+// FIX: Single declaration of waSelectCampaign/waConfirmSend/closeWAChooser — were duplicated
+window.waSelectCampaign=(camp)=>{WA_CHOSEN_CAMP=camp;document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");document.getElementById("wa-choice-zoom").classList.toggle("selected",camp==="zoom");document.getElementById("wa-send-confirm").disabled=false;};
+window.waConfirmSend=()=>{if(!WA_CHOSEN_CAMP)return;document.getElementById("wa-chooser-modal").classList.remove("open");openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP,WA_PENDING_CAMP||"");};
+window.closeWAChooser=()=>{document.getElementById("wa-chooser-modal").classList.remove("open");};
+window.cmOpenWA=()=>{const l=CM_QUEUE[CM_IDX];if(!l)return;openWA(l.contact,l.name,l.event,l.campaign||"");};
+
+window.startCallingSession=()=>{
+  let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
+  if(F_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===F_CAMP);
+  if(F_EVENT!=="all")list=list.filter(l=>l.event===F_EVENT);
+  CM_QUEUE=list.filter(l=>(l.status||"pending")==="pending");
+  if(!CM_QUEUE.length){showToast("No pending contacts to call!");return;}
+  CM_IDX=0;CM_STATUS="";CM_SESSION_STATS={called:0,interested:0,registered:0};
+  document.getElementById("cm-done-view").style.display="none";document.getElementById("cm-contact-view").style.display="flex";
+  document.getElementById("calling-overlay").classList.add("open");document.body.style.overflow="hidden";cmShowContact();
 };
-// ── LOAD CAMPAIGN WA MESSAGES ──
-async function loadCampaignMessages(){
+window.closeCallingSession=()=>{document.getElementById("calling-overlay").classList.remove("open");document.body.style.overflow="";renderLeads();};
+function cmShowContact(){
+  if(CM_IDX>=CM_QUEUE.length){cmShowDone();return;}
+  const l=CM_QUEUE[CM_IDX];const ini=(l.name||"?").split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
+  document.getElementById("cm-av-ini").textContent=ini;document.getElementById("cm-name").textContent=l.name;document.getElementById("cm-phone").textContent=l.contact;
+  document.getElementById("cm-event-tag").textContent=evL(l.event);document.getElementById("cm-camp-tag").textContent="📁 "+(l.campaign||"General");
+  const rmkEl=document.getElementById("cm-past-rmk");const rmkText=document.getElementById("cm-past-rmk-text");
+  if(l.remarks){rmkEl.style.display="block";rmkText.textContent=l.remarks;}else{rmkEl.style.display="none";}
+  CM_STATUS="";document.getElementById("cm-rmk").value="";document.getElementById("cm-cb-dt").value="";document.getElementById("cm-cb-grp").style.display="none";
+  document.querySelectorAll(".cm-so").forEach(b=>b.className="cm-so");
+  const pct=Math.round((CM_IDX/CM_QUEUE.length)*100);document.getElementById("cm-progress").style.width=pct+"%";document.getElementById("cm-count").textContent=(CM_IDX+1)+" / "+CM_QUEUE.length;
+}
+window.cmDial=()=>{const l=CM_QUEUE[CM_IDX];if(!l)return;window.location.href="tel:"+l.contact;};
+window.cmSelStatus=(s,el)=>{CM_STATUS=s;document.querySelectorAll(".cm-so").forEach(b=>b.className="cm-so");el.className="cm-so active-"+s;document.getElementById("cm-cb-grp").style.display=s==="callback"?"block":"none";};
+window.cmSkip=()=>{CM_IDX++;cmShowContact();};
+window.cmSaveAndNext=async()=>{
+  const l=CM_QUEUE[CM_IDX];if(!l)return;if(!CM_STATUS){showToast("Select a call outcome first");return;}
+  const btn=document.getElementById("cm-save-btn");btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
   try{
-    const snap=await getDocs(collection(db,"campaigns_meta"));
-    snap.forEach(d=>{
-      const data=d.data();
-      if(data.waMessage) WA_MESSAGES[d.id]=data.waMessage;
-    });
-    console.log("✅ Campaign WA messages loaded:",Object.keys(WA_MESSAGES).length);
-    renderEditMsgList();
-  }catch(e){
-    console.warn("Could not load campaign messages:",e);
-    renderEditMsgList();
-  }
+    await updateDoc(doc(db,"outreach_leads",l.id),{status:CM_STATUS,remarks:document.getElementById("cm-rmk").value.trim(),callbackDate:document.getElementById("cm-cb-dt").value||null,updatedAt:new Date().toISOString(),updatedBy:VOL_NAME});
+    if(["called","interested","registered","not-interested","callback","not-reachable","wrong-number"].includes(CM_STATUS))CM_SESSION_STATS.called++;
+    if(CM_STATUS==="interested")CM_SESSION_STATS.interested++;if(CM_STATUS==="registered")CM_SESSION_STATS.registered++;
+    CM_IDX++;cmShowContact();
+  }catch(e){showToast("Error saving. Try again.");}
+  btn.disabled=false;btn.innerHTML='<i class="fas fa-check"></i> Save &amp; Next';
+};
+function cmShowDone(){
+  document.getElementById("cm-contact-view").style.display="none";document.getElementById("cm-done-view").style.display="flex";
+  document.getElementById("cm-progress").style.width="100%";document.getElementById("cm-count").textContent=CM_QUEUE.length+" / "+CM_QUEUE.length;
+  document.getElementById("cd-called").textContent=CM_SESSION_STATS.called;document.getElementById("cd-interested").textContent=CM_SESSION_STATS.interested;document.getElementById("cd-registered").textContent=CM_SESSION_STATS.registered;
 }
 
-window.waSelectCampaign=(camp)=>{
-  WA_CHOSEN_CAMP=camp;
-  document.getElementById("wa-choice-lc").classList.toggle("selected",camp==="lc");
-  document.getElementById("wa-choice-pvc").classList.toggle("selected",camp==="pvc");
-  document.getElementById("wa-choice-zoom").classList.toggle("selected",camp==="zoom");
-  document.getElementById("wa-send-confirm").disabled=false;
-};
-window.waConfirmSend=()=>{
-  if(!WA_CHOSEN_CAMP)return;
-  document.getElementById("wa-chooser-modal").classList.remove("open");
-  openWA(WA_PENDING_NUM,WA_PENDING_NAME,WA_CHOSEN_CAMP,WA_PENDING_CAMP||"");
-}
-window.closeWAChooser=()=>{
-  document.getElementById("wa-chooser-modal").classList.remove("open");
-};
-// ── TAB SWITCHING ──
-window.switchTab=(pgId,tabId)=>{
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));
-  document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
-  document.getElementById(pgId).classList.add("active");
-  document.getElementById(tabId).classList.add("active");
-  const sbtId="sbt-"+tabId.replace("tab-","");
-  const sbt=document.getElementById(sbtId);
-  if(sbt)sbt.classList.add("active");
-  window.scrollTo(0,0);
-};
-window.showToast=msg=>{
-  const t=document.getElementById("toast");
-  t.textContent=msg;t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),2800);
-};
-
-// ── UPDATE MODAL (regular) ──
+window.callNum=num=>window.location.href="tel:"+num;
 window.openUpd=(id,name,status,remarks,cbDate)=>{
-  CUR_LEAD_ID=id;SEL_STATUS=status;
-  document.getElementById("modal-name").textContent=name;
-  document.getElementById("rmk-inp").value=remarks;
-  document.getElementById("cb-dt").value=cbDate||"";
+  CUR_LEAD_ID=id;SEL_STATUS=status;document.getElementById("modal-name").textContent=name;document.getElementById("rmk-inp").value=remarks;document.getElementById("cb-dt").value=cbDate||"";
   document.getElementById("cb-dt-grp").style.display=status==="callback"?"block":"none";
   document.querySelectorAll(".so").forEach(b=>b.className="so");
   const idx={pending:0,called:1,interested:2,"not-interested":3,registered:4,callback:5,"not-reachable":6,"wrong-number":7};
   const cls={pending:"a-p",called:"a-c",interested:"a-i","not-interested":"a-ni",registered:"a-r",callback:"a-cb","not-reachable":"a-nr","wrong-number":"a-nr"};
-  const btns=document.querySelectorAll(".so");
-  if(btns[idx[status]])btns[idx[status]].className=`so ${cls[status]||"a-p"}`;
+  const btns=document.querySelectorAll(".so");if(btns[idx[status]])btns[idx[status]].className=`so ${cls[status]||"a-p"}`;
   document.getElementById("upd-modal").classList.add("open");
 };
 window.closeModal=()=>document.getElementById("upd-modal").classList.remove("open");
-window.selStatus=(s,el)=>{
-  SEL_STATUS=s;document.querySelectorAll(".so").forEach(b=>b.className="so");
-  const cls={pending:"a-p",called:"a-c",interested:"a-i","not-interested":"a-ni",registered:"a-r",callback:"a-cb","not-reachable":"a-nr","wrong-number":"a-nr"};
-  el.className=`so ${cls[s]||"a-p"}`;
-  document.getElementById("cb-dt-grp").style.display=s==="callback"?"block":"none";
-};
+window.selStatus=(s,el)=>{SEL_STATUS=s;document.querySelectorAll(".so").forEach(b=>b.className="so");const cls={pending:"a-p",called:"a-c",interested:"a-i","not-interested":"a-ni",registered:"a-r",callback:"a-cb","not-reachable":"a-nr","wrong-number":"a-nr"};el.className=`so ${cls[s]||"a-p"}`;document.getElementById("cb-dt-grp").style.display=s==="callback"?"block":"none";};
 window.saveUpdate=async()=>{
   if(!CUR_LEAD_ID||!SEL_STATUS){showToast("Please select a status");return;}
-  await updateDoc(doc(db,"outreach_leads",CUR_LEAD_ID),{
-    status:SEL_STATUS,remarks:document.getElementById("rmk-inp").value.trim(),
-    callbackDate:document.getElementById("cb-dt").value||null,
-    updatedAt:new Date().toISOString(),updatedBy:VOL_NAME
-  });
+  await updateDoc(doc(db,"outreach_leads",CUR_LEAD_ID),{status:SEL_STATUS,remarks:document.getElementById("rmk-inp").value.trim(),callbackDate:document.getElementById("cb-dt").value||null,updatedAt:new Date().toISOString(),updatedBy:VOL_NAME});
   closeModal();showToast("✅ Updated!");
 };
 
-// ═══════════════════════════════════════
-//   CALLING MODE ENGINE
-// ═══════════════════════════════════════
-window.startCallingSession=()=>{
-  // Build queue: pending contacts assigned to me, sorted pending first
-  let list=IS_ADMIN?ALL_LEADS:ALL_LEADS.filter(l=>l.assignedTo===VOL_NAME);
-  if(F_CAMP!=="all")list=list.filter(l=>(l.campaign||"General")===F_CAMP);
-  if(F_EVENT!=="all")list=list.filter(l=>l.event===F_EVENT);
-  // Pending-only queue for the session
-  CM_QUEUE=list.filter(l=>(l.status||"pending")==="pending");
-  if(!CM_QUEUE.length){showToast("No pending contacts to call!");return;}
-  CM_IDX=0;CM_STATUS="";CM_SESSION_STATS={called:0,interested:0,registered:0};
-  document.getElementById("cm-done-view").style.display="none";
-  document.getElementById("cm-contact-view").style.display="flex";
-  document.getElementById("calling-overlay").classList.add("open");
-  document.body.style.overflow="hidden";
-  cmShowContact();
-};
-
-window.closeCallingSession=()=>{
-  document.getElementById("calling-overlay").classList.remove("open");
-  document.body.style.overflow="";
-  renderLeads(); // refresh list
-};
-
-function cmShowContact(){
-  if(CM_IDX>=CM_QUEUE.length){cmShowDone();return;}
-  const l=CM_QUEUE[CM_IDX];
-  const ini=(l.name||"?").split(" ").map(w=>w[0]).join("").toUpperCase().slice(0,2);
-  document.getElementById("cm-av-ini").textContent=ini;
-  document.getElementById("cm-name").textContent=l.name;
-  document.getElementById("cm-phone").textContent=l.contact;
-  document.getElementById("cm-event-tag").textContent=evL(l.event);
-  document.getElementById("cm-camp-tag").textContent="📁 "+(l.campaign||"General");
-  // Past remarks
-  const rmkEl=document.getElementById("cm-past-rmk");
-  const rmkText=document.getElementById("cm-past-rmk-text");
-  if(l.remarks){rmkEl.style.display="block";rmkText.textContent=l.remarks;}
-  else{rmkEl.style.display="none";}
-  // Reset form
-  CM_STATUS="";
-  document.getElementById("cm-rmk").value="";
-  document.getElementById("cm-cb-dt").value="";
-  document.getElementById("cm-cb-grp").style.display="none";
-  document.querySelectorAll(".cm-so").forEach(b=>b.className="cm-so");
-  // Progress
-  const pct=Math.round((CM_IDX/CM_QUEUE.length)*100);
-  document.getElementById("cm-progress").style.width=pct+"%";
-  document.getElementById("cm-count").textContent=(CM_IDX+1)+" / "+CM_QUEUE.length;
-}
-
-window.cmDial=()=>{
-  const l=CM_QUEUE[CM_IDX];
-  if(!l)return;
-  window.location.href="tel:"+l.contact;
-};
-
-window.cmSelStatus=(s,el)=>{
-  CM_STATUS=s;
-  document.querySelectorAll(".cm-so").forEach(b=>b.className="cm-so");
-  el.className="cm-so active-"+s;
-  document.getElementById("cm-cb-grp").style.display=s==="callback"?"block":"none";
-};
-
-window.cmSkip=()=>{
-  CM_IDX++;
-  cmShowContact();
-};
-
-window.cmSaveAndNext=async()=>{
-  const l=CM_QUEUE[CM_IDX];
-  if(!l)return;
-  if(!CM_STATUS){showToast("Select a call outcome first");return;}
-  const btn=document.getElementById("cm-save-btn");
-  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
-  try{
-    await updateDoc(doc(db,"outreach_leads",l.id),{
-      status:CM_STATUS,
-      remarks:document.getElementById("cm-rmk").value.trim(),
-      callbackDate:document.getElementById("cm-cb-dt").value||null,
-      updatedAt:new Date().toISOString(),
-      updatedBy:VOL_NAME
-    });
-    // Track session stats
-    if(CM_STATUS==="called"||CM_STATUS==="interested"||CM_STATUS==="registered"||CM_STATUS==="not-interested"||CM_STATUS==="callback"||CM_STATUS==="not-reachable"||CM_STATUS==="wrong-number"){
-      CM_SESSION_STATS.called++;
-    }
-    if(CM_STATUS==="interested")CM_SESSION_STATS.interested++;
-    if(CM_STATUS==="registered")CM_SESSION_STATS.registered++;
-    CM_IDX++;
-    cmShowContact();
-  }catch(e){
-    showToast("Error saving. Try again.");
-  }
-  btn.disabled=false;btn.innerHTML='<i class="fas fa-check"></i> Save &amp; Next';
-};
-
-function cmShowDone(){
-  document.getElementById("cm-contact-view").style.display="none";
-  document.getElementById("cm-done-view").style.display="flex";
-  document.getElementById("cm-progress").style.width="100%";
-  document.getElementById("cm-count").textContent=CM_QUEUE.length+" / "+CM_QUEUE.length;
-  document.getElementById("cd-called").textContent=CM_SESSION_STATS.called;
-  document.getElementById("cd-interested").textContent=CM_SESSION_STATS.interested;
-  document.getElementById("cd-registered").textContent=CM_SESSION_STATS.registered;
-}
-
-// ── STEP 5: EDIT CAMPAIGN WA MESSAGE ──
-let EDIT_MSG_CAMP = "";
-
-async function getAllCampaignKeys(){
-  try{
-    const snap = await getDocs(collection(db,"campaigns_meta"));
-    return snap.docs.map(d => d.id);
-  }catch(e){ return []; }
-}
-
+async function getAllCampaignKeys(){try{const snap=await getDocs(collection(db,"campaigns_meta"));return snap.docs.map(d=>d.id);}catch(e){return[];}}
 async function renderEditMsgList(){
-  const list = document.getElementById("edit-msg-list");
-  if(!list) return;
-  const allKeys = await getAllCampaignKeys();
-  if(!allKeys.length){
-    list.innerHTML = '<div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px">No campaigns uploaded yet</div>';
-    return;
-  }
-  list.innerHTML = allKeys.map(c => {
-    const hasMsg = WA_MESSAGES[c] && WA_MESSAGES[c].trim().length > 0;
-    const preview = hasMsg ? WA_MESSAGES[c].substring(0,60).replace(/\n/g,' ')+'…' : '⚠️ No message set yet';
-    const safeName = c.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    return `<div style="background:var(--surface);border-radius:var(--radius);padding:14px;margin-bottom:10px;border:1px solid var(--border);box-shadow:var(--shadow-sm)">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-        <div style="flex:1;min-width:0">
-          <div style="font-size:14px;font-weight:600;color:var(--navy)">${c}</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${preview}</div>
-        </div>
-        <button onclick="openEditMsgModal('${safeName}')" style="padding:8px 14px;border:1.5px solid var(--navy);border-radius:9px;background:rgba(30,58,95,0.05);color:var(--navy);font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;flex-shrink:0">
-          <i class="fas fa-edit"></i> ${hasMsg?'Edit':'Add'}
-        </button>
-      </div>
-    </div>`;
+  const list=document.getElementById("edit-msg-list");if(!list)return;
+  const allKeys=await getAllCampaignKeys();
+  if(!allKeys.length){list.innerHTML='<div style="text-align:center;padding:16px;color:#A8A29E;font-size:13px">No campaigns uploaded yet</div>';return;}
+  list.innerHTML=allKeys.map(c=>{
+    const hasMsg=WA_MESSAGES[c]&&WA_MESSAGES[c].trim().length>0;const preview=hasMsg?WA_MESSAGES[c].substring(0,60).replace(/\n/g,' ')+'…':'⚠️ No message set yet';
+    const safeName=c.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div style="background:var(--surface);border-radius:var(--radius);padding:14px;margin-bottom:10px;border:1px solid var(--border);box-shadow:var(--shadow-sm)"><div style="display:flex;align-items:center;justify-content:space-between;gap:10px"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:var(--navy)">${c}</div><div style="font-size:11px;color:var(--muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${preview}</div></div><button onclick="openEditMsgModal('${safeName}')" style="padding:8px 14px;border:1.5px solid var(--navy);border-radius:9px;background:rgba(30,58,95,0.05);color:var(--navy);font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;flex-shrink:0"><i class="fas fa-edit"></i> ${hasMsg?'Edit':'Add'}</button></div></div>`;
   }).join('');
 }
-
-window.openEditMsgModal = (campName) => {
-  EDIT_MSG_CAMP = campName;
-  document.getElementById("edit-msg-camp-label").textContent = "Campaign: " + campName;
-  document.getElementById("edit-msg-input").value = WA_MESSAGES[campName] || "";
-  document.getElementById("edit-msg-modal").classList.add("open");
+window.openEditMsgModal=(campName)=>{EDIT_MSG_CAMP=campName;document.getElementById("edit-msg-camp-label").textContent="Campaign: "+campName;document.getElementById("edit-msg-input").value=WA_MESSAGES[campName]||"";document.getElementById("edit-msg-modal").classList.add("open");};
+window.saveEditedMsg=async()=>{
+  const newMsg=document.getElementById("edit-msg-input").value.trim();if(!EDIT_MSG_CAMP){showToast("⚠️ No campaign selected!");return;}if(!newMsg){showToast("⚠️ Please type a message before saving!");return;}
+  try{await setDoc(doc(db,"campaigns_meta",EDIT_MSG_CAMP),{waMessage:newMsg},{merge:true});WA_MESSAGES[EDIT_MSG_CAMP]=newMsg;showToast("✅ Message saved for: "+EDIT_MSG_CAMP);closeEditMsgModal();renderEditMsgList();}
+  catch(e){console.error(e);showToast("❌ Failed to save. Check Firestore rules.");}
 };
+window.closeEditMsgModal=()=>{document.getElementById("edit-msg-modal").classList.remove("open");EDIT_MSG_CAMP="";};
 
-window.saveEditedMsg = async () => {
-  const newMsg = document.getElementById("edit-msg-input").value.trim();
-  if(!EDIT_MSG_CAMP){ showToast("⚠️ No campaign selected!"); return; }
-  if(!newMsg){ showToast("⚠️ Please type a message before saving!"); return; }
-  try{
-    await setDoc(doc(db,"campaigns_meta",EDIT_MSG_CAMP),{ waMessage: newMsg },{ merge: true });
-    WA_MESSAGES[EDIT_MSG_CAMP] = newMsg;
-    showToast("✅ Message saved for: " + EDIT_MSG_CAMP);
-    closeEditMsgModal();
-    renderEditMsgList();
-  }catch(e){
-    console.error(e);
-    showToast("❌ Failed to save. Check Firestore rules.");
-  }
+window.switchTab=(pgId,tabId)=>{
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
+  document.getElementById(pgId).classList.add("active");document.getElementById(tabId).classList.add("active");
+  const sbt=document.getElementById("sbt-"+tabId.replace("tab-",""));if(sbt)sbt.classList.add("active");
+  window.scrollTo(0,0);
 };
-
-window.closeEditMsgModal = () => {
-  document.getElementById("edit-msg-modal").classList.remove("open");
-  EDIT_MSG_CAMP = "";
-};
-// ═══════════════════════════════════════
+window.showToast=msg=>{const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);};
 </script>
-
-<!-- EDIT WA MESSAGE MODAL -->
-<div class="mo" id="edit-msg-modal">
-  <div class="ms">
-    <div class="mh"></div>
-    <div class="mt">✏️ Edit WhatsApp Message</div>
-    <div class="msub" id="edit-msg-camp-label">Campaign: —</div>
-    <textarea id="edit-msg-input" rows="8" placeholder="Type your WhatsApp message here..." style="width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:14px;outline:none;background:#FAFBFC;line-height:1.7;resize:vertical;font-family:var(--font-body);min-height:150px;transition:border-color 0.2s;margin-bottom:8px"></textarea>
-    <small style="color:var(--muted);font-size:11px;display:block;margin-bottom:14px">⚡ Supports emojis, *bold*, and links. Exactly as typed.</small>
-    <button class="btn-s btn-g" onclick="saveEditedMsg()"><i class="fas fa-save"></i> Save Message</button>
-    <button class="btn-c" onclick="closeEditMsgModal()" style="margin-top:8px">Cancel</button>
-  </div>
-</div>
 </body>
 </html>
