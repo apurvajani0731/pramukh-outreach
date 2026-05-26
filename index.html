@@ -415,6 +415,89 @@ a{color:inherit;text-decoration:none;}
   #leads-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   #leads-list .cc{margin-bottom:0;}
 }
+
+/* ── ADMIN DASHBOARD ── */
+.db-metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px;}
+@media(min-width:600px){.db-metric-grid{grid-template-columns:repeat(4,1fr);}}
+.db-metric{background:var(--navy3);border-radius:var(--radius);padding:14px 16px;border:1px solid rgba(255,255,255,0.07);}
+.db-metric-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px;}
+.db-metric-n{font-family:var(--font-head);font-size:24px;font-weight:800;color:white;line-height:1;}
+.db-metric-l{font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;font-weight:500;}
+.db-metric-delta{font-size:10px;font-weight:700;margin-top:6px;padding:2px 8px;border-radius:20px;display:inline-block;}
+.db-delta-up{background:rgba(22,163,74,0.18);color:#4ADE80;}
+.db-delta-neutral{background:rgba(201,146,26,0.18);color:#FCD34D;}
+.db-two-col{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px;}
+@media(min-width:700px){.db-two-col{grid-template-columns:1fr 1fr;}}
+.db-card{background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);padding:16px;box-shadow:var(--shadow-sm);}
+.db-card-title{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.db-card-title i{color:var(--orange);font-size:13px;}
+
+/* Funnel */
+.db-funnel{display:flex;flex-direction:column;gap:7px;}
+.db-funnel-row{display:flex;align-items:center;gap:8px;}
+.db-funnel-label{font-size:10px;font-weight:700;color:var(--muted);width:64px;flex-shrink:0;text-align:right;}
+.db-funnel-track{flex:1;height:26px;background:var(--bg);border-radius:6px;overflow:hidden;}
+.db-funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;min-width:32px;transition:width 0.8s ease;}
+.db-funnel-val{font-size:11px;font-weight:700;color:white;white-space:nowrap;}
+.db-funnel-pct{font-size:10px;font-weight:700;color:var(--muted);width:32px;text-align:right;flex-shrink:0;}
+
+/* Leaderboard */
+.db-lb-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+.db-lb-row:last-child{border-bottom:none;padding-bottom:0;}
+.db-lb-rank{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.db-lb-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;background:linear-gradient(135deg,var(--navy),#2D5A8E);color:white;}
+.db-lb-info{flex:1;min-width:0;}
+.db-lb-name{font-size:13px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.db-lb-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.db-lb-stats{display:flex;gap:10px;flex-shrink:0;}
+.db-lb-stat{text-align:center;}
+.db-lb-stat-n{font-size:13px;font-weight:800;font-family:var(--font-head);}
+.db-lb-stat-l{font-size:9px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.3px;}
+
+/* Campaign progress */
+.db-camp-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.db-camp-row:last-child{border-bottom:none;padding-bottom:0;}
+.db-camp-info{flex:1;min-width:0;}
+.db-camp-name{font-size:13px;font-weight:600;color:var(--navy);}
+.db-camp-meta{font-size:10px;color:var(--muted);margin-top:2px;}
+.db-camp-bar-wrap{width:72px;height:6px;background:var(--bg);border-radius:20px;overflow:hidden;flex-shrink:0;}
+.db-camp-bar{height:100%;border-radius:20px;transition:width 0.8s ease;}
+.db-camp-pct{font-size:12px;font-weight:700;color:var(--navy);width:30px;text-align:right;flex-shrink:0;font-family:var(--font-head);}
+
+/* Activity */
+.db-act-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);}
+.db-act-row:last-child{border-bottom:none;padding-bottom:0;}
+.db-act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.db-act-text{font-size:12px;color:var(--text);line-height:1.5;flex:1;}
+.db-act-text b{color:var(--navy);font-weight:700;}
+.db-act-time{font-size:10px;color:var(--muted);flex-shrink:0;margin-top:3px;font-family:var(--font-mono);}
+
+/* Quick actions */
+.db-qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.db-qa-btn{padding:14px 12px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;gap:10px;cursor:pointer;transition:all 0.15s;text-align:left;box-shadow:var(--shadow-sm);}
+.db-qa-btn:hover{border-color:var(--navy);background:rgba(30,58,95,0.04);}
+.db-qa-btn:active{transform:scale(0.98);}
+.db-qa-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px;}
+.db-qa-label{font-size:13px;font-weight:700;color:var(--navy);}
+.db-qa-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+
+/* Add volunteer modal */
+.db-vol-form .fg label{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.db-vol-form .fg input{background:#FAFBFC;color:var(--text);border:1.5px solid var(--border);}
+.db-vol-form .fg input::placeholder{color:var(--muted);}
+.db-vol-form .fg input:focus{border-color:var(--navy);background:var(--surface);box-shadow:0 0 0 3px rgba(30,58,95,0.07);}
+
+/* Date filter chips */
+.db-date-filter{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap;}
+.db-df{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.db-df:hover{border-color:var(--navy);color:var(--navy);}
+.db-df.active{border-color:var(--navy);background:var(--navy);color:white;}
+
+/* Empty dashboard */
+.db-empty{text-align:center;padding:40px 20px;}
+.db-empty i{font-size:36px;color:#CBD5E1;margin-bottom:10px;display:block;}
+.db-empty p{font-size:13px;color:var(--muted);}
+
 </style>
 </head>
 <body>
@@ -461,6 +544,7 @@ a{color:inherit;text-decoration:none;}
       <button class="sb-item active" id="sbt-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
       <button class="sb-item" id="sbt-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-phone-alt"></i><span>My Leads</span></button>
       <div class="sb-section-label" id="sb-admin-label" style="display:none">Admin</div>
+      <button class="sb-item" id="sbt-dashboard" onclick="switchTab('pg-dashboard','tab-dashboard');renderDashboard();" style="display:none"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
       <button class="sb-item" id="sbt-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
       <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
       <button class="sb-item" id="sbt-paylinks" onclick="switchTab('pg-paylinks','tab-paylinks')" style="display:none"><i class="fas fa-link"></i><span>Payment Links</span></button>
@@ -545,7 +629,79 @@ a{color:inherit;text-decoration:none;}
         <div class="empty" id="leads-empty" style="display:none"><i class="fas fa-inbox"></i><h3>No contacts found</h3><p>Contacts assigned to you appear here.<br/>Try adjusting your filters above.</p></div>
       </div>
 
+      <!-- ADMIN DASHBOARD -->
+      <div class="page" id="pg-dashboard">
+        <!-- Banner -->
+        <div class="wb" style="margin-bottom:16px;">
+          <h3>📊 Admin Dashboard</h3>
+          <p>Live overview · Conversion funnel · Volunteer leaderboard · Activity feed</p>
+          <div class="echips" id="db-last-updated"></div>
+        </div>
+
+        <!-- Date filter -->
+        <div class="db-date-filter">
+          <button class="db-df active" id="dbf-all" onclick="setDbFilter('all',this)">All Time</button>
+          <button class="db-df" id="dbf-today" onclick="setDbFilter('today',this)">Today</button>
+          <button class="db-df" id="dbf-week" onclick="setDbFilter('week',this)">This Week</button>
+          <button class="db-df" id="dbf-campaign" onclick="setDbFilter('campaign',this)">By Campaign</button>
+        </div>
+
+        <!-- Campaign filter (shown only when By Campaign selected) -->
+        <div id="db-camp-filter-wrap" style="display:none;margin-bottom:12px;">
+          <div class="filter-row" id="db-camp-filter"></div>
+        </div>
+
+        <!-- Metric cards -->
+        <div class="db-metric-grid" id="db-metrics"></div>
+
+        <!-- Funnel + Leaderboard -->
+        <div class="db-two-col">
+          <div class="db-card">
+            <div class="db-card-title"><i class="fas fa-filter"></i> Conversion Funnel</div>
+            <div class="db-funnel" id="db-funnel"></div>
+          </div>
+          <div class="db-card">
+            <div class="db-card-title"><i class="fas fa-trophy"></i> Volunteer Leaderboard</div>
+            <div id="db-leaderboard"></div>
+          </div>
+        </div>
+
+        <!-- Campaign progress + Activity -->
+        <div class="db-two-col">
+          <div class="db-card">
+            <div class="db-card-title"><i class="fas fa-folder-open"></i> Campaign Progress</div>
+            <div id="db-campaigns"></div>
+          </div>
+          <div class="db-card">
+            <div class="db-card-title"><i class="fas fa-bolt"></i> Today's Activity</div>
+            <div id="db-activity"></div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="sh" style="margin-top:4px;"><div class="st"><i class="fas fa-bolt"></i> Quick Actions</div></div>
+        <div class="db-qa-grid">
+          <button class="db-qa-btn" onclick="openAddVolunteerModal()">
+            <div class="db-qa-icon" style="background:rgba(30,58,95,0.1);"><i class="fas fa-user-plus" style="color:var(--navy);font-size:17px;"></i></div>
+            <div><div class="db-qa-label">Add Volunteer</div><div class="db-qa-sub">Create login & assign campaign</div></div>
+          </button>
+          <button class="db-qa-btn" onclick="switchTab('pg-upload','tab-upload');openExportChooser();">
+            <div class="db-qa-icon" style="background:rgba(22,163,74,0.1);"><i class="fas fa-file-csv" style="color:#16A34A;font-size:17px;"></i></div>
+            <div><div class="db-qa-label">Export CSV</div><div class="db-qa-sub">Download campaign master file</div></div>
+          </button>
+          <button class="db-qa-btn" onclick="switchTab('pg-upload','tab-upload')">
+            <div class="db-qa-icon" style="background:rgba(37,99,235,0.1);"><i class="fas fa-upload" style="color:#2563EB;font-size:17px;"></i></div>
+            <div><div class="db-qa-label">Upload Contacts</div><div class="db-qa-sub">Add new campaign CSV</div></div>
+          </button>
+          <button class="db-qa-btn" onclick="switchTab('pg-upload','tab-upload');setTimeout(()=>document.getElementById('danger-camp-list').scrollIntoView({behavior:'smooth'}),300)">
+            <div class="db-qa-icon" style="background:rgba(220,38,38,0.08);"><i class="fas fa-trash" style="color:#DC2626;font-size:17px;"></i></div>
+            <div><div class="db-qa-label">Delete Campaign</div><div class="db-qa-sub">Remove contacts permanently</div></div>
+          </button>
+        </div>
+      </div>
+
       <!-- REPORTS -->
+
       <div class="page" id="pg-reports">
         <div class="rpt-banner"><h3>📊 Volunteer Reports</h3><p>Filter by campaign · Tap volunteer to expand their stats</p></div>
         <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:7px;">📁 Campaign</div>
@@ -709,6 +865,7 @@ a{color:inherit;text-decoration:none;}
     <div class="tab-bar">
       <button class="ti active" id="tab-home" onclick="switchTab('pg-home','tab-home')"><i class="fas fa-home"></i><span>Home</span></button>
       <button class="ti" id="tab-leads" onclick="switchTab('pg-leads','tab-leads')"><i class="fas fa-phone-alt"></i><span>Leads</span></button>
+      <button class="ti" id="tab-dashboard" onclick="switchTab('pg-dashboard','tab-dashboard');renderDashboard();" style="display:none"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
       <button class="ti" id="tab-reports" onclick="switchTab('pg-reports','tab-reports');renderReports();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
       <button class="ti" id="tab-upload" onclick="switchTab('pg-upload','tab-upload')" style="display:none"><i class="fas fa-upload"></i><span>Upload</span></button>
       <button class="ti" id="tab-paylinks" onclick="switchTab('pg-paylinks','tab-paylinks')" style="display:none"><i class="fas fa-link"></i><span>Pay Links</span></button>
@@ -820,6 +977,25 @@ a{color:inherit;text-decoration:none;}
   </div>
 </div>
 
+<!-- ADD VOLUNTEER MODAL -->
+<div class="mo" id="add-vol-modal">
+  <div class="ms">
+    <div class="mh"></div>
+    <div class="mt">👤 Add New Volunteer</div>
+    <div class="msub">Creates a Firebase Auth login for the volunteer</div>
+    <div class="db-vol-form">
+      <div class="fg"><label>Volunteer Email</label><input type="email" id="new-vol-email" placeholder="volunteer@gmail.com"/></div>
+      <div class="fg"><label>Temporary Password</label><input type="text" id="new-vol-pass" placeholder="Min 6 characters"/></div>
+      <div class="fg"><label>Display Name (optional)</label><input type="text" id="new-vol-name" placeholder="e.g. Rahul Kumar"/></div>
+    </div>
+    <div style="background:#FEF3C7;border:1px solid rgba(201,146,26,0.3);border-radius:10px;padding:10px 14px;font-size:12px;color:#92400E;margin-bottom:14px;line-height:1.6;">
+      ⚠️ Share the email + password with the volunteer. They can change password after first login from Firebase Console.
+    </div>
+    <button class="btn-s btn-g" id="add-vol-btn" onclick="createVolunteer()"><i class="fas fa-user-plus"></i> Create Volunteer Account</button>
+    <button class="btn-c" onclick="closeAddVolunteerModal()">Cancel</button>
+  </div>
+</div>
+
 <!-- CONFIRM DELETE MODAL -->
 <div class="mo" id="confirm-modal">
   <div class="ms">
@@ -903,7 +1079,7 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
     document.getElementById("sb-uname").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("sb-urole").textContent=IS_ADMIN?"Administrator":"Volunteer";
-    if(IS_ADMIN){["tab-upload","tab-reports","tab-paylinks","sbt-upload","sbt-reports","sbt-paylinks","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});}
+    if(IS_ADMIN){["tab-upload","tab-reports","tab-paylinks","tab-dashboard","sbt-upload","sbt-reports","sbt-paylinks","sbt-dashboard","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});}
     // FIX: All three init calls now present after login
     listenLeads();
     loadCampaignMessages();
@@ -921,7 +1097,10 @@ function listenLeads(){
   onSnapshot(collection(db,"outreach_leads"),snap=>{
     ALL_LEADS=snap.docs.map(d=>({id:d.id,...d.data()}));
     buildCampaignFilters();renderStats();renderLeads();renderCallbacks();
-    if(IS_ADMIN){renderVolProgress();renderReports();renderDangerCamps();}
+    if(IS_ADMIN){renderVolProgress();renderReports();renderDangerCamps();
+      // Refresh dashboard if it's the active page
+      if(document.getElementById("pg-dashboard").classList.contains("active"))renderDashboard();
+    }
   });
 }
 
@@ -1267,7 +1446,247 @@ window.saveEditedMsg=async()=>{
 };
 window.closeEditMsgModal=()=>{document.getElementById("edit-msg-modal").classList.remove("open");EDIT_MSG_CAMP="";};
 
-window.switchTab=(pgId,tabId)=>{
+
+// ══════════════════════════════════════
+//   ADMIN DASHBOARD
+// ══════════════════════════════════════
+let DB_FILTER="all", DB_CAMP_FILTER="all";
+
+window.setDbFilter=(f,el)=>{
+  DB_FILTER=f;
+  document.querySelectorAll(".db-df").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  document.getElementById("db-camp-filter-wrap").style.display=f==="campaign"?"block":"none";
+  renderDashboard();
+};
+
+window.renderDashboard=()=>{
+  if(!IS_ADMIN)return;
+  // Build campaign filter row
+  const camps=getAllCampaigns();
+  const cf=document.getElementById("db-camp-filter");
+  if(cf){
+    cf.innerHTML=`<button class="fc ${DB_CAMP_FILTER==="all"?"active":""}" onclick="setDbCampFilter('all',this)">All</button>`;
+    camps.forEach(c=>{
+      const btn=document.createElement("button");
+      btn.className=`fc ${DB_CAMP_FILTER===c?"active":""}`;
+      btn.textContent=c;btn.onclick=()=>setDbCampFilter(c,btn);
+      cf.appendChild(btn);
+    });
+  }
+  // Filter leads
+  let list=ALL_LEADS;
+  const now=new Date();
+  if(DB_FILTER==="today"){
+    const tod=now.toDateString();
+    list=list.filter(l=>l.updatedAt&&new Date(l.updatedAt).toDateString()===tod);
+  }else if(DB_FILTER==="week"){
+    const weekAgo=new Date(now-7*24*60*60*1000);
+    list=list.filter(l=>l.updatedAt&&new Date(l.updatedAt)>=weekAgo);
+  }else if(DB_FILTER==="campaign"&&DB_CAMP_FILTER!=="all"){
+    list=list.filter(l=>(l.campaign||"General")===DB_CAMP_FILTER);
+  }
+  renderDbMetrics(list);
+  renderDbFunnel(list);
+  renderDbLeaderboard(list);
+  renderDbCampaigns();
+  renderDbActivity();
+  // Last updated
+  const lu=document.getElementById("db-last-updated");
+  if(lu)lu.innerHTML=`<span class="echip">🕐 Updated ${new Date().toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"})}</span><span class="echip">📋 ${ALL_LEADS.length} total contacts</span>`;
+};
+
+window.setDbCampFilter=(c,el)=>{
+  DB_CAMP_FILTER=c;
+  document.querySelectorAll("#db-camp-filter .fc").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  renderDashboard();
+};
+
+function renderDbMetrics(list){
+  const total=list.length;
+  const called=list.filter(l=>l.status&&l.status!=="pending").length;
+  const interested=list.filter(l=>l.status==="interested").length;
+  const registered=list.filter(l=>l.status==="registered").length;
+  const callPct=total?Math.round((called/total)*100):0;
+  const intPct=called?Math.round((interested/called)*100):0;
+  const regPct=interested?Math.round((registered/interested)*100):0;
+  document.getElementById("db-metrics").innerHTML=`
+    <div class="db-metric">
+      <div class="db-metric-icon" style="background:rgba(194,65,12,0.15);">👥</div>
+      <div class="db-metric-n">${total}</div>
+      <div class="db-metric-l">Total Leads</div>
+      <div class="db-metric-delta db-delta-neutral">${getAllCampaigns().length} campaign${getAllCampaigns().length!==1?"s":""}</div>
+    </div>
+    <div class="db-metric">
+      <div class="db-metric-icon" style="background:rgba(37,99,235,0.15);">📞</div>
+      <div class="db-metric-n">${called}</div>
+      <div class="db-metric-l">Total Called</div>
+      <div class="db-metric-delta db-delta-up">${callPct}% coverage</div>
+    </div>
+    <div class="db-metric">
+      <div class="db-metric-icon" style="background:rgba(22,163,74,0.15);">👍</div>
+      <div class="db-metric-n">${interested}</div>
+      <div class="db-metric-l">Interested</div>
+      <div class="db-metric-delta db-delta-up">${intPct}% of called</div>
+    </div>
+    <div class="db-metric">
+      <div class="db-metric-icon" style="background:rgba(201,146,26,0.15);">✅</div>
+      <div class="db-metric-n">${registered}</div>
+      <div class="db-metric-l">Registered</div>
+      <div class="db-metric-delta db-delta-up">${regPct}% of interest</div>
+    </div>`;
+}
+
+function renderDbFunnel(list){
+  const total=list.length;
+  if(!total){document.getElementById("db-funnel").innerHTML=`<div class="db-empty"><i class="fas fa-chart-bar"></i><p>No data yet</p></div>`;return;}
+  const statuses=[
+    {label:"Total",count:total,color:"#1E3A5F"},
+    {label:"Called",count:list.filter(l=>l.status==="called").length,color:"#2563EB"},
+    {label:"Interested",count:list.filter(l=>l.status==="interested").length,color:"#C9921A"},
+    {label:"Callback",count:list.filter(l=>l.status==="callback").length,color:"#EA580C"},
+    {label:"Not Int.",count:list.filter(l=>l.status==="not-interested").length,color:"#DC2626"},
+    {label:"No Answer",count:list.filter(l=>l.status==="not-reachable"||l.status==="wrong-number").length,color:"#6B7280"},
+    {label:"Registered",count:list.filter(l=>l.status==="registered").length,color:"#16A34A"},
+  ];
+  document.getElementById("db-funnel").innerHTML=statuses.map(s=>{
+    const w=Math.max(Math.round((s.count/total)*100),s.count>0?5:0);
+    const pct=Math.round((s.count/total)*100);
+    return `<div class="db-funnel-row">
+      <div class="db-funnel-label">${s.label}</div>
+      <div class="db-funnel-track">
+        <div class="db-funnel-bar" style="width:${w}%;background:${s.color};">
+          <span class="db-funnel-val">${s.count}</span>
+        </div>
+      </div>
+      <div class="db-funnel-pct">${pct}%</div>
+    </div>`;
+  }).join("");
+}
+
+function renderDbLeaderboard(list){
+  const vols=[...new Set(list.map(l=>l.assignedTo).filter(Boolean))];
+  if(!vols.length){document.getElementById("db-leaderboard").innerHTML=`<div class="db-empty"><i class="fas fa-users"></i><p>No volunteers yet</p></div>`;return;}
+  const data=vols.map(v=>{
+    const vl=list.filter(l=>l.assignedTo===v);
+    return{
+      name:v,
+      called:vl.filter(l=>l.status&&l.status!=="pending").length,
+      interested:vl.filter(l=>l.status==="interested").length,
+      registered:vl.filter(l=>l.status==="registered").length,
+    };
+  }).sort((a,b)=>b.registered-a.registered||b.interested-a.interested||b.called-a.called);
+  const medals=["🥇","🥈","🥉"];
+  const colors=["rgba(201,146,26,0.2)","rgba(107,114,128,0.15)","rgba(194,65,12,0.12)"];
+  const textColors=["#B07D10","#6B7280","#C2410C"];
+  document.getElementById("db-leaderboard").innerHTML=data.slice(0,6).map((v,i)=>{
+    const ini=v.name.slice(0,2).toUpperCase();
+    const rankEl=i<3?`<div class="db-lb-rank" style="background:${colors[i]};color:${textColors[i]};">${medals[i]}</div>`
+      :`<div class="db-lb-rank" style="background:rgba(107,114,128,0.1);color:#9CA3AF;font-size:10px;font-weight:700;">${i+1}</div>`;
+    return `<div class="db-lb-row">
+      ${rankEl}
+      <div class="db-lb-av">${ini}</div>
+      <div class="db-lb-info">
+        <div class="db-lb-name">${v.name}</div>
+        <div class="db-lb-sub">${v.called} calls total</div>
+      </div>
+      <div class="db-lb-stats">
+        <div class="db-lb-stat"><div class="db-lb-stat-n" style="color:#2563EB;">${v.called}</div><div class="db-lb-stat-l">Called</div></div>
+        <div class="db-lb-stat"><div class="db-lb-stat-n" style="color:#16A34A;">${v.interested}</div><div class="db-lb-stat-l">Int.</div></div>
+        <div class="db-lb-stat"><div class="db-lb-stat-n" style="color:#D97706;">${v.registered}</div><div class="db-lb-stat-l">Reg.</div></div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderDbCampaigns(){
+  const camps=getAllCampaigns();
+  if(!camps.length){document.getElementById("db-campaigns").innerHTML=`<div class="db-empty"><i class="fas fa-folder"></i><p>No campaigns yet</p></div>`;return;}
+  const colors=["#1E3A5F","#C9921A","#EA580C","#2563EB","#16A34A","#7C3AED"];
+  document.getElementById("db-campaigns").innerHTML=camps.map((c,i)=>{
+    const cl=ALL_LEADS.filter(l=>(l.campaign||"General")===c);
+    const total=cl.length;
+    const done=cl.filter(l=>l.status&&l.status!=="pending").length;
+    const pct=total?Math.round((done/total)*100):0;
+    const vols=[...new Set(cl.map(l=>l.assignedTo).filter(Boolean))].length;
+    const color=colors[i%colors.length];
+    return `<div class="db-camp-row">
+      <div class="db-camp-info">
+        <div class="db-camp-name">📁 ${c}</div>
+        <div class="db-camp-meta">${total} contacts · ${vols} volunteer${vols!==1?"s":""}</div>
+      </div>
+      <div class="db-camp-bar-wrap"><div class="db-camp-bar" style="width:${pct}%;background:${color};"></div></div>
+      <div class="db-camp-pct">${pct}%</div>
+    </div>`;
+  }).join("");
+}
+
+function renderDbActivity(){
+  // Show today's updates sorted by most recent
+  const today=new Date().toDateString();
+  const todayLeads=ALL_LEADS.filter(l=>l.updatedAt&&new Date(l.updatedAt).toDateString()===today&&l.status&&l.status!=="pending")
+    .sort((a,b)=>new Date(b.updatedAt)-new Date(a.updatedAt))
+    .slice(0,8);
+  if(!todayLeads.length){
+    document.getElementById("db-activity").innerHTML=`<div class="db-empty"><i class="fas fa-check-circle" style="color:#16A34A;"></i><p>No activity today yet</p></div>`;
+    return;
+  }
+  const dotColors={called:"#2563EB",interested:"#16A34A","not-interested":"#DC2626",registered:"#D97706",callback:"#EA580C","not-reachable":"#6B7280","wrong-number":"#6B7280"};
+  const actionLabels={called:"called","interested":"marked as Interested","not-interested":"marked as Not Interested","registered":"registered","callback":"set callback for","not-reachable":"could not reach","wrong-number":"wrong number for"};
+  document.getElementById("db-activity").innerHTML=todayLeads.map(l=>{
+    const dot=dotColors[l.status]||"#6B7280";
+    const action=actionLabels[l.status]||"updated";
+    const timeAgo=getTimeAgo(l.updatedAt);
+    return `<div class="db-act-row">
+      <div class="db-act-dot" style="background:${dot};"></div>
+      <div class="db-act-text"><b>${l.updatedBy||l.assignedTo||"?"}</b> ${action} <b>${l.name}</b></div>
+      <div class="db-act-time">${timeAgo}</div>
+    </div>`;
+  }).join("");
+}
+
+function getTimeAgo(iso){
+  if(!iso)return"—";
+  const diff=Math.floor((Date.now()-new Date(iso))/1000);
+  if(diff<60)return diff+"s ago";
+  if(diff<3600)return Math.floor(diff/60)+"m ago";
+  if(diff<86400)return Math.floor(diff/3600)+"h ago";
+  return Math.floor(diff/86400)+"d ago";
+}
+
+// ── ADD VOLUNTEER MODAL ──
+window.openAddVolunteerModal=()=>{
+  document.getElementById("new-vol-email").value="";
+  document.getElementById("new-vol-pass").value="";
+  document.getElementById("new-vol-name").value="";
+  document.getElementById("add-vol-modal").classList.add("open");
+};
+window.closeAddVolunteerModal=()=>document.getElementById("add-vol-modal").classList.remove("open");
+window.createVolunteer=async()=>{
+  const email=document.getElementById("new-vol-email").value.trim();
+  const pass=document.getElementById("new-vol-pass").value.trim();
+  if(!email||!pass){showToast("⚠️ Email and password required!");return;}
+  if(pass.length<6){showToast("⚠️ Password must be at least 6 characters!");return;}
+  const btn=document.getElementById("add-vol-btn");
+  btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Creating…';
+  try{
+    // Use Firebase Admin REST API to create user
+    const resp=await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email,password:pass,returnSecureToken:false})
+    });
+    const data=await resp.json();
+    if(data.error){showToast("❌ "+data.error.message);btn.disabled=false;btn.innerHTML='<i class="fas fa-user-plus"></i> Create Volunteer Account';return;}
+    showToast("✅ Volunteer created: "+email);
+    closeAddVolunteerModal();
+  }catch(e){
+    showToast("❌ Error: "+e.message);
+  }
+  btn.disabled=false;btn.innerHTML='<i class="fas fa-user-plus"></i> Create Volunteer Account';
+};
+
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
   document.getElementById(pgId).classList.add("active");document.getElementById(tabId).classList.add("active");
   const sbt=document.getElementById("sbt-"+tabId.replace("tab-",""));if(sbt)sbt.classList.add("active");
