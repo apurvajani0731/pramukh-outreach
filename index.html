@@ -1692,9 +1692,14 @@ window.createVolunteer=async()=>{
   btn.disabled=false;btn.innerHTML='<i class="fas fa-user-plus"></i> Create Volunteer Account';
 };
 
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
-  document.getElementById(pgId).classList.add("active");document.getElementById(tabId).classList.add("active");
-  const sbt=document.getElementById("sbt-"+tabId.replace("tab-",""));if(sbt)sbt.classList.add("active");
+window.switchTab=(pgId,tabId)=>{
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".ti").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(".sb-item").forEach(t=>t.classList.remove("active"));
+  document.getElementById(pgId).classList.add("active");
+  document.getElementById(tabId).classList.add("active");
+  const sbt=document.getElementById("sbt-"+tabId.replace("tab-",""));
+  if(sbt)sbt.classList.add("active");
   window.scrollTo(0,0);
 };
 window.showToast=msg=>{const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);};
