@@ -1051,7 +1051,8 @@ let confirmCallback=null;
 // ── CONFIRM MODAL ──
 window.showConfirm=(title,campName,msg,cb)=>{document.getElementById("confirm-title").textContent=title;document.getElementById("confirm-camp-name").textContent="📁 "+campName;document.getElementById("confirm-msg").textContent=msg;confirmCallback=cb;document.getElementById("confirm-modal").classList.add("open");};
 window.closeConfirm=()=>{document.getElementById("confirm-modal").classList.remove("open");confirmCallback=null;};
-document.getElementById("confirm-ok-btn").onclick=()=>{closeConfirm();if(confirmCallback)confirmCallback();};
+const confirmOkBtn=document.getElementById("confirm-ok-btn");
+if(confirmOkBtn)confirmOkBtn.onclick=()=>{closeConfirm();if(confirmCallback)confirmCallback();};
 
 // ── AUTH ──
 window.doLogin=async()=>{
@@ -1079,7 +1080,12 @@ onAuthStateChanged(auth,user=>{
     document.getElementById("p-role").textContent=IS_ADMIN?"Admin":"Volunteer";
     document.getElementById("sb-uname").textContent=IS_ADMIN?"Admin":VOL_NAME;
     document.getElementById("sb-urole").textContent=IS_ADMIN?"Administrator":"Volunteer";
-    if(IS_ADMIN){["tab-upload","tab-reports","tab-paylinks","tab-dashboard","sbt-upload","sbt-reports","sbt-paylinks","sbt-dashboard","sb-admin-label","vol-prog-hdr","admin-info"].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display=id==="admin-info"?"block":"";});}
+    if(IS_ADMIN){
+      const adminEls=["tab-upload","tab-reports","tab-paylinks","tab-dashboard","sbt-upload","sbt-reports","sbt-paylinks","sbt-dashboard"];
+      adminEls.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="flex";});
+      const blockEls=["sb-admin-label","vol-prog-hdr","admin-info"];
+      blockEls.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display="block";});
+    }
     // FIX: All three init calls now present after login
     listenLeads();
     loadCampaignMessages();
@@ -1344,14 +1350,13 @@ window.exportMaster=()=>{
 window.openWA=(num,name,event,campaign="")=>{
   const payLink=PAYMENT_LINKS_MAP[num]||PAYMENT_LINKS_MAP[num.replace(/\D/g,"")];
   if(payLink){
-    const payMsg=`નમસ્તે,\nતમને જણાવતા આનંદ થાય છે કે Pramukh Vision Conference ના વેઇટિંગ લિસ્ટમાંથી હવે તમારું સિલેક્શન થઈ ગયું છે અને તમે આ કોન્ફરન્સ માટે એલિજિબલ છો.\nતમારું ફોર્મ સબમિટ થઈ ગયું છે, હવે તમારી સીટ કન્ફર્મ કરવા માટે નીચે આપેલી લિંક પર ક્લિક કરીને પેમેન્ટ પૂર્ણ કરવા વિનંતી છે:\n\n🔗 પેમેન્ટ લિંક: ${payLink}\n\nખાસ નોંધ: અમારી પાસે રજીસ્ટ્રેશન ખૂબ વધારે હોવાથી, જે વહેલા પેમેન્ટ પૂર્ણ કરશે તેમની જ સીટ કન્ફર્મ ગણવામાં આવશે. સીટ્સ મર્યાદિત હોવાથી આજે જ પ્રક્રિયા પૂરી કરી લેવા વિનંતી.\nઆભાર, પ્રમુખ એકેડમી`;
+    const payMsg="\u0AA8\u0AAE\u0AB8\u0ACD\u0AA4\u0AC7,\n\u0AA4\u0AAE\u0AA8\u0AC7 \u0A9C\u0AA3\u0ABE\u0AB5\u0AA4\u0ABE \u0A86\u0AA8\u0AA8\u0ACD\u0AA6 \u0AA5\u0ABE\u0AAF \u0A9B\u0AC7 \u0A95\u0AC7 Pramukh Vision Conference \u0AA8\u0ABE \u0AB5\u0AC7\u0A87\u0A9F\u0ABF\u0A82\u0A97 \u0AB2\u0ABF\u0AB8\u0ACD\u0A9F\u0AAE\u0ABE\u0A82\u0AA5\u0AC0 \u0AB9\u0AB5\u0AC7 \u0AA4\u0AAE\u0ABE\u0AB0\u0AC1\u0A82 \u0AB8\u0ABF\u0AB2\u0AC7\u0A95\u0AB6\u0AA8 \u0AA5\u0A88 \u0A97\u0AAF\u0AC1\u0A82 \u0A9B\u0AC7.\n\n\uD83D\uDD17 Payment Link: "+payLink+"\n\n\u0A86\u0AAD\u0ABE\u0AB0, \u0AAA\u0ACD\u0AB0\u0AAE\u0AC1\u0A96 \u0A8F\u0A95\u0AC7\u0AA1\u0AAE\u0AC0";
     window.open("https://wa.me/91"+num+"?text="+encodeURIComponent(payMsg),"_blank");return;
   }
-  // FIX: Single firstName declaration (duplicate was causing SyntaxError that killed entire module)
   const firstName=name.split(" ")[0];
-  const lcMsg=`Hello ${firstName} 👋,\n\nBAPS Pramukh Academy is introducing 🙏\n\n*The Leadership Carnival 2026* 🌟\n\nA 4-day residential programme for school students focused on forming students as leaders — not just teaching leadership.\n\n📍 Parul University, Vadodara\n📅 10–13 May 2026\n👦 Class 6–10\n💰 ₹500 (residential, meals & certificate included)\n\n⏳ Seats are limited due to residential format.\n\n👉 Apply here:\n🔗 https://pramukh.academy/the-leadership-carnival-2026/`;
-  const pvcMsg=`Hello ${firstName} 👋,\n\n🔥 *Ignite Your IAS Dream at PVC 4.0!* 🇮🇳\n\n🚀 *What's in store?*\n🎯 District Crisis Simulations\n🏛️ Youth Parliament Experience\n📚 UPSC Deep Dive Sessions\n\n📅 31 May – 3 June 2026\n📍 Vadodara, Gujarat\n\n🔗 Register now: https://pramukh.academy/pramukh-vision-conference-4-0-2026/`;
-  const zoomMsg=`🔔 *Reminder : Important Meeting Today for Pramukh Vision Conference 4.0*🔔\n\n🙏 नमस्ते *अभिभावक एवं विद्यार्थी मित्रों*,\n\n📢 *Pramukh Vision Conference 4.0* में पंजीकरण हेतु हार्दिक बधाई!\n\n🔴 Conference की विभिन्न गतिविधियों जैसे *Youth Parliament, District Crisis Simulation* आदि की जानकारी एवं पूर्व तैयारी के मार्गदर्शन हेतु एक महत्वपूर्ण *Online Zoom Meeting* आयोजित की गई है। प्रत्येक विद्यार्थी का जुड़ना अनिवार्य है।\n\n✅ इस मीटिंग में *प्रमुख अकैडमी संचालक संत पूज्य ज्ञानविजय स्वामी* तथा *मेंटोर प्रिमांशु भारद्वाज सर* उपस्थित रहेंगे।\n\n📅 *23/05/2026 (शनिवार)*\n🕗 *रात 8:30 बजे*\n\n🔗 *Zoom Link:*\nhttps://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1\n\n👉 *Please Join Telegram Group for Updates:*\nhttps://t.me/pramukhvisionconference04\n\n📞 संपर्क: *9328141289* , *9998992876*\n\n*धन्यवाद,*\n*एडमिशन डिपार्टमेंट,*\n*प्रमुख अकैडमी*`;
+  const lcMsg="Hello "+firstName+" \uD83D\uDC4B,\n\nBAPS Pramukh Academy is introducing \uD83D\uDE4F\n\n*The Leadership Carnival 2026* \uD83C\uDF1F\n\nA 4-day residential programme for school students.\n\n\uD83D\uDCCD Parul University, Vadodara\n\uD83D\uDCC5 10-13 May 2026\n\uD83D\uDC66 Class 6-10\n\uD83D\uDCB0 Rs.500 (residential, meals & certificate included)\n\n\uD83D\uDC49 Apply here:\n\uD83D\uDD17 https://pramukh.academy/the-leadership-carnival-2026/";
+  const pvcMsg="Hello "+firstName+" \uD83D\uDC4B,\n\n\uD83D\uDD25 *Ignite Your IAS Dream at PVC 4.0!*\n\n\uD83D\uDE80 What's in store?\n\uD83C\uDFAF District Crisis Simulations\n\uD83C\uDFDB Youth Parliament Experience\n\uD83D\uDCDA UPSC Deep Dive Sessions\n\n\uD83D\uDCC5 31 May - 3 June 2026\n\uD83D\uDCCD Vadodara, Gujarat\n\n\uD83D\uDD17 https://pramukh.academy/pramukh-vision-conference-4-0-2026/";
+  const zoomMsg="\uD83D\uDD14 *Reminder: Important Zoom Meeting - PVC 4.0*\n\nDear Parents & Students,\n\nA mandatory Online Zoom Meeting has been arranged for Pramukh Vision Conference 4.0 preparation.\n\n\uD83D\uDCC5 23/05/2026 (Saturday)\n\uD83D\uDD57 8:30 PM\n\n\uD83D\uDD17 Zoom Link:\nhttps://us02web.zoom.us/j/85969801547?pwd=uGKyHx9qBdEFzLalWUBdLHMsKlg0TL.1\n\n\uD83D\uDC49 Telegram Group:\nhttps://t.me/pramukhvisionconference04\n\n\uD83D\uDCDE Contact: 9328141289 / 9998992876\n\nThank you,\nAdmission Dept, Pramukh Academy";
   const campMsg=WA_MESSAGES[campaign]||"";
   let finalMsg;
   if(campMsg){finalMsg=campMsg;}
