@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="mobile-web-app-capable" content="yes"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="theme-color" content="#1E3A5F"/>
-    <title>Pramukh Outreach · BAPS Pramukh Academy</title>
+    <title>Pramukh Outreach v2.5 · Professional Calling Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,298 +12,228 @@
         :root {
             --navy: #1E3A5F; --navy2: #162D4A; --navy3: #0F1F33;
             --gold: #C9921A; --gold2: #B07D10; --gold-light: #FEF3C7;
-            --orange: #C2410C; --orange2: #EA580C;
             --bg: #F2F4F7; --surface: #FFFFFF; --text: #111827;
             --muted: #6B7280; --border: #E5E7EB;
             --shadow: 0 4px 20px rgba(0,0,0,0.06);
-            --radius: 14px; --radius-lg: 18px;
-            --sidebar-w: 260px; --header-h: 64px;
+            --radius: 14px; --sidebar-w: 260px;
         }
 
         [data-theme="dark"] {
             --bg: #0B1120; --surface: #1E293B; --text: #F8FAFC;
             --muted: #94A3B8; --border: #334155; --navy3: #020617;
-            --shadow: 0 4px 20px rgba(0,0,0,0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; overflow-x: hidden; }
-        
-        /* LOGIN & AUTH STYLES */
-        #loginPage { display: flex; min-height: 100vh; background: var(--navy3); position: relative; overflow: hidden; align-items: center; justify-content: center; }
-        .login-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size: 48px 48px; }
-        .lcard { width: 100%; max-width: 400px; background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px; z-index: 10; position: relative; }
-        .login-brand-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 30px; }
-        .login-brand-circle { width: 50px; height: 50px; background: rgba(201,146,26,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold); }
-        .login-brand-circle img { width: 40px; }
-        .login-brand-text h1 { color: white; font-size: 18px; font-family: 'Outfit'; }
-        .login-h { color: white; font-size: 24px; font-weight: 800; font-family: 'Outfit'; margin-bottom: 8px; }
-        .login-sub { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 24px; }
-        .fg { margin-bottom: 16px; }
-        .fg label { display: block; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .iw { position: relative; }
-        .iw i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.3); }
-        .iw input { width: 100%; padding: 14px 15px 14px 45px; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.1); border-radius: 12px; color: white; outline: none; font-size: 15px; }
-        .iw input:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
-        .btn-p { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--gold), var(--gold2)); border: none; border-radius: 12px; color: white; font-weight: 700; font-family: 'Outfit'; cursor: pointer; margin-top: 10px; transition: transform 0.2s; }
-        .btn-p:active { transform: scale(0.98); }
-        .btn-p:disabled { opacity: 0.5; }
-        .ldivider { text-align: center; margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.3); }
-        .errmsg { background: rgba(220,38,38,0.15); color: #FCA5A5; padding: 12px; border-radius: 10px; font-size: 13px; margin-top: 15px; display: none; border: 1px solid rgba(220,38,38,0.2); }
-        .errmsg.show { display: block; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-        /* APP LAYOUT */
-        #app { display: none; min-height: 100vh; }
-        .sidebar { width: var(--sidebar-w); height: 100vh; position: fixed; left: 0; top: 0; background: var(--navy3); border-right: 1px solid var(--border); z-index: 50; display: flex; flex-direction: column; }
-        .main-wrap { margin-left: var(--sidebar-w); flex: 1; }
-        .top-header { height: var(--header-h); background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; position: sticky; top: 0; z-index: 40; }
-        .sb-top { padding: 25px 20px; display: flex; align-items: center; gap: 12px; }
-        .sb-logo { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-        .sb-nav { flex: 1; padding: 10px; overflow-y: auto; }
-        .sb-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 4px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; background: transparent; width: 100%; transition: all 0.2s; }
+        /* AUTH & APP SHELL */
+        #loginPage { display: flex; min-height: 100vh; background: var(--navy3); align-items: center; justify-content: center; }
+        .lcard { width: 100%; max-width: 400px; background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px; }
+        .sidebar { width: var(--sidebar-w); height: 100vh; position: fixed; background: var(--navy3); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        .main-wrap { margin-left: var(--sidebar-w); min-height: 100vh; }
+        .top-header { height: 64px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; position: sticky; top: 0; z-index: 100; }
+        
+        .sb-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: rgba(255,255,255,0.6); cursor: pointer; border: none; background: transparent; width: 100%; font-size: 14px; margin-bottom: 4px; transition: 0.2s; }
         .sb-item:hover { background: rgba(255,255,255,0.05); color: white; }
-        .sb-item.active { background: rgba(201,146,26,0.15); color: var(--gold); font-weight: 600; }
-        .sb-bottom { padding: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .sb-user { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
-        
-        /* THEME TOGGLE */
-        .theme-btn { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .sb-item.active { background: rgba(201,146,26,0.15); color: var(--gold); }
 
-        /* PAGES */
         .pages-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
-        .page { display: none; animation: fadeIn 0.3s ease; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .page { display: none; } .page.active { display: block; }
+        .wb { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: 18px; padding: 25px; color: white; margin-bottom: 25px; }
 
-        /* DASHBOARD & CARDS */
-        .wb { background: linear-gradient(135deg, var(--navy), var(--navy2)); border-radius: var(--radius-lg); padding: 30px; color: white; margin-bottom: 25px; position: relative; overflow: hidden; }
-        .wb h3 { font-family: 'Outfit'; font-size: 24px; margin-bottom: 5px; }
-        .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .scard { padding: 20px; border-radius: var(--radius); display: flex; align-items: center; gap: 15px; }
-        .sicon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
-        .db-two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        .db-card { padding: 20px; border-radius: var(--radius); }
-        .chart-wrap { height: 280px; position: relative; margin-top: 15px; }
+        /* CONTINUOUS CALLING ENGINE OVERLAY */
+        #calling-overlay { position: fixed; inset: 0; background: var(--navy3); z-index: 5000; display: none; flex-direction: column; color: white; }
+        #calling-overlay.active { display: flex; }
+        .cm-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: space-between; }
+        .cm-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; overflow-y: auto; }
+        .cm-name { font-size: 36px; font-weight: 800; font-family: 'Outfit'; margin-bottom: 5px; }
+        .cm-phone { font-size: 22px; color: var(--gold); font-family: 'DM Mono'; margin-bottom: 20px; }
+        
+        .history-timeline { width: 100%; max-width: 400px; background: rgba(255,255,255,0.05); border-radius: 15px; padding: 15px; text-align: left; margin: 15px 0; max-height: 200px; overflow-y: auto; }
+        .h-item { border-left: 2px solid var(--gold); padding-left: 15px; margin-bottom: 12px; position: relative; }
+        .h-item::before { content:''; width:8px; height:8px; background:var(--gold); border-radius:50%; position:absolute; left:-5px; top:5px; }
+        .h-meta { font-size: 10px; opacity: 0.5; text-transform: uppercase; }
+        .h-note { font-size: 13px; margin-top: 3px; }
 
-        /* LEADS */
-        #leads-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 15px; }
-        .cc { border-radius: var(--radius); border-left: 4px solid var(--border); overflow: hidden; }
-        .ctop { padding: 18px; display: flex; gap: 15px; }
-        .cav { width: 45px; height: 45px; border-radius: 12px; background: var(--gold-light); color: var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
-        .ci { flex: 1; }
-        .cn { font-weight: 700; font-size: 15px; }
-        .cnum { color: var(--muted); font-size: 13px; font-family: 'DM Mono'; }
-        .sb { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-        .cc.si { border-left-color: #16A34A; } .sb.si { background: rgba(22,163,74,0.1); color: #16A34A; }
-        .cc.sr { border-left-color: #C9921A; } .sb.sr { background: rgba(201,146,26,0.1); color: #C9921A; }
+        .cm-dial-btn { width: 90px; height: 90px; border-radius: 50%; background: #16A34A; color: white; border: none; font-size: 35px; cursor: pointer; box-shadow: 0 0 25px rgba(22,163,74,0.5); margin: 20px 0; transition: 0.2s; }
+        .cm-dial-btn:active { transform: scale(0.9); }
+        .cm-footer { padding: 25px; background: var(--surface); border-radius: 24px 24px 0 0; color: var(--text); }
+        .cm-status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .cm-btn { padding: 12px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-weight: 700; font-size: 11px; cursor: pointer; }
+        .cm-btn.sel { border-color: var(--gold); background: var(--gold-light); color: var(--gold2); }
+
+        /* CARDS */
+        #leads-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
+        .cc { background: var(--surface); border-radius: 14px; border: 1px solid var(--border); border-left: 5px solid var(--border); transition: 0.2s; }
+        .cc.si { border-left-color: #16A34A; } .cc.sr { border-left-color: var(--gold); } .cc.scb { border-left-color: #EA580C; }
+        .ctop { padding: 15px; display: flex; gap: 12px; align-items: center; }
+        .cav { width: 42px; height: 42px; background: var(--gold-light); color: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
         .cact { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--border); }
-        .ab { padding: 12px; border: none; background: transparent; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text); border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; gap: 6px; }
-        .ab:last-child { border-right: none; }
-        .ab:hover { background: rgba(0,0,0,0.02); }
+        .ab { padding: 12px; border: none; background: transparent; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--text); border-right: 1px solid var(--border); }
 
-        /* MOBILE */
-        @media(max-width: 900px) {
-            .sidebar { display: none; }
-            .main-wrap { margin-left: 0; }
-            .top-header { padding: 0 15px; }
-            .db-two-col { grid-template-columns: 1fr; }
-        }
-
-        /* MODALS */
-        .mo { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
-        .mo.open { display: flex; }
-        .ms { background: var(--surface); width: 100%; max-width: 480px; border-radius: 24px; padding: 30px; position: relative; }
-        .ms h2 { font-family: 'Outfit'; font-size: 20px; margin-bottom: 20px; }
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--navy2); color: white; padding: 12px 25px; border-radius: 12px; font-weight: 600; z-index: 2000; opacity: 0; transition: 0.3s; pointer-events: none; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--navy2); color: white; padding: 12px 25px; border-radius: 12px; z-index: 9999; opacity: 0; transition: 0.3s; pointer-events: none; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+        /* RE-ASSIGNMENT */
+        .reassign-box { background: var(--surface); padding: 25px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 25px; }
+        .re-grid { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 15px; }
+        select, input[type="text"], textarea { padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; }
+        .btn-p { background: var(--navy); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; font-family: 'Outfit'; }
     </style>
 </head>
 <body>
 
 <!-- AUTH INTERFACE -->
 <div id="loginPage">
-    <div class="login-grid"></div>
     <div class="lcard">
-        <div class="login-brand-logo">
-            <div class="login-brand-circle"><img src="logo.png" alt="PA" onerror="this.style.display='none'"/></div>
-            <div class="login-brand-text"><h1>BAPS Pramukh Academy</h1></div>
-        </div>
-
         <div id="auth-form-area">
-            <div class="login-h" id="auth-title">Staff Sign In</div>
-            <p class="login-sub" id="auth-sub">Access the volunteer outreach tracker.</p>
-            
-            <div class="fg" id="name-field" style="display:none">
-                <label>Full Name</label>
-                <div class="iw"><i class="fas fa-user"></i><input type="text" id="reg-name" placeholder="Volunteer Name"/></div>
-            </div>
-            
-            <div class="fg">
-                <label>Email Address</label>
-                <div class="iw"><i class="fas fa-envelope"></i><input type="email" id="lemail" placeholder="your@email.com"/></div>
-            </div>
-            
-            <div class="fg">
-                <label>Password</label>
-                <div class="iw"><i class="fas fa-lock"></i><input type="password" id="lpass" placeholder="••••••••"/></div>
-            </div>
-            
-            <button class="btn-p" id="lbtn" onclick="handleAuth()"><i class="fas fa-sign-in-alt"></i> <span id="btn-text">Sign In</span></button>
-            
-            <div class="ldivider">
-                <a href="javascript:void(0)" onclick="toggleAuthMode()" id="auth-toggle-link" style="color:var(--gold); font-weight:600; text-decoration:none;">Don't have an account? Sign Up</a>
-            </div>
+            <h2 style="color:white; font-family:'Outfit'; margin-bottom:5px;">Staff Login</h2>
+            <p style="color:rgba(255,255,255,0.5); font-size:13px; margin-bottom:25px;">BAPS Pramukh Academy Outreach</p>
+            <div class="fg" id="name-field" style="display:none; margin-bottom:15px;"><label style="color:white; font-size:11px; opacity:0.6;">Full Name</label><input type="text" id="reg-name" style="width:100%; margin-top:5px;"/></div>
+            <div style="margin-bottom:15px;"><label style="color:white; font-size:11px; opacity:0.6;">Email</label><input type="email" id="lemail" style="width:100%; margin-top:5px;"/></div>
+            <div style="margin-bottom:15px;"><label style="color:white; font-size:11px; opacity:0.6;">Password</label><input type="password" id="lpass" style="width:100%; margin-top:5px;"/></div>
+            <button class="btn-p" style="width:100%; background:var(--gold);" onclick="handleAuth()">Sign In</button>
+            <div style="text-align:center; margin-top:20px;"><a href="javascript:void(0)" onclick="toggleAuthMode()" id="auth-toggle-link" style="color:var(--gold); font-size:13px;">New volunteer? Sign Up</a></div>
+            <div class="errmsg" id="lerr"></div>
         </div>
-
-        <!-- WAITING SCREEN -->
-        <div id="waiting-area" style="display:none; text-align:center;">
-            <i class="fas fa-clock" style="font-size:48px; color:var(--gold); margin-bottom:20px;"></i>
-            <h2 style="color:white; margin-bottom:10px; font-family:'Outfit';">Approval Pending</h2>
-            <p style="color:rgba(255,255,255,0.6); font-size:14px; line-height:1.6; margin-bottom:24px;">Your account has been created. Please ask a SuperAdmin to approve your account and assign your role.</p>
-            <button onclick="doLogout()" style="background:transparent; border:1px solid rgba(255,255,255,0.2); color:white; padding:10px 20px; border-radius:10px; cursor:pointer;">Sign Out</button>
+        <div id="waiting-area" style="display:none; text-align:center; color:white;">
+            <i class="fas fa-user-clock" style="font-size:48px; color:var(--gold); margin-bottom:20px;"></i>
+            <h3>Approval Pending</h3>
+            <p style="opacity:0.6; font-size:13px; margin-top:10px;">Contact your SuperAdmin to assign your role.</p>
+            <button onclick="doLogout()" style="margin-top:20px; color:white; background:none; border:1px solid white; padding:8px 15px; border-radius:8px;">Logout</button>
         </div>
-
-        <div class="errmsg" id="lerr"></div>
     </div>
 </div>
 
-<!-- APP SHELL -->
+<!-- MAIN APP -->
 <div id="app">
     <aside class="sidebar">
-        <div class="sb-top">
-            <div class="sb-logo"><img src="logo.png" style="width:32px" onerror="this.style.display='none'"/></div>
-            <div style="color:white">
-                <div style="font-family:'Outfit'; font-weight:800; font-size:14px;">Pramukh Outreach</div>
-                <div style="font-size:10px; opacity:0.5; text-transform:uppercase; letter-spacing:1px;">Academy Staff</div>
-            </div>
-        </div>
+        <div style="padding:30px; color:white; font-family:'Outfit'; font-weight:800; font-size:20px;">Pramukh Outreach</div>
         <nav class="sb-nav">
             <button class="sb-item active" id="sbt-home" onclick="switchTab('pg-home', 'sbt-home')"><i class="fas fa-home"></i><span>Home</span></button>
             <button class="sb-item" id="sbt-leads" onclick="switchTab('pg-leads', 'sbt-leads')"><i class="fas fa-phone-alt"></i><span>My Leads</span></button>
-            <button class="sb-item" id="sbt-dashboard" onclick="switchTab('pg-dashboard', 'sbt-dashboard'); renderDashboard();" style="display:none"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
-            <button class="sb-item" id="sbt-users" onclick="switchTab('pg-users', 'sbt-users');" style="display:none"><i class="fas fa-users-cog"></i><span>User Roles</span></button>
-            <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload', 'sbt-upload');" style="display:none"><i class="fas fa-file-import"></i><span>Upload CSV</span></button>
+            <button class="sb-item" id="sbt-users" onclick="switchTab('pg-users', 'sbt-users');" style="display:none"><i class="fas fa-users-cog"></i><span>Staff Controls</span></button>
+            <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload', 'sbt-upload');" style="display:none"><i class="fas fa-file-import"></i><span>Import List</span></button>
+            <button class="sb-item" id="sbt-dashboard" onclick="switchTab('pg-dashboard', 'sbt-dashboard'); renderDashboard();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
         </nav>
         <div class="sb-bottom">
-            <div class="sb-user">
-                <div id="sb-uname" style="color:white; font-weight:700; font-size:13px;">User</div>
-                <div id="sb-urole" style="color:var(--gold); font-size:10px; font-weight:800; text-transform:uppercase;">Agent</div>
-            </div>
-            <button class="sb-item" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></button>
+            <div id="sb-uname" style="color:white; font-weight:700; font-size:14px;">User</div>
+            <div id="sb-urole" style="color:var(--gold); font-size:10px; font-weight:800; text-transform:uppercase;">Role</div>
         </div>
     </aside>
 
     <div class="main-wrap">
         <header class="top-header">
-            <div style="font-family:'Outfit'; font-weight:700;" id="page-title">Home</div>
-            <div style="display:flex; align-items:center; gap:12px;">
-                <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="theme-icon"></i></button>
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <div style="text-align:right">
-                        <div style="font-size:12px; font-weight:700;" id="huser">User</div>
-                        <div style="font-size:9px; color:var(--muted); text-transform:uppercase;" id="hrole">Role</div>
-                    </div>
-                </div>
+            <div id="page-title" style="font-weight:800; font-family:'Outfit'; font-size:18px;">Home</div>
+            <div style="display:flex; gap:10px;">
+                <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                <button class="theme-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
             </div>
         </header>
 
         <main class="pages-container">
-            <!-- PAGE: HOME -->
+            <!-- HOME -->
             <div class="page active" id="pg-home">
                 <div class="wb">
-                    <h3 id="wmsg">Welcome staff! 👋</h3>
-                    <p>Track student registrations and outreach sessions effectively.</p>
+                    <h2 id="wmsg">Jai Swaminarayan 🙏</h2>
+                    <p>Track your calling progress and conversion metrics in real-time.</p>
                 </div>
-                <div class="db-grid">
-                    <div class="scard" style="background:var(--surface)">
-                        <div class="sicon" style="background:#1E3A5F"><i class="fas fa-users"></i></div>
-                        <div><div style="font-size:24px; font-weight:800;" id="s-total">0</div><div style="font-size:12px; color:var(--muted);">Total Leads</div></div>
-                    </div>
-                    <div class="scard" style="background:var(--surface)">
-                        <div class="sicon" style="background:#C2410C"><i class="fas fa-phone-alt"></i></div>
-                        <div><div style="font-size:24px; font-weight:800;" id="s-called">0</div><div style="font-size:12px; color:var(--muted);">Called</div></div>
-                    </div>
-                    <div class="scard" style="background:var(--surface)">
-                        <div class="sicon" style="background:#16A34A"><i class="fas fa-check-circle"></i></div>
-                        <div><div style="font-size:24px; font-weight:800;" id="s-reg">0</div><div style="font-size:12px; color:var(--muted);">Registered</div></div>
-                    </div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:20px;">
+                    <div class="cc" style="padding:25px; text-align:center;"><div style="font-size:36px; font-weight:800;" id="s-total">0</div><div style="font-size:12px; color:var(--muted); text-transform:uppercase;">My Total Leads</div></div>
+                    <div class="cc" style="padding:25px; text-align:center;"><div style="font-size:36px; font-weight:800; color:#16A34A;" id="s-int">0</div><div style="font-size:12px; color:var(--muted); text-transform:uppercase;">Interested Students</div></div>
+                    <div class="cc" style="padding:25px; text-align:center;"><div style="font-size:36px; font-weight:800; color:var(--gold);" id="s-reg">0</div><div style="font-size:12px; color:var(--muted); text-transform:uppercase;">Registered Students</div></div>
                 </div>
             </div>
 
-            <!-- PAGE: LEADS -->
+            <!-- LEADS -->
             <div class="page" id="pg-leads">
-                <div style="display:flex; gap:10px; margin-bottom:20px;">
-                    <div style="flex:1; position:relative;">
-                        <i class="fas fa-search" style="position:absolute; left:15px; top:15px; color:var(--muted);"></i>
-                        <input type="text" id="srch" placeholder="Search by name or contact..." style="width:100%; padding:14px 15px 14px 45px; border-radius:12px; border:1px solid var(--border); background:var(--surface); color:var(--text); outline:none;" oninput="renderLeads()"/>
-                    </div>
+                <div style="margin-bottom:20px; display:flex; gap:12px;">
+                    <input type="text" id="srch" placeholder="Search by name, phone or assigned agent..." oninput="renderLeads()" style="flex:1;"/>
                 </div>
+                <div id="call-session-banner" style="display:none; margin-bottom:20px;"></div>
                 <div id="leads-list"></div>
             </div>
 
-            <!-- PAGE: DASHBOARD -->
-            <div class="page" id="pg-dashboard">
-                <div class="wb">
-                    <h3>📊 Performance Analytics</h3>
-                    <p>Live visualization of outreach conversion and volunteer activity.</p>
-                </div>
-                <div class="db-two-col">
-                    <div class="db-card">
-                        <div style="font-weight:700; margin-bottom:15px;"><i class="fas fa-chart-pie" style="color:var(--gold)"></i> Outreach Outcomes</div>
-                        <div class="chart-wrap"><canvas id="statusChart"></canvas></div>
-                    </div>
-                    <div class="db-card">
-                        <div style="font-weight:700; margin-bottom:15px;"><i class="fas fa-chart-bar" style="color:var(--gold)"></i> Campaign Progress</div>
-                        <div class="chart-wrap"><canvas id="campChart"></canvas></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAGE: USERS -->
+            <!-- STAFF MANAGEMENT & RE-ASSIGNMENT -->
             <div class="page" id="pg-users">
-                <div class="wb">
-                    <h3>👥 Role Management</h3>
-                    <p>Approve new volunteer sign-ups and assign permissions.</p>
+                <div class="wb"><h3>👥 SuperAdmin Control Center</h3></div>
+                
+                <div class="reassign-box">
+                    <div style="font-weight:800; font-size:15px;"><i class="fas fa-exchange-alt" style="color:var(--gold)"></i> Bulk Transfer Leads</div>
+                    <p style="font-size:12px; color:var(--muted); margin-bottom:15px;">Move all leads from one agent to another instantly.</p>
+                    <div class="re-grid">
+                        <select id="move-from" style="flex:1;"><option value="">From Agent...</option></select>
+                        <i class="fas fa-arrow-right" style="color:var(--muted)"></i>
+                        <select id="move-to" style="flex:1;"><option value="">To Agent...</option></select>
+                        <button class="btn-p" onclick="transferLeads()">Execute Transfer</button>
+                    </div>
                 </div>
+
                 <div id="user-list-container"></div>
             </div>
 
-            <!-- PAGE: UPLOAD -->
+            <!-- IMPORT CSV -->
             <div class="page" id="pg-upload">
-                <div class="wb"><h3>📂 Import Data</h3><p>Upload student lists (CSV) and assign to volunteers.</p></div>
-                <div class="db-card">
-                    <div class="fg"><label>1. Campaign Name</label><input type="text" id="camp-name" placeholder="e.g. PVC Batch 1" style="width:100%; padding:12px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text);"/></div>
-                    <div class="fg"><label>2. Volunteers (Email/ID)</label><textarea id="vol-emails" rows="3" placeholder="one_per_line@gmail.com" style="width:100%; padding:12px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text);"></textarea></div>
-                    <div class="fg"><label>3. Select CSV</label><input type="file" id="csvfile" accept=".csv" style="padding:10px;"/></div>
-                    <button class="btn-p" onclick="submitImport()">Import & Assign Leads</button>
+                <div class="wb"><h3>📂 Import Student Data</h3><p>Assign leads to your team via CSV upload.</p></div>
+                <div class="cc" style="padding:30px;">
+                    <div style="margin-bottom:20px;"><label style="font-size:12px; font-weight:800;">Campaign Title</label><input type="text" id="camp-name" placeholder="e.g. Summer Batch 2026" style="width:100%; margin-top:5px;"/></div>
+                    <div style="margin-bottom:20px;"><label style="font-size:12px; font-weight:800;">Distribute to Agents (Email Prefix, one per line)</label><textarea id="vol-emails" rows="4" placeholder="rahul.k&#10;amit.s" style="width:100%; margin-top:5px;"></textarea></div>
+                    <div style="margin-bottom:20px;"><label style="font-size:12px; font-weight:800;">Select CSV File (Format: Name, Contact)</label><input type="file" id="csvfile" accept=".csv" style="margin-top:8px;"/></div>
+                    <button class="btn-p" style="width:100%; background:var(--gold);" onclick="submitImport()">Process & Assign Leads</button>
                 </div>
             </div>
 
+            <!-- DASHBOARD -->
+            <div class="page" id="pg-dashboard">
+                <div class="wb"><h3>📊 Outreach Analytics</h3></div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                    <div class="cc" style="padding:20px;"><canvas id="statusChart"></canvas></div>
+                    <div class="cc" style="padding:20px;"><canvas id="campChart"></canvas></div>
+                </div>
+            </div>
         </main>
+    </div>
+</div>
+
+<!-- CONTINUOUS CALLING OVERLAY -->
+<div id="calling-overlay">
+    <div class="cm-header">
+        <div style="font-family:'Outfit'; font-weight:800;">⚡ Calling Session</div>
+        <div id="cm-progress-text" style="font-family:'DM Mono'; font-size:13px; opacity:0.6;">0 / 0</div>
+        <button onclick="closeCallingSession()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cm-body">
+        <div class="cm-name" id="cm-name">Student Name</div>
+        <div class="cm-phone" id="cm-phone">9999999999</div>
+        
+        <div style="font-size:11px; color:var(--gold); font-weight:800; text-transform:uppercase; letter-spacing:1px; margin-top:10px;">Call History Timeline</div>
+        <div class="history-timeline" id="cm-history"></div>
+        
+        <button class="cm-dial-btn" onclick="cmDial()"><i class="fas fa-phone-alt"></i></button>
+        <div style="font-size:12px; opacity:0.5;">Tap above to dial number</div>
+    </div>
+    <div class="cm-footer">
+        <div class="cm-status-grid">
+            <button class="cm-btn" onclick="cmSel('called',this)">Called</button>
+            <button class="cm-btn" onclick="cmSel('interested',this)">Interested</button>
+            <button class="cm-btn" onclick="cmSel('callback',this)">Callback</button>
+            <button class="cm-btn" onclick="cmSel('not-interested',this)">Not Int.</button>
+            <button class="cm-btn" onclick="cmSel('registered',this)">Registered</button>
+            <button class="cm-btn" onclick="cmSel('pending',this)">Skip</button>
+        </div>
+        <textarea id="cm-note" placeholder="What happened on this call? (Latest note)" style="width:100%; border-radius:12px; padding:12px; border:1.5px solid var(--border); margin-bottom:15px; font-family:inherit;"></textarea>
+        <button class="btn-p" id="cm-save-btn" style="width:100%; background:var(--navy);" onclick="cmSaveNext()">Save & Next Contact</button>
     </div>
 </div>
 
 <!-- UPDATE MODAL -->
 <div class="mo" id="upd-modal">
     <div class="ms">
-        <h2 id="modal-name">Update Lead</h2>
-        <div class="fg">
-            <label style="color:var(--text)">Call Status</label>
-            <select id="sel-status" style="width:100%; padding:12px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text);">
-                <option value="pending">⬜ Pending</option>
-                <option value="called">📞 Called</option>
-                <option value="interested">👍 Interested</option>
-                <option value="not-interested">👎 Not Interested</option>
-                <option value="registered">✅ Registered</option>
-                <option value="callback">🔄 Callback</option>
-            </select>
-        </div>
-        <div class="fg">
-            <label style="color:var(--text)">Note / Remark</label>
-            <textarea id="rmk-inp" rows="3" style="width:100%; padding:12px; border-radius:10px; border:1.5px solid var(--border); background:var(--bg); color:var(--text);" placeholder="What was the response?"></textarea>
-        </div>
-        <button class="btn-p" onclick="saveUpdate()">Save Update</button>
-        <button onclick="closeModal()" style="width:100%; margin-top:10px; background:transparent; border:none; color:var(--muted); font-weight:700; cursor:pointer;">Cancel</button>
+        <h2 id="modal-name" style="font-family:'Outfit';">Update Student</h2>
+        <div style="margin-bottom:15px;"><label style="font-size:12px; font-weight:800;">Status</label><select id="sel-status" style="width:100%; margin-top:5px;"><option value="pending">Pending</option><option value="called">Called</option><option value="interested">Interested</option><option value="registered">Registered</option><option value="callback">Callback</option><option value="not-interested">Not Interested</option></select></div>
+        <div style="margin-bottom:15px;"><label style="font-size:12px; font-weight:800;">Note</label><textarea id="rmk-inp" rows="3" style="width:100%; margin-top:5px;" placeholder="Add a remark..."></textarea></div>
+        <button class="btn-p" style="width:100%; background:var(--navy);" onclick="saveUpdate()">Update & Save History</button>
+        <button onclick="closeModal()" style="width:100%; margin-top:10px; background:none; border:none; color:var(--muted); font-weight:700; cursor:pointer;">Cancel</button>
     </div>
 </div>
 
@@ -314,252 +241,186 @@
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-    import { getFirestore, collection, doc, updateDoc, setDoc, getDoc, getDocs, onSnapshot, writeBatch, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, onSnapshot, writeBatch, arrayUnion, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8",
-        authDomain: "pramukh-outreach.firebaseapp.com",
-        projectId: "pramukh-outreach",
-        storageBucket: "pramukh-outreach.firebasestorage.app",
-        messagingSenderId: "172546492205",
-        appId: "1:172546492205:web:ab60b62b6f96d71af1f5a4"
-    };
-
+    const firebaseConfig = { apiKey: "AIzaSyCgruPYtOl0Bdm-qcNrL5H6OkDTAGRFVh8", authDomain: "pramukh-outreach.firebaseapp.com", projectId: "pramukh-outreach", storageBucket: "pramukh-outreach.firebasestorage.app", messagingSenderId: "172546492205", appId: "1:172546492205:web:ab60b62b6f96d71af1f5a4" };
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let ME = null, USER_ROLE = "pending", ALL_LEADS = [], IS_SIGNUP = false;
-    let statusChartInst = null, campChartInst = null;
-    let CUR_LEAD_ID = null;
+    let USER_ROLE = "pending", ALL_LEADS = [], CM_QUEUE = [], CM_IDX = 0, CM_SEL = "", CUR_LEAD_ID = null, IS_SIGNUP = false;
 
-    // --- AUTH LOGIC ---
-    window.toggleAuthMode = () => {
-        IS_SIGNUP = !IS_SIGNUP;
-        document.getElementById('auth-title').textContent = IS_SIGNUP ? "Create Account" : "Staff Sign In";
-        document.getElementById('btn-text').textContent = IS_SIGNUP ? "Register Now" : "Sign In";
-        document.getElementById('auth-toggle-link').textContent = IS_SIGNUP ? "Already have an account? Sign In" : "Don't have an account? Sign Up";
-        document.getElementById('name-field').style.display = IS_SIGNUP ? "block" : "none";
-    };
-
+    // --- AUTH & ROLES ---
+    window.toggleAuthMode = () => { IS_SIGNUP = !IS_SIGNUP; document.getElementById('auth-title').textContent = IS_SIGNUP ? "Volunteer Sign Up" : "Staff Login"; document.getElementById('name-field').style.display = IS_SIGNUP ? "block" : "none"; };
     window.handleAuth = async () => {
-        const email = document.getElementById("lemail").value.trim();
-        const pass = document.getElementById("lpass").value;
-        const name = document.getElementById("reg-name").value.trim();
-        const btn = document.getElementById("lbtn"), err = document.getElementById("lerr");
-        
+        const email = document.getElementById("lemail").value; const pass = document.getElementById("lpass").value;
         if(!email || !pass) return;
-        err.classList.remove('show');
-        btn.disabled = true;
-
         try {
-            if (IS_SIGNUP) {
+            if(IS_SIGNUP){
                 const res = await createUserWithEmailAndPassword(auth, email, pass);
-                await setDoc(doc(db, "users", res.user.uid), {
-                    uid: res.user.uid, name: name || email.split('@')[0], email, role: "pending", createdAt: new Date().toISOString()
-                });
-                showToast("Registered! Wait for approval.");
-                toggleAuthMode();
-            } else {
-                await signInWithEmailAndPassword(auth, email, pass);
-            }
-        } catch (e) {
-            err.textContent = e.message; err.classList.add('show');
-        } finally { btn.disabled = false; }
+                await setDoc(doc(db, "users", res.user.uid), { uid: res.user.uid, name: document.getElementById('reg-name').value, email, role: "pending" });
+                toggleAuthMode(); showToast("Account Created. Ask Admin for role.");
+            } else { await signInWithEmailAndPassword(auth, email, pass); }
+        } catch (e) { document.getElementById('lerr').textContent = e.message; document.getElementById('lerr').classList.add('show'); }
     };
-
     window.doLogout = () => signOut(auth);
 
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            if (userDoc.exists()) {
-                const data = userDoc.data();
-                USER_ROLE = data.role;
-                if (USER_ROLE === "pending") {
-                    document.getElementById('auth-form-area').style.display = "none";
-                    document.getElementById('waiting-area').style.display = "block";
-                } else {
-                    document.getElementById('loginPage').style.display = "none";
-                    document.getElementById('app').style.display = "block";
-                    setupUI(data);
-                    listenLeads();
-                    if(USER_ROLE === 'superadmin') listenUsers();
-                }
+            const uDoc = await getDoc(doc(db, "users", user.uid));
+            if (uDoc.exists()) {
+                const data = uDoc.data(); USER_ROLE = data.role;
+                if (USER_ROLE === 'pending') { document.getElementById('auth-form-area').style.display = "none"; document.getElementById('waiting-area').style.display = "block"; }
+                else { document.getElementById('loginPage').style.display = "none"; document.getElementById('app').style.display = "block"; setupUI(data); listenLeads(); if(['admin','superadmin'].includes(USER_ROLE)) listenUsers(); }
             } else { doLogout(); }
-        } else {
-            document.getElementById('loginPage').style.display = "flex";
-            document.getElementById('app').style.display = "none";
-            document.getElementById('auth-form-area').style.display = "block";
-            document.getElementById('waiting-area').style.display = "none";
-        }
+        } else { document.getElementById('loginPage').style.display = "flex"; document.getElementById('app').style.display = "none"; }
     });
 
-    function setupUI(user) {
-        document.getElementById('huser').textContent = user.name;
-        document.getElementById('sb-uname').textContent = user.name;
-        document.getElementById('sb-urole').textContent = USER_ROLE;
-        document.getElementById('hrole').textContent = USER_ROLE;
-        document.getElementById('wmsg').textContent = `Jai Swaminarayan, ${user.name.split(' ')[0]} 🙏`;
-
-        if (['admin', 'superadmin'].includes(USER_ROLE)) {
-            document.getElementById('sbt-dashboard').style.display = "flex";
-            document.getElementById('sbt-upload').style.display = "flex";
-        }
-        if (USER_ROLE === 'superadmin') document.getElementById('sbt-users').style.display = "flex";
+    function setupUI(user){
+        document.getElementById('sb-uname').textContent = user.name; document.getElementById('sb-urole').textContent = USER_ROLE;
+        if(['admin','superadmin'].includes(USER_ROLE)){ document.getElementById('sbt-dashboard').style.display = "flex"; document.getElementById('sbt-upload').style.display = "flex"; document.getElementById('sbt-users').style.display = "flex"; }
     }
 
-    // --- DATA LISTENERS ---
+    // --- CORE DATA ENGINE ---
     function listenLeads() {
         onSnapshot(collection(db, "outreach_leads"), (snap) => {
             ALL_LEADS = snap.docs.map(d => ({id: d.id, ...d.data()}));
-            renderHome();
-            renderLeads();
-            if (document.getElementById('pg-dashboard').classList.contains('active')) renderDashboard();
+            renderHome(); renderLeads();
         });
     }
 
     function renderHome() {
         const agent = auth.currentUser.email.split('@')[0];
-        let list = (USER_ROLE === 'agent') ? ALL_LEADS.filter(l => l.assignedTo === agent) : ALL_LEADS;
+        const list = ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
         document.getElementById('s-total').textContent = list.length;
-        document.getElementById('s-called').textContent = list.filter(l => l.status && l.status !== 'pending').length;
+        document.getElementById('s-int').textContent = list.filter(l => l.status === 'interested').length;
         document.getElementById('s-reg').textContent = list.filter(l => l.status === 'registered').length;
     }
 
     window.renderLeads = () => {
-        const srch = document.getElementById('srch').value.toLowerCase();
         const agent = auth.currentUser.email.split('@')[0];
-        let list = (USER_ROLE === 'agent') ? ALL_LEADS.filter(l => l.assignedTo === agent) : ALL_LEADS;
+        const srch = document.getElementById('srch').value.toLowerCase();
+        let list = ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
         
-        if(srch) list = list.filter(l => l.name.toLowerCase().includes(srch) || l.contact.includes(srch));
+        if(srch) list = list.filter(l => l.name.toLowerCase().includes(srch) || l.contact.includes(srch) || (l.assignedTo && l.assignedTo.includes(srch)));
         
-        document.getElementById('leads-list').innerHTML = list.map(l => {
-            const ini = l.name.charAt(0).toUpperCase();
-            return `
-            <div class="cc ${stC(l.status)}">
-                <div class="ctop">
-                    <div class="cav">${ini}</div>
-                    <div class="ci">
-                        <div class="cn">${l.name}</div>
-                        <div class="cnum">${l.contact}</div>
-                        <div style="font-size:10px; color:var(--muted); margin-top:2px;">📁 ${l.campaign || 'General'}</div>
-                    </div>
-                    <span class="sb ${stC(l.status)}">${l.status || 'pending'}</span>
-                </div>
-                ${l.remarks ? `<div style="padding:0 18px 15px; font-size:12px; font-style:italic; color:var(--muted);">💬 ${l.remarks}</div>` : ''}
-                <div class="cact">
-                    <button class="ab" onclick="window.location.href='tel:${l.contact}'"><i class="fas fa-phone" style="color:#16A34A"></i>Call</button>
-                    <button class="ab" onclick="openUpd('${l.id}','${l.name}','${l.status}','${l.remarks||''}')"><i class="fas fa-edit" style="color:var(--gold)"></i>Update</button>
-                    <button class="ab" onclick="openWA('${l.contact}','${l.name}')"><i class="fab fa-whatsapp" style="color:#25D366"></i>WhatsApp</button>
-                </div>
-            </div>`;
-        }).join('');
+        const pending = list.filter(l => (l.status||'pending') === 'pending' && l.assignedTo === agent);
+        const banner = document.getElementById('call-session-banner');
+        if(pending.length > 0 && USER_ROLE !== 'superadmin'){
+            banner.innerHTML = `<div class="wb" style="background:#16A34A; cursor:pointer;" onclick="startCallingSession()">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div><b>🚀 Start Calling Session</b><br/><small>Next ${pending.length} pending contacts</small></div><i class="fas fa-chevron-right"></i>
+                </div></div>`;
+            banner.style.display = "block";
+        } else { banner.style.display = "none"; }
+        document.getElementById('leads-list').innerHTML = list.map(l => buildCard(l)).join('');
     };
 
-    function stC(s){ return {pending:'sp',interested:'si',registered:'sr',called:'sc',callback:'scb'}[s] || 'sp'; }
-
-    // --- UPDATE LOGIC ---
-    window.openUpd = (id, name, status, rmk) => {
-        CUR_LEAD_ID = id;
-        document.getElementById('modal-name').textContent = name;
-        document.getElementById('sel-status').value = status || 'pending';
-        document.getElementById('rmk-inp').value = rmk;
-        document.getElementById('upd-modal').classList.add('open');
-    };
-    window.closeModal = () => document.getElementById('upd-modal').classList.remove('open');
-
-    window.saveUpdate = async () => {
-        const s = document.getElementById('sel-status').value;
-        const r = document.getElementById('rmk-inp').value.trim();
-        const user = auth.currentUser.email.split('@')[0];
-        
-        await updateDoc(doc(db, "outreach_leads", CUR_LEAD_ID), {
-            status: s, remarks: r, updatedBy: user, updatedAt: new Date().toISOString(),
-            history: arrayUnion({ status: s, note: r, user, time: new Date().toISOString() })
-        });
-        showToast("Lead Updated");
-        closeModal();
-    };
-
-    // --- DASHBOARD CHARTS ---
-    window.renderDashboard = () => {
-        const stats = {
-            int: ALL_LEADS.filter(l => l.status === 'interested').length,
-            reg: ALL_LEADS.filter(l => l.status === 'registered').length,
-            pending: ALL_LEADS.filter(l => (l.status||'pending') === 'pending').length,
-            called: ALL_LEADS.filter(l => l.status === 'called').length
-        };
-        
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const color = isDark ? '#94A3B8' : '#6B7280';
-
-        if(statusChartInst) statusChartInst.destroy();
-        statusChartInst = new Chart(document.getElementById('statusChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Interested', 'Registered', 'Pending', 'Called'],
-                datasets: [{ data: [stats.int, stats.reg, stats.pending, stats.called], backgroundColor: ['#16A34A', '#C9921A', '#94A3B8', '#1E3A5F'], borderWidth: 0 }]
-            },
-            options: { cutout: '75%', plugins: { legend: { position: 'bottom', labels: { color } } } }
-        });
-    };
-
-    // --- USER MANAGEMENT ---
-    function listenUsers() {
-        onSnapshot(collection(db, "users"), (snap) => {
-            const html = snap.docs.map(doc => {
-                const u = doc.data();
-                if(u.uid === auth.currentUser.uid) return '';
-                return `
-                <div class="db-card" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                    <div>
-                        <div style="font-weight:700;">${u.name}</div>
-                        <div style="font-size:11px; color:var(--muted);">${u.email}</div>
-                        <div style="font-size:10px; font-weight:800; color:var(--gold); margin-top:4px;">ROLE: ${u.role.toUpperCase()}</div>
-                    </div>
-                    <select onchange="updateRole('${u.uid}', this.value)" style="padding:6px; border-radius:6px; border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:12px;">
-                        <option value="pending" ${u.role==='pending'?'selected':''}>Pending</option>
-                        <option value="agent" ${u.role==='agent'?'selected':''}>Agent</option>
-                        <option value="admin" ${u.role==='admin'?'selected':''}>Admin</option>
-                        <option value="superadmin" ${u.role==='superadmin'?'selected':''}>SuperAdmin</option>
-                    </select>
-                </div>`;
-            }).join('');
-            document.getElementById('user-list-container').innerHTML = html || '<p>No other users found.</p>';
-        });
+    function buildCard(l){
+        const sc = {pending:'sp',interested:'si',registered:'sr',callback:'scb'}[l.status] || 'sp';
+        return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${l.name[0]}</div><div class="ci"><b>${l.name}</b><div class="cnum">${l.contact}</div><div style="font-size:10px; color:var(--gold)">👤 ${l.assignedTo}</div></div><span class="sb ${sc}">${l.status||'pending'}</span></div>
+        <div class="cact"><button class="ab" onclick="window.location.href='tel:${l.contact}'">Call</button><button class="ab" onclick="openUpd('${l.id}','${l.name.replace(/'/g,"")}','${l.status}','${(l.remarks||"").replace(/'/g,"")}')">Update</button><button class="ab" onclick="openWA('${l.contact}','${l.name}')">WA</button></div></div>`;
     }
 
-    window.updateRole = async (uid, role) => {
-        await updateDoc(doc(db, "users", uid), { role });
-        showToast("Role Updated");
+    // --- CONTINUOUS CALLING ENGINE ---
+    window.startCallingSession = () => {
+        const agent = auth.currentUser.email.split('@')[0];
+        CM_QUEUE = ALL_LEADS.filter(l => l.assignedTo === agent && (l.status||'pending') === 'pending');
+        if(!CM_QUEUE.length) return showToast("No pending leads!");
+        CM_IDX = 0; document.getElementById('calling-overlay').classList.add('active'); showCM();
     };
 
-    // --- UTILS ---
-    window.switchTab = (p, t) => {
-        document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active'));
-        document.getElementById(p).classList.add('active');
-        document.getElementById(t).classList.add('active');
-        document.getElementById('page-title').textContent = document.getElementById(t).textContent;
+    function showCM() {
+        const l = CM_QUEUE[CM_IDX];
+        document.getElementById('cm-name').textContent = l.name;
+        document.getElementById('cm-phone').textContent = l.contact;
+        document.getElementById('cm-progress-text').textContent = `${CM_IDX + 1} / ${CM_QUEUE.length}`;
+        document.getElementById('cm-note').value = "";
+        
+        // Render History Timeline
+        const hist = l.history || [];
+        document.getElementById('cm-history').innerHTML = hist.length ? hist.reverse().map(h => `
+            <div class="h-item">
+                <div class="h-meta">${new Date(h.time).toLocaleDateString()} · ${h.status.toUpperCase()}</div>
+                <div class="h-note">${h.note || "No remark"}</div>
+            </div>`).join('') : "No previous history found.";
+            
+        CM_SEL = ""; document.querySelectorAll('.cm-btn').forEach(b => b.classList.remove('sel'));
+    }
+
+    window.cmDial = () => window.location.href = `tel:${CM_QUEUE[CM_IDX].contact}`;
+    window.cmSel = (s, b) => { CM_SEL = s; document.querySelectorAll('.cm-btn').forEach(el => el.classList.remove('sel')); b.classList.add('sel'); };
+    window.cmSaveNext = async () => {
+        if(!CM_SEL) return showToast("Select a status!");
+        const l = CM_QUEUE[CM_IDX], note = document.getElementById('cm-note').value, user = auth.currentUser.email.split('@')[0];
+        await updateDoc(doc(db, "outreach_leads", l.id), { status: CM_SEL, remarks: note, updatedBy: user, updatedAt: new Date().toISOString(), history: arrayUnion({ status: CM_SEL, note, user, time: new Date().toISOString() }) });
+        CM_IDX++; if(CM_IDX >= CM_QUEUE.length) { closeCallingSession(); showToast("Session Complete! 🎉"); } else showCM();
+    };
+    window.closeCallingSession = () => document.getElementById('calling-overlay').classList.remove('active');
+
+    // --- RE-ASSIGNMENT POWERS ---
+    window.transferLeads = async () => {
+        const from = document.getElementById('move-from').value, to = document.getElementById('move-to').value;
+        if(!from || !to) return showToast("Select both agents");
+        const snap = await getDocs(query(collection(db, "outreach_leads"), where("assignedTo", "==", from)));
+        if(snap.empty) return showToast("Agent has no leads");
+        const batch = writeBatch(db); snap.forEach(d => batch.update(d.ref, { assignedTo: to }));
+        await batch.commit(); showToast(`Moved ${snap.size} leads successfully!`);
     };
 
-    window.showToast = (m) => {
-        const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 3000);
+    function listenUsers() {
+        onSnapshot(collection(db, "users"), (snap) => {
+            const users = snap.docs.map(d => d.data());
+            const options = users.filter(u => u.role !== 'pending').map(u => `<option value="${u.email.split('@')[0]}">${u.name}</option>`).join('');
+            document.getElementById('move-from').innerHTML = '<option value="">From Agent...</option>' + options;
+            document.getElementById('move-to').innerHTML = '<option value="">To Agent...</option>' + options;
+            document.getElementById('user-list-container').innerHTML = users.map(u => `
+                <div class="cc" style="padding:15px; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <div><b>${u.name}</b><br/><small>${u.email} · ${u.role.toUpperCase()}</small></div>
+                    <select onchange="updateRole('${u.uid}', this.value)"><option value="pending" ${u.role==='pending'?'selected':''}>Pending</option><option value="agent" ${u.role==='agent'?'selected':''}>Agent</option><option value="admin" ${u.role==='admin'?'selected':''}>Admin</option></select>
+                </div>`).join('');
+        });
+    }
+    window.updateRole = async (uid, role) => { await updateDoc(doc(db, "users", uid), { role }); showToast("Role Updated"); };
+
+    // --- SMART CSV IMPORT (INTERNAL DUPE CHECK) ---
+    window.submitImport = async () => {
+        const camp = document.getElementById('camp-name').value, vols = document.getElementById('vol-emails').value.split('\n').map(e => e.trim().split('@')[0]).filter(e => e), file = document.getElementById('csvfile').files[0];
+        if(!camp || !vols.length || !file) return showToast("Fill all details");
+
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            const lines = e.target.result.split('\n').slice(1), batch = writeBatch(db), seenInFile = new Set();
+            let imported = 0, duplicates = 0;
+
+            lines.forEach((line, i) => {
+                const parts = line.split(','); const name = parts[0]?.trim(); const contact = parts[1]?.trim().replace(/\D/g, "");
+                if(name && contact && contact.length >= 10){
+                    if(!seenInFile.has(contact)){
+                        seenInFile.add(contact);
+                        const ref = doc(collection(db, "outreach_leads"));
+                        batch.set(ref, { name, contact, campaign: camp, assignedTo: vols[i % vols.length], status: 'pending', createdAt: new Date().toISOString(), history: [] });
+                        imported++;
+                    } else { duplicates++; }
+                }
+            });
+            await batch.commit(); showToast(`Imported ${imported} leads! (Removed ${duplicates} duplicates within file)`);
+        };
+        reader.readAsText(file);
     };
 
-    window.toggleTheme = () => {
-        const d = document.documentElement;
-        const isDark = d.getAttribute('data-theme') === 'dark';
-        d.setAttribute('data-theme', isDark ? 'light' : 'dark');
-        document.getElementById('theme-icon').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-        if(statusChartInst) renderDashboard();
-    };
-
-    window.openWA = (num, name) => {
-        const msg = encodeURIComponent(`Jai Swaminarayan ${name.split(' ')[0]}! This is from BAPS Pramukh Academy regarding your registration...`);
-        window.open(`https://wa.me/91${num}?text=${msg}`, '_blank');
+    // --- UI HELPERS ---
+    window.switchTab = (p, t) => { document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active')); document.getElementById(p).classList.add('active'); document.getElementById(t).classList.add('active'); document.getElementById('page-title').textContent = document.getElementById(t).textContent; };
+    window.showToast = (m) => { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); };
+    window.toggleTheme = () => { const d = document.documentElement; const isD = d.getAttribute('data-theme') === 'dark'; d.setAttribute('data-theme', isD ? 'light' : 'dark'); };
+    window.openWA = (num, name) => window.open(`https://wa.me/91${num}?text=Jai%20Swaminarayan%20${name.split(' ')[0]}%2C%20this%20is%20from%20Pramukh%20Academy...`, '_blank');
+    window.openUpd = (id, name, st, rmk) => { CUR_LEAD_ID = id; document.getElementById('modal-name').textContent = name; document.getElementById('sel-status').value = st || 'pending'; document.getElementById('rmk-inp').value = rmk; document.getElementById('upd-modal').classList.add('open'); };
+    window.closeModal = () => document.getElementById('upd-modal').classList.remove('open');
+    window.saveUpdate = async () => {
+        const s = document.getElementById('sel-status').value, r = document.getElementById('rmk-inp').value, user = auth.currentUser.email.split('@')[0];
+        await updateDoc(doc(db, "outreach_leads", CUR_LEAD_ID), { status: s, remarks: r, updatedAt: new Date().toISOString(), history: arrayUnion({ status: s, note: r, user, time: new Date().toISOString() }) });
+        closeModal(); showToast("Lead History Updated");
     };
 </script>
 </body>
