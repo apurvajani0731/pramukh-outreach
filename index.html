@@ -79,6 +79,32 @@
         .re-grid { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 15px; }
         select, input[type="text"], textarea { padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: inherit; }
         .btn-p { background: var(--navy); color: white; border: none; padding: 12px 20px; border-radius: 10px; cursor: pointer; font-weight: 700; font-family: 'Outfit'; }
+
+        /* MODAL */
+        .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 8000; align-items: flex-end; justify-content: center; }
+        .mo.open { display: flex; }
+        .ms { background: var(--surface); border-radius: 24px 24px 0 0; padding: 30px; width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; }
+
+        /* LEAD CARD INTERNALS */
+        .ci { flex: 1; }
+        .ci b { font-size: 15px; }
+        .cnum { font-size: 13px; color: var(--muted); font-family: 'DM Mono'; margin-top: 2px; }
+        .sb { font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; background: var(--border); color: var(--muted); white-space: nowrap; }
+        .sb.si { background: #DCFCE7; color: #16A34A; }
+        .sb.sr { background: var(--gold-light); color: var(--gold2); }
+        .sb.scb { background: #FFEDD5; color: #EA580C; }
+        .sb.sp { background: var(--border); color: var(--muted); }
+
+        /* SIDEBAR BOTTOM */
+        .sb-bottom { margin-top: auto; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .sb-nav { padding: 10px; flex: 1; overflow-y: auto; }
+
+        /* HEADER BUTTONS */
+        .theme-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+        .theme-btn:hover { background: var(--border); }
+
+        /* ERROR MESSAGE */
+        .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
     </style>
 </head>
 <body>
@@ -87,7 +113,7 @@
 <div id="loginPage">
     <div class="lcard">
         <div id="auth-form-area">
-            <h2 style="color:white; font-family:'Outfit'; margin-bottom:5px;">Staff Login</h2>
+            <h2 id="auth-title" style="color:white; font-family:'Outfit'; margin-bottom:5px;">Staff Login</h2>
             <p style="color:rgba(255,255,255,0.5); font-size:13px; margin-bottom:25px;">BAPS Pramukh Academy Outreach</p>
             <div class="fg" id="name-field" style="display:none; margin-bottom:15px;"><label style="color:white; font-size:11px; opacity:0.6;">Full Name</label><input type="text" id="reg-name" style="width:100%; margin-top:5px;"/></div>
             <div style="margin-bottom:15px;"><label style="color:white; font-size:11px; opacity:0.6;">Email</label><input type="email" id="lemail" style="width:100%; margin-top:5px;"/></div>
@@ -252,7 +278,14 @@
     let USER_ROLE = "pending", ALL_LEADS = [], CM_QUEUE = [], CM_IDX = 0, CM_SEL = "", CUR_LEAD_ID = null, IS_SIGNUP = false;
 
     // --- AUTH & ROLES ---
-    window.toggleAuthMode = () => { IS_SIGNUP = !IS_SIGNUP; document.getElementById('auth-title').textContent = IS_SIGNUP ? "Volunteer Sign Up" : "Staff Login"; document.getElementById('name-field').style.display = IS_SIGNUP ? "block" : "none"; };
+    window.toggleAuthMode = () => {
+        IS_SIGNUP = !IS_SIGNUP;
+        document.getElementById('auth-title').textContent = IS_SIGNUP ? "Volunteer Sign Up" : "Staff Login";
+        document.getElementById('name-field').style.display = IS_SIGNUP ? "block" : "none";
+        document.querySelector('#auth-form-area .btn-p').textContent = IS_SIGNUP ? "Sign Up" : "Sign In";
+        document.getElementById('auth-toggle-link').textContent = IS_SIGNUP ? "Already have an account? Sign In" : "New volunteer? Sign Up";
+        document.getElementById('lerr').textContent = "";
+    };
     window.handleAuth = async () => {
         const email = document.getElementById("lemail").value; const pass = document.getElementById("lpass").value;
         if(!email || !pass) return;
@@ -303,7 +336,7 @@
         const srch = document.getElementById('srch').value.toLowerCase();
         let list = ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
         
-        if(srch) list = list.filter(l => l.name.toLowerCase().includes(srch) || l.contact.includes(srch) || (l.assignedTo && l.assignedTo.includes(srch)));
+        if(srch) list = list.filter(l => (l.name||'').toLowerCase().includes(srch) || (l.contact||'').includes(srch) || (l.assignedTo && l.assignedTo.includes(srch)));
         
         const pending = list.filter(l => (l.status||'pending') === 'pending' && l.assignedTo === agent);
         const banner = document.getElementById('call-session-banner');
@@ -319,8 +352,10 @@
 
     function buildCard(l){
         const sc = {pending:'sp',interested:'si',registered:'sr',callback:'scb'}[l.status] || 'sp';
-        return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${l.name[0]}</div><div class="ci"><b>${l.name}</b><div class="cnum">${l.contact}</div><div style="font-size:10px; color:var(--gold)">👤 ${l.assignedTo}</div></div><span class="sb ${sc}">${l.status||'pending'}</span></div>
-        <div class="cact"><button class="ab" onclick="window.location.href='tel:${l.contact}'">Call</button><button class="ab" onclick="openUpd('${l.id}','${l.name.replace(/'/g,"")}','${l.status}','${(l.remarks||"").replace(/'/g,"")}')">Update</button><button class="ab" onclick="openWA('${l.contact}','${l.name}')">WA</button></div></div>`;
+        const safeName = (l.name||'Unknown').replace(/['"<>&]/g, '');
+        const safeRmk = (l.remarks||'').replace(/['"<>&]/g, '');
+        return `<div class="cc ${sc}"><div class="ctop"><div class="cav">${(l.name||'?')[0].toUpperCase()}</div><div class="ci"><b>${l.name||'Unknown'}</b><div class="cnum">${l.contact||''}</div><div style="font-size:10px; color:var(--gold)">👤 ${l.assignedTo||''}</div></div><span class="sb ${sc}">${l.status||'pending'}</span></div>
+        <div class="cact"><button class="ab" onclick="window.location.href='tel:${l.contact||''}'">Call</button><button class="ab" onclick="openUpd('${l.id}','${safeName}','${l.status||'pending'}','${safeRmk}')">Update</button><button class="ab" onclick="openWA('${l.contact||''}','${safeName}')">WA</button></div></div>`;
     }
 
     // --- CONTINUOUS CALLING ENGINE ---
@@ -340,7 +375,7 @@
         
         // Render History Timeline
         const hist = l.history || [];
-        document.getElementById('cm-history').innerHTML = hist.length ? hist.reverse().map(h => `
+        document.getElementById('cm-history').innerHTML = hist.length ? hist.slice().reverse().map(h => `
             <div class="h-item">
                 <div class="h-meta">${new Date(h.time).toLocaleDateString()} · ${h.status.toUpperCase()}</div>
                 <div class="h-note">${h.note || "No remark"}</div>
@@ -354,8 +389,10 @@
     window.cmSaveNext = async () => {
         if(!CM_SEL) return showToast("Select a status!");
         const l = CM_QUEUE[CM_IDX], note = document.getElementById('cm-note').value, user = auth.currentUser.email.split('@')[0];
-        await updateDoc(doc(db, "outreach_leads", l.id), { status: CM_SEL, remarks: note, updatedBy: user, updatedAt: new Date().toISOString(), history: arrayUnion({ status: CM_SEL, note, user, time: new Date().toISOString() }) });
-        CM_IDX++; if(CM_IDX >= CM_QUEUE.length) { closeCallingSession(); showToast("Session Complete! 🎉"); } else showCM();
+        try {
+            await updateDoc(doc(db, "outreach_leads", l.id), { status: CM_SEL, remarks: note, updatedBy: user, updatedAt: new Date().toISOString(), history: arrayUnion({ status: CM_SEL, note, user, time: new Date().toISOString() }) });
+            CM_IDX++; if(CM_IDX >= CM_QUEUE.length) { closeCallingSession(); showToast("Session Complete! 🎉"); } else showCM();
+        } catch(err) { showToast("Save failed — check connection"); }
     };
     window.closeCallingSession = () => document.getElementById('calling-overlay').classList.remove('active');
 
@@ -365,8 +402,10 @@
         if(!from || !to) return showToast("Select both agents");
         const snap = await getDocs(query(collection(db, "outreach_leads"), where("assignedTo", "==", from)));
         if(snap.empty) return showToast("Agent has no leads");
-        const batch = writeBatch(db); snap.forEach(d => batch.update(d.ref, { assignedTo: to }));
-        await batch.commit(); showToast(`Moved ${snap.size} leads successfully!`);
+        try {
+            const batch = writeBatch(db); snap.forEach(d => batch.update(d.ref, { assignedTo: to }));
+            await batch.commit(); showToast(`Moved ${snap.size} leads successfully!`);
+        } catch(err) { showToast("Transfer failed — check connection"); }
     };
 
     function listenUsers() {
@@ -391,21 +430,31 @@
 
         const reader = new FileReader();
         reader.onload = async (e) => {
-            const lines = e.target.result.split('\n').slice(1), batch = writeBatch(db), seenInFile = new Set();
-            let imported = 0, duplicates = 0;
+            const lines = e.target.result.split('\n').slice(1), seenInFile = new Set();
+            let records = [], imported = 0, duplicates = 0;
 
             lines.forEach((line, i) => {
                 const parts = line.split(','); const name = parts[0]?.trim(); const contact = parts[1]?.trim().replace(/\D/g, "");
                 if(name && contact && contact.length >= 10){
                     if(!seenInFile.has(contact)){
                         seenInFile.add(contact);
-                        const ref = doc(collection(db, "outreach_leads"));
-                        batch.set(ref, { name, contact, campaign: camp, assignedTo: vols[i % vols.length], status: 'pending', createdAt: new Date().toISOString(), history: [] });
+                        records.push({ name, contact, campaign: camp, assignedTo: vols[i % vols.length], status: 'pending', createdAt: new Date().toISOString(), history: [] });
                         imported++;
                     } else { duplicates++; }
                 }
             });
-            await batch.commit(); showToast(`Imported ${imported} leads! (Removed ${duplicates} duplicates within file)`);
+
+            try {
+                // Chunk into batches of 499 to stay under Firestore 500-op limit
+                for(let i = 0; i < records.length; i += 499){
+                    const batch = writeBatch(db);
+                    records.slice(i, i + 499).forEach(rec => batch.set(doc(collection(db, "outreach_leads")), rec));
+                    await batch.commit();
+                }
+                showToast(`Imported ${imported} leads! (Removed ${duplicates} duplicates within file)`);
+            } catch(err) {
+                showToast(`Import failed: ${err.message}`);
+            }
         };
         reader.readAsText(file);
     };
@@ -419,8 +468,10 @@
     window.closeModal = () => document.getElementById('upd-modal').classList.remove('open');
     window.saveUpdate = async () => {
         const s = document.getElementById('sel-status').value, r = document.getElementById('rmk-inp').value, user = auth.currentUser.email.split('@')[0];
-        await updateDoc(doc(db, "outreach_leads", CUR_LEAD_ID), { status: s, remarks: r, updatedAt: new Date().toISOString(), history: arrayUnion({ status: s, note: r, user, time: new Date().toISOString() }) });
-        closeModal(); showToast("Lead History Updated");
+        try {
+            await updateDoc(doc(db, "outreach_leads", CUR_LEAD_ID), { status: s, remarks: r, updatedAt: new Date().toISOString(), history: arrayUnion({ status: s, note: r, user, time: new Date().toISOString() }) });
+            closeModal(); showToast("Lead History Updated");
+        } catch(err) { showToast("Update failed — check connection"); }
     };
 </script>
 </body>
