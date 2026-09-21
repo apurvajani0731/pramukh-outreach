@@ -263,460 +263,54 @@
         .theme-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
         .theme-btn:hover { background: var(--border); }
 
+
+        /* ROLE-BASED DASHBOARD */
+        .dash-kpi-grid { display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:14px; }
+        .dash-kpi { min-width:0; }
+        .dash-kpi-value { font-family:'Outfit'; font-size:30px; font-weight:800; line-height:1; }
+        .dash-kpi-label { margin-top:9px; font-size:11px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:.3px; }
+        .dash-kpi-sub { margin-top:5px; font-size:11px; color:var(--muted); }
+        .dash-kpi.kpi-green { border-left-color:#16A34A !important; }
+        .dash-kpi.kpi-gold { border-left-color:var(--gold) !important; }
+        .dash-kpi.kpi-blue { border-left-color:#2563EB !important; }
+        .dash-kpi.kpi-orange { border-left-color:#EA580C !important; }
+        .dash-kpi.kpi-warn { border-left-color:#F59E0B !important; }
+        .dash-section-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+        .dash-panel { padding:20px; min-width:0; }
+        .dash-panel-title { font-family:'Outfit'; font-size:15px; font-weight:800; margin-bottom:14px; }
+        .dash-panel-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; }
+        .dash-funnel { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
+        .dash-funnel > div { background:var(--bg); border-radius:10px; padding:12px 8px; text-align:center; }
+        .dash-funnel span,.dash-today-grid span { display:block; font-size:10px; color:var(--muted); text-transform:uppercase; }
+        .dash-funnel b { display:block; font-family:'Outfit'; font-size:22px; margin-top:3px; }
+        .dash-rate-row { display:flex; justify-content:space-between; padding:9px 0; border-top:1px solid var(--border); font-size:12px; }
+        .dash-rate-row b { font-family:'Outfit'; }
+        .dash-today-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+        .dash-today-grid > div { background:var(--bg); border-radius:12px; padding:14px; }
+        .dash-today-grid b { display:block; font-family:'Outfit'; font-size:25px; margin-bottom:3px; }
+        .dash-primary-btn { width:100%; border:0; border-radius:11px; padding:13px; background:#16A34A; color:white; font-family:'Outfit'; font-weight:800; cursor:pointer; }
+        .dash-table-wrap { overflow-x:auto; }
+        .dash-table { width:100%; border-collapse:collapse; min-width:620px; font-size:12px; }
+        .dash-table th { text-align:left; padding:10px 8px; border-bottom:1px solid var(--border); color:var(--muted); font-size:10px; text-transform:uppercase; white-space:nowrap; }
+        .dash-table td { padding:11px 8px; border-bottom:1px solid var(--border); vertical-align:middle; }
+        .dash-table tr:last-child td { border-bottom:0; }
+        .dash-muted { color:var(--muted); font-size:10px; margin-top:2px; }
+        .dash-status { display:inline-flex; padding:4px 8px; border-radius:20px; background:var(--border); color:var(--muted); font-size:9px; font-weight:800; text-transform:uppercase; white-space:nowrap; }
+        .dash-status.interested { background:#DCFCE7; color:#15803D; } .dash-status.registered { background:var(--gold-light); color:var(--gold2); } .dash-status.callback { background:#FFEDD5; color:#C2410C; } .dash-status.pending { background:var(--border); color:var(--muted); } .dash-status.call-later { background:#F5F3FF; color:#6D28D9; } .dash-status.not-interested { background:#FEE2E2; color:#B91C1C; }
+        .dash-mini-btn { border:1px solid var(--border); background:var(--bg); color:var(--text); padding:6px 9px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer; }
+        .dash-empty { padding:24px; text-align:center; color:var(--muted); font-size:12px; border:1px dashed var(--border); border-radius:10px; }
+        .dash-assignment-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+        .dash-assignment { padding:14px; border:1px solid var(--border); border-radius:12px; }
+        .dash-assignment > div:first-child { display:flex; justify-content:space-between; gap:10px; font-size:12px; }
+        .dash-assignment > div:first-child span,.dash-assignment small { color:var(--muted); font-size:10px; }
+        .dash-assignment-bar { height:6px; background:var(--border); border-radius:6px; overflow:hidden; margin:10px 0 7px; }
+        .dash-assignment-bar span { display:block; height:100%; background:var(--gold); border-radius:6px; }
+        #statusChart,#campChart { max-height:260px; }
+        @media (max-width: 900px) { .dash-kpi-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .dash-section-grid { grid-template-columns:1fr; } }
+        @media (max-width: 600px) { .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .dash-funnel { grid-template-columns:repeat(2,1fr); } .dash-assignment-grid { grid-template-columns:1fr; } .dash-panel { padding:15px; } }
+
         /* ERROR MESSAGE */
         .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
-
-        /* ── RESPONSIVE MOBILE LAYOUT ──
-           Mobile-only presentation changes. Desktop layout and functionality remain unchanged. */
-        @media (max-width: 768px) {
-            html, body {
-                width: 100%;
-                min-width: 0;
-                overflow-x: hidden;
-            }
-
-            body {
-                -webkit-text-size-adjust: 100%;
-            }
-
-            /* Login */
-            #loginPage {
-                min-height: 100svh;
-                padding: 16px;
-            }
-
-            .lcard {
-                width: 100%;
-                max-width: 430px;
-                padding: 28px 20px;
-                border-radius: 20px;
-            }
-
-            /* App shell */
-            #app {
-                min-height: 100svh;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-                min-height: 68px;
-                left: 0;
-                bottom: 0;
-                top: auto;
-                z-index: 2000;
-                flex-direction: row;
-                border-right: 0;
-                border-top: 1px solid rgba(255,255,255,0.12);
-                padding: 0;
-                background: rgba(15,31,51,0.98);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-            }
-
-            .sidebar > div:first-child {
-                display: none;
-            }
-
-            .sb-nav {
-                width: 100%;
-                height: 68px;
-                padding: 6px 4px;
-                display: flex;
-                align-items: stretch;
-                justify-content: space-around;
-                gap: 2px;
-                overflow-x: auto;
-                overflow-y: hidden;
-            }
-
-            .sb-item {
-                flex: 1 0 64px;
-                min-width: 64px;
-                max-width: 110px;
-                height: 56px;
-                margin: 0;
-                padding: 6px 4px;
-                border-radius: 10px;
-                flex-direction: column;
-                justify-content: center;
-                gap: 4px;
-                font-size: 10px;
-                white-space: nowrap;
-            }
-
-            .sb-item i {
-                font-size: 16px;
-            }
-
-            .sb-bottom {
-                display: none;
-            }
-
-            .main-wrap {
-                margin-left: 0;
-                min-height: 100svh;
-                padding-bottom: 68px;
-            }
-
-            .top-header {
-                height: 58px;
-                padding: 0 12px;
-                position: sticky;
-                top: 0;
-            }
-
-            #page-title {
-                font-size: 16px !important;
-                max-width: 55%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            .top-header > div:last-child {
-                gap: 7px !important;
-            }
-
-            .theme-btn {
-                width: 36px;
-                height: 36px;
-            }
-
-            .pages-container {
-                width: 100%;
-                padding: 16px 12px 24px;
-                max-width: none;
-            }
-
-            /* General cards / banners */
-            .wb {
-                padding: 18px;
-                border-radius: 15px;
-                margin-bottom: 16px;
-            }
-
-            .wb h2 {
-                font-size: 21px;
-                line-height: 1.2;
-            }
-
-            .wb h3 {
-                font-size: 17px;
-                line-height: 1.25;
-            }
-
-            .wb p {
-                font-size: 12px;
-                line-height: 1.5;
-            }
-
-            /* Home metric cards */
-            .page#pg-home > div:nth-child(2) {
-                grid-template-columns: 1fr !important;
-                gap: 10px !important;
-            }
-
-            .page#pg-home > div:nth-child(2) .cc {
-                padding: 18px !important;
-            }
-
-            .page#pg-home > div:nth-child(2) .cc > div:first-child {
-                font-size: 30px !important;
-            }
-
-            /* Leads */
-            #leads-list {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .cc {
-                width: 100%;
-                min-width: 0;
-            }
-
-            .ctop {
-                padding: 13px;
-                gap: 10px;
-                min-width: 0;
-            }
-
-            .ci {
-                min-width: 0;
-            }
-
-            .ci b {
-                display: block;
-                max-width: 100%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            .cnum {
-                overflow-wrap: anywhere;
-            }
-
-            .sb {
-                flex-shrink: 0;
-                max-width: 105px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .cact {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .ab {
-                min-height: 44px;
-                padding: 10px 6px;
-                font-size: 12px;
-            }
-
-            #srch {
-                width: 100%;
-                min-width: 0;
-                font-size: 14px;
-                padding: 12px;
-            }
-
-            /* Admin / import / dashboard grids */
-            .reassign-box {
-                padding: 17px;
-                border-radius: 15px;
-            }
-
-            .re-grid {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 9px;
-            }
-
-            .re-grid select,
-            .re-grid .btn-p {
-                width: 100%;
-                min-height: 44px;
-            }
-
-            .re-grid > i {
-                transform: rotate(90deg);
-                align-self: center;
-            }
-
-            .page#pg-dashboard > div:nth-child(2) {
-                grid-template-columns: 1fr !important;
-                gap: 12px !important;
-            }
-
-            .page#pg-dashboard .cc {
-                min-height: 250px;
-            }
-
-            /* Staff approval/action rows */
-            #pending-users-list .cc,
-            #user-list-container .cc {
-                flex-wrap: wrap;
-            }
-
-            #pending-users-list .cc > div:last-child {
-                width: 100%;
-                display: grid !important;
-                grid-template-columns: 1fr 1fr;
-            }
-
-            #pending-users-list button {
-                width: 100%;
-                padding: 9px 8px !important;
-            }
-
-            #user-list-container select {
-                max-width: 120px;
-            }
-
-            /* Import form */
-            #pg-upload .cc {
-                padding: 18px !important;
-            }
-
-            input[type="file"] {
-                width: 100%;
-                font-size: 12px;
-            }
-
-            /* Modal */
-            .mo {
-                align-items: flex-end;
-                padding: 0;
-            }
-
-            .ms {
-                width: 100%;
-                max-width: none;
-                max-height: 88svh;
-                padding: 22px 16px max(22px, env(safe-area-inset-bottom));
-                border-radius: 22px 22px 0 0;
-            }
-
-            /* Toast */
-            .toast {
-                width: calc(100% - 24px);
-                max-width: 420px;
-                bottom: 82px;
-                padding: 11px 16px;
-                text-align: center;
-                font-size: 13px;
-            }
-
-            /* Calling overlay: keep the existing dialer design, but make it
-               safe for short/small mobile viewports. */
-            #calling-overlay {
-                min-height: 100svh;
-                height: 100svh;
-                overflow: hidden;
-            }
-
-            .dialer-topbar {
-                padding-left: 14px;
-                padding-right: 14px;
-            }
-
-            .dialer-contact {
-                min-height: 0;
-                padding: 6px 14px;
-                justify-content: center;
-            }
-
-            .dialer-avatar {
-                width: 68px;
-                height: 68px;
-                font-size: 28px;
-                margin-bottom: 10px;
-            }
-
-            .dialer-name {
-                max-width: calc(100vw - 32px);
-                font-size: 24px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
-
-            .dialer-number {
-                font-size: 17px;
-                letter-spacing: 1px;
-            }
-
-            .dialer-history {
-                max-height: 74px;
-                margin-bottom: 5px;
-            }
-
-            .dialer-call-btn {
-                width: 68px;
-                height: 68px;
-                font-size: 25px;
-                margin: 5px auto 2px;
-            }
-
-            .dialer-call-hint {
-                margin-bottom: 5px;
-            }
-
-            .dialer-sheet {
-                padding: 13px 14px max(14px, env(safe-area-inset-bottom));
-                border-radius: 22px 22px 0 0;
-            }
-
-            .dialer-sheet-handle {
-                margin-bottom: 10px;
-            }
-
-            .dialer-status-grid {
-                gap: 6px;
-                margin-bottom: 9px;
-            }
-
-            .ds-btn {
-                height: 54px;
-                font-size: 10px;
-                gap: 3px;
-            }
-
-            .ds-btn i {
-                font-size: 14px;
-            }
-
-            .dialer-note {
-                margin-bottom: 8px;
-                min-height: 48px;
-            }
-
-            .dialer-save-btn {
-                min-height: 48px;
-                padding: 12px;
-            }
-
-            /* Session summary */
-            #session-summary {
-                padding: 12px;
-            }
-
-            .summary-card {
-                padding: 24px 18px;
-                max-height: calc(100svh - 24px);
-                overflow-y: auto;
-            }
-
-            .summary-grid {
-                gap: 8px;
-                margin-bottom: 16px;
-            }
-
-            .summary-stat {
-                padding: 13px 8px;
-            }
-
-            .summary-stat .num {
-                font-size: 24px;
-            }
-        }
-
-        /* Very small phones */
-        @media (max-width: 380px) {
-            .sb-item {
-                min-width: 58px;
-                font-size: 9px;
-            }
-
-            .sb-item i {
-                font-size: 15px;
-            }
-
-            .pages-container {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            .dialer-progress-stats {
-                font-size: 9px;
-            }
-
-            .dialer-name {
-                font-size: 21px;
-            }
-
-            .dialer-status-grid {
-                gap: 5px;
-            }
-
-            .ds-btn {
-                height: 50px;
-                font-size: 9px;
-            }
-        }
-
     </style>
 </head>
 <body>
@@ -842,13 +436,13 @@
                 </div>
             </div>
 
-            <!-- DASHBOARD -->
+            <!-- ROLE-BASED DASHBOARD -->
             <div class="page" id="pg-dashboard">
-                <div class="wb"><h3>📊 Outreach Analytics</h3></div>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-                    <div class="cc" style="padding:20px;"><canvas id="statusChart"></canvas></div>
-                    <div class="cc" style="padding:20px;"><canvas id="campChart"></canvas></div>
+                <div class="wb" id="dash-header">
+                    <h3 id="dash-title">📊 Outreach Dashboard</h3>
+                    <p id="dash-subtitle" style="margin-top:6px; opacity:.75;">Live performance overview.</p>
                 </div>
+                <div id="dashboard-content"></div>
             </div>
         </main>
     </div>
@@ -950,7 +544,8 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    let USER_ROLE = "pending", ALL_LEADS = [], CM_QUEUE = [], CM_IDX = 0, CM_SEL = "", CUR_LEAD_ID = null, IS_SIGNUP = false;
+    let USER_ROLE = "pending", ALL_LEADS = [], ALL_USERS = [], CM_QUEUE = [], CM_IDX = 0, CM_SEL = "", CUR_LEAD_ID = null, IS_SIGNUP = false;
+    let statusChartInstance = null, campChartInstance = null;
 
     // --- AUTH & ROLES ---
     window.toggleAuthMode = () => {
@@ -1009,7 +604,13 @@
 
     function setupUI(user){
         document.getElementById('sb-uname').textContent = user.name; document.getElementById('sb-urole').textContent = USER_ROLE;
-        if(['admin','superadmin'].includes(USER_ROLE)){ document.getElementById('sbt-dashboard').style.display = "flex"; document.getElementById('sbt-upload').style.display = "flex"; document.getElementById('sbt-users').style.display = "flex"; }
+        // Dashboard is available to every approved role, but its data is role-scoped.
+        document.getElementById('sbt-dashboard').style.display = "flex";
+        document.querySelector('#sbt-dashboard span').textContent = ['admin','superadmin'].includes(USER_ROLE) ? 'Reports' : 'My Dashboard';
+        if(['admin','superadmin'].includes(USER_ROLE)){
+            document.getElementById('sbt-upload').style.display = "flex";
+            document.getElementById('sbt-users').style.display = "flex";
+        }
     }
 
     // --- CORE DATA ENGINE ---
@@ -1017,6 +618,7 @@
         onSnapshot(collection(db, "outreach_leads"), (snap) => {
             ALL_LEADS = snap.docs.map(d => ({id: d.id, ...d.data()}));
             renderHome(); renderLeads();
+            if(document.getElementById('pg-dashboard')?.classList.contains('active')) renderDashboard();
         });
     }
 
@@ -1194,6 +796,8 @@
     function listenUsers() {
         onSnapshot(collection(db, "users"), (snap) => {
             const users = snap.docs.map(d => d.data()).sort((a,b) => (a.name||'').localeCompare(b.name||''));
+            ALL_USERS = users;
+            if(document.getElementById('pg-dashboard')?.classList.contains('active')) renderDashboard();
 
             const pending = users.filter(u => u.role === 'pending');
             const active  = users.filter(u => u.role !== 'pending');
@@ -1310,6 +914,146 @@
         };
         reader.readAsText(file);
     };
+
+    // --- ROLE-BASED DASHBOARD ---
+    function dashboardLeadSet(){
+        const isManagement = ['admin','superadmin'].includes(USER_ROLE);
+        if(isManagement) return ALL_LEADS.slice();
+        const agent = (auth.currentUser?.email || '').split('@')[0];
+        return ALL_LEADS.filter(l => l.assignedTo === agent);
+    }
+
+    function dashboardStatus(l){ return (l.status || 'pending').toLowerCase(); }
+    function dashboardHistory(l){ return Array.isArray(l.history) ? l.history : []; }
+    function dashboardDate(value){
+        const d = new Date(value);
+        return Number.isNaN(d.getTime()) ? null : d;
+    }
+    function isToday(value){
+        const d = dashboardDate(value); if(!d) return false;
+        const n = new Date();
+        return d.getFullYear() === n.getFullYear() && d.getMonth() === n.getMonth() && d.getDate() === n.getDate();
+    }
+    function leadWasCalled(l){
+        return dashboardHistory(l).length > 0 || !['pending','call-later'].includes(dashboardStatus(l));
+    }
+    function latestHistory(l){
+        return dashboardHistory(l).slice().sort((a,b) => (new Date(b.time).getTime()||0) - (new Date(a.time).getTime()||0))[0] || null;
+    }
+    function escDash(v){
+        return String(v ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    }
+    function pct(n,d){ return d ? Math.round((n/d)*100) + '%' : '0%'; }
+    function dashCard(label, value, sub, cls=''){
+        return `<div class="cc dash-kpi ${cls}" style="padding:20px; border-left-width:4px;"><div class="dash-kpi-value">${value}</div><div class="dash-kpi-label">${label}</div>${sub ? `<div class="dash-kpi-sub">${sub}</div>` : ''}</div>`;
+    }
+    function dashTable(headers, rows, empty='No data available.'){
+        if(!rows.length) return `<div class="dash-empty">${empty}</div>`;
+        return `<div class="dash-table-wrap"><table class="dash-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+    }
+
+    function renderDashboard(){
+        const root = document.getElementById('dashboard-content');
+        if(!root || !auth.currentUser) return;
+        const leads = dashboardLeadSet();
+        const isManagement = ['admin','superadmin'].includes(USER_ROLE);
+        const isSuper = USER_ROLE === 'superadmin';
+
+        const counts = {
+            total: leads.length,
+            pending: leads.filter(l => dashboardStatus(l) === 'pending').length,
+            callLater: leads.filter(l => dashboardStatus(l) === 'call-later').length,
+            called: leads.filter(leadWasCalled).length,
+            interested: leads.filter(l => dashboardStatus(l) === 'interested').length,
+            registered: leads.filter(l => dashboardStatus(l) === 'registered').length,
+            callback: leads.filter(l => dashboardStatus(l) === 'callback').length,
+            notReached: leads.filter(l => dashboardStatus(l) === 'not-reached').length,
+            notInterested: leads.filter(l => dashboardStatus(l) === 'not-interested').length
+        };
+        const todayHistory = leads.flatMap(l => dashboardHistory(l).map(h => ({...h, lead:l}))).filter(h => isToday(h.time));
+        const todayCalled = todayHistory.length;
+        const todayInterested = todayHistory.filter(h => h.status === 'interested').length;
+        const todayRegistered = todayHistory.filter(h => h.status === 'registered').length;
+        const contactedBase = counts.interested + counts.registered + counts.callback + counts.notReached + counts.notInterested;
+
+        document.getElementById('dash-title').textContent = isSuper ? '🏢 Organization Dashboard' : isManagement ? '📊 Team Performance' : '📈 My Performance';
+        document.getElementById('dash-subtitle').textContent = isSuper ? 'Organization-wide outreach, team workload and assignment overview.' : isManagement ? 'Team-wide calling activity, conversion and campaign performance.' : 'Your assigned leads, calling activity and conversion performance.';
+
+        if(!isManagement){
+            const agent = (auth.currentUser.email || '').split('@')[0];
+            const recent = leads.flatMap(l => dashboardHistory(l).map(h => ({...h, lead:l})))
+                .sort((a,b)=>(new Date(b.time).getTime()||0)-(new Date(a.time).getTime()||0)).slice(0,8);
+            const recentRows = recent.map(h => `<tr><td><b>${escDash(h.lead.name || 'Unknown')}</b><div class="dash-muted">${escDash(h.lead.contact || '')}</div></td><td><span class="dash-status ${escDash(h.status)}">${escDash(h.status || 'called')}</span></td><td>${escDash(h.note || '—')}</td><td>${dashboardDate(h.time)?.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) || '—'}</td></tr>`);
+            const leadRows = leads.slice().sort((a,b)=>(new Date(b.updatedAt||b.createdAt).getTime()||0)-(new Date(a.updatedAt||a.createdAt).getTime()||0)).slice(0,8).map(l => `<tr><td><b>${escDash(l.name||'Unknown')}</b></td><td>${escDash(l.campaign||'—')}</td><td><span class="dash-status ${escDash(dashboardStatus(l))}">${escDash(dashboardStatus(l))}</span></td><td>${escDash((latestHistory(l)?.note || l.remarks || '—'))}</td><td><button class="dash-mini-btn" onclick="openUpd('${l.id}','${escDash(l.name||'Unknown').replace(/'/g,'\\\'')}','${escDash(dashboardStatus(l))}','${escDash(l.remarks||'').replace(/'/g,'\\\'')}')">Update</button></td></tr>`);
+            root.innerHTML = `
+                <div class="dash-kpi-grid">
+                    ${dashCard('My Total Leads', counts.total, 'Assigned to you')}
+                    ${dashCard('Pending Calls', counts.pending + counts.callLater, `${counts.callLater} call-later`, 'kpi-warn')}
+                    ${dashCard('Calls Completed', counts.called, `${todayCalled} activity today`, 'kpi-blue')}
+                    ${dashCard('Interested', counts.interested, `${todayInterested} today`, 'kpi-green')}
+                    ${dashCard('Registered', counts.registered, `${todayRegistered} today`, 'kpi-gold')}
+                    ${dashCard('Callbacks', counts.callback, 'Currently open', 'kpi-orange')}
+                </div>
+                <div class="dash-section-grid">
+                    <div class="cc dash-panel"><div class="dash-panel-title">My Conversion</div><div class="dash-funnel">
+                        <div><span>Total Leads</span><b>${counts.total}</b></div><div><span>Contacted</span><b>${contactedBase}</b></div><div><span>Interested</span><b>${counts.interested}</b></div><div><span>Registered</span><b>${counts.registered}</b></div>
+                    </div><div class="dash-rate-row"><span>Contact → Interested</span><b>${pct(counts.interested, contactedBase)}</b></div><div class="dash-rate-row"><span>Contact → Registered</span><b>${pct(counts.registered, contactedBase)}</b></div><div class="dash-rate-row"><span>Interested → Registered</span><b>${pct(counts.registered, counts.interested)}</b></div></div>
+                    <div class="cc dash-panel"><div class="dash-panel-title">Today’s Work</div><div class="dash-today-grid"><div><b>${todayCalled}</b><span>Calls / updates</span></div><div><b>${todayInterested}</b><span>Interested</span></div><div><b>${todayRegistered}</b><span>Registered</span></div><div><b>${counts.pending + counts.callLater}</b><span>Remaining</span></div></div><button class="dash-primary-btn" onclick="startCallingSession()"><i class="fas fa-phone-alt"></i> Start Calling Session</button></div>
+                </div>
+                <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-head"><div><div class="dash-panel-title">Recent My Activity</div><div class="dash-muted">Latest outcomes recorded on your assigned leads.</div></div></div>${dashTable(['Student','Outcome','Note','Time'], recentRows, 'No calling activity recorded yet.')}</div>
+                <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">My Leads</div>${dashTable(['Student','Campaign','Status','Last Note','Action'], leadRows, 'No leads are assigned to you.')}</div>`;
+            return;
+        }
+
+        const agents = ALL_USERS.filter(u => u.role === 'agent');
+        const agentMap = {};
+        leads.forEach(l => {
+            const key = l.assignedTo || 'Unassigned';
+            if(!agentMap[key]) agentMap[key] = {assigned:0,called:0,pending:0,interested:0,registered:0,callback:0};
+            const a=agentMap[key]; a.assigned++; if(leadWasCalled(l)) a.called++; if(['pending','call-later'].includes(dashboardStatus(l))) a.pending++; if(dashboardStatus(l)==='interested') a.interested++; if(dashboardStatus(l)==='registered') a.registered++; if(dashboardStatus(l)==='callback') a.callback++;
+        });
+        agents.forEach(u=>{ const k=(u.email||'').split('@')[0]; if(!agentMap[k]) agentMap[k]={assigned:0,called:0,pending:0,interested:0,registered:0,callback:0}; });
+        const agentRows = Object.entries(agentMap).sort((a,b)=>b[1].assigned-a[1].assigned).map(([key,a])=>`<tr><td><b>${escDash((agents.find(u=>(u.email||'').split('@')[0]===key)?.name)||key)}</b><div class="dash-muted">${escDash(key)}</div></td><td>${a.assigned}</td><td>${a.called}</td><td>${a.pending}</td><td>${a.interested}</td><td>${a.registered}</td><td>${pct(a.registered,a.called)}</td></tr>`);
+        const campaigns={}; leads.forEach(l=>{const k=l.campaign||'Unspecified'; if(!campaigns[k]) campaigns[k]={leads:0,called:0,interested:0,registered:0}; campaigns[k].leads++; if(leadWasCalled(l)) campaigns[k].called++; if(dashboardStatus(l)==='interested') campaigns[k].interested++; if(dashboardStatus(l)==='registered') campaigns[k].registered++;});
+        const campRows=Object.entries(campaigns).sort((a,b)=>b[1].leads-a[1].leads).map(([k,a])=>`<tr><td><b>${escDash(k)}</b></td><td>${a.leads}</td><td>${a.called}</td><td>${a.interested}</td><td>${a.registered}</td><td>${pct(a.registered,a.called)}</td></tr>`);
+        const recent = leads.flatMap(l=>dashboardHistory(l).map(h=>({...h,lead:l}))).sort((a,b)=>(new Date(b.time).getTime()||0)-(new Date(a.time).getTime()||0)).slice(0,8);
+        const recentRows=recent.map(h=>`<tr><td><b>${escDash(h.lead.name||'Unknown')}</b><div class="dash-muted">${escDash(h.user||h.lead.assignedTo||'—')}</div></td><td><span class="dash-status ${escDash(h.status)}">${escDash(h.status||'called')}</span></td><td>${escDash(h.note||'—')}</td><td>${dashboardDate(h.time)?.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})||'—'}</td></tr>`);
+
+        const staffBlock = isSuper ? `<div class="dash-kpi-grid" style="margin-top:20px;">
+            ${dashCard('Total Staff', ALL_USERS.length, 'All user records', 'kpi-blue')}
+            ${dashCard('Active Agents', agents.length, 'Lead-calling staff', 'kpi-green')}
+            ${dashCard('Admins', ALL_USERS.filter(u=>u.role==='admin').length, 'Administrative roles', 'kpi-gold')}
+            ${dashCard('Pending Approvals', ALL_USERS.filter(u=>u.role==='pending').length, 'Awaiting role assignment', 'kpi-warn')}
+        </div>
+        <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Assignment Overview</div><div class="dash-assignment-grid">${Object.entries(agentMap).map(([k,a])=>`<div class="dash-assignment"><div><b>${escDash((agents.find(u=>(u.email||'').split('@')[0]===k)?.name)||k)}</b><span>${a.assigned} assigned</span></div><div class="dash-assignment-bar"><span style="width:${counts.total ? Math.min(100,Math.round(a.assigned/counts.total*100)) : 0}%"></span></div><small>${a.pending} pending · ${a.called} called · ${a.registered} registered</small></div>`).join('') || '<div class="dash-empty">No agent assignments yet.</div>'}</div></div>` : '';
+
+        root.innerHTML = `
+            <div class="dash-kpi-grid">
+                ${dashCard('Total Leads', counts.total, 'Across all campaigns')}
+                ${dashCard('Pending Calls', counts.pending + counts.callLater, `${counts.callLater} call-later`, 'kpi-warn')}
+                ${dashCard('Calls Completed', counts.called, `${todayCalled} activity today`, 'kpi-blue')}
+                ${dashCard('Interested', counts.interested, `${todayInterested} today`, 'kpi-green')}
+                ${dashCard('Registered', counts.registered, `${todayRegistered} today`, 'kpi-gold')}
+                ${dashCard('Callbacks', counts.callback, 'Currently open', 'kpi-orange')}
+            </div>
+            <div class="dash-section-grid">
+                <div class="cc dash-panel"><div class="dash-panel-title">Conversion Funnel</div><div class="dash-funnel"><div><span>Total Leads</span><b>${counts.total}</b></div><div><span>Contacted</span><b>${contactedBase}</b></div><div><span>Interested</span><b>${counts.interested}</b></div><div><span>Registered</span><b>${counts.registered}</b></div></div><div class="dash-rate-row"><span>Contact → Interested</span><b>${pct(counts.interested,contactedBase)}</b></div><div class="dash-rate-row"><span>Contact → Registered</span><b>${pct(counts.registered,contactedBase)}</b></div><div class="dash-rate-row"><span>Interested → Registered</span><b>${pct(counts.registered,counts.interested)}</b></div></div>
+                <div class="cc dash-panel"><div class="dash-panel-title">Status Distribution</div><canvas id="statusChart" height="230"></canvas></div>
+            </div>
+            <div class="dash-section-grid" style="margin-top:20px;"><div class="cc dash-panel"><div class="dash-panel-title">Campaign Performance</div><canvas id="campChart" height="230"></canvas></div><div class="cc dash-panel"><div class="dash-panel-title">Team Snapshot</div><div class="dash-today-grid"><div><b>${agents.length}</b><span>Agents</span></div><div><b>${counts.pending+counts.callLater}</b><span>Pending</span></div><div><b>${counts.interested}</b><span>Interested</span></div><div><b>${counts.registered}</b><span>Registered</span></div></div></div></div>
+            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Agent Performance</div>${dashTable(['Agent','Assigned','Called','Pending','Interested','Registered','Reg. / Called'],agentRows,'No agent performance data yet.')}</div>
+            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Campaign Performance</div>${dashTable(['Campaign','Leads','Called','Interested','Registered','Reg. / Called'],campRows,'No campaign data yet.')}</div>
+            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Recent Activity</div>${dashTable(['Student / Agent','Outcome','Note','Time'],recentRows,'No activity recorded yet.')}</div>
+            ${staffBlock}`;
+
+        const statusData = [counts.pending,leads.filter(l=>dashboardStatus(l)==='called').length,counts.interested,counts.registered,counts.callback,counts.notReached,counts.notInterested,counts.callLater];
+        const statusLabels=['Pending','Called','Interested','Registered','Callback','Not Reached','Not Interested','Call Later'];
+        if(statusChartInstance) statusChartInstance.destroy();
+        statusChartInstance = new Chart(document.getElementById('statusChart'),{type:'doughnut',data:{labels:statusLabels,datasets:[{data:statusData}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+        if(campChartInstance) campChartInstance.destroy();
+        const topCampaigns=Object.entries(campaigns).slice(0,8);
+        campChartInstance = new Chart(document.getElementById('campChart'),{type:'bar',data:{labels:topCampaigns.map(x=>x[0]),datasets:[{label:'Leads',data:topCampaigns.map(x=>x[1].leads)},{label:'Registered',data:topCampaigns.map(x=>x[1].registered)}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,ticks:{precision:0}}},plugins:{legend:{position:'bottom'}}}});
+    }
 
     // --- UI HELPERS ---
     window.switchTab = (p, t) => { document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active')); document.getElementById(p).classList.add('active'); document.getElementById(t).classList.add('active'); document.getElementById('page-title').textContent = document.getElementById(t).textContent; };
