@@ -265,6 +265,458 @@
 
         /* ERROR MESSAGE */
         .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
+
+        /* ── RESPONSIVE MOBILE LAYOUT ──
+           Mobile-only presentation changes. Desktop layout and functionality remain unchanged. */
+        @media (max-width: 768px) {
+            html, body {
+                width: 100%;
+                min-width: 0;
+                overflow-x: hidden;
+            }
+
+            body {
+                -webkit-text-size-adjust: 100%;
+            }
+
+            /* Login */
+            #loginPage {
+                min-height: 100svh;
+                padding: 16px;
+            }
+
+            .lcard {
+                width: 100%;
+                max-width: 430px;
+                padding: 28px 20px;
+                border-radius: 20px;
+            }
+
+            /* App shell */
+            #app {
+                min-height: 100svh;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                min-height: 68px;
+                left: 0;
+                bottom: 0;
+                top: auto;
+                z-index: 2000;
+                flex-direction: row;
+                border-right: 0;
+                border-top: 1px solid rgba(255,255,255,0.12);
+                padding: 0;
+                background: rgba(15,31,51,0.98);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+            }
+
+            .sidebar > div:first-child {
+                display: none;
+            }
+
+            .sb-nav {
+                width: 100%;
+                height: 68px;
+                padding: 6px 4px;
+                display: flex;
+                align-items: stretch;
+                justify-content: space-around;
+                gap: 2px;
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+
+            .sb-item {
+                flex: 1 0 64px;
+                min-width: 64px;
+                max-width: 110px;
+                height: 56px;
+                margin: 0;
+                padding: 6px 4px;
+                border-radius: 10px;
+                flex-direction: column;
+                justify-content: center;
+                gap: 4px;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+
+            .sb-item i {
+                font-size: 16px;
+            }
+
+            .sb-bottom {
+                display: none;
+            }
+
+            .main-wrap {
+                margin-left: 0;
+                min-height: 100svh;
+                padding-bottom: 68px;
+            }
+
+            .top-header {
+                height: 58px;
+                padding: 0 12px;
+                position: sticky;
+                top: 0;
+            }
+
+            #page-title {
+                font-size: 16px !important;
+                max-width: 55%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .top-header > div:last-child {
+                gap: 7px !important;
+            }
+
+            .theme-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .pages-container {
+                width: 100%;
+                padding: 16px 12px 24px;
+                max-width: none;
+            }
+
+            /* General cards / banners */
+            .wb {
+                padding: 18px;
+                border-radius: 15px;
+                margin-bottom: 16px;
+            }
+
+            .wb h2 {
+                font-size: 21px;
+                line-height: 1.2;
+            }
+
+            .wb h3 {
+                font-size: 17px;
+                line-height: 1.25;
+            }
+
+            .wb p {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            /* Home metric cards */
+            .page#pg-home > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
+
+            .page#pg-home > div:nth-child(2) .cc {
+                padding: 18px !important;
+            }
+
+            .page#pg-home > div:nth-child(2) .cc > div:first-child {
+                font-size: 30px !important;
+            }
+
+            /* Leads */
+            #leads-list {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .cc {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .ctop {
+                padding: 13px;
+                gap: 10px;
+                min-width: 0;
+            }
+
+            .ci {
+                min-width: 0;
+            }
+
+            .ci b {
+                display: block;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .cnum {
+                overflow-wrap: anywhere;
+            }
+
+            .sb {
+                flex-shrink: 0;
+                max-width: 105px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .cact {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .ab {
+                min-height: 44px;
+                padding: 10px 6px;
+                font-size: 12px;
+            }
+
+            #srch {
+                width: 100%;
+                min-width: 0;
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            /* Admin / import / dashboard grids */
+            .reassign-box {
+                padding: 17px;
+                border-radius: 15px;
+            }
+
+            .re-grid {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 9px;
+            }
+
+            .re-grid select,
+            .re-grid .btn-p {
+                width: 100%;
+                min-height: 44px;
+            }
+
+            .re-grid > i {
+                transform: rotate(90deg);
+                align-self: center;
+            }
+
+            .page#pg-dashboard > div:nth-child(2) {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+
+            .page#pg-dashboard .cc {
+                min-height: 250px;
+            }
+
+            /* Staff approval/action rows */
+            #pending-users-list .cc,
+            #user-list-container .cc {
+                flex-wrap: wrap;
+            }
+
+            #pending-users-list .cc > div:last-child {
+                width: 100%;
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #pending-users-list button {
+                width: 100%;
+                padding: 9px 8px !important;
+            }
+
+            #user-list-container select {
+                max-width: 120px;
+            }
+
+            /* Import form */
+            #pg-upload .cc {
+                padding: 18px !important;
+            }
+
+            input[type="file"] {
+                width: 100%;
+                font-size: 12px;
+            }
+
+            /* Modal */
+            .mo {
+                align-items: flex-end;
+                padding: 0;
+            }
+
+            .ms {
+                width: 100%;
+                max-width: none;
+                max-height: 88svh;
+                padding: 22px 16px max(22px, env(safe-area-inset-bottom));
+                border-radius: 22px 22px 0 0;
+            }
+
+            /* Toast */
+            .toast {
+                width: calc(100% - 24px);
+                max-width: 420px;
+                bottom: 82px;
+                padding: 11px 16px;
+                text-align: center;
+                font-size: 13px;
+            }
+
+            /* Calling overlay: keep the existing dialer design, but make it
+               safe for short/small mobile viewports. */
+            #calling-overlay {
+                min-height: 100svh;
+                height: 100svh;
+                overflow: hidden;
+            }
+
+            .dialer-topbar {
+                padding-left: 14px;
+                padding-right: 14px;
+            }
+
+            .dialer-contact {
+                min-height: 0;
+                padding: 6px 14px;
+                justify-content: center;
+            }
+
+            .dialer-avatar {
+                width: 68px;
+                height: 68px;
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .dialer-name {
+                max-width: calc(100vw - 32px);
+                font-size: 24px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .dialer-number {
+                font-size: 17px;
+                letter-spacing: 1px;
+            }
+
+            .dialer-history {
+                max-height: 74px;
+                margin-bottom: 5px;
+            }
+
+            .dialer-call-btn {
+                width: 68px;
+                height: 68px;
+                font-size: 25px;
+                margin: 5px auto 2px;
+            }
+
+            .dialer-call-hint {
+                margin-bottom: 5px;
+            }
+
+            .dialer-sheet {
+                padding: 13px 14px max(14px, env(safe-area-inset-bottom));
+                border-radius: 22px 22px 0 0;
+            }
+
+            .dialer-sheet-handle {
+                margin-bottom: 10px;
+            }
+
+            .dialer-status-grid {
+                gap: 6px;
+                margin-bottom: 9px;
+            }
+
+            .ds-btn {
+                height: 54px;
+                font-size: 10px;
+                gap: 3px;
+            }
+
+            .ds-btn i {
+                font-size: 14px;
+            }
+
+            .dialer-note {
+                margin-bottom: 8px;
+                min-height: 48px;
+            }
+
+            .dialer-save-btn {
+                min-height: 48px;
+                padding: 12px;
+            }
+
+            /* Session summary */
+            #session-summary {
+                padding: 12px;
+            }
+
+            .summary-card {
+                padding: 24px 18px;
+                max-height: calc(100svh - 24px);
+                overflow-y: auto;
+            }
+
+            .summary-grid {
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
+            .summary-stat {
+                padding: 13px 8px;
+            }
+
+            .summary-stat .num {
+                font-size: 24px;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 380px) {
+            .sb-item {
+                min-width: 58px;
+                font-size: 9px;
+            }
+
+            .sb-item i {
+                font-size: 15px;
+            }
+
+            .pages-container {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .dialer-progress-stats {
+                font-size: 9px;
+            }
+
+            .dialer-name {
+                font-size: 21px;
+            }
+
+            .dialer-status-grid {
+                gap: 5px;
+            }
+
+            .ds-btn {
+                height: 50px;
+                font-size: 9px;
+            }
+        }
+
     </style>
 </head>
 <body>
