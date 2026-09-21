@@ -222,6 +222,12 @@
         .summary-stat .lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
         .summary-close { width: 100%; padding: 15px; border-radius: 14px; background: var(--navy); color: white; border: none; font-family: 'Outfit'; font-weight: 800; font-size: 15px; cursor: pointer; }
 
+        /* FILTER CHIPS */
+        #filter-chip-row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+        .fchip { display:inline-flex; align-items:center; gap:6px; background:var(--gold-light); color:var(--gold2); border:1px solid var(--gold); border-radius:20px; padding:5px 12px; font-size:12px; font-weight:700; }
+        .fchip button { background:none; border:none; color:var(--gold2); font-size:14px; cursor:pointer; padding:0; line-height:1; font-weight:800; }
+        .fchip-clear { background:none; border:1px solid var(--border); color:var(--muted); border-radius:20px; padding:5px 12px; font-size:12px; font-weight:700; cursor:pointer; }
+
         /* CARDS */
         #leads-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px; }
         .cc { background: var(--surface); border-radius: 14px; border: 1px solid var(--border); border-left: 5px solid var(--border); transition: 0.2s; }
@@ -338,10 +344,28 @@
 
             <!-- LEADS -->
             <div class="page" id="pg-leads">
-                <div style="margin-bottom:20px; display:flex; gap:12px;">
-                    <input type="text" id="srch" placeholder="Search by name, phone or assigned agent..." oninput="renderLeads()" style="flex:1;"/>
+                <!-- FILTER BAR -->
+                <div style="margin-bottom:14px; display:flex; gap:8px; flex-wrap:wrap;">
+                    <input type="text" id="srch" placeholder="Search name or phone..." oninput="renderLeads()" style="flex:1; min-width:140px;"/>
+                    <select id="filter-campaign" onchange="renderLeads()" style="flex:1; min-width:140px;">
+                        <option value="">All Campaigns</option>
+                    </select>
+                    <select id="filter-status" onchange="renderLeads()" style="flex:1; min-width:130px;">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="interested">Interested</option>
+                        <option value="registered">Registered</option>
+                        <option value="callback">Callback</option>
+                        <option value="not-reached">Not Reached</option>
+                        <option value="not-interested">Not Interested</option>
+                        <option value="call-later">Call Later</option>
+                    </select>
                 </div>
-                <div id="call-session-banner" style="display:none; margin-bottom:20px;"></div>
+                <!-- ACTIVE FILTER CHIP + SESSION BANNER -->
+                <div id="filter-chip-row" style="display:none; margin-bottom:10px;"></div>
+                <div id="call-session-banner" style="display:none; margin-bottom:16px;"></div>
+                <!-- LEADS COUNT -->
+                <div id="leads-count" style="font-size:12px; color:var(--muted); font-weight:700; margin-bottom:12px;"></div>
                 <div id="leads-list"></div>
             </div>
 
@@ -392,7 +416,10 @@
     <!-- TOP BAR -->
     <div class="dialer-topbar">
         <div class="dialer-session-badge" id="cm-progress-text">1 / 1</div>
-        <div style="font-family:'Outfit'; font-weight:800; font-size:15px; opacity:0.5;">Calling Session</div>
+        <div style="text-align:center;">
+            <div style="font-family:'Outfit'; font-weight:800; font-size:14px; opacity:0.6;">Calling Session</div>
+            <div id="cm-session-scope" style="font-size:10px; color:var(--gold); font-weight:700; margin-top:1px; max-width:160px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></div>
+        </div>
         <button class="dialer-close-btn" onclick="closeCallingSession()"><i class="fas fa-times"></i></button>
     </div>
 
@@ -428,15 +455,42 @@
     <!-- BOTTOM SHEET: STATUS + NOTE + SAVE -->
     <div class="dialer-sheet">
         <div class="dialer-sheet-handle"></div>
+
+        <!-- OUTCOME LABEL -->
+        <div style="font-size:11px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:1px; margin-bottom:10px;">What happened?</div>
+
         <div class="dialer-status-grid">
-            <button class="ds-btn" data-s="interested"   onclick="cmSel('interested',this)"><i class="fas fa-star" style="color:#16A34A"></i>Interested</button>
-            <button class="ds-btn" data-s="registered"   onclick="cmSel('registered',this)"><i class="fas fa-check-circle" style="color:var(--gold)"></i>Registered</button>
-            <button class="ds-btn" data-s="callback"     onclick="cmSel('callback',this)"><i class="fas fa-clock" style="color:#ea580c"></i>Callback</button>
-            <button class="ds-btn" data-s="not-reached"  onclick="cmSel('not-reached',this)"><i class="fas fa-phone-slash" style="color:#64748b"></i>Not Reached</button>
-            <button class="ds-btn" data-s="not-interested" onclick="cmSel('not-interested',this)"><i class="fas fa-times-circle" style="color:#ef4444"></i>Not Int.</button>
-            <button class="ds-btn" data-s="call-later"   onclick="cmSel('call-later',this)"><i class="fas fa-redo" style="color:#7c3aed"></i>Call Later</button>
+            <button class="ds-btn" data-s="interested"    onclick="cmSel('interested',this)">
+                <i class="fas fa-star" style="color:#16A34A"></i>Interested
+            </button>
+            <button class="ds-btn" data-s="registered"    onclick="cmSel('registered',this)">
+                <i class="fas fa-check-circle" style="color:var(--gold)"></i>Registered
+            </button>
+            <button class="ds-btn" data-s="callback"      onclick="cmSel('callback',this)">
+                <i class="fas fa-clock" style="color:#ea580c"></i>Callback
+            </button>
+            <button class="ds-btn" data-s="not-reached"   onclick="cmSel('not-reached',this)">
+                <i class="fas fa-phone-slash" style="color:#64748b"></i>No Answer
+            </button>
+            <button class="ds-btn" data-s="not-interested" onclick="cmSel('not-interested',this)">
+                <i class="fas fa-times-circle" style="color:#ef4444"></i>Not Int.
+            </button>
+            <button class="ds-btn" data-s="call-later"    onclick="cmSel('call-later',this)">
+                <i class="fas fa-redo" style="color:#7c3aed"></i>Call Later
+            </button>
         </div>
-        <textarea class="dialer-note" id="cm-note" rows="2" placeholder="Quick note about this call..."></textarea>
+
+        <!-- COLLAPSIBLE NOTE -->
+        <div id="note-toggle-row" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:12px; color:var(--muted); font-weight:700;">Add a note (optional)</span>
+            <button onclick="toggleDialerNote()" id="note-toggle-btn" style="font-size:11px; color:var(--gold); font-weight:800; background:none; border:none; cursor:pointer; padding:4px 8px;">
+                + Add
+            </button>
+        </div>
+        <div id="note-wrap" style="display:none; margin-bottom:10px;">
+            <textarea class="dialer-note" id="cm-note" rows="2" placeholder="Quick note about this call..."></textarea>
+        </div>
+
         <button class="dialer-save-btn" onclick="cmSaveNext()">
             Save &amp; Next <i class="fas fa-arrow-right"></i>
         </button>
@@ -526,8 +580,18 @@
     function listenLeads() {
         onSnapshot(collection(db, "outreach_leads"), (snap) => {
             ALL_LEADS = snap.docs.map(d => ({id: d.id, ...d.data()}));
+            populateCampaignFilter();
             renderHome(); renderLeads();
         });
+    }
+
+    function populateCampaignFilter() {
+        const agent = auth.currentUser.email.split('@')[0];
+        const myLeads = ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
+        const camps = [...new Set(myLeads.map(l => l.campaign).filter(Boolean))].sort();
+        const sel = document.getElementById('filter-campaign');
+        const current = sel.value;
+        sel.innerHTML = '<option value="">All Campaigns</option>' + camps.map(c => `<option value="${c}"${c===current?' selected':''}>${c}</option>`).join('');
     }
 
     function renderHome() {
@@ -552,21 +616,59 @@
 
     window.renderLeads = () => {
         const agent = auth.currentUser.email.split('@')[0];
-        const srch = document.getElementById('srch').value.toLowerCase();
+        const srch = document.getElementById('srch').value.toLowerCase().trim();
+        const campFilter = document.getElementById('filter-campaign').value;
+        const statusFilter = document.getElementById('filter-status').value;
+
         let list = ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
-        
-        if(srch) list = list.filter(l => (l.name||'').toLowerCase().includes(srch) || (l.contact||'').includes(srch) || (l.assignedTo && l.assignedTo.includes(srch)));
-        
-        const pending = list.filter(l => (l.status||'pending') === 'pending' && l.assignedTo === agent);
+
+        // Apply filters
+        if(campFilter)   list = list.filter(l => (l.campaign||'') === campFilter);
+        if(statusFilter) list = list.filter(l => (l.status||'pending') === statusFilter);
+        if(srch)         list = list.filter(l => (l.name||'').toLowerCase().includes(srch) || (l.contact||'').includes(srch));
+
+        // Filter chips
+        const chipRow = document.getElementById('filter-chip-row');
+        const chips = [];
+        if(campFilter)   chips.push(`<span class="fchip"><i class="fas fa-bullhorn" style="font-size:10px"></i> ${campFilter} <button onclick="document.getElementById('filter-campaign').value='';renderLeads()">×</button></span>`);
+        if(statusFilter) chips.push(`<span class="fchip"><i class="fas fa-circle" style="font-size:8px"></i> ${statusFilter} <button onclick="document.getElementById('filter-status').value='';renderLeads()">×</button></span>`);
+        if(srch)         chips.push(`<span class="fchip"><i class="fas fa-search" style="font-size:10px"></i> "${srch}" <button onclick="document.getElementById('srch').value='';renderLeads()">×</button></span>`);
+        if(chips.length){
+            chipRow.innerHTML = chips.join('') + `<button class="fchip-clear" onclick="clearFilters()">Clear all</button>`;
+            chipRow.style.display = 'flex';
+        } else { chipRow.style.display = 'none'; }
+
+        // Leads count
+        document.getElementById('leads-count').textContent = `${list.length} lead${list.length !== 1 ? 's' : ''}${campFilter||statusFilter||srch ? ' (filtered)' : ''}`;
+
+        // Smart call session banner — scoped to current filters
+        const callablePending = list.filter(l => ['pending','call-later'].includes(l.status||'pending') && (l.assignedTo === agent || ['admin','superadmin'].includes(USER_ROLE)));
         const banner = document.getElementById('call-session-banner');
-        if(pending.length > 0 && USER_ROLE !== 'superadmin'){
-            banner.innerHTML = `<div class="wb" style="background:#16A34A; cursor:pointer;" onclick="startCallingSession()">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div><b>🚀 Start Calling Session</b><br/><small>Next ${pending.length} pending contacts</small></div><i class="fas fa-chevron-right"></i>
-                </div></div>`;
-            banner.style.display = "block";
-        } else { banner.style.display = "none"; }
-        document.getElementById('leads-list').innerHTML = list.map(l => buildCard(l)).join('');
+        if(callablePending.length > 0 && USER_ROLE !== 'superadmin'){
+            const scopeLabel = campFilter ? `"${campFilter}"` : 'all campaigns';
+            banner.innerHTML = `
+                <div style="background:linear-gradient(135deg,#16A34A,#15803d); border-radius:16px; padding:16px 20px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; color:white;" onclick="startCallingSession()">
+                    <div>
+                        <div style="font-family:'Outfit'; font-weight:800; font-size:16px;">🚀 Start Calling Session</div>
+                        <div style="font-size:12px; opacity:0.85; margin-top:3px;">${callablePending.length} pending contacts · ${scopeLabel}</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.2); border-radius:10px; padding:8px 16px; font-weight:800; font-size:13px; white-space:nowrap;">
+                        Start <i class="fas fa-arrow-right" style="margin-left:4px;"></i>
+                    </div>
+                </div>`;
+            banner.style.display = 'block';
+        } else { banner.style.display = 'none'; }
+
+        document.getElementById('leads-list').innerHTML = list.length
+            ? list.map(l => buildCard(l)).join('')
+            : `<div style="text-align:center; padding:60px 20px; color:var(--muted);"><i class="fas fa-search" style="font-size:32px; margin-bottom:12px; display:block; opacity:0.3;"></i>No leads match these filters</div>`;
+    };
+
+    window.clearFilters = () => {
+        document.getElementById('srch').value = '';
+        document.getElementById('filter-campaign').value = '';
+        document.getElementById('filter-status').value = '';
+        renderLeads();
     };
 
     function buildCard(l){
@@ -577,15 +679,44 @@
         <div class="cact"><button class="ab" onclick="window.location.href='tel:${l.contact||''}'">Call</button><button class="ab" onclick="openUpd('${l.id}','${safeName}','${l.status||'pending'}','${safeRmk}')">Update</button><button class="ab" onclick="openWA('${l.contact||''}','${safeName}')">WA</button></div></div>`;
     }
 
+    window.toggleDialerNote = () => {
+        const wrap = document.getElementById('note-wrap');
+        const btn  = document.getElementById('note-toggle-btn');
+        const open = wrap.style.display === 'none';
+        wrap.style.display = open ? 'block' : 'none';
+        btn.textContent = open ? '− Hide' : '+ Add';
+        if(open) document.getElementById('cm-note').focus();
+    };
+
     // --- MOBILE DIALER ENGINE ---
     let SESSION_STATS = { interested:0, registered:0, callback:0 };
 
     window.startCallingSession = () => {
         const agent = auth.currentUser.email.split('@')[0];
-        CM_QUEUE = ALL_LEADS.filter(l => l.assignedTo === agent && ['pending','call-later'].includes(l.status||'pending'));
-        if(!CM_QUEUE.length) return showToast("No pending leads!");
+        const campFilter = document.getElementById('filter-campaign')?.value || '';
+        const srch = document.getElementById('srch')?.value.toLowerCase().trim() || '';
+
+        // Base: agent's pending leads
+        let pool = ALL_LEADS.filter(l =>
+            l.assignedTo === agent &&
+            ['pending','call-later'].includes(l.status||'pending')
+        );
+        // Scope to active campaign filter
+        if(campFilter) pool = pool.filter(l => (l.campaign||'') === campFilter);
+        if(srch)       pool = pool.filter(l => (l.name||'').toLowerCase().includes(srch) || (l.contact||'').includes(srch));
+
+        if(!pool.length){
+            return showToast(campFilter ? `No pending leads in "${campFilter}"` : "No pending leads!");
+        }
+
+        CM_QUEUE = pool;
         CM_IDX = 0;
         SESSION_STATS = { interested:0, registered:0, callback:0 };
+
+        // Show campaign scope in dialer header
+        const scopeLabel = campFilter || 'All Campaigns';
+        document.getElementById('cm-session-scope').textContent = scopeLabel;
+
         document.getElementById('calling-overlay').classList.add('active');
         showCM();
     };
@@ -631,6 +762,8 @@
 
         // Reset form
         document.getElementById('cm-note').value = '';
+        document.getElementById('note-wrap').style.display = 'none';
+        document.getElementById('note-toggle-btn').textContent = '+ Add';
         CM_SEL = '';
         document.querySelectorAll('.ds-btn').forEach(b => b.classList.remove('sel'));
     }
