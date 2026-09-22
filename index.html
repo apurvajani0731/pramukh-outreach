@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
     <title>Pramukh Outreach v2.5 · Professional Calling Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -24,13 +24,13 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body { min-height:100dvh; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
         /* AUTH & APP SHELL */
-        #loginPage { display: flex; min-height: 100vh; background: var(--navy3); align-items: center; justify-content: center; }
+        #loginPage { display: flex; min-height: 100dvh; background: var(--navy3); align-items: center; justify-content: center; }
         .lcard { width: 100%; max-width: 400px; background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 40px; }
-        .sidebar { width: var(--sidebar-w); height: 100vh; position: fixed; background: var(--navy3); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-        .main-wrap { margin-left: var(--sidebar-w); min-height: 100vh; }
+        .sidebar { width: var(--sidebar-w); height: 100dvh; position: fixed; background: var(--navy3); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+        .main-wrap { margin-left: var(--sidebar-w); min-height: 100dvh; }
         .top-header { height: 64px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 25px; position: sticky; top: 0; z-index: 100; }
         
         .sb-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: 12px; color: rgba(255,255,255,0.6); cursor: pointer; border: none; background: transparent; width: 100%; font-size: 14px; margin-bottom: 4px; transition: 0.2s; }
@@ -337,12 +337,35 @@
             .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
             .dash-section-grid { grid-template-columns:1fr; }
         }
-        @media (max-width: 768px) {
-            .sidebar { width:72px; } .sidebar>div:first-child { font-size:0; padding:20px 10px; text-align:center; }
-            .sidebar>div:first-child:after { content:'PA'; font-size:18px; color:white; }
-            .sb-item { justify-content:center; padding:14px 8px; } .sb-item span { display:none; }
-            .sb-bottom { padding:10px 6px; text-align:center; } .sb-bottom #sb-uname { font-size:0!important; } .sb-bottom #sb-uname:after { content:'•'; font-size:18px; color:var(--gold); } .sb-bottom #sb-urole { display:none; }
-            .main-wrap { margin-left:72px; } .pages-container { padding:16px; }
+        /* MOBILE / TABLET APP SHELL — no permanent sidebar below desktop breakpoint */
+        .mobile-header-brand,.mobile-page-label,#mobile-nav,#mobile-more-menu { display:none; }
+        @media (max-width: 1023px) {
+            body { min-height:100dvh; }
+            #app { min-height:100dvh; }
+            .sidebar { display:none; }
+            .main-wrap { margin-left:0; min-height:100dvh; padding-bottom:calc(76px + env(safe-area-inset-bottom)); }
+            .top-header { height:64px; padding:0 16px; padding-top:env(safe-area-inset-top); min-height:calc(64px + env(safe-area-inset-top)); }
+            .top-header > #page-title { display:none; }
+            .mobile-header-brand { display:flex; align-items:center; gap:10px; min-width:0; }
+            .mobile-brand-mark { width:36px; height:36px; border-radius:11px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:white; display:grid; place-items:center; font-family:'Outfit'; font-weight:800; font-size:13px; flex:none; }
+            .mobile-brand-copy { min-width:0; line-height:1.05; }
+            .mobile-brand-name { font-family:'Outfit'; font-weight:800; font-size:14px; white-space:nowrap; }
+            .mobile-brand-user { color:var(--muted); font-size:10px; margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:150px; }
+            .mobile-page-label { display:block; margin-left:auto; margin-right:10px; color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.7px; }
+            .pages-container { padding:16px; max-width:none; width:100%; }
+            #mobile-nav { position:fixed; display:grid; grid-template-columns:repeat(4,1fr); left:0; right:0; bottom:0; z-index:4000; padding:8px 10px calc(8px + env(safe-area-inset-bottom)); background:color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-top:1px solid var(--border); box-shadow:0 -6px 24px rgba(0,0,0,.08); }
+            .mobile-nav-btn { border:0; background:transparent; color:var(--muted); min-width:0; min-height:56px; border-radius:14px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; font-family:inherit; font-size:10px; font-weight:800; cursor:pointer; }
+            .mobile-nav-btn i { font-size:17px; }
+            .mobile-nav-btn.active { color:var(--navy); background:var(--gold-light); }
+            [data-theme="dark"] .mobile-nav-btn.active { color:var(--gold); background:rgba(201,146,26,.13); }
+            #mobile-more-menu { position:fixed; display:none; left:12px; right:12px; bottom:calc(76px + env(safe-area-inset-bottom)); z-index:3999; background:var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow:0 16px 40px rgba(0,0,0,.18); padding:10px; }
+            #mobile-more-menu.open { display:block; }
+            .mobile-more-head { padding:10px 10px 8px; font-family:'Outfit'; font-weight:800; font-size:13px; }
+            .mobile-more-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+            .mobile-more-btn { border:1px solid var(--border); background:var(--bg); color:var(--text); border-radius:12px; padding:13px 10px; font-family:inherit; font-weight:700; font-size:11px; display:flex; align-items:center; gap:9px; cursor:pointer; text-align:left; }
+            .mobile-more-btn i { width:18px; color:var(--gold); text-align:center; }
+            .mobile-more-btn.danger { color:#dc2626; }
+            .mobile-more-btn.danger i { color:#dc2626; }
             .dash-hero { align-items:flex-start; } .dash-refresh { padding:9px 11px; font-size:11px; }
             .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:10px; }
             .dash-kpi { min-height:112px; padding:15px; } .dash-kpi-value { font-size:28px; }
@@ -360,7 +383,38 @@
             .ms { padding:24px 18px; padding-bottom:max(24px,env(safe-area-inset-bottom)); max-height:92vh; }
             #upd-modal .btn-p { min-height:52px; } #upd-modal button[onclick="closeModal()"] { min-height:44px; }
             .re-grid { display:grid; grid-template-columns:1fr; } .re-grid>i { display:none; } .re-grid select,.re-grid .btn-p { width:100%; min-height:46px; }
+            .wb { border-radius:16px; padding:18px; margin-bottom:16px; }
+            .wb h2 { font-size:22px; line-height:1.15; }
+            #home-call-btn-wrap button { padding:16px!important; font-size:15px!important; border-radius:15px!important; }
+            #pg-home > div[style*="repeat(auto-fit"] { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:10px!important; }
+            #pg-home > div[style*="repeat(auto-fit"] .cc { padding:16px 8px!important; border-radius:13px; }
+            #pg-home > div[style*="repeat(auto-fit"] .cc > div:first-child { font-size:29px!important; }
+            #pg-home > div[style*="repeat(auto-fit"] .cc > div:last-child { font-size:9px!important; line-height:1.25; }
+            .home-report-section { border-radius:15px; }
+            .home-report-head { padding:15px; }
+            .home-report-grid>div { padding:14px 7px; }
+            .home-report-grid b { font-size:22px; }
+            .home-report-grid span { font-size:9px; }
+            .export-layout { gap:12px; }
+            .export-control-card,.export-info-card { padding:16px; }
+            .export-fields { gap:6px; }
+            .export-fields span { font-size:10px; padding:6px 8px; }
+            .dash-hero { flex-direction:column; gap:12px; }
+            .dash-refresh { width:100%; }
+            .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:8px; }
+            .dash-kpi { min-height:104px; padding:13px; }
+            .dash-kpi-value { font-size:27px; }
+            .dash-kpi-label { font-size:9px; }
+            .dash-chart { height:240px; padding:12px; }
+            #leads-list { grid-template-columns:1fr; }
+            .ctop { padding:13px; }
+            .cact .ab { min-height:50px; font-size:12px; }
+            #srch { min-height:46px; font-size:14px; }
+            .ms { padding:24px 18px; padding-bottom:max(24px,env(safe-area-inset-bottom)); max-height:92vh; }
+            #upd-modal .btn-p { min-height:52px; } #upd-modal button[onclick="closeModal()"] { min-height:44px; }
+            .re-grid { display:grid; grid-template-columns:1fr; } .re-grid>i { display:none; } .re-grid select,.re-grid .btn-p { width:100%; min-height:46px; }
         }
+
         @media (max-width: 380px) {
             .dash-kpi { padding:13px; } .dash-kpi-value { font-size:25px; } .dash-kpi-label { font-size:9px; }
             .pages-container { padding:12px; }
@@ -420,8 +474,16 @@
 
     <div class="main-wrap">
         <header class="top-header">
+            <div class="mobile-header-brand">
+                <span class="mobile-brand-mark">PA</span>
+                <div class="mobile-brand-copy">
+                    <div class="mobile-brand-name">Pramukh Outreach</div>
+                    <div class="mobile-brand-user" id="mobile-user-name">Staff</div>
+                </div>
+            </div>
             <div id="page-title" style="font-weight:800; font-family:'Outfit'; font-size:18px;">Home</div>
-            <div style="display:flex; gap:10px;">
+            <div class="mobile-page-label" id="mobile-page-label">Home</div>
+            <div style="display:flex; gap:8px;">
                 <button class="theme-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
                 <button class="theme-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i></button>
             </div>
@@ -566,6 +628,26 @@
             </div>
         </main>
     </div>
+
+    <!-- MOBILE MORE MENU -->
+    <div id="mobile-more-menu" aria-hidden="true">
+        <div class="mobile-more-head">Quick actions</div>
+        <div class="mobile-more-grid">
+            <button class="mobile-more-btn" id="m-more-staff" style="display:none" onclick="mobileTab('pg-users','sbt-users')"><i class="fas fa-users-cog"></i> Staff Controls</button>
+            <button class="mobile-more-btn" id="m-more-import" style="display:none" onclick="mobileTab('pg-upload','sbt-upload')"><i class="fas fa-file-import"></i> Import List</button>
+            <button class="mobile-more-btn" id="m-more-export" style="display:none" onclick="mobileTab('pg-export','sbt-export')"><i class="fas fa-file-export"></i> Export Campaign</button>
+            <button class="mobile-more-btn" onclick="toggleTheme(); closeMobileMore()"><i class="fas fa-moon"></i> Theme</button>
+            <button class="mobile-more-btn danger" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav id="mobile-nav" aria-label="Mobile navigation">
+        <button class="mobile-nav-btn active" id="mnav-home" onclick="mobileTab('pg-home','sbt-home')"><i class="fas fa-home"></i><span>Home</span></button>
+        <button class="mobile-nav-btn" id="mnav-leads" onclick="mobileTab('pg-leads','sbt-leads')"><i class="fas fa-phone-alt"></i><span>Leads</span></button>
+        <button class="mobile-nav-btn" id="mnav-reports" onclick="mobileTab('pg-dashboard','sbt-dashboard')"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
+        <button class="mobile-nav-btn" id="mnav-more" onclick="toggleMobileMore()"><i class="fas fa-ellipsis-h"></i><span>More</span></button>
+    </nav>
 </div>
 
 <!-- MOBILE DIALER OVERLAY -->
@@ -724,11 +806,17 @@
 
     function setupUI(user){
         document.getElementById('sb-uname').textContent = user.name; document.getElementById('sb-urole').textContent = USER_ROLE;
+        const mobileUser = document.getElementById('mobile-user-name');
+        if(mobileUser) mobileUser.textContent = `${user.name || 'Staff'} · ${USER_ROLE}`;
         document.getElementById('sbt-dashboard').style.display = "flex";
+        document.getElementById('mnav-reports').style.display = "flex";
         if(['admin','superadmin'].includes(USER_ROLE)){
             document.getElementById('sbt-upload').style.display = "flex";
             document.getElementById('sbt-export').style.display = "flex";
             document.getElementById('sbt-users').style.display = "flex";
+            document.getElementById('m-more-import').style.display = "flex";
+            document.getElementById('m-more-export').style.display = "flex";
+            document.getElementById('m-more-staff').style.display = "flex";
         }
     }
 
@@ -1189,7 +1277,41 @@
     };
 
     // --- UI HELPERS ---
-    window.switchTab = (p, t) => { document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active')); document.getElementById(p).classList.add('active'); document.getElementById(t).classList.add('active'); document.getElementById('page-title').textContent = document.getElementById(t).textContent; };
+    window.switchTab = (p, t) => {
+        document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active'));
+        document.getElementById(p).classList.add('active');
+        document.getElementById(t).classList.add('active');
+        const title = document.getElementById(t).textContent.trim();
+        document.getElementById('page-title').textContent = title;
+        const mobileLabel = document.getElementById('mobile-page-label');
+        if(mobileLabel) mobileLabel.textContent = title;
+        if(typeof window.updateMobileNav === 'function') window.updateMobileNav(t);
+    };
+    window.updateMobileNav = (t) => {
+        const map = {sbt-home:'mnav-home', sbt-leads:'mnav-leads', sbt-dashboard:'mnav-reports'};
+        document.querySelectorAll('.mobile-nav-btn').forEach(el => el.classList.remove('active'));
+        const id = map[t];
+        if(id) document.getElementById(id)?.classList.add('active');
+    };
+    window.closeMobileMore = () => {
+        const menu=document.getElementById('mobile-more-menu');
+        if(menu) { menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); }
+        document.getElementById('mnav-more')?.classList.remove('active');
+    };
+    window.toggleMobileMore = () => {
+        const menu=document.getElementById('mobile-more-menu');
+        if(!menu) return;
+        const open=menu.classList.toggle('open');
+        menu.setAttribute('aria-hidden',String(!open));
+        document.getElementById('mnav-more')?.classList.toggle('active',open);
+    };
+    window.mobileTab = (p,t) => {
+        switchTab(p,t);
+        updateMobileNav(t);
+        closeMobileMore();
+        if(p==='pg-dashboard') renderDashboard();
+        if(p==='pg-export') renderExportCampaigns();
+    };
     window.showToast = (m) => { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); };
     window.toggleTheme = () => { const d = document.documentElement; const isD = d.getAttribute('data-theme') === 'dark'; d.setAttribute('data-theme', isD ? 'light' : 'dark'); };
     window.openWA = (num, name) => window.open(`https://wa.me/91${num}?text=Jai%20Swaminarayan%20${name.split(' ')[0]}%2C%20this%20is%20from%20Pramukh%20Academy...`, '_blank');
