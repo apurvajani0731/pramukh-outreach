@@ -266,6 +266,32 @@
         /* ERROR MESSAGE */
         .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
 
+        /* ── HOME REPORT + EXPORT CAMPAIGN ── */
+        .home-report-section { margin-top:20px; background:var(--surface); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+        .home-report-head { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px; border-bottom:1px solid var(--border); }
+        .home-report-head h3 { font-family:'Outfit'; font-size:18px; }
+        .home-report-head p { margin-top:4px; color:var(--muted); font-size:12px; }
+        .home-report-open { white-space:nowrap; }
+        .home-report-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--border); }
+        .home-report-grid>div { background:var(--surface); padding:18px 12px; text-align:center; }
+        .home-report-grid b { display:block; font-family:'Outfit'; font-size:25px; }
+        .home-report-grid span { display:block; margin-top:3px; color:var(--muted); font-size:10px; text-transform:uppercase; font-weight:800; }
+        .export-layout { display:grid; grid-template-columns:1.05fr .95fr; gap:20px; }
+        .export-control-card,.export-info-card { padding:24px; }
+        .export-card-title { font-family:'Outfit'; font-weight:800; font-size:16px; margin-bottom:18px; }
+        .export-card-title i { color:var(--gold); margin-right:7px; }
+        .export-control-card label { display:block; color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; margin-bottom:7px; }
+        .export-control-card select { width:100%; min-height:46px; }
+        .export-preview { margin:18px 0; background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:16px; }
+        .export-preview-title { font-family:'Outfit'; font-weight:800; font-size:15px; margin-bottom:12px; }
+        .export-stat-row { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+        .export-stat-row span { background:var(--surface); border-radius:10px; padding:10px; color:var(--muted); font-size:11px; }
+        .export-stat-row b { color:var(--text); float:right; }
+        .export-btn { width:100%; background:var(--gold); min-height:48px; }
+        .export-fields { display:flex; flex-wrap:wrap; gap:8px; }
+        .export-fields span { background:var(--bg); border:1px solid var(--border); border-radius:999px; padding:7px 10px; color:var(--muted); font-size:11px; }
+        .export-note { color:var(--muted); font-size:12px; line-height:1.5; margin-top:18px; }
+
         /* ── DASHBOARD ── */
         .dash-hero { display:flex; align-items:center; justify-content:space-between; gap:16px; }
         .dash-kicker { font-size:10px; font-weight:800; letter-spacing:1.5px; opacity:.55; margin-bottom:5px; }
@@ -339,7 +365,16 @@
             .dash-kpi { padding:13px; } .dash-kpi-value { font-size:25px; } .dash-kpi-label { font-size:9px; }
             .pages-container { padding:12px; }
         }
-    </style>
+    
+        @media (max-width: 768px) {
+            .home-report-head { align-items:flex-start; flex-direction:column; }
+            .home-report-open { width:100%; }
+            .home-report-grid { grid-template-columns:repeat(2,1fr); }
+            .export-layout { grid-template-columns:1fr; }
+            .export-control-card,.export-info-card { padding:18px; }
+            .export-stat-row { grid-template-columns:1fr 1fr; }
+        }
+</style>
 </head>
 <body>
 
@@ -374,6 +409,7 @@
             <button class="sb-item" id="sbt-leads" onclick="switchTab('pg-leads', 'sbt-leads')"><i class="fas fa-phone-alt"></i><span>My Leads</span></button>
             <button class="sb-item" id="sbt-users" onclick="switchTab('pg-users', 'sbt-users');" style="display:none"><i class="fas fa-users-cog"></i><span>Staff Controls</span></button>
             <button class="sb-item" id="sbt-upload" onclick="switchTab('pg-upload', 'sbt-upload');" style="display:none"><i class="fas fa-file-import"></i><span>Import List</span></button>
+            <button class="sb-item" id="sbt-export" onclick="switchTab('pg-export', 'sbt-export'); renderExportCampaigns();" style="display:none"><i class="fas fa-file-export"></i><span>Export Campaign</span></button>
             <button class="sb-item" id="sbt-dashboard" onclick="switchTab('pg-dashboard', 'sbt-dashboard'); renderDashboard();" style="display:none"><i class="fas fa-chart-pie"></i><span>Reports</span></button>
         </nav>
         <div class="sb-bottom">
@@ -408,6 +444,26 @@
                         <i class="fas fa-phone-alt"></i> Start Calling Session <span id="home-pending-count" style="background:rgba(255,255,255,0.2); border-radius:20px; padding:3px 12px; font-size:14px;"></span>
                     </button>
                 </div>
+
+                <!-- HOME REPORT -->
+                <section id="home-report-section" class="home-report-section">
+                    <div class="home-report-head">
+                        <div>
+                            <div class="dash-kicker" style="color:var(--muted);">PERFORMANCE REPORT</div>
+                            <h3>Today's Outreach Report</h3>
+                            <p id="home-report-sub">Live summary based on your current lead data.</p>
+                        </div>
+                        <button class="btn-p home-report-open" onclick="switchTab('pg-dashboard','sbt-dashboard'); renderDashboard();"><i class="fas fa-chart-pie"></i> Open Full Report</button>
+                    </div>
+                    <div class="home-report-grid">
+                        <div><b id="hr-total">0</b><span>Total Leads</span></div>
+                        <div><b id="hr-pending">0</b><span>Pending Calls</span></div>
+                        <div><b id="hr-completed">0</b><span>Completed</span></div>
+                        <div><b id="hr-interested">0</b><span>Interested</span></div>
+                        <div><b id="hr-registered">0</b><span>Registered</span></div>
+                        <div><b id="hr-callback">0</b><span>Callbacks</span></div>
+                    </div>
+                </section>
             </div>
 
             <!-- LEADS -->
@@ -461,6 +517,38 @@
                     <div style="margin-bottom:20px;"><label style="font-size:12px; font-weight:800;">Distribute to Agents (Email Prefix, one per line)</label><textarea id="vol-emails" rows="4" placeholder="rahul.k&#10;amit.s" style="width:100%; margin-top:5px;"></textarea></div>
                     <div style="margin-bottom:20px;"><label style="font-size:12px; font-weight:800;">Select CSV File (Format: Name, Contact)</label><input type="file" id="csvfile" accept=".csv" style="margin-top:8px;"/></div>
                     <button class="btn-p" style="width:100%; background:var(--gold);" onclick="submitImport()">Process & Assign Leads</button>
+                </div>
+            </div>
+
+            <!-- EXPORT CAMPAIGN -->
+            <div class="page" id="pg-export">
+                <div class="wb">
+                    <div class="dash-hero">
+                        <div>
+                            <div class="dash-kicker">DATA EXPORT</div>
+                            <h3>Export Campaign</h3>
+                            <p>Download a campaign's complete lead and calling report as CSV.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="export-layout">
+                    <div class="cc export-control-card">
+                        <div class="export-card-title"><i class="fas fa-filter"></i> Select Campaign</div>
+                        <label>Campaign</label>
+                        <select id="export-campaign" onchange="previewExportCampaign()">
+                            <option value="__all__">All Campaigns</option>
+                        </select>
+                        <div id="export-preview" class="export-preview"></div>
+                        <button class="btn-p export-btn" onclick="exportCampaignCSV()"><i class="fas fa-download"></i> Export Selected Campaign</button>
+                    </div>
+                    <div class="cc export-info-card">
+                        <div class="export-card-title"><i class="fas fa-file-csv"></i> Export Contents</div>
+                        <div class="export-fields">
+                            <span>Student Name</span><span>Contact</span><span>Campaign</span><span>Assigned Agent</span>
+                            <span>Status</span><span>Remarks</span><span>Created At</span><span>Updated At</span><span>Last Outcome</span><span>Last Note</span><span>Last Action By</span><span>Last Action Time</span>
+                        </div>
+                        <p class="export-note">The export uses the lead data currently available in Firestore and does not modify any records.</p>
+                    </div>
                 </div>
             </div>
 
@@ -637,14 +725,19 @@
     function setupUI(user){
         document.getElementById('sb-uname').textContent = user.name; document.getElementById('sb-urole').textContent = USER_ROLE;
         document.getElementById('sbt-dashboard').style.display = "flex";
-        if(['admin','superadmin'].includes(USER_ROLE)){ document.getElementById('sbt-upload').style.display = "flex"; document.getElementById('sbt-users').style.display = "flex"; }
+        if(['admin','superadmin'].includes(USER_ROLE)){
+            document.getElementById('sbt-upload').style.display = "flex";
+            document.getElementById('sbt-export').style.display = "flex";
+            document.getElementById('sbt-users').style.display = "flex";
+        }
     }
 
     // --- CORE DATA ENGINE ---
     function listenLeads() {
         onSnapshot(collection(db, "outreach_leads"), (snap) => {
             ALL_LEADS = snap.docs.map(d => ({id: d.id, ...d.data()}));
-            renderHome(); renderLeads();
+            renderHome(); renderLeads(); renderHomeReport();
+            if(['admin','superadmin'].includes(USER_ROLE)) renderExportCampaigns();
         });
     }
 
@@ -667,6 +760,80 @@
             }
         }
     }
+
+    function homeScopedLeads(){
+        const agent = auth.currentUser?.email?.split('@')[0] || '';
+        return ['admin','superadmin'].includes(USER_ROLE) ? ALL_LEADS : ALL_LEADS.filter(l => l.assignedTo === agent);
+    }
+
+    function renderHomeReport(){
+        const list = homeScopedLeads();
+        const pending = list.filter(l => ['pending','call-later'].includes(l.status || 'pending')).length;
+        const completed = list.filter(l => dashCalledForHome(l) || !['pending','call-later'].includes(l.status || 'pending')).length;
+        const interested = list.filter(l => l.status === 'interested').length;
+        const registered = list.filter(l => l.status === 'registered').length;
+        const callbacks = list.filter(l => l.status === 'callback').length;
+        const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+        set('hr-total',list.length); set('hr-pending',pending); set('hr-completed',completed); set('hr-interested',interested); set('hr-registered',registered); set('hr-callback',callbacks);
+        const sub=document.getElementById('home-report-sub');
+        if(sub) sub.textContent = USER_ROLE==='agent' ? 'Your current calling activity and lead outcomes.' : `${list.length} leads across all active outreach campaigns.`;
+    }
+
+    function dashCalledForHome(l){ return Array.isArray(l.history) && l.history.length > 0; }
+
+    function renderExportCampaigns(){
+        const sel=document.getElementById('export-campaign');
+        if(!sel) return;
+        const current=sel.value || '__all__';
+        const names=[...new Set(ALL_LEADS.map(l => (l.campaign||'Unassigned').trim() || 'Unassigned'))].sort((a,b)=>a.localeCompare(b));
+        sel.innerHTML='<option value="__all__">All Campaigns</option>'+names.map(c=>`<option value="${dashEscape(c)}">${dashEscape(c)}</option>`).join('');
+        if(names.includes(current)) sel.value=current; else sel.value='__all__';
+        previewExportCampaign();
+    }
+
+    function exportScopedLeads(){
+        const value=document.getElementById('export-campaign')?.value || '__all__';
+        if(value==='__all__') return ALL_LEADS.slice();
+        return ALL_LEADS.filter(l => ((l.campaign||'Unassigned').trim() || 'Unassigned') === value);
+    }
+
+    function previewExportCampaign(){
+        const el=document.getElementById('export-preview'); if(!el) return;
+        const list=exportScopedLeads();
+        const pending=list.filter(l=>['pending','call-later'].includes(l.status||'pending')).length;
+        const completed=list.filter(l=>dashCalledForHome(l)||!['pending','call-later'].includes(l.status||'pending')).length;
+        const interested=list.filter(l=>l.status==='interested').length;
+        const registered=list.filter(l=>l.status==='registered').length;
+        el.innerHTML=`<div class="export-preview-title">${list.length} lead${list.length!==1?'s':''} ready to export</div><div class="export-stat-row"><span>Pending <b>${pending}</b></span><span>Completed <b>${completed}</b></span><span>Interested <b>${interested}</b></span><span>Registered <b>${registered}</b></span></div>`;
+    }
+
+    function csvSafe(v){
+        const value=String(v ?? '');
+        return `"${value.replace(/"/g,'""').replace(/\r?\n/g,' ')}"`;
+    }
+
+    function leadExportRow(l){
+        const h=dashLatestExport(l);
+        return [l.name,l.contact,l.campaign||'Unassigned',l.assignedTo,l.status||'pending',l.remarks||'',l.createdAt?new Date(l.createdAt).toLocaleString('en-IN'):'',l.updatedAt?new Date(l.updatedAt).toLocaleString('en-IN'):'',h?.status||'',h?.note||'',h?.user||'',h?.time?new Date(h.time).toLocaleString('en-IN'):''];
+    }
+
+    function dashLatestExport(l){ return Array.isArray(l.history)&&l.history.length ? l.history[l.history.length-1] : null; }
+
+    window.exportCampaignCSV = () => {
+        if(!['admin','superadmin'].includes(USER_ROLE)) return showToast('Export is available to Admin and SuperAdmin only');
+        const list=exportScopedLeads();
+        if(!list.length) return showToast('No leads found for this campaign');
+        const headers=['Student Name','Contact','Campaign','Assigned Agent','Status','Remarks','Created At','Updated At','Last Outcome','Last Note','Last Action By','Last Action Time'];
+        const csv=[headers,...list.map(leadExportRow)].map(row=>row.map(csvSafe).join(',')).join('\r\n');
+        const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        const selected=document.getElementById('export-campaign')?.value || '__all__';
+        const label=selected==='__all__'?'all-campaigns':selected.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').toLowerCase();
+        a.href=url; a.download=`pramukh-outreach-${label}-${new Date().toISOString().slice(0,10)}.csv`;
+        document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        showToast(`Exported ${list.length} leads successfully`);
+    };
 
     window.renderLeads = () => {
         const agent = auth.currentUser.email.split('@')[0];
