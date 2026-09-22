@@ -311,6 +311,87 @@
 
         /* ERROR MESSAGE */
         .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
+    
+        /* MOBILE V2 PASS — dashboard + calling usability only */
+        @media (max-width: 768px) {
+            .pages-container { padding: 16px; max-width: 100%; }
+            .wb { padding: 18px; margin-bottom: 16px; border-radius: 16px; }
+            .wb h2 { font-size: 21px; }
+            .wb h3 { font-size: 17px; }
+
+            /* Agent KPI cards: force a clean 2x2 mobile grid where applicable */
+            #pg-home > div:nth-of-type(2) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+            #pg-home > div:nth-of-type(2) .cc { padding: 17px 8px !important; min-width: 0; }
+            #pg-home > div:nth-of-type(2) .cc > div:first-child { font-size: 28px !important; }
+            #pg-home > div:nth-of-type(2) .cc > div:last-child { font-size: 10px !important; line-height: 1.25; }
+
+            /* Dashboard KPI grid/cards */
+            .dash-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+            .dash-kpi { padding: 16px 10px !important; min-width: 0; }
+            .dash-kpi .dash-kpi-value { font-size: 27px !important; }
+            .dash-kpi .dash-kpi-label { font-size: 10px !important; }
+
+            /* Dashboard charts always stack vertically */
+            .dash-chart-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+            .dash-chart-card { min-width: 0; padding: 14px !important; }
+            .dash-chart-card canvas { width: 100% !important; max-height: 280px !important; }
+
+            /* Admin/SuperAdmin tables become stacked cards */
+            .dash-table-wrap { overflow: visible !important; }
+            .dash-table { display: block !important; width: 100% !important; }
+            .dash-table thead { display: none !important; }
+            .dash-table tbody, .dash-table tr { display: block !important; width: 100% !important; }
+            .dash-table tr { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow); }
+            .dash-table td { display: flex !important; justify-content: space-between; align-items: center; gap: 12px; border: 0 !important; padding: 5px 0 !important; text-align: right !important; font-size: 12px !important; }
+            .dash-table td::before { content: attr(data-label); font-weight: 800; color: var(--muted); text-align: left; }
+            .dash-table td:first-child { padding-top: 0 !important; font-size: 14px !important; font-weight: 800; }
+            .dash-table td:first-child::before { display: none; }
+
+            /* Staff/assignment overview cards */
+            .dash-staff-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+            .dash-staff-card { padding: 14px !important; }
+
+            /* Lead cards: larger touch targets */
+            #leads-list { grid-template-columns: 1fr !important; gap: 12px !important; }
+            .ctop { padding: 16px; gap: 12px; }
+            .cav { width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0; }
+            .ci b { font-size: 15px; }
+            .cnum { font-size: 14px; }
+            .cact { grid-template-columns: 1.2fr 1.2fr 1fr; }
+            .cact .ab { min-height: 52px; padding: 14px 8px; font-size: 13px; font-weight: 800; }
+            .cact .ab:first-child { color: #15803d; background: rgba(22,163,74,.06); }
+
+            /* Search */
+            #srch { min-height: 46px; font-size: 14px; }
+
+            /* Calling CTA */
+            #home-call-btn-wrap button { min-height: 58px !important; font-size: 16px !important; }
+
+            /* Update modal is easier to use one-handed */
+            .ms { padding: 22px 18px max(22px, env(safe-area-inset-bottom)); max-height: 90vh; }
+            #upd-modal .btn-p { min-height: 52px; font-size: 15px; }
+            #upd-modal .ms > button:last-child { min-height: 44px; }
+
+            /* Staff controls */
+            .reassign-box { padding: 18px; }
+            .re-grid { align-items: stretch; }
+            .re-grid select, .re-grid .btn-p { width: 100% !important; min-height: 46px; }
+            .re-grid > i { display: none; }
+
+            /* Dashboard headings/sections */
+            .dash-section { margin-top: 16px !important; }
+            .dash-section-head { margin-bottom: 10px !important; }
+            .dash-recent-item { padding: 12px !important; }
+        }
+
+        @media (max-width: 380px) {
+            .pages-container { padding: 12px; }
+            #pg-home > div:nth-of-type(2) .cc { padding: 14px 6px !important; }
+            #pg-home > div:nth-of-type(2) .cc > div:first-child { font-size: 24px !important; }
+            .dash-kpi .dash-kpi-value { font-size: 24px !important; }
+            .cact .ab { font-size: 12px; min-height: 50px; }
+        }
+
     </style>
 </head>
 <body>
@@ -949,7 +1030,11 @@
     }
     function dashTable(headers, rows, empty='No data available.'){
         if(!rows.length) return `<div class="dash-empty">${empty}</div>`;
-        return `<div class="dash-table-wrap"><table class="dash-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+        const labeledRows = rows.map(row => {
+            let i = 0;
+            return row.replace(/<td(\s[^>]*)?>/g, (m) => `<td${m.slice(3,-1)} data-label="${escDash(headers[i++] || '')}">`);
+        });
+        return `<div class="dash-table-wrap"><table class="dash-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${labeledRows.join('')}</tbody></table></div>`;
     }
 
     function renderDashboard(){
@@ -991,14 +1076,12 @@
                     ${dashCard('Pending Calls', counts.pending + counts.callLater, `${counts.callLater} call-later`, 'kpi-warn')}
                     ${dashCard('Calls Completed', counts.called, `${todayCalled} activity today`, 'kpi-blue')}
                     ${dashCard('Interested', counts.interested, `${todayInterested} today`, 'kpi-green')}
-                    ${dashCard('Registered', counts.registered, `${todayRegistered} today`, 'kpi-gold')}
-                    ${dashCard('Callbacks', counts.callback, 'Currently open', 'kpi-orange')}
                 </div>
                 <div class="dash-section-grid">
                     <div class="cc dash-panel"><div class="dash-panel-title">My Conversion</div><div class="dash-funnel">
                         <div><span>Total Leads</span><b>${counts.total}</b></div><div><span>Contacted</span><b>${contactedBase}</b></div><div><span>Interested</span><b>${counts.interested}</b></div><div><span>Registered</span><b>${counts.registered}</b></div>
                     </div><div class="dash-rate-row"><span>Contact → Interested</span><b>${pct(counts.interested, contactedBase)}</b></div><div class="dash-rate-row"><span>Contact → Registered</span><b>${pct(counts.registered, contactedBase)}</b></div><div class="dash-rate-row"><span>Interested → Registered</span><b>${pct(counts.registered, counts.interested)}</b></div></div>
-                    <div class="cc dash-panel"><div class="dash-panel-title">Today’s Work</div><div class="dash-today-grid"><div><b>${todayCalled}</b><span>Calls / updates</span></div><div><b>${todayInterested}</b><span>Interested</span></div><div><b>${todayRegistered}</b><span>Registered</span></div><div><b>${counts.pending + counts.callLater}</b><span>Remaining</span></div></div><button class="dash-primary-btn" onclick="startCallingSession()"><i class="fas fa-phone-alt"></i> Start Calling Session</button></div>
+                    <div class="cc dash-panel"><div class="dash-panel-title">Today’s Work</div><div class="dash-today-grid"><div><b>${todayCalled}</b><span>Calls / updates</span></div><div><b>${todayInterested}</b><span>Interested</span></div><div><b>${todayRegistered}</b><span>Registered</span></div><div><b>${counts.pending + counts.callLater}</b><span>Remaining</span></div><div><b>${counts.callback}</b><span>Open callbacks</span></div></div><button class="dash-primary-btn" onclick="startCallingSession()"><i class="fas fa-phone-alt"></i> Start Calling Session</button></div>
                 </div>
                 <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-head"><div><div class="dash-panel-title">Recent My Activity</div><div class="dash-muted">Latest outcomes recorded on your assigned leads.</div></div></div>${dashTable(['Student','Outcome','Note','Time'], recentRows, 'No calling activity recorded yet.')}</div>
                 <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">My Leads</div>${dashTable(['Student','Campaign','Status','Last Note','Action'], leadRows, 'No leads are assigned to you.')}</div>`;
