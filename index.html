@@ -263,135 +263,82 @@
         .theme-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; }
         .theme-btn:hover { background: var(--border); }
 
-
-        /* ROLE-BASED DASHBOARD */
-        .dash-kpi-grid { display:grid; grid-template-columns:repeat(6, minmax(0,1fr)); gap:14px; }
-        .dash-kpi { min-width:0; }
-        .dash-kpi-value { font-family:'Outfit'; font-size:30px; font-weight:800; line-height:1; }
-        .dash-kpi-label { margin-top:9px; font-size:11px; font-weight:800; text-transform:uppercase; color:var(--muted); letter-spacing:.3px; }
-        .dash-kpi-sub { margin-top:5px; font-size:11px; color:var(--muted); }
-        .dash-kpi.kpi-green { border-left-color:#16A34A !important; }
-        .dash-kpi.kpi-gold { border-left-color:var(--gold) !important; }
-        .dash-kpi.kpi-blue { border-left-color:#2563EB !important; }
-        .dash-kpi.kpi-orange { border-left-color:#EA580C !important; }
-        .dash-kpi.kpi-warn { border-left-color:#F59E0B !important; }
-        .dash-section-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-        .dash-panel { padding:20px; min-width:0; }
-        .dash-panel-title { font-family:'Outfit'; font-size:15px; font-weight:800; margin-bottom:14px; }
-        .dash-panel-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:14px; }
-        .dash-funnel { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:14px; }
-        .dash-funnel > div { background:var(--bg); border-radius:10px; padding:12px 8px; text-align:center; }
-        .dash-funnel span,.dash-today-grid span { display:block; font-size:10px; color:var(--muted); text-transform:uppercase; }
-        .dash-funnel b { display:block; font-family:'Outfit'; font-size:22px; margin-top:3px; }
-        .dash-rate-row { display:flex; justify-content:space-between; padding:9px 0; border-top:1px solid var(--border); font-size:12px; }
-        .dash-rate-row b { font-family:'Outfit'; }
-        .dash-today-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
-        .dash-today-grid > div { background:var(--bg); border-radius:12px; padding:14px; }
-        .dash-today-grid b { display:block; font-family:'Outfit'; font-size:25px; margin-bottom:3px; }
-        .dash-primary-btn { width:100%; border:0; border-radius:11px; padding:13px; background:#16A34A; color:white; font-family:'Outfit'; font-weight:800; cursor:pointer; }
-        .dash-table-wrap { overflow-x:auto; }
-        .dash-table { width:100%; border-collapse:collapse; min-width:620px; font-size:12px; }
-        .dash-table th { text-align:left; padding:10px 8px; border-bottom:1px solid var(--border); color:var(--muted); font-size:10px; text-transform:uppercase; white-space:nowrap; }
-        .dash-table td { padding:11px 8px; border-bottom:1px solid var(--border); vertical-align:middle; }
-        .dash-table tr:last-child td { border-bottom:0; }
-        .dash-muted { color:var(--muted); font-size:10px; margin-top:2px; }
-        .dash-status { display:inline-flex; padding:4px 8px; border-radius:20px; background:var(--border); color:var(--muted); font-size:9px; font-weight:800; text-transform:uppercase; white-space:nowrap; }
-        .dash-status.interested { background:#DCFCE7; color:#15803D; } .dash-status.registered { background:var(--gold-light); color:var(--gold2); } .dash-status.callback { background:#FFEDD5; color:#C2410C; } .dash-status.pending { background:var(--border); color:var(--muted); } .dash-status.call-later { background:#F5F3FF; color:#6D28D9; } .dash-status.not-interested { background:#FEE2E2; color:#B91C1C; }
-        .dash-mini-btn { border:1px solid var(--border); background:var(--bg); color:var(--text); padding:6px 9px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer; }
-        .dash-empty { padding:24px; text-align:center; color:var(--muted); font-size:12px; border:1px dashed var(--border); border-radius:10px; }
-        .dash-assignment-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-        .dash-assignment { padding:14px; border:1px solid var(--border); border-radius:12px; }
-        .dash-assignment > div:first-child { display:flex; justify-content:space-between; gap:10px; font-size:12px; }
-        .dash-assignment > div:first-child span,.dash-assignment small { color:var(--muted); font-size:10px; }
-        .dash-assignment-bar { height:6px; background:var(--border); border-radius:6px; overflow:hidden; margin:10px 0 7px; }
-        .dash-assignment-bar span { display:block; height:100%; background:var(--gold); border-radius:6px; }
-        #statusChart,#campChart { max-height:260px; }
-        @media (max-width: 900px) { .dash-kpi-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .dash-section-grid { grid-template-columns:1fr; } }
-        @media (max-width: 600px) { .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .dash-funnel { grid-template-columns:repeat(2,1fr); } .dash-assignment-grid { grid-template-columns:1fr; } .dash-panel { padding:15px; } }
-
         /* ERROR MESSAGE */
         .errmsg { color: #EF4444; font-size: 12px; margin-top: 10px; min-height: 18px; }
-    
-        /* MOBILE V2 PASS — dashboard + calling usability only */
+
+        /* ── DASHBOARD ── */
+        .dash-hero { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+        .dash-kicker { font-size:10px; font-weight:800; letter-spacing:1.5px; opacity:.55; margin-bottom:5px; }
+        .dash-hero p { margin-top:5px; opacity:.68; font-size:12px; }
+        .dash-refresh { border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:white; border-radius:10px; padding:10px 14px; font-weight:800; cursor:pointer; white-space:nowrap; }
+        .dash-kpi-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-bottom:20px; }
+        .dash-kpi { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; min-height:122px; position:relative; overflow:hidden; }
+        .dash-kpi:before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--navy); }
+        .dash-kpi.gold:before { background:var(--gold); } .dash-kpi.green:before { background:#16A34A; } .dash-kpi.blue:before { background:#2563EB; }
+        .dash-kpi-label { color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; }
+        .dash-kpi-value { font-family:'Outfit'; font-size:32px; font-weight:800; margin-top:8px; }
+        .dash-kpi-sub { color:var(--muted); font-size:11px; margin-top:3px; }
+        .dash-section-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+        .dash-panel { background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); }
+        .dash-panel-head { padding:16px 18px; border-bottom:1px solid var(--border); }
+        .dash-panel-head h4 { font-family:'Outfit'; font-size:15px; }
+        .dash-mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); }
+        .dash-mini-grid>div { background:var(--surface); padding:18px; }
+        .dash-mini-grid b { display:block; font-family:'Outfit'; font-size:24px; }
+        .dash-mini-grid span { color:var(--muted); font-size:11px; }
+        .dash-funnel { padding:16px 18px; display:grid; gap:11px; }
+        .dash-funnel>div { display:flex; justify-content:space-between; align-items:center; padding-bottom:9px; border-bottom:1px solid var(--border); font-size:12px; }
+        .dash-funnel>div:last-child { border-bottom:0; padding-bottom:0; }
+        .dash-funnel b { font-family:'Outfit'; font-size:18px; }
+        .dash-inline-stats { display:flex; gap:10px; flex-wrap:wrap; padding:0 18px 18px; }
+        .dash-inline-stats span { background:var(--bg); border-radius:10px; padding:8px 10px; color:var(--muted); font-size:11px; }
+        .dash-inline-stats b { color:var(--text); margin-left:4px; }
+        .dash-team-snapshot { display:grid; grid-template-columns:repeat(3,1fr); padding:18px; gap:10px; }
+        .dash-team-snapshot>div { background:var(--bg); border-radius:12px; padding:14px 10px; text-align:center; }
+        .dash-team-snapshot b { display:block; font-family:'Outfit'; font-size:24px; }
+        .dash-team-snapshot span { color:var(--muted); font-size:10px; }
+        .dash-table-wrap { overflow-x:auto; }
+        .dash-table { width:100%; border-collapse:collapse; font-size:12px; }
+        .dash-table th { text-align:left; padding:11px 14px; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.5px; background:var(--bg); white-space:nowrap; }
+        .dash-table td { padding:13px 14px; border-top:1px solid var(--border); vertical-align:middle; }
+        .dash-muted { color:var(--muted); font-size:10px; margin-top:2px; }
+        .dash-status { display:inline-block; padding:4px 8px; border-radius:999px; font-size:9px; font-weight:800; text-transform:uppercase; background:var(--border); color:var(--muted); }
+        .ds-interested { background:#DCFCE7; color:#15803D; } .ds-registered { background:var(--gold-light); color:var(--gold2); } .ds-callback { background:#FFEDD5; color:#C2410C; } .ds-pending,.ds-call-later { background:#F3F4F6; color:#4B5563; } .ds-not-interested { background:#FEE2E2; color:#B91C1C; } .ds-called { background:#DBEAFE; color:#1D4ED8; }
+        .dash-chart { height:300px; padding:18px; }
+        .dash-empty { padding:28px 18px; color:var(--muted); font-size:12px; text-align:center; }
+
+        @media (max-width: 900px) {
+            .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+            .dash-section-grid { grid-template-columns:1fr; }
+        }
         @media (max-width: 768px) {
-            .pages-container { padding: 16px; max-width: 100%; }
-            .wb { padding: 18px; margin-bottom: 16px; border-radius: 16px; }
-            .wb h2 { font-size: 21px; }
-            .wb h3 { font-size: 17px; }
-
-            /* Agent KPI cards: force a clean 2x2 mobile grid where applicable */
-            #pg-home > div:nth-of-type(2) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
-            #pg-home > div:nth-of-type(2) .cc { padding: 17px 8px !important; min-width: 0; }
-            #pg-home > div:nth-of-type(2) .cc > div:first-child { font-size: 28px !important; }
-            #pg-home > div:nth-of-type(2) .cc > div:last-child { font-size: 10px !important; line-height: 1.25; }
-
-            /* Dashboard KPI grid/cards */
-            .dash-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
-            .dash-kpi { padding: 16px 10px !important; min-width: 0; }
-            .dash-kpi .dash-kpi-value { font-size: 27px !important; }
-            .dash-kpi .dash-kpi-label { font-size: 10px !important; }
-
-            /* Dashboard charts always stack vertically */
-            .dash-chart-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
-            .dash-chart-card { min-width: 0; padding: 14px !important; }
-            .dash-chart-card canvas { width: 100% !important; max-height: 280px !important; }
-
-            /* Admin/SuperAdmin tables become stacked cards */
-            .dash-table-wrap { overflow: visible !important; }
-            .dash-table { display: block !important; width: 100% !important; }
-            .dash-table thead { display: none !important; }
-            .dash-table tbody, .dash-table tr { display: block !important; width: 100% !important; }
-            .dash-table tr { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; box-shadow: var(--shadow); }
-            .dash-table td { display: flex !important; justify-content: space-between; align-items: center; gap: 12px; border: 0 !important; padding: 5px 0 !important; text-align: right !important; font-size: 12px !important; }
-            .dash-table td::before { content: attr(data-label); font-weight: 800; color: var(--muted); text-align: left; }
-            .dash-table td:first-child { padding-top: 0 !important; font-size: 14px !important; font-weight: 800; }
-            .dash-table td:first-child::before { display: none; }
-
-            /* Staff/assignment overview cards */
-            .dash-staff-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
-            .dash-staff-card { padding: 14px !important; }
-
-            /* Lead cards: larger touch targets */
-            #leads-list { grid-template-columns: 1fr !important; gap: 12px !important; }
-            .ctop { padding: 16px; gap: 12px; }
-            .cav { width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0; }
-            .ci b { font-size: 15px; }
-            .cnum { font-size: 14px; }
-            .cact { grid-template-columns: 1.2fr 1.2fr 1fr; }
-            .cact .ab { min-height: 52px; padding: 14px 8px; font-size: 13px; font-weight: 800; }
-            .cact .ab:first-child { color: #15803d; background: rgba(22,163,74,.06); }
-
-            /* Search */
-            #srch { min-height: 46px; font-size: 14px; }
-
-            /* Calling CTA */
-            #home-call-btn-wrap button { min-height: 58px !important; font-size: 16px !important; }
-
-            /* Update modal is easier to use one-handed */
-            .ms { padding: 22px 18px max(22px, env(safe-area-inset-bottom)); max-height: 90vh; }
-            #upd-modal .btn-p { min-height: 52px; font-size: 15px; }
-            #upd-modal .ms > button:last-child { min-height: 44px; }
-
-            /* Staff controls */
-            .reassign-box { padding: 18px; }
-            .re-grid { align-items: stretch; }
-            .re-grid select, .re-grid .btn-p { width: 100% !important; min-height: 46px; }
-            .re-grid > i { display: none; }
-
-            /* Dashboard headings/sections */
-            .dash-section { margin-top: 16px !important; }
-            .dash-section-head { margin-bottom: 10px !important; }
-            .dash-recent-item { padding: 12px !important; }
+            .sidebar { width:72px; } .sidebar>div:first-child { font-size:0; padding:20px 10px; text-align:center; }
+            .sidebar>div:first-child:after { content:'PA'; font-size:18px; color:white; }
+            .sb-item { justify-content:center; padding:14px 8px; } .sb-item span { display:none; }
+            .sb-bottom { padding:10px 6px; text-align:center; } .sb-bottom #sb-uname { font-size:0!important; } .sb-bottom #sb-uname:after { content:'•'; font-size:18px; color:var(--gold); } .sb-bottom #sb-urole { display:none; }
+            .main-wrap { margin-left:72px; } .pages-container { padding:16px; }
+            .dash-hero { align-items:flex-start; } .dash-refresh { padding:9px 11px; font-size:11px; }
+            .dash-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:10px; }
+            .dash-kpi { min-height:112px; padding:15px; } .dash-kpi-value { font-size:28px; }
+            .dash-section-grid { grid-template-columns:1fr!important; gap:14px; margin-bottom:14px; }
+            .dash-chart { height:260px; }
+            .dash-table { display:block; } .dash-table thead { display:none; } .dash-table tbody,.dash-table tr { display:block; }
+            .dash-table tr { margin:10px; padding:12px; border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); background:var(--surface); }
+            .dash-table td { display:flex; justify-content:space-between; gap:14px; border:0; padding:8px 2px; text-align:right; }
+            .dash-table td:before { content:attr(data-label); color:var(--muted); font-size:10px; font-weight:800; text-transform:uppercase; text-align:left; }
+            .dash-table td:first-child { padding-top:2px; } .dash-table td:last-child { padding-bottom:2px; }
+            #leads-list { grid-template-columns:1fr; }
+            .cact .ab { min-height:52px; font-size:13px; font-weight:800; }
+            #home-call-btn-wrap button { min-height:58px; }
+            #srch { min-height:46px; font-size:14px; }
+            .ms { padding:24px 18px; padding-bottom:max(24px,env(safe-area-inset-bottom)); max-height:92vh; }
+            #upd-modal .btn-p { min-height:52px; } #upd-modal button[onclick="closeModal()"] { min-height:44px; }
+            .re-grid { display:grid; grid-template-columns:1fr; } .re-grid>i { display:none; } .re-grid select,.re-grid .btn-p { width:100%; min-height:46px; }
         }
-
         @media (max-width: 380px) {
-            .pages-container { padding: 12px; }
-            #pg-home > div:nth-of-type(2) .cc { padding: 14px 6px !important; }
-            #pg-home > div:nth-of-type(2) .cc > div:first-child { font-size: 24px !important; }
-            .dash-kpi .dash-kpi-value { font-size: 24px !important; }
-            .cact .ab { font-size: 12px; min-height: 50px; }
+            .dash-kpi { padding:13px; } .dash-kpi-value { font-size:25px; } .dash-kpi-label { font-size:9px; }
+            .pages-container { padding:12px; }
         }
-
     </style>
 </head>
 <body>
@@ -517,11 +464,15 @@
                 </div>
             </div>
 
-            <!-- ROLE-BASED DASHBOARD -->
+            <!-- DASHBOARD -->
             <div class="page" id="pg-dashboard">
-                <div class="wb" id="dash-header">
-                    <h3 id="dash-title">📊 Outreach Dashboard</h3>
-                    <p id="dash-subtitle" style="margin-top:6px; opacity:.75;">Live performance overview.</p>
+                <div class="wb dash-hero">
+                    <div>
+                        <div class="dash-kicker">REAL-TIME OUTREACH</div>
+                        <h3 id="dash-title">📊 My Performance</h3>
+                        <p id="dash-subtitle">Track your calling activity, outcomes and conversion.</p>
+                    </div>
+                    <button class="dash-refresh" onclick="renderDashboard()"><i class="fas fa-rotate"></i> Refresh</button>
                 </div>
                 <div id="dashboard-content"></div>
             </div>
@@ -626,7 +577,7 @@
     const db = getFirestore(app);
 
     let USER_ROLE = "pending", ALL_LEADS = [], ALL_USERS = [], CM_QUEUE = [], CM_IDX = 0, CM_SEL = "", CUR_LEAD_ID = null, IS_SIGNUP = false;
-    let statusChartInstance = null, campChartInstance = null;
+    let STATUS_CHART = null, CAMPAIGN_CHART = null;
 
     // --- AUTH & ROLES ---
     window.toggleAuthMode = () => {
@@ -685,13 +636,8 @@
 
     function setupUI(user){
         document.getElementById('sb-uname').textContent = user.name; document.getElementById('sb-urole').textContent = USER_ROLE;
-        // Dashboard is available to every approved role, but its data is role-scoped.
         document.getElementById('sbt-dashboard').style.display = "flex";
-        document.querySelector('#sbt-dashboard span').textContent = ['admin','superadmin'].includes(USER_ROLE) ? 'Reports' : 'My Dashboard';
-        if(['admin','superadmin'].includes(USER_ROLE)){
-            document.getElementById('sbt-upload').style.display = "flex";
-            document.getElementById('sbt-users').style.display = "flex";
-        }
+        if(['admin','superadmin'].includes(USER_ROLE)){ document.getElementById('sbt-upload').style.display = "flex"; document.getElementById('sbt-users').style.display = "flex"; }
     }
 
     // --- CORE DATA ENGINE ---
@@ -699,7 +645,6 @@
         onSnapshot(collection(db, "outreach_leads"), (snap) => {
             ALL_LEADS = snap.docs.map(d => ({id: d.id, ...d.data()}));
             renderHome(); renderLeads();
-            if(document.getElementById('pg-dashboard')?.classList.contains('active')) renderDashboard();
         });
     }
 
@@ -862,6 +807,87 @@
     window.closeSummary = () => document.getElementById('session-summary').classList.remove('active');
     window.closeCallingSession = () => document.getElementById('calling-overlay').classList.remove('active');
 
+    // --- ROLE-BASED DASHBOARD ---
+    const DASH_STATUSES = ['pending','called','interested','registered','callback','not-reached','not-interested','call-later'];
+    const DASH_STATUS_LABELS = {'pending':'Pending','called':'Called','interested':'Interested','registered':'Registered','callback':'Callback','not-reached':'Not Reached','not-interested':'Not Interested','call-later':'Call Later'};
+
+    function dashEscape(v){ return String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function dashPct(n,d){ return d ? Math.round((n/d)*100) : 0; }
+    function dashLeads(){
+        const emailPrefix = auth.currentUser?.email?.split('@')[0] || '';
+        return USER_ROLE === 'agent' ? ALL_LEADS.filter(l => l.assignedTo === emailPrefix) : ALL_LEADS.slice();
+    }
+    function dashCalled(l){ return Array.isArray(l.history) && l.history.length > 0; }
+    function dashToday(v){
+        if(!v) return false;
+        const d = new Date(v), n = new Date();
+        return d.toDateString() === n.toDateString();
+    }
+    function dashLatest(l){ return Array.isArray(l.history) && l.history.length ? l.history[l.history.length-1] : null; }
+    function dashCard(label,value,sub='',tone=''){
+        return `<div class="dash-kpi ${tone}"><div class="dash-kpi-label">${label}</div><div class="dash-kpi-value">${value}</div>${sub?`<div class="dash-kpi-sub">${sub}</div>`:''}</div>`;
+    }
+    function dashPanel(title, body, cls=''){
+        return `<section class="dash-panel ${cls}"><div class="dash-panel-head"><h4>${title}</h4></div>${body}</section>`;
+    }
+    function dashTable(headers, rows, empty='No data available.'){
+        if(!rows.length) return `<div class="dash-empty">${empty}</div>`;
+        return `<div class="dash-table-wrap"><table class="dash-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>row).join('')}</tbody></table></div>`;
+    }
+    function renderAgentDashboard(list){
+        const total=list.length, pending=list.filter(l=>['pending','call-later'].includes(l.status||'pending')).length;
+        const completed=list.filter(l=>dashCalled(l) || !['pending','call-later'].includes(l.status||'pending')).length;
+        const interested=list.filter(l=>l.status==='interested').length;
+        const registered=list.filter(l=>l.status==='registered').length;
+        const callbacks=list.filter(l=>l.status==='callback').length;
+        const todayCalls=list.filter(l=>dashToday(l.updatedAt) || (Array.isArray(l.history)&&l.history.some(h=>dashToday(h.time))));
+        const todayInterested=todayCalls.filter(l=>l.status==='interested').length;
+        const recent=[];
+        list.forEach(l=>{ const h=dashLatest(l); if(h) recent.push({l,h}); });
+        recent.sort((a,b)=>new Date(b.h.time||0)-new Date(a.h.time||0));
+        const recentRows=recent.slice(0,6).map(x=>`<tr><td data-label="Student"><b>${dashEscape(x.l.name||'Unknown')}</b><div class="dash-muted">${dashEscape(x.l.contact||'')}</div></td><td data-label="Outcome"><span class="dash-status ds-${dashEscape(x.h.status||'called')}">${dashEscape(DASH_STATUS_LABELS[x.h.status]||x.h.status||'Called')}</span></td><td data-label="Time">${x.h.time?new Date(x.h.time).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'}):'—'}</td></tr>`);
+        const myRows=list.slice().sort((a,b)=>new Date(b.updatedAt||b.createdAt||0)-new Date(a.updatedAt||a.createdAt||0)).slice(0,8).map(l=>`<tr><td data-label="Student"><b>${dashEscape(l.name||'Unknown')}</b><div class="dash-muted">${dashEscape(l.contact||'')}</div></td><td data-label="Campaign">${dashEscape(l.campaign||'—')}</td><td data-label="Status"><span class="dash-status ds-${dashEscape(l.status||'pending')}">${dashEscape(DASH_STATUS_LABELS[l.status]||l.status||'Pending')}</span></td><td data-label="Updated">${l.updatedAt?new Date(l.updatedAt).toLocaleDateString('en-IN',{day:'numeric',month:'short'}):'—'}</td></tr>`);
+        return `<div class="dash-kpi-grid">${dashCard('My Total Leads',total,'Assigned to you')}${dashCard('Pending Calls',pending,'Needs action','gold')}${dashCard('Calls Completed',completed,`${dashPct(completed,total)}% of leads`,'blue')}${dashCard('Interested',interested,`${dashPct(interested,Math.max(completed,1))}% of completed`,'green')}</div>
+        <div class="dash-section-grid"><div>${dashPanel('Today\'s Work',`<div class="dash-mini-grid"><div><b>${todayCalls.length}</b><span>Updated today</span></div><div><b>${todayInterested}</b><span>Interested today</span></div><div><b>${callbacks}</b><span>Open callbacks</span></div><div><b>${registered}</b><span>Registered</span></div></div>`)}</div><div>${dashPanel('Conversion Funnel',`<div class="dash-funnel"><div><span>Total leads</span><b>${total}</b></div><div><span>Completed</span><b>${completed}</b></div><div><span>Interested</span><b>${interested}</b></div><div><span>Registered</span><b>${registered}</b></div></div>`)}</div></div>
+        <div class="dash-section-grid"><div>${dashPanel('Recent Activity',dashTable(['Student','Outcome','Time'],recentRows,'No calls recorded yet.'))}</div><div>${dashPanel('My Leads',dashTable(['Student','Campaign','Status','Updated'],myRows,'No assigned leads yet.'))}</div></div>`;
+    }
+    function renderManagementDashboard(list){
+        const total=list.length, pending=list.filter(l=>['pending','call-later'].includes(l.status||'pending')).length;
+        const completed=list.filter(l=>dashCalled(l) || !['pending','call-later'].includes(l.status||'pending')).length;
+        const interested=list.filter(l=>l.status==='interested').length, registered=list.filter(l=>l.status==='registered').length, callbacks=list.filter(l=>l.status==='callback').length;
+        const activeAgents=ALL_USERS.filter(u=>u.role==='agent');
+        const adminCount=ALL_USERS.filter(u=>u.role==='admin').length;
+        const pendingUsers=ALL_USERS.filter(u=>u.role==='pending').length;
+        const agentRows=activeAgents.map(u=>{
+            const email=(u.email||'').split('@')[0]; const mine=list.filter(l=>l.assignedTo===email); const done=mine.filter(l=>dashCalled(l)||!['pending','call-later'].includes(l.status||'pending')).length; const int=mine.filter(l=>l.status==='interested').length; const reg=mine.filter(l=>l.status==='registered').length;
+            return `<tr><td data-label="Agent"><b>${dashEscape(u.name||email)}</b><div class="dash-muted">${dashEscape(u.email||'')}</div></td><td data-label="Leads">${mine.length}</td><td data-label="Completed">${done}</td><td data-label="Interested">${int}</td><td data-label="Registered">${reg}</td><td data-label="Pending">${mine.filter(l=>['pending','call-later'].includes(l.status||'pending')).length}</td></tr>`;
+        });
+        const campaigns={}; list.forEach(l=>{const c=l.campaign||'Unassigned'; campaigns[c]=(campaigns[c]||0)+1;});
+        const campRows=Object.entries(campaigns).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([c,n])=>{const mine=list.filter(l=>(l.campaign||'Unassigned')===c); return `<tr><td data-label="Campaign"><b>${dashEscape(c)}</b></td><td data-label="Leads">${n}</td><td data-label="Interested">${mine.filter(l=>l.status==='interested').length}</td><td data-label="Registered">${mine.filter(l=>l.status==='registered').length}</td><td data-label="Completed">${mine.filter(l=>dashCalled(l)||!['pending','call-later'].includes(l.status||'pending')).length}</td></tr>`;});
+        return `<div class="dash-kpi-grid">${dashCard('Total Leads',total,'Across all campaigns')}${dashCard('Pending Calls',pending,'Pending + call later','gold')}${dashCard('Calls Completed',completed,`${dashPct(completed,total)}% completed`,'blue')}${dashCard('Interested',interested,`${dashPct(interested,Math.max(completed,1))}% of completed`,'green')}${USER_ROLE==='superadmin'?dashCard('Total Staff',ALL_USERS.filter(u=>u.role!=='pending').length,`${activeAgents.length} agents`):''}${USER_ROLE==='superadmin'?dashCard('Active Agents',activeAgents.length,`${pendingUsers} approvals pending`,'blue'):''}${USER_ROLE==='superadmin'?dashCard('Admins',adminCount,'Management accounts','gold'):''}${USER_ROLE==='superadmin'?dashCard('Pending Approvals',pendingUsers,'Awaiting role','green'):''}</div>
+        <div class="dash-section-grid"><div>${dashPanel('Conversion Funnel',`<div class="dash-funnel"><div><span>Total leads</span><b>${total}</b></div><div><span>Completed</span><b>${completed}</b></div><div><span>Interested</span><b>${interested}</b></div><div><span>Registered</span><b>${registered}</b></div></div><div class="dash-inline-stats"><span>Callbacks <b>${callbacks}</b></span><span>Pending <b>${pending}</b></span></div>`)}</div><div>${dashPanel('Team Snapshot',`<div class="dash-team-snapshot"><div><b>${activeAgents.length}</b><span>Agents</span></div><div><b>${adminCount}</b><span>Admins</span></div><div><b>${pendingUsers}</b><span>Pending approvals</span></div></div>`)}</div></div>
+        <div class="dash-section-grid"><div>${dashPanel('Status Distribution','<div class="dash-chart"><canvas id="statusChart"></canvas></div>')}</div><div>${dashPanel('Campaign Performance','<div class="dash-chart"><canvas id="campChart"></canvas></div>')}</div></div>
+        <div class="dash-section-grid"><div>${dashPanel('Agent Performance',dashTable(['Agent','Leads','Completed','Interested','Registered','Pending'],agentRows,'No agents found.'))}</div><div>${dashPanel('Campaign Performance',dashTable(['Campaign','Leads','Interested','Registered','Completed'],campRows,'No campaigns found.'))}</div></div>`;
+    }
+    function renderDashboardCharts(list){
+        const statusCounts=DASH_STATUSES.map(s=>list.filter(l=>(l.status||'pending')===s).length);
+        const campaignMap={}; list.forEach(l=>{const c=l.campaign||'Unassigned'; campaignMap[c]=(campaignMap[c]||0)+1;});
+        const campaigns=Object.entries(campaignMap).sort((a,b)=>b[1]-a[1]).slice(0,8);
+        if(STATUS_CHART) STATUS_CHART.destroy(); if(CAMPAIGN_CHART) CAMPAIGN_CHART.destroy();
+        const sc=document.getElementById('statusChart'), cc=document.getElementById('campChart');
+        if(sc) STATUS_CHART=new Chart(sc,{type:'doughnut',data:{labels:DASH_STATUSES.map(s=>DASH_STATUS_LABELS[s]),datasets:[{data:statusCounts}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+        if(cc) CAMPAIGN_CHART=new Chart(cc,{type:'bar',data:{labels:campaigns.map(x=>x[0]),datasets:[{label:'Leads',data:campaigns.map(x=>x[1])}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});
+    }
+    window.renderDashboard = () => {
+        if(!auth.currentUser || USER_ROLE==='pending') return;
+        const el=document.getElementById('dashboard-content'); if(!el) return;
+        const list=dashLeads();
+        document.getElementById('dash-title').textContent=USER_ROLE==='agent'?'📊 My Performance':(USER_ROLE==='superadmin'?'📊 Executive Dashboard':'📊 Team Performance');
+        document.getElementById('dash-subtitle').textContent=USER_ROLE==='agent'?'Your calling activity, outcomes and conversion.':'Team-wide outreach activity, conversion and workload.';
+        el.innerHTML=USER_ROLE==='agent'?renderAgentDashboard(list):renderManagementDashboard(list);
+        if(USER_ROLE!=='agent') setTimeout(()=>renderDashboardCharts(list),0);
+    };
+
     // --- RE-ASSIGNMENT POWERS ---
     window.transferLeads = async () => {
         const from = document.getElementById('move-from').value, to = document.getElementById('move-to').value;
@@ -878,7 +904,6 @@
         onSnapshot(collection(db, "users"), (snap) => {
             const users = snap.docs.map(d => d.data()).sort((a,b) => (a.name||'').localeCompare(b.name||''));
             ALL_USERS = users;
-            if(document.getElementById('pg-dashboard')?.classList.contains('active')) renderDashboard();
 
             const pending = users.filter(u => u.role === 'pending');
             const active  = users.filter(u => u.role !== 'pending');
@@ -995,148 +1020,6 @@
         };
         reader.readAsText(file);
     };
-
-    // --- ROLE-BASED DASHBOARD ---
-    function dashboardLeadSet(){
-        const isManagement = ['admin','superadmin'].includes(USER_ROLE);
-        if(isManagement) return ALL_LEADS.slice();
-        const agent = (auth.currentUser?.email || '').split('@')[0];
-        return ALL_LEADS.filter(l => l.assignedTo === agent);
-    }
-
-    function dashboardStatus(l){ return (l.status || 'pending').toLowerCase(); }
-    function dashboardHistory(l){ return Array.isArray(l.history) ? l.history : []; }
-    function dashboardDate(value){
-        const d = new Date(value);
-        return Number.isNaN(d.getTime()) ? null : d;
-    }
-    function isToday(value){
-        const d = dashboardDate(value); if(!d) return false;
-        const n = new Date();
-        return d.getFullYear() === n.getFullYear() && d.getMonth() === n.getMonth() && d.getDate() === n.getDate();
-    }
-    function leadWasCalled(l){
-        return dashboardHistory(l).length > 0 || !['pending','call-later'].includes(dashboardStatus(l));
-    }
-    function latestHistory(l){
-        return dashboardHistory(l).slice().sort((a,b) => (new Date(b.time).getTime()||0) - (new Date(a.time).getTime()||0))[0] || null;
-    }
-    function escDash(v){
-        return String(v ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-    }
-    function pct(n,d){ return d ? Math.round((n/d)*100) + '%' : '0%'; }
-    function dashCard(label, value, sub, cls=''){
-        return `<div class="cc dash-kpi ${cls}" style="padding:20px; border-left-width:4px;"><div class="dash-kpi-value">${value}</div><div class="dash-kpi-label">${label}</div>${sub ? `<div class="dash-kpi-sub">${sub}</div>` : ''}</div>`;
-    }
-    function dashTable(headers, rows, empty='No data available.'){
-        if(!rows.length) return `<div class="dash-empty">${empty}</div>`;
-        const labeledRows = rows.map(row => {
-            let i = 0;
-            return row.replace(/<td(\s[^>]*)?>/g, (m) => `<td${m.slice(3,-1)} data-label="${escDash(headers[i++] || '')}">`);
-        });
-        return `<div class="dash-table-wrap"><table class="dash-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${labeledRows.join('')}</tbody></table></div>`;
-    }
-
-    function renderDashboard(){
-        const root = document.getElementById('dashboard-content');
-        if(!root || !auth.currentUser) return;
-        const leads = dashboardLeadSet();
-        const isManagement = ['admin','superadmin'].includes(USER_ROLE);
-        const isSuper = USER_ROLE === 'superadmin';
-
-        const counts = {
-            total: leads.length,
-            pending: leads.filter(l => dashboardStatus(l) === 'pending').length,
-            callLater: leads.filter(l => dashboardStatus(l) === 'call-later').length,
-            called: leads.filter(leadWasCalled).length,
-            interested: leads.filter(l => dashboardStatus(l) === 'interested').length,
-            registered: leads.filter(l => dashboardStatus(l) === 'registered').length,
-            callback: leads.filter(l => dashboardStatus(l) === 'callback').length,
-            notReached: leads.filter(l => dashboardStatus(l) === 'not-reached').length,
-            notInterested: leads.filter(l => dashboardStatus(l) === 'not-interested').length
-        };
-        const todayHistory = leads.flatMap(l => dashboardHistory(l).map(h => ({...h, lead:l}))).filter(h => isToday(h.time));
-        const todayCalled = todayHistory.length;
-        const todayInterested = todayHistory.filter(h => h.status === 'interested').length;
-        const todayRegistered = todayHistory.filter(h => h.status === 'registered').length;
-        const contactedBase = counts.interested + counts.registered + counts.callback + counts.notReached + counts.notInterested;
-
-        document.getElementById('dash-title').textContent = isSuper ? '🏢 Organization Dashboard' : isManagement ? '📊 Team Performance' : '📈 My Performance';
-        document.getElementById('dash-subtitle').textContent = isSuper ? 'Organization-wide outreach, team workload and assignment overview.' : isManagement ? 'Team-wide calling activity, conversion and campaign performance.' : 'Your assigned leads, calling activity and conversion performance.';
-
-        if(!isManagement){
-            const agent = (auth.currentUser.email || '').split('@')[0];
-            const recent = leads.flatMap(l => dashboardHistory(l).map(h => ({...h, lead:l})))
-                .sort((a,b)=>(new Date(b.time).getTime()||0)-(new Date(a.time).getTime()||0)).slice(0,8);
-            const recentRows = recent.map(h => `<tr><td><b>${escDash(h.lead.name || 'Unknown')}</b><div class="dash-muted">${escDash(h.lead.contact || '')}</div></td><td><span class="dash-status ${escDash(h.status)}">${escDash(h.status || 'called')}</span></td><td>${escDash(h.note || '—')}</td><td>${dashboardDate(h.time)?.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) || '—'}</td></tr>`);
-            const leadRows = leads.slice().sort((a,b)=>(new Date(b.updatedAt||b.createdAt).getTime()||0)-(new Date(a.updatedAt||a.createdAt).getTime()||0)).slice(0,8).map(l => `<tr><td><b>${escDash(l.name||'Unknown')}</b></td><td>${escDash(l.campaign||'—')}</td><td><span class="dash-status ${escDash(dashboardStatus(l))}">${escDash(dashboardStatus(l))}</span></td><td>${escDash((latestHistory(l)?.note || l.remarks || '—'))}</td><td><button class="dash-mini-btn" onclick="openUpd('${l.id}','${escDash(l.name||'Unknown').replace(/'/g,'\\\'')}','${escDash(dashboardStatus(l))}','${escDash(l.remarks||'').replace(/'/g,'\\\'')}')">Update</button></td></tr>`);
-            root.innerHTML = `
-                <div class="dash-kpi-grid">
-                    ${dashCard('My Total Leads', counts.total, 'Assigned to you')}
-                    ${dashCard('Pending Calls', counts.pending + counts.callLater, `${counts.callLater} call-later`, 'kpi-warn')}
-                    ${dashCard('Calls Completed', counts.called, `${todayCalled} activity today`, 'kpi-blue')}
-                    ${dashCard('Interested', counts.interested, `${todayInterested} today`, 'kpi-green')}
-                </div>
-                <div class="dash-section-grid">
-                    <div class="cc dash-panel"><div class="dash-panel-title">My Conversion</div><div class="dash-funnel">
-                        <div><span>Total Leads</span><b>${counts.total}</b></div><div><span>Contacted</span><b>${contactedBase}</b></div><div><span>Interested</span><b>${counts.interested}</b></div><div><span>Registered</span><b>${counts.registered}</b></div>
-                    </div><div class="dash-rate-row"><span>Contact → Interested</span><b>${pct(counts.interested, contactedBase)}</b></div><div class="dash-rate-row"><span>Contact → Registered</span><b>${pct(counts.registered, contactedBase)}</b></div><div class="dash-rate-row"><span>Interested → Registered</span><b>${pct(counts.registered, counts.interested)}</b></div></div>
-                    <div class="cc dash-panel"><div class="dash-panel-title">Today’s Work</div><div class="dash-today-grid"><div><b>${todayCalled}</b><span>Calls / updates</span></div><div><b>${todayInterested}</b><span>Interested</span></div><div><b>${todayRegistered}</b><span>Registered</span></div><div><b>${counts.pending + counts.callLater}</b><span>Remaining</span></div><div><b>${counts.callback}</b><span>Open callbacks</span></div></div><button class="dash-primary-btn" onclick="startCallingSession()"><i class="fas fa-phone-alt"></i> Start Calling Session</button></div>
-                </div>
-                <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-head"><div><div class="dash-panel-title">Recent My Activity</div><div class="dash-muted">Latest outcomes recorded on your assigned leads.</div></div></div>${dashTable(['Student','Outcome','Note','Time'], recentRows, 'No calling activity recorded yet.')}</div>
-                <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">My Leads</div>${dashTable(['Student','Campaign','Status','Last Note','Action'], leadRows, 'No leads are assigned to you.')}</div>`;
-            return;
-        }
-
-        const agents = ALL_USERS.filter(u => u.role === 'agent');
-        const agentMap = {};
-        leads.forEach(l => {
-            const key = l.assignedTo || 'Unassigned';
-            if(!agentMap[key]) agentMap[key] = {assigned:0,called:0,pending:0,interested:0,registered:0,callback:0};
-            const a=agentMap[key]; a.assigned++; if(leadWasCalled(l)) a.called++; if(['pending','call-later'].includes(dashboardStatus(l))) a.pending++; if(dashboardStatus(l)==='interested') a.interested++; if(dashboardStatus(l)==='registered') a.registered++; if(dashboardStatus(l)==='callback') a.callback++;
-        });
-        agents.forEach(u=>{ const k=(u.email||'').split('@')[0]; if(!agentMap[k]) agentMap[k]={assigned:0,called:0,pending:0,interested:0,registered:0,callback:0}; });
-        const agentRows = Object.entries(agentMap).sort((a,b)=>b[1].assigned-a[1].assigned).map(([key,a])=>`<tr><td><b>${escDash((agents.find(u=>(u.email||'').split('@')[0]===key)?.name)||key)}</b><div class="dash-muted">${escDash(key)}</div></td><td>${a.assigned}</td><td>${a.called}</td><td>${a.pending}</td><td>${a.interested}</td><td>${a.registered}</td><td>${pct(a.registered,a.called)}</td></tr>`);
-        const campaigns={}; leads.forEach(l=>{const k=l.campaign||'Unspecified'; if(!campaigns[k]) campaigns[k]={leads:0,called:0,interested:0,registered:0}; campaigns[k].leads++; if(leadWasCalled(l)) campaigns[k].called++; if(dashboardStatus(l)==='interested') campaigns[k].interested++; if(dashboardStatus(l)==='registered') campaigns[k].registered++;});
-        const campRows=Object.entries(campaigns).sort((a,b)=>b[1].leads-a[1].leads).map(([k,a])=>`<tr><td><b>${escDash(k)}</b></td><td>${a.leads}</td><td>${a.called}</td><td>${a.interested}</td><td>${a.registered}</td><td>${pct(a.registered,a.called)}</td></tr>`);
-        const recent = leads.flatMap(l=>dashboardHistory(l).map(h=>({...h,lead:l}))).sort((a,b)=>(new Date(b.time).getTime()||0)-(new Date(a.time).getTime()||0)).slice(0,8);
-        const recentRows=recent.map(h=>`<tr><td><b>${escDash(h.lead.name||'Unknown')}</b><div class="dash-muted">${escDash(h.user||h.lead.assignedTo||'—')}</div></td><td><span class="dash-status ${escDash(h.status)}">${escDash(h.status||'called')}</span></td><td>${escDash(h.note||'—')}</td><td>${dashboardDate(h.time)?.toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})||'—'}</td></tr>`);
-
-        const staffBlock = isSuper ? `<div class="dash-kpi-grid" style="margin-top:20px;">
-            ${dashCard('Total Staff', ALL_USERS.length, 'All user records', 'kpi-blue')}
-            ${dashCard('Active Agents', agents.length, 'Lead-calling staff', 'kpi-green')}
-            ${dashCard('Admins', ALL_USERS.filter(u=>u.role==='admin').length, 'Administrative roles', 'kpi-gold')}
-            ${dashCard('Pending Approvals', ALL_USERS.filter(u=>u.role==='pending').length, 'Awaiting role assignment', 'kpi-warn')}
-        </div>
-        <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Assignment Overview</div><div class="dash-assignment-grid">${Object.entries(agentMap).map(([k,a])=>`<div class="dash-assignment"><div><b>${escDash((agents.find(u=>(u.email||'').split('@')[0]===k)?.name)||k)}</b><span>${a.assigned} assigned</span></div><div class="dash-assignment-bar"><span style="width:${counts.total ? Math.min(100,Math.round(a.assigned/counts.total*100)) : 0}%"></span></div><small>${a.pending} pending · ${a.called} called · ${a.registered} registered</small></div>`).join('') || '<div class="dash-empty">No agent assignments yet.</div>'}</div></div>` : '';
-
-        root.innerHTML = `
-            <div class="dash-kpi-grid">
-                ${dashCard('Total Leads', counts.total, 'Across all campaigns')}
-                ${dashCard('Pending Calls', counts.pending + counts.callLater, `${counts.callLater} call-later`, 'kpi-warn')}
-                ${dashCard('Calls Completed', counts.called, `${todayCalled} activity today`, 'kpi-blue')}
-                ${dashCard('Interested', counts.interested, `${todayInterested} today`, 'kpi-green')}
-                ${dashCard('Registered', counts.registered, `${todayRegistered} today`, 'kpi-gold')}
-                ${dashCard('Callbacks', counts.callback, 'Currently open', 'kpi-orange')}
-            </div>
-            <div class="dash-section-grid">
-                <div class="cc dash-panel"><div class="dash-panel-title">Conversion Funnel</div><div class="dash-funnel"><div><span>Total Leads</span><b>${counts.total}</b></div><div><span>Contacted</span><b>${contactedBase}</b></div><div><span>Interested</span><b>${counts.interested}</b></div><div><span>Registered</span><b>${counts.registered}</b></div></div><div class="dash-rate-row"><span>Contact → Interested</span><b>${pct(counts.interested,contactedBase)}</b></div><div class="dash-rate-row"><span>Contact → Registered</span><b>${pct(counts.registered,contactedBase)}</b></div><div class="dash-rate-row"><span>Interested → Registered</span><b>${pct(counts.registered,counts.interested)}</b></div></div>
-                <div class="cc dash-panel"><div class="dash-panel-title">Status Distribution</div><canvas id="statusChart" height="230"></canvas></div>
-            </div>
-            <div class="dash-section-grid" style="margin-top:20px;"><div class="cc dash-panel"><div class="dash-panel-title">Campaign Performance</div><canvas id="campChart" height="230"></canvas></div><div class="cc dash-panel"><div class="dash-panel-title">Team Snapshot</div><div class="dash-today-grid"><div><b>${agents.length}</b><span>Agents</span></div><div><b>${counts.pending+counts.callLater}</b><span>Pending</span></div><div><b>${counts.interested}</b><span>Interested</span></div><div><b>${counts.registered}</b><span>Registered</span></div></div></div></div>
-            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Agent Performance</div>${dashTable(['Agent','Assigned','Called','Pending','Interested','Registered','Reg. / Called'],agentRows,'No agent performance data yet.')}</div>
-            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Campaign Performance</div>${dashTable(['Campaign','Leads','Called','Interested','Registered','Reg. / Called'],campRows,'No campaign data yet.')}</div>
-            <div class="cc dash-panel" style="margin-top:20px;"><div class="dash-panel-title">Recent Activity</div>${dashTable(['Student / Agent','Outcome','Note','Time'],recentRows,'No activity recorded yet.')}</div>
-            ${staffBlock}`;
-
-        const statusData = [counts.pending,leads.filter(l=>dashboardStatus(l)==='called').length,counts.interested,counts.registered,counts.callback,counts.notReached,counts.notInterested,counts.callLater];
-        const statusLabels=['Pending','Called','Interested','Registered','Callback','Not Reached','Not Interested','Call Later'];
-        if(statusChartInstance) statusChartInstance.destroy();
-        statusChartInstance = new Chart(document.getElementById('statusChart'),{type:'doughnut',data:{labels:statusLabels,datasets:[{data:statusData}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-        if(campChartInstance) campChartInstance.destroy();
-        const topCampaigns=Object.entries(campaigns).slice(0,8);
-        campChartInstance = new Chart(document.getElementById('campChart'),{type:'bar',data:{labels:topCampaigns.map(x=>x[0]),datasets:[{label:'Leads',data:topCampaigns.map(x=>x[1].leads)},{label:'Registered',data:topCampaigns.map(x=>x[1].registered)}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{beginAtZero:true,ticks:{precision:0}}},plugins:{legend:{position:'bottom'}}}});
-    }
 
     // --- UI HELPERS ---
     window.switchTab = (p, t) => { document.querySelectorAll('.page, .sb-item').forEach(el => el.classList.remove('active')); document.getElementById(p).classList.add('active'); document.getElementById(t).classList.add('active'); document.getElementById('page-title').textContent = document.getElementById(t).textContent; };
